@@ -1,0 +1,15 @@
+/* 
+    Document   : style
+    Created on : 27.12.2010, 15:29:10
+    Author     : Kurt
+    Description:
+        Nothing and everything.
+*/
+body {
+    background-image: url("http://images.pixelio.de/data/media/16/Grossi1985_302601.jpg");
+}
+footer {
+    position: absolute;
+    bottom: 0px;
+}
+
