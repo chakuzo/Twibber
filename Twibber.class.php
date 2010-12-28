@@ -13,6 +13,11 @@ class Twibber {
 	// @TODO Post new twibber.
     }
 }
+class wcf{
+    function getData(){
+	// @TODO Read the database from wcf sha1($salt.sha1($salt.$password));
+    }
+}
 
 $mysqli = new mysqli();
 $Twibber = new Twibber();

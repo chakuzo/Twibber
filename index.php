@@ -13,11 +13,14 @@ include("Twibber.class.php")
 	<header>TwBBs || <a href="http://wbblite2.de">WBBLite2.de</a></header>
 	<div id="post_it">
 	    <h3>Phineas, was machst du grade?</h3>
-	    <textarea maxlength="250" autofocus placeholder="Es gibt 6 Wochen voller Sommerferientagen, bis die Schule beginnt und es ernst wird, so stellt sich wie jedes Jahr was tun..."></textarea>
+	    <textarea id="input_text" maxlength="250" autofocus placeholder="Es gibt 6 Wochen voller Sommerferientagen, bis die Schule beginnt und es ernst wird, so stellt sich wie jedes Jahr was tun..."></textarea>
+	    <label for="input_text">0 Zeichen</label>
 	</div>
 	<?php
 	$Twibber->fetchTwibber(true,true);
 	?>
 	<footer><a href="http://www.pixelio.de">M. Großmann / pixelio.de</a></footer>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+	<script src="javascript.js"></script>
     </body>
 </html>
