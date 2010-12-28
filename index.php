@@ -14,7 +14,7 @@ include("Twibber.class.php")
 	<div id="post_it">
 	    <h3>Phineas, was machst du grade?</h3>
 	    <textarea id="input_text" maxlength="250" autofocus placeholder="Es gibt 6 Wochen voller Sommerferientagen, bis die Schule beginnt und es ernst wird, so stellt sich wie jedes Jahr was tun..."></textarea>
-	    <label for="input_text">0 Zeichen</label>
+	    <br><label for="input_text">0 Zeichen</label>
 	</div>
 	<?php
 	$Twibber->fetchTwibber(true,true);

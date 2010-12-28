@@ -54,4 +54,8 @@ h3{
     font-size: 17px;
     margin-top: 10px;
     margin-left: 12%;
+    cursor: default;
+}
+label{
+    margin-left: 12%;
 }
