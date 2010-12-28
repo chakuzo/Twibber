@@ -7,9 +7,51 @@
 */
 body {
     background-image: url("http://images.pixelio.de/data/media/16/Grossi1985_302601.jpg");
+    background-size: 500px;
+    margin: 0px;
 }
 footer {
     position: absolute;
     bottom: 0px;
 }
-
+header {
+    text-align: right;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.0, yellow),
+                color-stop(0.5, orange), color-stop(1.0, red));
+    background: -moz-gradient(linear, left top, left bottom, color-stop(0.0, yellow),
+                color-stop(0.5, orange), color-stop(1.0, red));
+    padding: 3px;
+}
+textarea { 
+    -webkit-transition: -webkit-box-shadow 450ms linear 100ms;
+    border: 1px solid grey;
+    padding: 2px 1px;
+    margin-left: 12%;
+    height: 100px;
+    width: 500px;
+    border-radius: 4px;
+    font-family: Arial, serif;
+    padding: 8px;
+    outline: none;
+}
+textarea:hover, textarea:active { 
+    -webkit-box-shadow: red 0px 0px 5px;
+    -moz-box-shadow: red 0px 0px 5px; 
+    box-shadow: red 0px 0px 5px;
+}
+#post_it{
+    margin-left: 25%;
+    margin-right: 25%;
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 100%;
+    background-color: lightblue;
+}
+h3{
+    font-family: 'Yanone Kaffeesatz', arial, serif;
+    text-shadow: white 0 0 2px;
+    letter-spacing: 0.1em;
+    font-size: 17px;
+    margin-top: 10px;
+    margin-left: 12%;
+}

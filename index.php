@@ -1,12 +1,20 @@
+<?php
+include("Twibber.class.php")
+?>
 <!doctype html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>TWBBler - Das WBB MicroBlogging Social Network</title>
-	<link rel="stylesheet" href="style.css"> 
+	<link rel="stylesheet" href="style.css" type="text/css"> 
+	<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz' rel='stylesheet' type='text/css'> 
     </head>
     <body>
-	<header></header>
+	<header>TWBBler || <a href="http://wbblite2.de">WBBLite2.de</a></header>
+	<div id="post_it">
+	    <h3>Phineas, was machst du grade?</h3>
+	    <textarea maxlength="250" placeholder="Es gibt 6 Wochen voller Sommerferientagen, bis die Schule beginnt und es ernst wird, so stellt sich wie jedes Jahr was tun..."></textarea>
+	</div>
 	<?php
 	$Twibber->fetchTwibber(true,true);
 	?>
