@@ -9,9 +9,15 @@ function count_char(){
 }
 function dyn_get(latest, global, nick){
     // @TODO Replace old #twibber content with new.
+    $.get("api.php?dyn_get=1",function(ret){ $("#twibber").html(ret); });
 }
 function dyn_submit(){
     var text = $("#input_text").val();
-    $.post("api.php?new_entry=1",{text:text});
+    if(text != ""){
+	$.post("api.php?new_entry=1",{text:text},function(ret){alert(ret);});
+    }else{
+	alert("Bitte eine Nachricht eingeben!");
+    }
     dyn_get(true, true);
+    $("#input_text").val("");
 }

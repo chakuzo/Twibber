@@ -38,12 +38,14 @@ class Twibber {
 	global $mysqli;
 	// @TODO Function to fetch the Twibber statuses.
 	if($global){
-	    $query = $mysqli->query("SELECT * FROM `twibber_entry` ORDER BY `date` ASC");
+	    $query = $mysqli->query("SELECT * FROM `twibber_entry` ORDER BY `date` DESC");
 	    echo "<div id='twibber'>";
 	    while($result = $query->fetch_assoc()){
+		echo "<div id='twibb'>";
 		echo "<div id='nickname' class='".$result['nickname']."'>".$result['nickname']."</div>";
-		echo "<div id='content'>".$result['text']."</div>";
+		echo "<div id='content'>".preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@','<a href="$1">$1</a>',$result['text'])."</div>";
 		echo "<time>".$result['date']."</time>";
+		echo "</div>";
 	    }
 	    echo "</div>";
 	}
@@ -51,7 +53,7 @@ class Twibber {
     function createTwibber($message, $usernick){
 	global $mysqli;
 	// @TODO Post new twibber.
-	$mysqli->query("INSERT INTO `twibber_entry`(`nickname`,`text`,`date`) VALUES('".$usernick."','".$message."','".date("H:m:s d.m.Y")."')");
+	$mysqli->query("INSERT INTO `twibber_entry`(`nickname`,`text`,`date`) VALUES('".$usernick."','".$message."','".date("H:i:s d.m.Y")."')");
     }
 }
 class wcf{
@@ -70,6 +72,12 @@ class wcf{
     function mysqli($user,$pw,$db,$local){
 	global $mysqli2;
 	$mysqli2 = new mysqli($user,$pw,$db,$local);
+    }
+}
+
+class youtube{
+    function getTitle($id){
+	// @TODO Create this function http://m.youtube.com/watch?v=dsBbdKmjquM
     }
 }
 

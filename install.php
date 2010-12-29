@@ -8,6 +8,7 @@ If(wcf_name_prefix == "WCF1_"){
     }else{
 	echo "Erfolgreich installiert!";
 	unlink(__FILE__);
+	unlink("sql.sql");
     }
 }
 ?>
