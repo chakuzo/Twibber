@@ -5,7 +5,7 @@ include("Twibber.class.php")
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>TWBBler - Das WBB MicroBlogging Social Network</title>
+        <title>TWiBBer - Das WBB MicroBlogging Social Network</title>
 	<link rel="stylesheet" href="style.css" type="text/css"> 
 	<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz' rel='stylesheet' type='text/css'> 
     </head>
