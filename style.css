@@ -40,9 +40,10 @@ textarea:hover, textarea:active {
 }
 
 #logo{
-    margin-left: 15%;
-    margin-right: 35%;
-	position: fixed;
+    position: fixed;
+}
+#logo img{
+    width: 300px;
 }
 
 #post_it{
