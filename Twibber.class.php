@@ -42,7 +42,7 @@ class Twibber {
 	    echo "<div id='twibber'>";
 	    while($result = $query->fetch_assoc()){
 		echo "<div id='twibb'>";
-		echo "<div id='nickname' class='".$result['nickname']."'>".$result['nickname']."</div>";
+		echo "<div class='".$result['nickname']." nickname'>".$result['nickname']."</div>";
 		echo "<div id='content'>".preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@','<a href="$1">$1</a>',wordwrap(str_replace("\\","",$result['text']),76,"<br>",true))."</div>";
 		echo "<time>".$result['date']."</time>";
 		echo "</div>";

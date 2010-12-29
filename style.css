@@ -79,6 +79,10 @@ time{
     position: relative;
     text-align: right;
     display: block;
+    border: 1px solid black;
+    border-top: 0px;
+    margin-left: 23.6em;
+    
 }
 #content{
     border: 1px solid black;
@@ -88,7 +92,7 @@ time{
     background: -moz-linear-gradient(top,  #7cbfda,  #6aa4ba);
 }
 #nickname{
-    text-align: left;
+    /*text-align: left;*/
 }
 #status{
     position: absolute;
@@ -100,4 +104,9 @@ time{
     border-bottom-right-radius: 5px;
     padding-right: 5px;
     display: none;
+}
+.nickname{
+    border: 1px solid black;
+    border-bottom: 0px;
+    margin-right: 25em;
 }
