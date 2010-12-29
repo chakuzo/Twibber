@@ -43,7 +43,7 @@ class Twibber {
 	    while($result = $query->fetch_assoc()){
 		echo "<div id='twibb'>";
 		echo "<div id='nickname' class='".$result['nickname']."'>".$result['nickname']."</div>";
-		echo "<div id='content'>".preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@','<a href="$1">$1</a>',$result['text'])."</div>";
+		echo "<div id='content'>".preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@','<a href="$1">$1</a>',wordwrap($result['text'],76,"<br>",true))."</div>";
 		echo "<time>".$result['date']."</time>";
 		echo "</div>";
 	    }
@@ -61,7 +61,7 @@ class Twibber {
 class wcf{
     function getData($Data){
 	global $mysqli;
-	// @TODO Read the database from wcf sha1($salt.sha1($salt.$password));
+	// @TODO Read the database from wcf sha1($salt.sha1($salt.$password)); $_COOKIE['wcf_userID'];
 	if((mysql_user_wcf == "" && mysql_pw_wcf == "" && mysql_db_wcf == "" && mysql_local_wcf == "")&& (mysql_user != "" && mysql_pw != "" && mysql_db != "" && mysql_local != "")){
 	    $result = $mysqli->query("SELECT * FROM `".wcf_name_prefix."` ".$Data);
 	    return $result->fetch_assoc();
