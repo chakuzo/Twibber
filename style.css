@@ -63,7 +63,18 @@ label{
     margin-left: 12%;
     margin-right: 12%;
     text-align: center;
+    margin-bottom: 10px;
+}
+time{
+    position: relative;
+    text-align: right;
+    display: block;
+}
+#content{
     border: 1px solid black;
-    border-radius: 5px;
-    margin-bottom: 3px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+#nickname{
+    text-align: left;
 }
