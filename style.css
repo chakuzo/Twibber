@@ -6,8 +6,7 @@
         Nothing and everything.
 */
 body {
-    background-image: url("http://images.pixelio.de/data/media/16/Grossi1985_302601.jpg");
-    background-size: 500px;
+    background-image: url("res/backgrounds/default.png");
     margin: 0px;
 }
 footer {
