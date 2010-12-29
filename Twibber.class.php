@@ -19,7 +19,7 @@ define("mysql_db_wcf","");
 define("mysql_local_wcf","");
 
 if(wcf_name_prefix == "WCF1_"){
-    Throw new Exception("ERROR! Bitte füllen sie Linie 17 in Twibber.class.php richtig aus.");
+    die("ERROR! Bitte füllen sie Linie 17 in Twibber.class.php richtig aus.");
 }
 
 $mysqli = new mysqli(mysql_local,mysql_user,mysql_pw,mysql_db);
