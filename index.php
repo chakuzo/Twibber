@@ -18,7 +18,6 @@ include("Twibber.class.php")
 	    <br><div class="right"><label for="input_text">0 Zeichen</label><button id="twibber_it" onclick="dyn_submit();">Twibbern</button></div>
 	<?php
 	$Twibber->fetchTwibber(true,true);
-	echo $youtube->getTitle("dsBbdKmjquM");
 	?>
 	</div>
 	<footer>&copy; 2010 by Kurtextrem &amp; Math-Board</footer>

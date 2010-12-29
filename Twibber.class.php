@@ -81,9 +81,8 @@ class youtube{
     function getTitle($id){
 	// @TODO Create this function http://m.youtube.com/watch?v=dsBbdKmjquM
 	$contents = file_get_contents("http://m.youtube.com/watch?v=".$id);
-	$titel = preg_match("/<title>([\w\[\]\s\(\)]*)<\/title>/", $contents, $matches);
-	echo $matches[0];
-	$titel = $matches[1];
+	$titel = preg_match("/<title>YouTube - (.*)<\/title>/", $contents, $matches);
+	return $matches[1];
     }
 }
 
