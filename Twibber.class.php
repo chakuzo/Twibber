@@ -53,6 +53,8 @@ class Twibber {
     function createTwibber($message, $usernick){
 	global $mysqli;
 	// @TODO Post new twibber.
+	$message = $mysqli->real_escape_string($message);
+	$usernick = $mysqli->real_escape_string($usernick);
 	$mysqli->query("INSERT INTO `twibber_entry`(`nickname`,`text`,`date`) VALUES('".$usernick."','".$message."','".date("H:i:s d.m.Y")."')");
     }
 }
