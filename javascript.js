@@ -13,11 +13,11 @@ function dyn_get(latest, global, nick){
 }
 function dyn_submit(){
     var text = $("#input_text").val();
-    if(text.replace(/^\s+|\s+$/g,"") != ""){
-	$.post("api.php?new_entry=1",{text:text},function(ret){/*alert(ret);*/ });
+    if(text.replace(/^\s+|\s+$/g,"") != "" && text.length <= 250){
+	$.post("api.php?new_entry=1",{text:text},function(ret){ alert(ret); });
 	dyn_get(true, true);
 	$("#input_text").val("");
     }else{
-	alert("Bitte eine Nachricht eingeben!");
+	alert("Error! Nachricht zu lang oder keine Nachricht vorhanden!");
     }
 }
