@@ -42,6 +42,7 @@ textarea:hover, textarea:active {
 #logo{
     margin-left: 15%;
     margin-right: 35%;
+	position: fixed;
 }
 
 #post_it{
