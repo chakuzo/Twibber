@@ -1,5 +1,6 @@
 $(document).ready(function(){
    $("#input_text").keyup(function(){count_char();}); 
+   window.setInterval("dyn_get(true, true)", 4000);
 });
 
 function count_char(){
@@ -14,7 +15,7 @@ function dyn_get(latest, global, nick){
 function dyn_submit(){
     var text = $("#input_text").val();
     if(text.replace(/^\s+|\s+$/g,"") != "" && text.length <= 250){
-	$.post("api.php?new_entry=1",{text:text},function(ret){ alert(ret); });
+	$.post("api.php?new_entry=1",{text:text},function(ret){ $("#status").text(ret); });
 	dyn_get(true, true);
 	$("#input_text").val("");
     }else{

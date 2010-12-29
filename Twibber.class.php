@@ -80,10 +80,15 @@ class wcf{
 class youtube{
     function getTitle($id){
 	// @TODO Create this function http://m.youtube.com/watch?v=dsBbdKmjquM
+	$contents = file_get_contents("http://m.youtube.com/watch?v=".$id);
+	$titel = preg_match("/<title>([\w\[\]\s\(\)]*)<\/title>/", $contents, $matches);
+	echo $matches[0];
+	$titel = $matches[1];
     }
 }
 
 $Twibber = new Twibber();
 $wcf = new wcf();
+$youtube = new youtube();
 
 ?>

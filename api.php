@@ -1,6 +1,6 @@
 <?php
 include("Twibber.class.php");
-$text = strip_tags($_POST['text']);
+$text = htmlentities($_POST['text']);
 $nick = strip_tags($_COOKIE['nickname']);
 if($_GET['new_entry'] == "1"){
     if(trim($text) != "" && strlen($text) <= 250){

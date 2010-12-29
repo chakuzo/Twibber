@@ -13,10 +13,12 @@ include("Twibber.class.php")
 	<header>TwBBs || <a href="http://wbblite2.de">WBBLite2.de</a></header>
 	<div id="post_it">
 	    <h3>Phineas, was machst du grade?</h3>
+	    <div id="status"></div>
 	    <textarea id="input_text" maxlength="250" autofocus placeholder="Schreib deinen Freunden hier, was du gerade tust."></textarea>
 	    <br><div class="right"><label for="input_text">0 Zeichen</label><button id="twibber_it" onclick="dyn_submit();">Twibbern</button></div>
 	<?php
 	$Twibber->fetchTwibber(true,true);
+	echo $youtube->getTitle("dsBbdKmjquM");
 	?>
 	</div>
 	<footer>&copy; 2010 by Kurtextrem &amp; Math-Board</footer>

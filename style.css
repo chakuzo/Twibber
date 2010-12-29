@@ -79,3 +79,13 @@ time{
 #nickname{
     text-align: left;
 }
+#status{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: yellow;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    border-bottom-right-radius: 5px;
+    padding-right: 5px;
+}
