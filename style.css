@@ -44,6 +44,7 @@ textarea:hover, textarea:active, input:hover, input:active {
 
 #logo{
     position: fixed;
+	margin-left: 1%;
 }
 #logo img{
     width: 300px;
