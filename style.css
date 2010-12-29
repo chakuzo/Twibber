@@ -33,7 +33,10 @@ textarea {
     padding: 8px;
     outline: none;
 }
-textarea:hover, textarea:active { 
+input { 
+    -webkit-transition: -webkit-box-shadow 450ms linear 100ms;
+}
+textarea:hover, textarea:active, input:hover, input:active { 
     -webkit-box-shadow: red 0px 0px 5px;
     -moz-box-shadow: red 0px 0px 5px; 
     box-shadow: red 0px 0px 5px;
@@ -96,4 +99,5 @@ time{
     border-bottom: 1px solid black;
     border-bottom-right-radius: 5px;
     padding-right: 5px;
+    display: none;
 }

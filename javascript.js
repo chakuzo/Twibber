@@ -14,11 +14,11 @@ function dyn_get(latest, global, nick){
 }
 function dyn_submit(){
     var text = $("#input_text").val();
-    if(text.replace(/^\s+|\s+$/g,"") != "" && text.length <= 250){
-	$.post("api.php?new_entry=1",{text:text},function(ret){ $("#status").text(ret); });
+    if(text.replace(/^\s+|\s+$/g,"") != "" && text.length <= 250 && $("#nickname").val() != ""){
+	$.post("api.php?new_entry=1",{text:text, nickname:$("#nickname").val()},function(ret){ $("#status").fadeIn().text(ret); });
 	dyn_get(true, true);
 	$("#input_text").val("");
     }else{
-	alert("Error! Nachricht zu lang oder keine Nachricht vorhanden!");
+	alert("Error! Nachricht zu lang, keine Nachricht vorhanden oder kein Nickname eingegeben.");
     }
 }
