@@ -34,11 +34,11 @@ if ($mysqli->connect_error) {
  * @author Kurt
  */
 class Twibber {
-    function fetchTwibber($latest = true, $global = false, $nick = ''){
+    function fetchTwibber($latest = true, $global = false, $nick = '', $start = '0', $end = '30'){
 	global $mysqli;
 	// @TODO Function to fetch the Twibber statuses.
 	if($global){
-	    $query = $mysqli->query("SELECT * FROM `twibber_entry` ORDER BY `date` DESC");
+	    $query = $mysqli->query("SELECT * FROM `twibber_entry` ORDER BY `date` DESC LIMIT ".$start.", ".$end);
 	    echo "<div id='twibber'>";
 	    while($result = $query->fetch_assoc()){
 		echo "<div id='twibb'>";
