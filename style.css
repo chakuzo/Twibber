@@ -38,6 +38,12 @@ textarea:hover, textarea:active {
     -moz-box-shadow: red 0px 0px 5px; 
     box-shadow: red 0px 0px 5px;
 }
+
+#logo{
+    margin-left: 15%;
+    margin-right: 35%;
+}
+
 #post_it{
     margin-left: 25%;
     margin-right: 25%;

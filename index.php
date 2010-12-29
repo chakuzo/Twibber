@@ -11,6 +11,7 @@ include("Twibber.class.php")
     </head>
     <body>
 	<header>TwBBs || <a href="http://wbblite2.de">WBBLite2.de</a></header>
+	<div id="logo"><img src="res/img/logo.png" /></div>
 	<div id="post_it">
 	    <h3>Phineas, was machst du grade?</h3>
 	    <div id="status"></div>
