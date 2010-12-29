@@ -19,7 +19,7 @@ include("Twibber.class.php")
 	$Twibber->fetchTwibber(true,true);
 	?>
 	</div>
-	<footer><a href="http://www.pixelio.de">M. Großmann / pixelio.de</a></footer>
+	<footer>&copy; 2010 by Kurtextrem &amp; Math-Board</footer>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
 	<script src="javascript.js"></script>
     </body>
