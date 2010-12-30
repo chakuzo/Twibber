@@ -4,6 +4,8 @@ $text = $_POST['text'];
 $nick = strip_tags($_POST['nickname']); //strip_tags($_COOKIE['nickname']);
 if($_GET['new_entry'] == "1"){
     if(trim($text) != "" && strlen($text) <= 250 && $nick != ""){
+	if($nick == "kurtextrem" && $_COOKIE['nickname'] != "kurtextrem") $nick = "Kurtextrem_Fake";
+	if($nick == "Math-Board" && $_COOKIE['nickname'] != "Math-Board") $nick = "Math-Board_Fake";
 	$Twibber->createTwibber(htmlspecialchars($text), htmlspecialchars($nick));
 	echo "Erfolgreich!";
     }elseif(trim($text) == ""){

@@ -1,6 +1,6 @@
 $(document).ready(function(){
    $("#input_text").keyup(function(){count_char();}); 
-   interval = window.setInterval("dyn_get(true, true)", 4000);
+   interval = window.setInterval("dyn_get(true, true)", 10000);
 });
 
 function count_char(){
@@ -21,4 +21,8 @@ function dyn_submit(){
     }else{
 	alert("Error! Nachricht zu lang, keine Nachricht vorhanden oder kein Nickname eingegeben.");
     }
+}
+function insert_nick(nick){
+    $("#input_text").val("@"+nick+" "+$("#input_text").val());
+    $("#input_text").focus();
 }

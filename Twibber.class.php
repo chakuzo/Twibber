@@ -41,9 +41,14 @@ class Twibber {
 	    $query = $mysqli->query("SELECT * FROM `twibber_entry` ORDER BY `date` DESC LIMIT ".$start." , ".$end);
 	    echo "<div id='twibber'>";
 	    while($result = $query->fetch_assoc()){
+		$text = str_replace("\\","",$result['text']);
+		$text = wordwrap($text,76,"<br>",true);
+		$text = preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@','<a href="$1">$1</a>',$text);
+		$text = preg_replace('/@([A-Za-z]*) /','<a href="$1">@$1</a> ',$text);
+		$text = preg_replace('/\#([A-Za-z]*) /','<a href="$1">$1</a> ',$text);
 		echo "<div id='twibb'>";
-		echo "<div class='".$result['nickname']." nickname'>".$result['nickname']."</div>";
-		echo "<div id='content'>".preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@','<a href="$1">$1</a>',wordwrap(str_replace("\\","",$result['text']),76,"<br>",true))."</div>";
+		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerText);'>".$result['nickname']."</div>";
+		echo "<div id='content'>".$text."</div>";
 		echo "<time>".$result['date']."</time>";
 		echo "</div>";
 	    }
@@ -77,12 +82,55 @@ class wcf{
     }
 }
 
+/*
+ * Copyright 2010 - 2010 by Kurtextrem
+ * function: getTitle($id)
+ * returns: The title of the video.
+ * example: http://m.youtube.com/watch?v=dsBbdKmjquM
+ * example for return: Phineas und Ferb - Gitchi Gitchi Goo [HQ] (German)
+ * function: getLength($id)
+ * returns: The length of the video.
+ * function: getRate($id, $image)
+ * returns: the rate image if image = true, if its false, it returns the number.
+ * example for return: 5.0 stars
+ * function: getAll() Most effizient!
+ * returns: Array. Array['title'], Array['length'], Array['rate'], Array['rateIMG'], Array['thub'].
+ */
+
 class youtube{
     function getTitle($id){
-	// @TODO Create this function http://m.youtube.com/watch?v=dsBbdKmjquM
 	$contents = file_get_contents("http://m.youtube.com/watch?v=".$id);
 	$titel = preg_match("/<title>YouTube - (.*)<\/title>/", $contents, $matches);
 	return $matches[1];
+    }
+    function getLength($id){
+	$contents = file_get_contents("http://m.youtube.com/watch?v=".$id);
+	$length = preg_match("/<div>([0-9:]*)&nbsp;/", $contents, $matches);
+	return $matches[1];
+    }
+    function getRate($id, $image = true){
+	$contents = file_get_contents("http://m.youtube.com/watch?v=".$id);
+	if($image){
+	    $rate = preg_match('/<img src="(.*)" alt=".+ stars"/', $contents, $matches);
+	    return $matches[1];  
+	}else{
+	    $rate = preg_match('/<img src=".*" alt="(.+ stars)"/', $contents, $matches);
+	    return $matches[1];
+	}
+    }
+    function getAll(){
+	$return = Array();
+	$contents = file_get_contents("http://m.youtube.com/watch?v=".$id);
+	preg_match("/<title>YouTube - (.*)<\/title>/", $contents, $matches);
+	$return['titel'] = $matches[1];
+	preg_match("/<div>([0-9:]*)&nbsp;/", $contents, $matches);
+	$return['length'] = $matches[1];
+	preg_match('/<img src="(.*)" alt=".+ stars"/', $contents, $matches);
+	$return['rateIMG'] = $matches[1];
+	preg_match('/<img src=".*" alt="(.+ stars)"/', $contents, $matches);
+	$return['rate'] = $matches[1];
+	preg_match('/<img src="(.*)" alt="Video"/', $contents, $matches);
+	$return['thub'] = $matches[1];
     }
 }
 
