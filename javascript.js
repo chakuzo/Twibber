@@ -1,7 +1,7 @@
 $(document).ready(function(){
    $("#input_text").keyup(function(){count_char();}); 
    interval = window.setInterval("dyn_get(true, true)", 20000);
-   $("#nickname").mouseup(function(){document.cookie = "nickname="+$("#nickname").val()+";";});
+   $("#nickname").keyup(function(){document.cookie = "nickname="+$("#nickname").val()+";";});
 });
 
 function count_char(){
@@ -9,8 +9,19 @@ function count_char(){
     //if(charlen.length != "150"){ charlen.length = "Twitter"; }
     $("label[for='input_text']").text(charlen.length+" Zeichen");
 }
-function dyn_get(latest, global, nick){
-    $.get("api.php?dyn_get=1",function(ret){ $("#twibber").html(ret); });
+function dyn_get(latest, global, nick, search){
+    if(global){
+	$.get("api.php?dyn_get=1",function(ret){ $("#twibber").html(ret); });
+	return false;
+    }
+    if(nick != ''){
+	$.get("api.php",{nick:nick},function(ret){ $("#twibber").html(ret); });
+	return false;
+    }
+    if(search != ''){
+	$.get("api.php",{search:search},function(ret){ $("#twibber").html(ret); });
+	return false;
+    }
 }
 function dyn_submit(){
     var text = $("#input_text").val();

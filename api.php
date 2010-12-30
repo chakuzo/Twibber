@@ -19,4 +19,10 @@ if($_GET['new_entry'] == "1"){
 if($_GET['dyn_get'] == "1"){
     $Twibber->fetchTwibber(true, true, '', 0, 90);
 }
+if($_GET['nick'] != ""){
+    $Twibber->fetchTwibber(true, false, $_GET['nick']);
+}
+if($_GET['search'] != ""){
+    $Twibber->searchTwibber($_GET['search']);
+}
 ?>

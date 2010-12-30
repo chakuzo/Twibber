@@ -8,21 +8,24 @@ define("mysql_db","database"); // The Database Name
 define("mysql_local","localhost"); // I think you shouldnt change this..
 define("wcf_name_prefix","WCF1_"); // The prefix which is used for the wcf !!!
 				    // Provide it with syntax "wcfX_", X as a number !!!
-
-/* Fill out the Data for the connection to read out the WCF Data,
- * if it's the same as the above database connection, you can leave these here
- * empty.
+/**
+ * Fill out the Data for the connection to read out the WCF Data,
  */
 define("mysql_user_wcf","");
 define("mysql_pw_wcf","");
 define("mysql_db_wcf","");
-define("mysql_local_wcf","");
+define("mysql_local_wcf","localhost");
 
 if(wcf_name_prefix == "WCF1_"){
     die("ERROR! Bitte füllen sie Linie 17 in Twibber.class.php richtig aus.");
 }
 
 $mysqli = new mysqli(mysql_local,mysql_user,mysql_pw,mysql_db);
+if ($mysqli->connect_error) {
+    die('Connect Error (' . $mysqli->connect_errno . ') '
+            . $mysqli->connect_error);
+}
+$mysqli2 = new mysqli(mysql_local_wcf,mysql_user_wcf,mysql_pw_wcf,mysql_db_wcf);
 if ($mysqli->connect_error) {
     die('Connect Error (' . $mysqli->connect_errno . ') '
             . $mysqli->connect_error);
@@ -43,10 +46,10 @@ class Twibber {
 		$text = str_replace("\\","",$result['text']);
 		$text = wordwrap($text,76,"<br>",true);
 		$text = preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@','<a href="$1">$1</a>',$text);
-		$text = preg_replace('/@([A-Za-z_-]*) /i','<a href="?nick=$1">@$1</a> ',$text);
-		$text = preg_replace('/\#([A-Za-zäüöß_-]*)/i','<a href="?search=$1">#$1</a> ',$text);
+		$text = preg_replace('/@([A-Za-z_-]*) /i','<a href="?nick=$1" onclick="return dyn_get(true, false, this.innerText.replace(/@/,\'\'));">@$1</a> ',$text);
+		$text = preg_replace('/\#([A-Za-zäüöß_-]*)/i','<a href="?search=$1" class="hash" onclick="return dyn_get(true, false, false, this.innerText.replace(/\#/,\'\'));">#$1</a> ',$text);
 		echo "<div id='twibb'>";
-		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerText);'>".$result['nickname']."</div>";
+		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerText);'><img src='".wcf::avatar($result['nickname'])."' id='avatar'>".$result['nickname']."</div>";
 		echo "<div id='content'>".$text."</div>";
 		echo "<time>".$result['date']."</time>";
 		echo "</div>";
@@ -62,8 +65,8 @@ class Twibber {
 		$text = str_replace("\\","",$result['text']);
 		$text = wordwrap($text,76,"<br>",true);
 		$text = preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@','<a href="$1">$1</a>',$text);
-		$text = preg_replace('/@([A-Za-z_-]*) /i','<a href="?nick=$1">@$1</a> ',$text);
-		$text = preg_replace('/\#([A-Za-zäüöß_-]*)/i','<a href="?search=$1">#$1</a> ',$text);
+		$text = preg_replace('/@([A-Za-z_-]*) /i','<a href="?nick=$1" onclick="return dyn_get(true, false, this.innerText.replace(/@/,\'\'));">@$1</a> ',$text);
+		$text = preg_replace('/\#([A-Za-zäüöß_-]*)/i','<a href="?search=$1" class="hash" onclick="return dyn_get(true, false, false, this.innerText.replace(/\#/,\'\'));">#$1</a> ',$text);
 		echo "<div id='twibb'>";
 		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerText);'>".$result['nickname']."</div>";
 		echo "<div id='content'>".$text."</div>";
@@ -89,8 +92,8 @@ class Twibber {
 		$text = str_replace("\\","",$result['text']);
 		$text = wordwrap($text,76,"<br>",true);
 		$text = preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@','<a href="$1">$1</a>',$text);
-		$text = preg_replace('/@([A-Za-z_-]*) /i','<a href="?nick=$1">@$1</a> ',$text);
-		$text = preg_replace('/\#([A-Za-zäüöß_-]*)/i','<a href="?search=$1">#$1</a> ',$text);
+		$text = preg_replace('/@([A-Za-z_-]*) /i','<a href="?nick=$1" onclick="return dyn_get(true, false, this.innerText.replace(/@/,\'\'));">@$1</a> ',$text);
+		$text = preg_replace('/\#([A-Za-zäüöß_-]*)/i','<a href="?search=$1" class="hash" onclick="return dyn_get(true, false, false, this.innerText.replace(/\#/,\'\'));">#$1</a> ',$text);
 		echo "<div id='twibb'>";
 		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerText);'>".$result['nickname']."</div>";
 		echo "<div id='content'>".$text."</div>";
@@ -104,22 +107,18 @@ class Twibber {
     }
 }
 class wcf{
-    function getData($Data){
-	global $mysqli;
-	// @TODO Read the database from wcf sha1($salt.sha1($salt.$password)); $_COOKIE['wcf_userID'];
-	if((mysql_user_wcf == "" && mysql_pw_wcf == "" && mysql_db_wcf == "" && mysql_local_wcf == "")&& (mysql_user != "" && mysql_pw != "" && mysql_db != "" && mysql_local != "")){
-	    $result = $mysqli->query("SELECT * FROM `".wcf_name_prefix."` ".$Data);
-	    return $result->fetch_assoc();
-	}elseif(mysql_user_wcf != "" && mysql_pw_wcf != "" && mysql_db_wcf != "" && mysql_local_wcf != ""){
-	    $this->mysqli(mysql_user_wcf, mysql_pw_wcf, mysql_db_wcf, mysql_local_wcf);
-	    $mysqli2->query("SELECT * FROM `".wcf_name_prefix."` ".$Data);
-	    return $result->fetch_assoc();
-	}
-    }
-    function mysqli($user,$pw,$db,$local){
+    public static function getData($Data){
 	global $mysqli2;
-	$mysqli2 = new mysqli($user,$pw,$db,$local);
+	// @TODO Read the database from wcf sha1($salt.sha1($salt.$password)); $_COOKIE['wcf_userID'];
+	
     }
+    public static function getAvatar($nickname){
+	global $mysqli2;
+	$query = $mysqli2->query("SELECT `avatarID` FROM `".wcf_name_prefix."user` WHERE `username` = '".$nickname."'");
+	$result = $query->fetch_assoc();
+	return "http://www.wbblite2.de/wcf/images/avatars/avatar-".$result['avatarID'].".png";
+    }
+    
 }
 
 /*
