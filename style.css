@@ -89,7 +89,7 @@ time{
     border-bottom-left-radius: 5px;
     /*background: -webkit-gradient(linear, left top, left bottom, from(#7cbfda), to(#6aa4ba));
     background: -moz-linear-gradient(top,  #7cbfda,  #6aa4ba);*/
-    font-family: 'Cabin', arial, serif;
+    font-family: 'Droid Sans', arial, serif;
     cursor: default;
     background: -webkit-gradient(linear, left top, left bottom, from(#e8e8e8), to(#bababa));
     background: -moz-linear-gradient(top,  #e8e8e8,  #bababa);
