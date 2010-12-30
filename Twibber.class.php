@@ -108,32 +108,26 @@ class Twibber {
 }
 class wcf{
     public static function getData($nickname, $password){
-	// @TODO Read the database from wcf sha1($salt.sha1($salt.$password)); $_COOKIE['wcf_userID'];
 	global $mysqli2;
-	$nickname = strip_tags($nickname);
-	$password = strip_tags($password);
-	$nickname = $mysqli2->real_escape_string($nickname);
-	$password = $mysqli2->real_escape_string($password);
-	$query = $mysqli2->query("SELECT `username`, `password`, `salt` FROM `".wcf_name_prefix."user` WHERE `username` = '".$nickname."'");
-	$result = $query->fetch_assoc();
-	if($result == ""){
-	    return "fail";
-	}
-	$query = $mysqli2->query("SELECT `username`, `password`, `salt` FROM `".wcf_name_prefix."user` WHERE `username` = '".$nickname."' and `password` = '".sha1($result['salt'].sha1($result['salt'].$password))."'");
-	$result = $query->fetch_assoc();
-	if($result != ""){
-	    return "ok";
-	}else{
-	    return "fail";
-	}
+        // @TODO Read the database from wcf sha1($salt.sha1($salt.$password)); $_COOKIE['wcf_userID'];
+        $nickname = strip_tags($nickname);
+        $password = strip_tags($password);
+        $nickname = $mysqli2->real_escape_string($nickname);
+        $password = $mysqli2->real_escape_string($password);
+        $sql = "SELECT username, password, salt FROM ".wcf_name_prefix."user WHERE username = '".$nickname."'";
+        $query = $mysqli2->query($sql);
+        $result = $query->fetch_object();
+        if (!$result) return false;
+        if ($result->password != sha1($result->salt.sha1($result->salt.$password))) return false;
+        return true;
     }
     public static function getAvatar($nickname){
 	global $mysqli2;
 	$nickname = strip_tags($nickname);
 	$nickname = $mysqli2->real_escape_string($nickname);
 	$query = $mysqli2->query("SELECT `avatarID` FROM `".wcf_name_prefix."user` WHERE `username` = '".$nickname."'");
-	$result = $query->fetch_assoc();
-	return "http://www.wbblite2.de/wcf/images/avatars/avatar-".$result['avatarID'].".png";
+	$result = $query->fetch_object();
+	return "http://www.wbblite2.de/wcf/images/avatars/avatar-".$result->avatarID.".png";
     }
     
 }

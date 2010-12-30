@@ -2,7 +2,7 @@
 include("Twibber.class.php");
 if($_POST['nickname'] != "" && $_POST['password'] != ""){
     $return = wcf::getData($_POST['nickname'], $_POST['password']);
-    echo ($return == "fail")?"Fehler!":"Erfolgreich";
+    echo ($return)?"Erfolgreich!":"Error!";
 }
 ?>
 <!doctype html>
