@@ -1,5 +1,5 @@
 <?php
-include("Twibber.class.php")
+include("Twibber.class.php");
 ?>
 <!doctype html>
 <html>
@@ -19,7 +19,13 @@ include("Twibber.class.php")
 	    <textarea id="input_text" maxlength="250" autofocus placeholder="Schreib deinen Freunden hier, was du gerade tust."></textarea>
 	    <br><div class="right"><label for="input_text">0 Zeichen</label><button id="twibber_it" onclick="dyn_submit();">Twibbern</button></div>
 	<?php
-	$Twibber->fetchTwibber(true,true);
+	if($_GET['nick'] == "" && $_GET['search'] == ""){
+	    $Twibber->fetchTwibber(true,true);
+	}elseif($_GET['search'] == ""){
+	    $Twibber->fetchTwibber(true, false, $_GET['nick']);
+	}else{
+	    $Twibber-searchTwibber();
+	}
 	?>
 	</div>
 	<footer>&copy; 2010 by Kurtextrem &amp; Math-Board</footer>

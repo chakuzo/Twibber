@@ -44,8 +44,27 @@ class Twibber {
 		$text = str_replace("\\","",$result['text']);
 		$text = wordwrap($text,76,"<br>",true);
 		$text = preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@','<a href="$1">$1</a>',$text);
-		$text = preg_replace('/@([A-Za-z]*) /','<a href="$1">@$1</a> ',$text);
-		$text = preg_replace('/\#([A-Za-z]*) /','<a href="$1">$1</a> ',$text);
+		$text = preg_replace('/@([A-Za-z]*) /','<a href="?nick=$1">@$1</a> ',$text);
+		$text = preg_replace('/\#([A-Za-z]*) /','<a href="?search=$1">$1</a> ',$text);
+		echo "<div id='twibb'>";
+		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerText);'>".$result['nickname']."</div>";
+		echo "<div id='content'>".$text."</div>";
+		echo "<time>".$result['date']."</time>";
+		echo "</div>";
+	    }
+	    echo "</div>";
+	}
+	if($global == false && $nick != ''){
+	    $nick = $mysqli->real_escape_string($nick);
+	    $nick = strip_tags($nick);
+	    $query = $mysqli->query("SELECT * FROM `twibber_entry` WHERE `nickname` = '".$nick."' ORDER BY `date` DESC");
+	    echo "<div id='twibber'>";
+	    while($result = $query->fetch_assoc()){
+		$text = str_replace("\\","",$result['text']);
+		$text = wordwrap($text,76,"<br>",true);
+		$text = preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@','<a href="$1">$1</a>',$text);
+		$text = preg_replace('/@([A-Za-z]*) /','<a href="?nick=$1">@$1</a> ',$text);
+		$text = preg_replace('/\#([A-Za-z]*) /','<a href="search.php?search=$1">$1</a> ',$text);
 		echo "<div id='twibb'>";
 		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerText);'>".$result['nickname']."</div>";
 		echo "<div id='content'>".$text."</div>";
@@ -61,6 +80,25 @@ class Twibber {
 	$message = $mysqli->real_escape_string($message);
 	$usernick = $mysqli->real_escape_string($usernick);
 	$mysqli->query("INSERT INTO `twibber_entry`(`nickname`,`text`,`date`) VALUES('".$usernick."','".$message."','".date("d.m.Y H:i:s")."')");
+    }
+    function searchTwibber($needle){
+	$needle = $mysqli->real_escape_string($needle);
+	$needle = strip_tags($needle);
+	$query = "SELECT * FROM  `twibber_entry` WHERE  `text` LIKE  '%".$needle."'";
+	echo "<div id='twibber'>";
+	    while($result = $query->fetch_assoc()){
+		$text = str_replace("\\","",$result['text']);
+		$text = wordwrap($text,76,"<br>",true);
+		$text = preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@','<a href="$1">$1</a>',$text);
+		$text = preg_replace('/@([A-Za-z]*) /','<a href="?nick=$1">@$1</a> ',$text);
+		$text = preg_replace('/\#([A-Za-z]*) /','<a href="search.php?search=$1">$1</a> ',$text);
+		echo "<div id='twibb'>";
+		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerText);'>".$result['nickname']."</div>";
+		echo "<div id='content'>".$text."</div>";
+		echo "<time>".$result['date']."</time>";
+		echo "</div>";
+	    }
+	echo "</div>";
     }
 }
 class wcf{
