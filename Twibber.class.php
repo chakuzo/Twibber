@@ -45,7 +45,7 @@ class Twibber {
 		$text = wordwrap($text,76,"<br>",true);
 		$text = preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@','<a href="$1">$1</a>',$text);
 		$text = preg_replace('/@([A-Za-z]*) /','<a href="?nick=$1">@$1</a> ',$text);
-		$text = preg_replace('/\#([A-Za-z]*) /','<a href="?search=$1">$1</a> ',$text);
+		$text = preg_replace('/\#([A-Za-z]*) /','<a href="?search=$1">#$1</a> ',$text);
 		echo "<div id='twibb'>";
 		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerText);'>".$result['nickname']."</div>";
 		echo "<div id='content'>".$text."</div>";
@@ -82,9 +82,10 @@ class Twibber {
 	$mysqli->query("INSERT INTO `twibber_entry`(`nickname`,`text`,`date`) VALUES('".$usernick."','".$message."','".date("d.m.Y H:i:s")."')");
     }
     function searchTwibber($needle){
+	global $mysqli;
 	$needle = $mysqli->real_escape_string($needle);
 	$needle = strip_tags($needle);
-	$query = "SELECT * FROM  `twibber_entry` WHERE  `text` LIKE  '%".$needle."'";
+	$query = $mysqli->query("SELECT * FROM `twibber_entry` WHERE `text` LIKE '%".$needle."%' ORDER BY `date` DESC");
 	echo "<div id='twibber'>";
 	    while($result = $query->fetch_assoc()){
 		$text = str_replace("\\","",$result['text']);

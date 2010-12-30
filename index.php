@@ -24,7 +24,7 @@ include("Twibber.class.php");
 	}elseif($_GET['search'] == ""){
 	    $Twibber->fetchTwibber(true, false, $_GET['nick']);
 	}else{
-	    $Twibber-searchTwibber();
+	    $Twibber->searchTwibber($_GET['search']);
 	}
 	?>
 	</div>
