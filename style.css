@@ -68,6 +68,8 @@ label{
     margin-right: 12%;
     text-align: center;
     margin-bottom: 10px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#e8e8e8), to(#bababa));
+    background: -moz-linear-gradient(top,  #e8e8e8,  #bababa);
 }
 time{
     position: relative;
