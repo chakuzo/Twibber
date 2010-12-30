@@ -38,7 +38,7 @@ class Twibber {
 	global $mysqli;
 	// @TODO Function to fetch the Twibber statuses.
 	if($global){
-	    $query = $mysqli->query("SELECT * FROM `twibber_entry` ORDER BY `date` DESC LIMIT ".$start.", ".$end);
+	    $query = $mysqli->query("SELECT * FROM `twibber_entry` ORDER BY `date` DESC LIMIT ".$start." , ".$end);
 	    echo "<div id='twibber'>";
 	    while($result = $query->fetch_assoc()){
 		echo "<div id='twibb'>";
@@ -55,7 +55,7 @@ class Twibber {
 	// @TODO Post new twibber.
 	$message = $mysqli->real_escape_string($message);
 	$usernick = $mysqli->real_escape_string($usernick);
-	$mysqli->query("INSERT INTO `twibber_entry`(`nickname`,`text`,`date`) VALUES('".$usernick."','".$message."','".date("H:i:s d.m.Y")."')");
+	$mysqli->query("INSERT INTO `twibber_entry`(`nickname`,`text`,`date`) VALUES('".$usernick."','".$message."','".date("d.m.Y H:i:s")."')");
     }
 }
 class wcf{
