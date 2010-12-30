@@ -1,6 +1,7 @@
 $(document).ready(function(){
    $("#input_text").keyup(function(){count_char();}); 
    interval = window.setInterval("dyn_get(true, true)", 20000);
+   $("#nickname").mouseup(function(){document.cookie = "nickname="+$("#nickname").val()+";";});
 });
 
 function count_char(){

@@ -18,7 +18,7 @@ include("Twibber.class.php");
 	<div id="post_it">
 	    <h3>Phineas, was machst du grade?</h3>
 	    <div id="status"></div>
-	    <label for="nickname" id="label_nick">Nickname: </label><input type="text" id="nickname">
+	    <label for="nickname" id="label_nick">Nickname: </label><input type="text" id="nickname" value="<?=$_COOKIE['nickname']?>">
 	    <textarea id="input_text" maxlength="250" autofocus placeholder="Schreib deinen Freunden hier, was du gerade tust."></textarea>
 	    <br><div class="right"><label for="input_text">0 Zeichen</label><button id="twibber_it" onclick="dyn_submit();">Twibbern</button></div>
 	<?php
