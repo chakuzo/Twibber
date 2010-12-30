@@ -1,3 +1,10 @@
+<?php
+include("Twibber.class.php");
+if($_POST['nickname'] != "" && $_POST['password'] != ""){
+    $return = wcf::getData($_POST['nickname'], $_POST['password']);
+    echo ($return == "fail")?"Fehler!":"Erfolgreich";
+}
+?>
 <!doctype html>
 <html>
     <head>
@@ -5,9 +12,14 @@
         <title>Login Page</title>
     </head>
     <body>
-	<div></div>
-	<?php
-	// put your code here
-	?>
+	<form action="login.php?login=true" method="post">
+	    <fieldset>
+		<legend>Login</legend>
+		<label for="nickname">Nickname: </label><input type="text" name="nickname" id="nickname">
+		<br>
+		<label for="password">Password: </label><input type="password" name="password" id="password">
+		<button type="submit">Absenden</button>
+	    </fieldset>
+	</form>
     </body>
 </html>

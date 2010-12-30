@@ -49,7 +49,7 @@ class Twibber {
 		$text = preg_replace('/@([A-Za-z_-]*) /i','<a href="?nick=$1" onclick="return dyn_get(true, false, this.innerText.replace(/@/,\'\'));">@$1</a> ',$text);
 		$text = preg_replace('/\#([A-Za-zäüöß_-]*)/i','<a href="?search=$1" class="hash" onclick="return dyn_get(true, false, false, this.innerText.replace(/\#/,\'\'));">#$1</a> ',$text);
 		echo "<div id='twibb'>";
-		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerText);'><img src='".wcf::avatar($result['nickname'])."' id='avatar'>".$result['nickname']."</div>";
+		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerText);'><img src='".wcf::getAvatar($result['nickname'])."' id='avatar'>".$result['nickname']."</div>";
 		echo "<div id='content'>".$text."</div>";
 		echo "<time>".$result['date']."</time>";
 		echo "</div>";
@@ -68,7 +68,7 @@ class Twibber {
 		$text = preg_replace('/@([A-Za-z_-]*) /i','<a href="?nick=$1" onclick="return dyn_get(true, false, this.innerText.replace(/@/,\'\'));">@$1</a> ',$text);
 		$text = preg_replace('/\#([A-Za-zäüöß_-]*)/i','<a href="?search=$1" class="hash" onclick="return dyn_get(true, false, false, this.innerText.replace(/\#/,\'\'));">#$1</a> ',$text);
 		echo "<div id='twibb'>";
-		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerText);'><img src='".wcf::avatar($result['nickname'])."' id='avatar'>".$result['nickname']."</div>";
+		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerText);'><img src='".wcf::getAvatar($result['nickname'])."' id='avatar'>".$result['nickname']."</div>";
 		echo "<div id='content'>".$text."</div>";
 		echo "<time>".$result['date']."</time>";
 		echo "</div>";
@@ -95,7 +95,7 @@ class Twibber {
 		$text = preg_replace('/@([A-Za-z_-]*) /i','<a href="?nick=$1" onclick="return dyn_get(true, false, this.innerText.replace(/@/,\'\'));">@$1</a> ',$text);
 		$text = preg_replace('/\#([A-Za-zäüöß_-]*)/i','<a href="?search=$1" class="hash" onclick="return dyn_get(true, false, false, this.innerText.replace(/\#/,\'\'));">#$1</a> ',$text);
 		echo "<div id='twibb'>";
-		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerText);'><img src='".wcf::avatar($result['nickname'])."' id='avatar'>".$result['nickname']."</div>";
+		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerText);'><img src='".wcf::getAvatar($result['nickname'])."' id='avatar'>".$result['nickname']."</div>";
 		echo "<div id='content'>".$text."</div>";
 		echo "<time>".$result['date']."</time>";
 		echo "</div>";
@@ -107,13 +107,30 @@ class Twibber {
     }
 }
 class wcf{
-    public static function getData($Data){
-	global $mysqli2;
+    public static function getData($nickname, $password){
 	// @TODO Read the database from wcf sha1($salt.sha1($salt.$password)); $_COOKIE['wcf_userID'];
-	
+	global $mysqli2;
+	$nickname = strip_tags($nickname);
+	$password = strip_tags($password);
+	$nickname = $mysqli2->real_escape_string($nickname);
+	$password = $mysqli2->real_escape_string($password);
+	$query = $mysqli2->query("SELECT `username`, `password`, `salt` FROM `".wcf_name_prefix."user` WHERE `username` = '".$nickname."'");
+	$result = $query->fetch_assoc();
+	if($result == ""){
+	    return "fail";
+	}
+	$query = $mysqli2->query("SELECT `username`, `password`, `salt` FROM `".wcf_name_prefix."user` WHERE `username` = '".$nickname."' and `password` = '".sha1($result['salt'].sha1($result['salt'].$password))."'");
+	$result = $query->fetch_assoc();
+	if($result != ""){
+	    return "ok";
+	}else{
+	    return "fail";
+	}
     }
     public static function getAvatar($nickname){
 	global $mysqli2;
+	$nickname = strip_tags($nickname);
+	$nickname = $mysqli2->real_escape_string($nickname);
 	$query = $mysqli2->query("SELECT `avatarID` FROM `".wcf_name_prefix."user` WHERE `username` = '".$nickname."'");
 	$result = $query->fetch_assoc();
 	return "http://www.wbblite2.de/wcf/images/avatars/avatar-".$result['avatarID'].".png";
