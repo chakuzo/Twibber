@@ -1,6 +1,6 @@
 $(document).ready(function(){
    $("#input_text").keyup(function(){count_char();}); 
-   interval = window.setInterval("dyn_get(true, true)", 10000);
+   interval = window.setInterval("dyn_get(true, true)", 20000);
 });
 
 function count_char(){

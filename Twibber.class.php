@@ -44,8 +44,8 @@ class Twibber {
 		$text = str_replace("\\","",$result['text']);
 		$text = wordwrap($text,76,"<br>",true);
 		$text = preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@','<a href="$1">$1</a>',$text);
-		$text = preg_replace('/@([A-Za-z]*) /i','<a href="?nick=$1">@$1</a> ',$text);
-		$text = preg_replace('/\#([A-Za-zäüöß]*)/i','<a href="?search=$1">#$1</a> ',$text);
+		$text = preg_replace('/@([A-Za-z_-]*) /i','<a href="?nick=$1">@$1</a> ',$text);
+		$text = preg_replace('/\#([A-Za-zäüöß_-]*)/i','<a href="?search=$1">#$1</a> ',$text);
 		echo "<div id='twibb'>";
 		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerText);'>".$result['nickname']."</div>";
 		echo "<div id='content'>".$text."</div>";
@@ -63,8 +63,8 @@ class Twibber {
 		$text = str_replace("\\","",$result['text']);
 		$text = wordwrap($text,76,"<br>",true);
 		$text = preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@','<a href="$1">$1</a>',$text);
-		$text = preg_replace('/@([A-Za-z]*) /i','<a href="?nick=$1">@$1</a> ',$text);
-		$text = preg_replace('/\#([A-Za-zäüöß]*)/i','<a href="?search=$1">#$1</a> ',$text);
+		$text = preg_replace('/@([A-Za-z_-]*) /i','<a href="?nick=$1">@$1</a> ',$text);
+		$text = preg_replace('/\#([A-Za-zäüöß_-]*)/i','<a href="?search=$1">#$1</a> ',$text);
 		echo "<div id='twibb'>";
 		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerText);'>".$result['nickname']."</div>";
 		echo "<div id='content'>".$text."</div>";
@@ -91,8 +91,8 @@ class Twibber {
 		$text = str_replace("\\","",$result['text']);
 		$text = wordwrap($text,76,"<br>",true);
 		$text = preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@','<a href="$1">$1</a>',$text);
-		$text = preg_replace('/@([A-Za-z]*) /i','<a href="?nick=$1">@$1</a> ',$text);
-		$text = preg_replace('/\#([A-Za-zäüöß]*)/i','<a href="?search=$1">#$1</a> ',$text);
+		$text = preg_replace('/@([A-Za-z_-]*) /i','<a href="?nick=$1">@$1</a> ',$text);
+		$text = preg_replace('/\#([A-Za-zäüöß_-]*)/i','<a href="?search=$1">#$1</a> ',$text);
 		echo "<div id='twibb'>";
 		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerText);'>".$result['nickname']."</div>";
 		echo "<div id='content'>".$text."</div>";
