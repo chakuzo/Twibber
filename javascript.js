@@ -10,7 +10,6 @@ function count_char(){
     $("label[for='input_text']").text(charlen.length+" Zeichen");
 }
 function dyn_get(latest, global, nick){
-    // @TODO Replace old #twibber content with new.
     $.get("api.php?dyn_get=1",function(ret){ $("#twibber").html(ret); });
 }
 function dyn_submit(){

@@ -36,7 +36,6 @@ if ($mysqli->connect_error) {
 class Twibber {
     function fetchTwibber($latest = true, $global = false, $nick = '', $start = '0', $end = '30'){
 	global $mysqli;
-	// @TODO Function to fetch the Twibber statuses.
 	if($global){
 	    $query = $mysqli->query("SELECT * FROM `twibber_entry` ORDER BY `date` DESC LIMIT ".$start." , ".$end);
 	    echo "<div id='twibber'>";
@@ -76,7 +75,6 @@ class Twibber {
     }
     function createTwibber($message, $usernick){
 	global $mysqli;
-	// @TODO Post new twibber.
 	$message = $mysqli->real_escape_string($message);
 	$usernick = $mysqli->real_escape_string($usernick);
 	$mysqli->query("INSERT INTO `twibber_entry`(`nickname`,`text`,`date`) VALUES('".$usernick."','".$message."','".date("d.m.Y H:i:s")."')");
@@ -100,6 +98,9 @@ class Twibber {
 		echo "</div>";
 	    }
 	echo "</div>";
+    }
+    function getTwibberImage($nickname){
+	// @TODO For API fetching data for images
     }
 }
 class wcf{

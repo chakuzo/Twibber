@@ -13,7 +13,7 @@ include("Twibber.class.php");
 	<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
     </head>
     <body>
-	<header>TwBBs || <a href="http://wbblite2.de">WBBLite2.de</a></header>
+	<header><a href="login.php">Login</a> || <a href="http://wbblite2.de">WBBLite2.de</a></header>
 	<div id="logo"><a href="index.php"><img src="res/img/logo.png"></a></div>
 	<div id="post_it">
 	    <h3>Phineas, was machst du grade?</h3>
