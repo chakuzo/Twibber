@@ -1,4 +1,9 @@
 <?php
+if($_GET['mode'] == "logout"){
+    setcookie("twibber_nick", "", time() - 3600);
+    setcookie("twibber_pw", "", time() - 3600);
+    setcookie("twibber_salt", "", time() - 3600);
+}
 include("Twibber.class.php");
 if($_POST['nickname'] != "" && $_POST['password'] != ""){
     $return = wcf::getData($_POST['nickname'], $_POST['password']);
