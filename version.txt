@@ -1,2 +1,9 @@
 Version 0.1 was released on 31.12.2010 at 15:15. Rev 0 - 78 reffers to it.
 Version 0.2 is being released soon.
+
+Milestone0.2:
+Design for all Bildschirme passend
+Milestone0.3: 
+....
+Milestone1.0:
+Inviduall Homepage, follow, lists, retweet, answer, (to be continued...)
