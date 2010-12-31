@@ -135,3 +135,27 @@ time{
     height: 20px;
     width: 18px;
 }
+#wbblite2{
+    width: 110px;
+    height: 20px;
+    background: url("res/img/buttons/wbblite2.png");
+}
+#logout{
+    width: 60px;
+    height: 20px;
+    background: url("res/img/buttons/logout.png");
+}
+#login{
+    width: 50px;
+    height: 20px;
+    background: url("res/img/buttons/login.png");
+}
+#wbblite2:hover{
+    background: url("res/img/buttons/wbblite2H.png");
+}
+#logout:hover{
+    background: url("res/img/buttons/logoutH.png");
+}
+#login:hover{
+    background: url("res/img/buttons/loginH.png");
+}

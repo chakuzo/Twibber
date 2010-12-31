@@ -14,10 +14,10 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 	<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
     </head>
     <body>
-	<header><?php if(!$return){ ?><a href="login.php"><img src="res/img/buttons/login.png" alt="Login"></a><?php }else{ ?>Hallo, <?=$_COOKIE['twibber_nick']?>. <a href="login.php?mode=logout">Ausloggen</a> <?php } ?><a href="http://wbblite2.de"><img src="res/img/buttons/wbblite2.png" alt="WBBLite2.de"></a></header>
+	<header><?php if(!$return){ ?><a href="login.php"><img src="res/img/cleardot.gif" alt="Login" id="login"></a><?php }else{ ?>Hallo, <?=$_COOKIE['twibber_nick']?>. <a href="login.php?mode=logout"><img src="res/img/cleardot.gif" alt="Ausloggen" id="logout"></a><?php } ?><a href="http://wbblite2.de"><img src="res/img/cleardot.gif" alt="WBBLite2.de" id="wbblite2"></a></header>
 	<div id="logo"><a href="index.php"><img src="res/img/logo.png"></a></div>
 	<div id="post_it">
-	    <h3>Phineas, was machst du grade?</h3>
+	    <h3><?=$_COOKIE['twibber_nick']?>, was machst du grade?</h3>
 	    <div id="status"></div>
 	    <textarea id="input_text" maxlength="250" autofocus placeholder="Schreib deinen Freunden hier, was du gerade tust."></textarea>
 	    <br><div class="right"><label for="input_text">0 Zeichen</label><button id="twibber_it" onclick="dyn_submit();">Twibbern</button></div>
