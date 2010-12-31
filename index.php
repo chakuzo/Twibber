@@ -14,7 +14,7 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 	<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
     </head>
     <body>
-	<header><?php if(!$return){ ?><a href="login.php"><img src="res/img/buttons/login.png" alt="Login" /></a> <?php }else{ echo $_COOKIE['nickname']; } ?> || <a href="http://wbblite2.de"><img src="res/img/buttons/login.png" alt="WBBLite2.de" /></a></header>
+	<header><?php if(!$return){ ?><a href="login.php"><img src="res/img/buttons/login.png" alt="Login" /></a> <?php }else{ echo $_COOKIE['nickname']; } ?> || <a href="http://wbblite2.de"><img src="res/img/buttons/wbblite2.png" alt="WBBLite2.de" /></a></header>
 	<div id="logo"><a href="index.php"><img src="res/img/logo.png"></a></div>
 	<div id="post_it">
 	    <h3>Phineas, was machst du grade?</h3>
