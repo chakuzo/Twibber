@@ -1,4 +1,5 @@
 <?php
+include("StringUtil.class.php");
 /**
  * Fill out the Data to the connection.
  */
@@ -118,7 +119,7 @@ class wcf{
         $query = $mysqli2->query($sql);
         $result = $query->fetch_object();
         if (!$result) return false;
-        if ($result->password != sha1($result->salt.sha1($result->salt.$password))) return false;
+        if ($result->password != StringUtil::getDoubleSaltedHash($password, $result->salt)) return false;
         return true;
     }
     public static function getAvatar($nickname){
