@@ -15,13 +15,13 @@ if($_GET['new_entry'] == "1" && $return){
 	echo "Kein Nickname!";
     }
 }
-if($_GET['dyn_get'] == "1" && $return){
+if($_GET['dyn_get'] == "1"){
     $Twibber->fetchTwibber(true, true, '', 0, 90);
 }
-if($_GET['nick'] != "" && $return){
+if($_GET['nick'] != ""){
     $Twibber->fetchTwibber(true, false, $_GET['nick']);
 }
-if($_GET['search'] != "" && $return){
+if($_GET['search'] != ""){
     $Twibber->searchTwibber($_GET['search']);
 }
 ?>
