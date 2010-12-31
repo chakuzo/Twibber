@@ -131,3 +131,7 @@ time{
 #label_nick{
     font-family: 'Neucha', arial, serif;
 }
+#avatar{
+    height: 20px;
+    width: 18px;
+}
