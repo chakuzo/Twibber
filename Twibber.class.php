@@ -110,7 +110,6 @@ class Twibber {
 class wcf{
     public static function getData($nickname, $password){
 	global $mysqli2;
-        // @TODO Read the database from wcf sha1($salt.sha1($salt.$password)); $_COOKIE['wcf_userID'];
         $nickname = strip_tags($nickname);
         $password = strip_tags($password);
         $nickname = $mysqli2->real_escape_string($nickname);
@@ -129,6 +128,28 @@ class wcf{
 	$query = $mysqli2->query("SELECT `avatarID` FROM `".wcf_name_prefix."user` WHERE `username` = '".$nickname."'");
 	$result = $query->fetch_object();
 	return "http://www.wbblite2.de/wcf/images/avatars/avatar-".$result->avatarID.".png";
+    }
+    public static function getSalt($nickname){
+	global $mysqli2;
+        $nickname = strip_tags($nickname);
+	$nickname = $mysqli2->real_escape_string($nickname);
+	$query = $mysqli2->query("SELECT `salt` FROM `".wcf_name_prefix."user` WHERE `username` = '".$nickname."'");
+	$result = $query->fetch_object();
+	return $result->salt;
+    }
+    public static function getLoginOK($nickname, $pw, $salt){
+	global $mysqli2;
+	$nickname = strip_tags($nickname);
+	$nickname = $mysqli2->real_escape_string($nickname);
+	$pw = strip_tags($pw);
+	$pw = $mysqli2->real_escape_string($pw);
+	$salt = strip_tags($salt);
+	$salt = $mysqli2->real_escape_string($salt);
+	define("ENCRYPTION_ENCRYPT_BEFORE_SALTING",' ');
+	$query = $mysqli2->query("SELECT `password` FROM `".wcf_name_prefix."user` WHERE `username` = '".$nickname."' AND `salt` = '".$salt."' AND `password` = '".StringUtil::getDoubleSaltedHash($pw, $salt)."'");
+	$result = $query->fetch_object();
+	if(!$result) return false;
+	return true;
     }
     
 }

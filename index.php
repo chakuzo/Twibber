@@ -1,5 +1,6 @@
 <?php
 include("Twibber.class.php");
+$return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt']);
 ?>
 <!doctype html>
 <html>
@@ -13,12 +14,11 @@ include("Twibber.class.php");
 	<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
     </head>
     <body>
-	<header><a href="login.php">Login</a> || <a href="http://wbblite2.de">WBBLite2.de</a></header>
+	<header><?php if(!$return){ ?><a href="login.php">Login</a> <?php }else{ echo $_COOKIE['nickname']; } ?> || <a href="http://wbblite2.de">WBBLite2.de</a></header>
 	<div id="logo"><a href="index.php"><img src="res/img/logo.png"></a></div>
 	<div id="post_it">
 	    <h3>Phineas, was machst du grade?</h3>
 	    <div id="status"></div>
-	    <label for="nickname" id="label_nick">Nickname: </label><input type="text" id="nickname" value="<?=$_COOKIE['nickname']?>">
 	    <textarea id="input_text" maxlength="250" autofocus placeholder="Schreib deinen Freunden hier, was du gerade tust."></textarea>
 	    <br><div class="right"><label for="input_text">0 Zeichen</label><button id="twibber_it" onclick="dyn_submit();">Twibbern</button></div>
 	<?php
