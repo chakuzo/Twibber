@@ -18,7 +18,7 @@ define("mysql_db_wcf","");
 define("mysql_local_wcf","localhost");
 
 if(wcf_name_prefix == "WCF1_"){
-    die("ERROR! Bitte füllen sie Linie 17 in Twibber.class.php richtig aus.");
+    die("ERROR! Bitte füllen sie Linie 10 in Twibber.class.php richtig aus.");
 }
 
 $mysqli = new mysqli(mysql_local,mysql_user,mysql_pw,mysql_db);
@@ -27,9 +27,9 @@ if ($mysqli->connect_error) {
             . $mysqli->connect_error);
 }
 $mysqli2 = new mysqli(mysql_local_wcf,mysql_user_wcf,mysql_pw_wcf,mysql_db_wcf);
-if ($mysqli->connect_error) {
-    die('Connect Error (' . $mysqli->connect_errno . ') '
-            . $mysqli->connect_error);
+if ($mysqli2->connect_error) {
+    die('Connect Error (' . $mysqli2->connect_errno . ') '
+            . $mysqli2->connect_error);
 }
 
 /**
