@@ -31,7 +31,7 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 	}
 	?>
 	</div>
-	<footer>&copy; 2010 by Kurtextrem &amp; Math-Board</footer>
+	<footer>Design &amp; Code by Kurtextrem &amp;&amp; Bilder &amp; Design by Math-Board</footer>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
 	<script src="javascript.js"></script>
     </body>

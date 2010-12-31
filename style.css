@@ -10,8 +10,8 @@ body {
     margin: 0px;
 }
 footer {
-    position: fixed;
-    bottom: 0px;
+    position: absolute;
+    left: 0px;
 }
 header {
     text-align: right;
