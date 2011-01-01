@@ -2,8 +2,9 @@ Version 0.1 was released on 31.12.2010 at 15:15. Rev 0 - 78 reffers to it.
 Version 0.2 is being released soon.
 
 Milestone0.2:
-Design for all Screens fitting
-Order of twibbs right >.> (year 2010, 2011, 2011 is at the bottom of 2010. EVIL Desc! We're using now Asc)
+-Design for all Screens fitting
+-Order of twibbs right >.> (year 2010, 2011, 2011 is at the bottom of 2010. EVIL Desc! We're using now Asc)
+-Better "copyright"
 
 Milestone0.3: 
 ....
