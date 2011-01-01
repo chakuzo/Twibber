@@ -50,7 +50,8 @@ class Twibber {
 		$text = preg_replace('/@([A-Za-z_-]*) /i','<a href="?nick=$1" onclick="return dyn_get(true, false, this.innerText.replace(/@/,\'\'));">@$1</a> ',$text);
 		$text = preg_replace('/\#([A-Za-zäüöß_-]*)/i','<a href="?search=$1" class="hash" onclick="return dyn_get(true, false, false, this.innerText.replace(/\#/,\'\'));">#$1</a> ',$text);
 		echo "<div id='twibb'>";
-		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerText);'><img src='".wcf::getAvatar($result['nickname'])."' id='avatar'>".$result['nickname']."</div>";
+		echo "<div id='avatar'><img src='".wcf::getAvatar($result['nickname'])."'></div>";
+		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerText);'>".$result['nickname']."</div>";
 		echo "<div id='content'>".$text."</div>";
 		echo "<time>".$result['date']."</time>";
 		echo "</div>";
@@ -69,7 +70,8 @@ class Twibber {
 		$text = preg_replace('/@([A-Za-z_-]*) /i','<a href="?nick=$1" onclick="return dyn_get(true, false, this.innerText.replace(/@/,\'\'));">@$1</a> ',$text);
 		$text = preg_replace('/\#([A-Za-zäüöß_-]*)/i','<a href="?search=$1" class="hash" onclick="return dyn_get(true, false, false, this.innerText.replace(/\#/,\'\'));">#$1</a> ',$text);
 		echo "<div id='twibb'>";
-		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerText);'><img src='".wcf::getAvatar($result['nickname'])."' id='avatar'>".$result['nickname']."</div>";
+		echo "<div id='avatar'><img src='".wcf::getAvatar($result['nickname'])."'></div>";
+		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerText);'>".$result['nickname']."</div>";
 		echo "<div id='content'>".$text."</div>";
 		echo "<time>".$result['date']."</time>";
 		echo "</div>";
@@ -96,7 +98,8 @@ class Twibber {
 		$text = preg_replace('/@([A-Za-z_-]*) /i','<a href="?nick=$1" onclick="return dyn_get(true, false, this.innerText.replace(/@/,\'\'));">@$1</a> ',$text);
 		$text = preg_replace('/\#([A-Za-zäüöß_-]*)/i','<a href="?search=$1" class="hash" onclick="return dyn_get(true, false, false, this.innerText.replace(/\#/,\'\'));">#$1</a> ',$text);
 		echo "<div id='twibb'>";
-		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerText);'><img src='".wcf::getAvatar($result['nickname'])."' id='avatar'>".$result['nickname']."</div>";
+		echo "<div id='avatar'><img src='".wcf::getAvatar($result['nickname'])."'></div>";
+		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerText);'>".$result['nickname']."</div>";
 		echo "<div id='content'>".$text."</div>";
 		echo "<time>".$result['date']."</time>";
 		echo "</div>";

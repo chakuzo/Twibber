@@ -72,17 +72,19 @@ label{
 time{
     position: relative;
     text-align: right;
-    display: block;
+    /*display: block;*/
     border: 1px solid black;
     border-top: 0px;
     /*margin-left: 23.6em;*/
     cursor: default;
     max-width: 105px;
-    margin-left: 23.8em;
+    /*margin-left: 23.8em;*/
     font-family: 'Reenie Beanie', arial, serif;
     background: -webkit-gradient(linear, left top, left bottom, from(#7cbfda), to(#6aa4ba));
     background: -moz-linear-gradient(top,  #7cbfda,  #6aa4ba);
     font-size: 17px;
+    display: inline-block;
+    left: 40.4%;
 }
 #content{
     border: 1px solid black;
@@ -132,8 +134,14 @@ time{
     font-family: 'Neucha', arial, serif;
 }
 #avatar{
-    height: 20px;
-    width: 18px;
+    position: relative;
+    left: -75px;
+    float: left;
+    height: 0px;
+    width: 0px;
+}
+#avatar img{
+    height: 70px;
 }
 #wbblite2{
     width: 110px;
