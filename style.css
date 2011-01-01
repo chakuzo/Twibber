@@ -167,3 +167,9 @@ time{
 #login:hover{
     background: url("res/img/buttons/loginH.png");
 }
+
+@media screen and (max-width: 1024px) {
+    textarea{
+	width: 300px;
+    }
+}
