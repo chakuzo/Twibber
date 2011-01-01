@@ -3,6 +3,7 @@ Version 0.2 is being released soon.
 
 Milestone0.2:
 Design for all Screens fitting
+Order of twibbs right >.> (year 2010, 2011, 2011 is at the bottom of 2010. EVIL Desc! We're using now Asc)
 
 Milestone0.3: 
 ....
@@ -14,3 +15,7 @@ Milestone1.0:
 -Retwibb
 -Answer
 (to be continued...)
+
+Milestone2.0: 
+-Archiv
+-invidual userpage (is already implemented in wcf?)
