@@ -3,8 +3,8 @@ Version 0.2 is being released soon.
 
 Milestone0.2:
 -Design for all Screens fitting
--Order of twibbs right >.> (year 2010, 2011, 2011 is at the bottom of 2010. EVIL Desc! We're using now Asc)
--Better "copyright"
+-Order of twibbs right >.> (year 2010, 2011, 2011 is at the bottom of 2010)
+-Better "copyright" | OK
 
 Milestone0.3: 
 ....

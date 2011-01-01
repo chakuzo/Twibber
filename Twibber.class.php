@@ -41,7 +41,7 @@ class Twibber {
     function fetchTwibber($latest = true, $global = false, $nick = '', $start = '0', $end = '30'){
 	global $mysqli;
 	if($global){
-	    $query = $mysqli->query("SELECT * FROM `twibber_entry` ORDER BY `date` ASC LIMIT ".$start." , ".$end);
+	    $query = $mysqli->query("SELECT * FROM `twibber_entry` ORDER BY `date` DESC LIMIT ".$start." , ".$end);
 	    echo "<div id='twibber'>";
 	    while($result = $query->fetch_assoc()){
 		$text = str_replace("\\","",$result['text']);
@@ -60,7 +60,7 @@ class Twibber {
 	if($global == false && $nick != ''){
 	    $nick = $mysqli->real_escape_string($nick);
 	    $nick = strip_tags($nick);
-	    $query = $mysqli->query("SELECT * FROM `twibber_entry` WHERE `nickname` = '".$nick."' ORDER BY `date` ASC");
+	    $query = $mysqli->query("SELECT * FROM `twibber_entry` WHERE `nickname` = '".$nick."' ORDER BY `date` DESC");
 	    echo "<div id='twibber'>";
 	    while($result = $query->fetch_assoc()){
 		$text = str_replace("\\","",$result['text']);
@@ -87,7 +87,7 @@ class Twibber {
 	global $mysqli;
 	$needle = $mysqli->real_escape_string($needle);
 	$needle = strip_tags($needle);
-	$query = $mysqli->query("SELECT * FROM `twibber_entry` WHERE `text` LIKE '%".$needle."%' ORDER BY `date` ASC");
+	$query = $mysqli->query("SELECT * FROM `twibber_entry` WHERE `text` LIKE '%".$needle."%' ORDER BY `date` DESC");
 	echo "<div id='twibber'>";
 	    while($result = $query->fetch_assoc()){
 		$text = str_replace("\\","",$result['text']);
