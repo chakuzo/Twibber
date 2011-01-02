@@ -2,12 +2,13 @@ Version 0.1 was released on 31.12.2010 at 15:15. Rev 0 - 78 reffers to it.
 Version 0.2 is being released soon.
 
 Milestone0.2:
--Design for all Screens fitting
--Order of twibbs right >.> (year 2010, 2011, 2011 is at the bottom of 2010)
+-Design for all Screens fitting | OK
+-Order of twibbs right >.> (year 2010, 2011, 2011 is at the bottom of 2010) | FAIL
 -Better "copyright" | OK
 
 Milestone0.3: 
-....
+-Autoupdate | BEGINNING
+-Marking left chars ... for example, 250 red, 234 lightred
 
 Milestone1.0:
 -Inviduall Homepage

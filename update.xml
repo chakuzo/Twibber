@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : update.xml
+    Created on : 2. Januar 2011, 15:07
+    Author     : Kurt
+    Description:
+        Update XML file
+-->
+
+<update>
+    <version>0.2</version>
+    <update_files>all</update_files>
+</update>

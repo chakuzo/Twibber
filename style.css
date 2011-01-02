@@ -24,7 +24,6 @@ header {
 textarea { 
     -webkit-transition: -webkit-box-shadow 450ms linear 100ms;
     border: 1px solid grey;
-    padding: 2px 1px;
     margin-left: 12%;
     height: 100px;
     width: 500px;
@@ -50,6 +49,7 @@ textarea:hover, textarea:active, input:hover, input:active, textarea:focus, inpu
     border-radius: 10px;
     height: 100%;
     background-color: #7bbdd7;
+    color: black;
 }
 h3{
     font-family: 'Yanone Kaffeesatz', arial, serif;
@@ -111,6 +111,7 @@ time{
     border-bottom-right-radius: 5px;
     padding-right: 5px;
     display: none;
+    color: black;
 }
 .nickname{
     border: 1px solid black;
@@ -168,7 +169,7 @@ time{
     background: url("res/img/buttons/loginH.png");
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1124px) {
     textarea{
 	width: 300px;
     }
