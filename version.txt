@@ -10,6 +10,7 @@ Milestone0.2:
 Milestone0.3: 
 -Autoupdate | BEGINNING
 -Marking left chars ... for example, 250 red, 234 lightred
+-Better ordner structure
 
 Milestone1.0:
 -Inviduall Homepage
