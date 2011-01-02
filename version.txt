@@ -3,7 +3,7 @@ Version 0.2 RC1 was released on 02.01.2011 at 18:13. Rev 78 - 92 reffers to it.
 Version 0.2 is being released soon.
 
 Milestone0.2:
--Design for all Screens fitting | OK
+-Design for all Screens fitting | FAIL
 -Order of twibbs right >.> (year 2010, 2011, 2011 is at the bottom of 2010) | FAIL
 -Better "copyright" | OK
 
@@ -11,6 +11,7 @@ Milestone0.3:
 -Autoupdate | BEGINNING
 -Marking left chars ... for example, 250 red, 234 lightred
 -Better ordner structure
+-Update check only for admins
 
 Milestone1.0:
 -Inviduall Homepage
