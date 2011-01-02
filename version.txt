@@ -1,4 +1,5 @@
 Version 0.1 was released on 31.12.2010 at 15:15. Rev 0 - 78 reffers to it.
+Version 0.2 RC1 was released on 02.01.2011 at 18:13. Rev 78 - 92 reffers to it.
 Version 0.2 is being released soon.
 
 Milestone0.2:
