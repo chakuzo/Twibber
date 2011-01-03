@@ -1,6 +1,8 @@
 Howto install:
 Fill out "config.inc.php".
 Upload all files.
-Surf to "install.php".
+Surf to "/install/install.php".
 
 Done!
+
+For Update surf to "/install/update.php". Cause' of that. DO NOT!!! Delete the "/install/" Folder!

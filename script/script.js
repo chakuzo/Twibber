@@ -3,11 +3,16 @@ $(document).ready(function(){
    interval = window.setInterval("dyn_get(true, true)", 20000);
 });
 
-function count_char(){
-    var charlen = $("#input_text").val();
-    //if(charlen.length != "150"){ charlen.length = "Twitter"; }
-    $("label[for='input_text']").text(charlen.length+" Zeichen");
-}
+$('#input_text').NobleCount('#counter',{
+    on_negative: 'go_red',
+    on_positive: 'go_green',
+    max_chars: 250,
+    on_update: function(t_obj, char_area, c_settings, char_rem){
+        if (char_rem <= 10) {
+	    char_area.css('color', 'purple');
+	}
+    }
+});
 function dyn_get(latest, global, nick, search){
     if(global){
 	$.get("api.php?dyn_get=1",function(ret){ $("#twibber").html(ret); });

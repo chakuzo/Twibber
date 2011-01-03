@@ -1,5 +1,5 @@
 <?php
-include("Twibber.class.php");
+include("../class/Twibber.class.php");
 if($_GET['mode'] == "logout"){
     setcookie("twibber_nick", "", time() - 3600);
     setcookie("twibber_pw", "", time() - 3600);

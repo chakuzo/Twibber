@@ -1,5 +1,5 @@
 <?php
-include("Twibber.class.php");
+include("class/Twibber.class.php");
 $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt']);
 ?>
 <!doctype html>
@@ -20,7 +20,7 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 	    <h3><?=$_COOKIE['twibber_nick']?>, was machst du grade?</h3>
 	    <div id="status"></div>
 	    <textarea id="input_text" maxlength="250" autofocus placeholder="Schreib deinen Freunden hier, was du gerade tust."></textarea>
-	    <br><div class="right"><label for="input_text">0 Zeichen</label><button id="twibber_it" onclick="dyn_submit();">Twibbern</button></div>
+	    <br><div class="right"><label for="input_text" id="counter">0 Zeichen</label><button id="twibber_it" onclick="dyn_submit();">Twibbern</button></div>
 	    <?php
 	    if($_GET['nick'] == "" && $_GET['search'] == ""){
 	    $Twibber->fetchTwibber(true,true);
@@ -32,7 +32,7 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 	    ?>
 	</div>
 	<footer>Twibber is developed by WoodThread</footer>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
-	<script src="javascript.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="script/script.min.js"></script>
     </body>
 </html>
