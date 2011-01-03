@@ -11,14 +11,14 @@ $version = "0.1";
 	    <?php
 		$xml = simplexml_load_file("http://twbbler.googlecode.com/svn/trunk/update.xml");
 		if($xml->version < $version){
-		    echo "Update verfügbar!<br>";
-		    $xml->update_files;
+		    echo "Update verfügbar! <a href='update.php?update=true'>Updates Installieren</a><br>";
+		    echo 'Notes: '.$xml->note;
+		    $files = $xml->update_files;
 		    $zip = new ZipArchive;
-		    if ($zip->open("http://twbbler.googlecode.com/svn/trunk/".$xml->version.".zip") === TRUE) {
+		    if ($zip->open("http://twbbler.googlecode.com/svn/trunk/".$xml->version.".zip") === TRUE && $_GET['updae'] == 'true') {
 			$zip->extractTo(__DIR__.'/');
 			$zip->close();
-			echo 'Geupdatet!<br>';
-			echo 'Notes: '.$xml->note;
+			echo 'Geupdatet von '.$version.' zu '.$xml->version.'!<br>';
 		    } else {
 			echo 'Failed to update!<br>';
 			echo $zip->getStatusString;

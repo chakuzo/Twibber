@@ -1,0 +1,6 @@
+Howto install:
+Fill out "config.inc.php".
+Upload all files.
+Surf to "install.php".
+
+Done!

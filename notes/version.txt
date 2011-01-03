@@ -8,7 +8,7 @@ Milestone0.2:
 -Better "copyright" | OK
 
 Milestone0.3: 
--Autoupdate | BEGINNING
+-Autoupdate | OK
 -Marking left chars ... for example, 250 red, 234 lightred
 -Better ordner structure
 -Update check only for admins
