@@ -9,9 +9,9 @@ Milestone0.2:
 
 Milestone0.3: 
 -Autoupdate | OK
--Marking left chars ... for example, 250 red, 234 lightred
--Better ordner structure
--Update check only for admins
+-Marking left chars ... for example, 250 red, 234 lightred | OK
+-Better ordner structure | OK
+-Update check only for admins | OK
 
 Milestone1.0:
 -Inviduall Homepage

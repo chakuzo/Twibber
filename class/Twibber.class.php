@@ -139,6 +139,20 @@ class wcf{
 	if(!$result) return false;
 	return true;
     }
+    public static function getAdminOK($nickname, $pw, $salt){
+	global $mysqli2;
+	$nickname = strip_tags($nickname);
+	$nickname = $mysqli2->real_escape_string($nickname);
+	$pw = strip_tags($pw);
+	$pw = $mysqli2->real_escape_string($pw);
+	$salt = strip_tags($salt);
+	$salt = $mysqli2->real_escape_string($salt);
+	define("ENCRYPTION_ENCRYPT_BEFORE_SALTING", false);
+	$query = $mysqli2->query("SELECT `rankID` FROM `".wcf_name_prefix."user` WHERE `username` = '".$nickname."' AND `salt` = '".$salt."' AND `password` = '".StringUtil::getDoubleSaltedHash($pw, $salt)."'");
+	$result = $query->fetch_object();
+	if($result->rankID != '1') return false;
+	return true;
+    }
     
 }
 
