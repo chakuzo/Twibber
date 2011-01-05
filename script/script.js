@@ -4,12 +4,16 @@ $(document).ready(function(){
 });
 
 $('#input_text').NobleCount('#counter',{
-    on_negative: 'go_red',
-    on_positive: 'go_green',
+    on_negative: function(t_obj, char_area, c_settings, char_rem){
+	char_area.css('color', 'red');
+    },
+    on_positive: function(t_obj, char_area, c_settings, char_rem){
+	char_area.css('color', 'green');
+    },
     max_chars: 250,
     on_update: function(t_obj, char_area, c_settings, char_rem){
         if (char_rem <= 10) {
-	    char_area.css('color', 'purple');
+	    char_area.css('color', 'red');
 	}
     }
 });

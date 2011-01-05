@@ -7,7 +7,7 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>TWiBBer - Das WBB MicroBlogging Social Network</title>
-	<link rel="stylesheet" href="style.css" type="text/css"> 
+	<link rel="stylesheet" href="style/style.css" type="text/css"> 
 	<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz' rel='stylesheet' type='text/css'> 
 	<link href='http://fonts.googleapis.com/css?family=Neucha' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Reenie+Beanie' rel='stylesheet' type='text/css'>
@@ -33,6 +33,7 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 	</div>
 	<footer>Twibber is developed by WoodThread</footer>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-	<script src="script/script.min.js"></script>
+	<script src="script/jquery.NobleCount.min.js"></script>
+	<script src="script/script.js"></script>
     </body>
 </html>
