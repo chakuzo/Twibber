@@ -5,7 +5,7 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 if(!$return) Header("Location: index.php");
 $return = wcf::getAdminOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt']);
 if(!$return) Header("Location: index.php");
-$version = "0.3 rc1";
+$version = "0.3 rc0";
 ?><!doctype html>
 <html>
     <head>
@@ -17,18 +17,23 @@ $version = "0.3 rc1";
 	    <?php
 		$xml = simplexml_load_file("http://twbbler.googlecode.com/svn/trunk/install/update.xml");
 		if($xml->version != $version){
-		    echo "Update verfügbar! <a href='update.php?update=true'>Updates Installieren</a><br>";
+		    echo "Update verfügbar! <a href='update.php?update=update'>Updates Installieren</a><br>";
 		    echo 'Notes: '.$xml->note;
 		    $files = $xml->update_files;
 		    $zip = new ZipArchive;
-		    if ($zip->open("http://twbbler.googlecode.com/svn/trunk/down/".trim($xml->version.".zip")) === TRUE && $_GET['updae'] == 'true') {
-			$zip->extractTo(__DIR__.'/');
-			$zip->close();
-			echo 'Geupdatet von '.$version.' zu '.$xml->version.'!<br>';
-		    } else {
-			echo 'Failed to update!<br>';
-			echo $zip->getStatusString;
-		    }
+		    if($_GET['update'] == 'update'){
+			$content = file_get_contents("http://twbbler.googlecode.com/svn/trunk/down/".str_replace(' ', '', $xml->version.".zip"));
+			file_put_contents("update.zip", $content);
+			$zip_ar = $zip->open("update.zip");
+			if ($zip_ar === TRUE) {
+			    $zip->extractTo(__DIR__.'/');
+			    $zip->close();
+			    echo '<br>Geupdatet von '.$version.' zu '.$xml->version.'!<br>';
+			} else {
+			    echo '<br>Failed to update! Try Manuell to update? <a href="http://twbbler.googlecode.com/svn/trunk/down/'.str_replace(' ', '', $xml->version.".zip").'">Click</a>" <br>';
+			    echo $zip_ar;
+			}
+		    }  
 		}else{
 		    echo "Kein Update verfügbar";
 		}
