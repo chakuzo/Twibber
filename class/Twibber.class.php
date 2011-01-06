@@ -26,11 +26,25 @@ if ($mysqli2->connect_error) {
 class Twibber {
     function fetchTwibber($latest = true, $global = false, $nick = '', $start = '0', $end = '30'){
 	global $mysqli;
+	$false_array = array();
 	if($global){
 	    $query = $mysqli->query("SELECT * FROM `twibber_entry` ORDER BY `date` DESC LIMIT ".$start." , ".$end);
 	    echo "<div id='twibber'>";
 	    while($result = $query->fetch_assoc()){
-		if(stristr($result['date'], date('Y')) === FALSE) continue; // Yep, i know dirty fix Q.Q
+		if(stristr($result['date'], date('Y')) === FALSE){ $false_array[] = $result; continue; }
+		$text = str_replace("\\","",$result['text']);
+		$text = wordwrap($text,76,"<br>",true);
+		$text = preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@','<a href="$1">$1</a>',$text);
+		$text = preg_replace('/@([A-Za-z_-]*) /i','<a href="?nick=$1" onclick="return dyn_get(true, false, this.innerText.replace(/@/,\'\'));">@$1</a> ',$text);
+		$text = preg_replace('/\#([A-Za-zäüöß_-]*)/i','<a href="?search=$1" class="hash" onclick="return dyn_get(true, false, false, this.innerText.replace(/\#/,\'\'));">#$1</a> ',$text);
+		echo "<div id='twibb'>";
+		echo "<div id='avatar'><img src='".wcf::getAvatar($result['nickname'])."'></div>";
+		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerText);'>".$result['nickname']."</div>";
+		echo "<div id='content'>".$text."</div>";
+		echo "<time>".$result['date']."</time>";
+		echo "</div>";
+	    }
+	    foreach($false_array as $result){
 		$text = str_replace("\\","",$result['text']);
 		$text = wordwrap($text,76,"<br>",true);
 		$text = preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@','<a href="$1">$1</a>',$text);

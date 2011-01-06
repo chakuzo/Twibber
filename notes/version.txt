@@ -1,10 +1,11 @@
 Version 0.1 was released on 31.12.2010 at 15:15. Rev 0 - 78 reffers to it.
 Version 0.2 RC1 was released on 02.01.2011 at 18:13. Rev 78 - 92 reffers to it.
-Version 0.2 is being released soon.
+Version 0.2 was missed. (ololo)
+Version 0.3 RC 1 was released on 06.01.2011 at 16:10. Rev 92 - 104 reffers to it.
 
 Milestone0.2:
--Design for all Screens fitting | FAIL
--Order of twibbs right >.> (year 2010, 2011, 2011 is at the bottom of 2010) | FAIL
+-----Design for all Screens fitting | FAIL--- -> moved to milestone 0.3 !!!
+-Order of twibbs right >.> (year 2010, 2011, 2011 is at the bottom of 2010) | OK (2011 - 2010 is working now, i have now one year to fix it for 2012 :D)
 -Better "copyright" | OK
 
 Milestone0.3: 
@@ -12,13 +13,17 @@ Milestone0.3:
 -Marking left chars ... for example, 250 red, 234 lightred | OK
 -Better ordner structure | OK
 -Update check only for admins | OK
+-Design for all Screens fitting | FAIL
+
+Milestone0.4:
+-First Signature image
 
 Milestone1.0:
 -Inviduall Homepage
--Follow
+-Follow (don't we need to implement before invidual userpage?!)
 -Lists 
 -Retwibb
--Answer
+-Answer | HALF
 (to be continued...)
 
 Milestone2.0: 
