@@ -21,6 +21,7 @@ if ($mysqli2->connect_error) {
  * Classes for Twibber
  *
  * @author Kurt
+ * @TODO All fetch_assoc to fetch_object.
  */
 class Twibber {
     function fetchTwibber($latest = true, $global = false, $nick = '', $start = '0', $end = '30'){
@@ -29,6 +30,7 @@ class Twibber {
 	    $query = $mysqli->query("SELECT * FROM `twibber_entry` ORDER BY `date` DESC LIMIT ".$start." , ".$end);
 	    echo "<div id='twibber'>";
 	    while($result = $query->fetch_assoc()){
+		if(stristr($result['date'], date('Y')) === FALSE) continue; // Yep, i know dirty fix Q.Q
 		$text = str_replace("\\","",$result['text']);
 		$text = wordwrap($text,76,"<br>",true);
 		$text = preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@','<a href="$1">$1</a>',$text);
