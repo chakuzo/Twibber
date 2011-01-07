@@ -2,6 +2,7 @@ Version 0.1 was released on 31.12.2010 at 15:15. Rev 0 - 78 reffers to it.
 Version 0.2 RC1 was released on 02.01.2011 at 18:13. Rev 78 - 92 reffers to it.
 Version 0.2 was missed. (ololo)
 Version 0.3 RC 1 was released on 06.01.2011 at 16:10 (16:39, 42, 17:01). Rev 92 - 107 reffers to it.
+Version 0.3 RC 2 is being released.
 
 Milestone0.2:
 -----Design for all Screens fitting | FAIL--- -> moved to milestone 0.3 !!!

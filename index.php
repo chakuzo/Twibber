@@ -34,6 +34,7 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 	<footer>Twibber is developed by WoodThread</footer>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	<script src="script/jquery.NobleCount.min.js"></script>
-	<script src="script/script.min.js"></script>
+	<script src="script/jquery.freeow.min.js"></script>
+	<script src="script/script.js"></script>
     </body>
 </html>

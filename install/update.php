@@ -5,7 +5,7 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 if(!$return) Header("Location: index.php");
 $return = wcf::getAdminOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt']);
 if(!$return) Header("Location: index.php");
-$version = "0.3 rc0";
+$version = "0.3 rc2";
 ?><!doctype html>
 <html>
     <head>

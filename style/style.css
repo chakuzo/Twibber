@@ -102,7 +102,7 @@ time{
     /*text-align: left;*/
 }
 #status{
-    position: absolute;
+/*    position: absolute;
     top: 0px;
     left: 0px;
     background-color: yellow;
@@ -112,6 +112,7 @@ time{
     padding-right: 5px;
     display: none;
     color: black;
+*7
 }
 .nickname{
     border: 1px solid black;
