@@ -14,6 +14,8 @@ if($_GET['new_entry'] == "1" && $return){
     }elseif($nick == ""){
 	echo "Kein Nickname!";
     }
+}elseif(!$return){
+    echo "Bitte einloggen!";
 }
 if($_GET['dyn_get'] == "1"){
     $Twibber->fetchTwibber(true, true, '', 0, 90);

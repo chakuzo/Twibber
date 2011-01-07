@@ -1,5 +1,6 @@
 $(document).ready(function(){
    interval = window.setInterval("dyn_get(true, true)", 20000);
+   open();
 });
 
 $('#input_text').NobleCount('#counter',{
@@ -35,8 +36,8 @@ function dyn_submit(){
     var text = $("#input_text").val();
     if(text.replace(/^\s+|\s+$/g,"") != "" && text.length <= 250 && $("#nickname").val() != ""){
 	$.post("api.php?new_entry=1",{text:text},function(ret){
-	    $("#status").freeow(ret, ret+" gesendet!"); 
-	    dyn_get(true, true); 
+	    dyn_get(true, true);
+	    $("#status").freeow(ret, ret.replace(/!/,'')+" gesendet!", {classes: ["smokey"], autoHideDelay: 2500});
 	});
 	$("#input_text").val("");
     }else{
@@ -46,4 +47,16 @@ function dyn_submit(){
 function insert_nick(nick){
     $("#input_text").focus();
     $("#input_text").val("@"+nick+" "+$("#input_text").val());
+}
+
+function open(){
+	$("#open").click(function(){
+		$("div#panel").slideDown("slow");
+	});	
+	$("#close").click(function(){
+		$("div#panel").slideUp("slow");
+	});		
+	$("#toggle a").click(function () {
+		$("#toggle a").toggle();
+	});		
 }

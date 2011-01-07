@@ -14,12 +14,12 @@ footer {
     left: 0px;
 }
 header {
-    text-align: right;
+    /*text-align: right;
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0.0, yellow),
                 color-stop(0.5, orange), color-stop(1.0, red));
     background: -moz-gradient(linear, left top, left bottom, color-stop(0.0, yellow),
                 color-stop(0.5, orange), color-stop(1.0, red));
-    padding: 3px;
+    padding: 3px;*/
 }
 textarea { 
     -webkit-transition: -webkit-box-shadow 450ms linear 100ms;
@@ -112,7 +112,7 @@ time{
     padding-right: 5px;
     display: none;
     color: black;
-*7
+*/
 }
 .nickname{
     border: 1px solid black;

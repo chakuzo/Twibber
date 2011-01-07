@@ -19,14 +19,14 @@ The default template function produces markup matching this outline
 #status {
     position: fixed;
     top: 10px;
-    right: 10px;
+    left: 10px;
     width: 300px;
     z-index: 9999;    
 }
 #status > div {
     position: relative;
     margin-bottom: 5px;
-	cursor: pointer;
+    cursor: pointer;
 }
 #status .content {
     margin: 5px 5px 5px 69px;
@@ -74,12 +74,12 @@ The default template function produces markup matching this outline
 
 /* Smokey */
 #status .smokey {
-	color: white;
+    color: white;
 }
 #status .smokey .background {
     border: 3px solid #000;
     -moz-border-radius: 12px;
-	border-radius: 12px;
+    border-radius: 12px;
     background: #000;
     opacity: .65;
     -moz-box-shadow: 2px 2px 3px #888;
@@ -96,12 +96,12 @@ The default template function produces markup matching this outline
 
 /* Gray */
 #status .gray {
-	color: black;
+    color: black;
 }
 #status .gray .background {
-	border: 3px solid #eee;
+    border: 3px solid #eee;
     -moz-border-radius: 12px;
-	border-radius: 12px;
+    border-radius: 12px;
     background: #eee;
     -moz-box-shadow: 2px 2px 3px #888;
     -webkit-box-shadow: 2px 2px 3px #888;
@@ -117,8 +117,8 @@ The default template function produces markup matching this outline
 
 /* Simple */
 #status .simple .background {
-	border: 2px solid #ccc;
-	background: #eee;
+    border: 2px solid #ccc;
+    background: #eee;
 }
 #status .simple .content {
     margin: 5px 5px 5px 69px;
@@ -127,8 +127,8 @@ The default template function produces markup matching this outline
 
 /* OSX */
 #status .osx .background {
-	border: 1px solid #939393;
-	background: #eee url(../res/img/osx/background.png) repeat-y top left;
+    border: 1px solid #939393;
+    background: #eee url(../res/img/osx/background.png) repeat-y top left;
     -moz-box-shadow: 2px 2px 3px #888;
     -webkit-box-shadow: 2px 2px 3px #888;
     box-shadow: 2px 2px 3px #888;
@@ -137,7 +137,7 @@ The default template function produces markup matching this outline
     margin: 5px 5px 5px 87px;
 }
 #status .osx .icon {
-	left: 28px;
+    left: 28px;
 }
 #status .osx .close {
     position: absolute;

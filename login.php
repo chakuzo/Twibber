@@ -4,6 +4,7 @@ if($_GET['mode'] == "logout"){
     setcookie("twibber_nick", "", time() - 3600);
     setcookie("twibber_pw", "", time() - 3600);
     setcookie("twibber_salt", "", time() - 3600);
+    exit("Erfolgreich ausgeloggt!");
 }
 if($_POST['nickname'] != "" && $_POST['password'] != ""){
     $return = wcf::getData($_POST['nickname'], $_POST['password']);
