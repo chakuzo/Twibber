@@ -6,7 +6,8 @@
         Nothing and everything.
 */
 body {
-    background-image: url("../res/backgrounds/default.png");
+    /*background-image: url("../res/backgrounds/default.png");*/
+	background: #404040
     margin: 0px;
 }
 footer {
