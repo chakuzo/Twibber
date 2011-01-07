@@ -7,8 +7,9 @@
 */
 body {
     /*background-image: url("../res/backgrounds/default.png");*/
-	background: #404040;
-	background-image: url("../res/backgrounds/top.png") repeat-x;
+	background-color: #404040;
+	background-image: url("../res/backgrounds/top.png");
+	background-repeat: repeat-x;
     margin: 0px;
 }
 footer {
