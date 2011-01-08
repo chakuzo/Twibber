@@ -26,6 +26,7 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 				<p class="grey">Twibber ist Open Source! Du kannst es unter <a href="http://code.google.com/p/twbbler/">Google Code</a> downloaden. Achtung! Es ist eine Beta.</p> 
 			</div> 
 			<div class="left"> 
+			    <?php if(!$return){ ?>
 				<form class="clearfix" action="#" method="post"> 
 					<h1 class="padlock">Mitglieder Login</h1> 
 					<label class="grey" for="log">Nickname:</label> 
@@ -36,6 +37,11 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 					<input type="submit" name="submit" value="Login" class="bt_login"> 
 					<a class="lost-pwd" href="#">Passwort verloren?</a> 
 				</form> 
+			    <?php }else{ ?>
+				<img src="<?=wcf::getAvatar($_COOKIE['twibber_nick'])?>" id="useravatar">
+				<p>Willkommen <?=$_COOKIE['twibber_nick']?>!</p>
+				<p>Du hast bereits <?=$Twibber->getStats($_COOKIE['twibber_nick'])?> mal getwibbert.</p>
+			    <?php } ?>
 			</div>
 			<div class="left right">
 			    <h1>Partner</h1>
@@ -76,10 +82,10 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 	    }
 	    ?>
 	</div>
-	<footer>Twibber is developed by Kurtextrem, Math-Board &amp; Anima</footer>
+	<footer>Twibber is developed by Kurtextrem, Math-Board<!-- &amp; Anima --></footer>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	<script src="script/jquery.NobleCount.min.js"></script>
 	<script src="script/jquery.freeow.min.js"></script>
-	<script src="script/script.js"></script>
+	<script src="script/script.min.js"></script>
     </body>
 </html>

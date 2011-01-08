@@ -174,8 +174,16 @@ time{
     background: url("../res/img/buttons/loginH.png");
 }
 
+#useravatar{
+    float: left;
+    height: 70px;
+}
+
 @media screen and (max-width: 1124px) {
     textarea{
-	width: 300px;
+	width: 30em;
+    }
+    time{
+	left: 38%;
     }
 }

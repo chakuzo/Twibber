@@ -13,7 +13,7 @@ if ($mysqli->connect_error) {
 }
 $mysqli2 = new mysqli(mysql_local_wcf,mysql_user_wcf,mysql_pw_wcf,mysql_db_wcf);
 if ($mysqli2->connect_error) {
-    die('Connect Error (' . $mysqli2->connect_errno . ') '
+    die('Connect Error in WCF Database (' . $mysqli2->connect_errno . ') '
             . $mysqli2->connect_error);
 }
 
@@ -26,10 +26,10 @@ if ($mysqli2->connect_error) {
 class Twibber {
     function fetchTwibber($latest = true, $global = false, $nick = '', $start = '0', $end = '30'){
 	global $mysqli;
-	$false_array = array();
 	if($global){
 	    $query = $mysqli->query("SELECT * FROM `twibber_entry` ORDER BY `date` DESC LIMIT ".$start." , ".$end);
 	    echo "<div id='twibber'>";
+	    $false_array = array();
 	    while($result = $query->fetch_assoc()){
 		if(stristr($result['date'], date('Y')) === FALSE){ $false_array[] = $result; continue; }
 		$text = str_replace("\\","",$result['text']);
@@ -108,7 +108,16 @@ class Twibber {
 	echo "</div>";
     }
     function getTwibberImage($nickname){
+	global $mysqli;
 	// @TODO For API fetching data for images
+    }
+    function getStats($nickname){
+	global $mysqli;
+	$nick = $mysqli->real_escape_string($nickname);
+	$nick = strip_tags($nickname);
+	$query = $mysqli->query("SELECT `text` FROM `twibber_entry` WHERE `nickname` = '".$nickname."'");
+	$row_cnt = $query->num_rows;
+	return $row_cnt;
     }
 }
 class wcf{
