@@ -3,7 +3,8 @@ Version 0.2 RC1 was released on 02.01.2011 at 18:13. Rev 78 - 92 reffers to it.
 Version 0.2 was missed. (ololo)
 Version 0.3 RC 1 was released on 06.01.2011 at 16:10 (16:39, 42, 17:01). Rev 92 - 107 reffers to it.
 Version 0.3 RC 2 was released on 08.01.2011 at 9:51. Rev 107 - 116.
-Version 0.3 is being released soon (all milestone things are done, but i'm waiting for feedback from chakuzo or max).
+Version 0.3 RC 3 is beeing released tomorow.
+Version 0.3 is being released soon.
 
 Milestone0.2:
 -----Design for all Screens fitting | FAIL--- -> moved to milestone 0.3 !!!
@@ -15,7 +16,7 @@ Milestone0.3:
 -Marking left chars ... for example, 250 red, 234 lightred | OK
 -Better ordner structure | OK
 -Update check only for admins | OK
--Design for all Screens fitting | SHOULD NOW, WAITING FOR CHAKUZO / MAX
+-Design for all Screens fitting | FAIL
 
 Milestone0.4:
 -First Signature image
