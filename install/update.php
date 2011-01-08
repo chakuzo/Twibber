@@ -5,7 +5,7 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 if(!$return) Header("Location: index.php");
 $return = wcf::getAdminOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt']);
 if(!$return) Header("Location: index.php");
-$version = "0.3 rc2";
+$version = "0.3 rc1";
 ?><!doctype html>
 <html>
     <head>
@@ -26,13 +26,14 @@ $version = "0.3 rc2";
 			file_put_contents("update.zip", $content);
 			$zip_ar = $zip->open("update.zip");
 			if ($zip_ar === TRUE) {
-			    $zip->extractTo(__DIR__.'/');
+			    $zip->extractTo("../");
 			    $zip->close();
 			    echo '<br>Geupdatet von '.$version.' zu '.$xml->version.'!<br>';
 			} else {
 			    echo '<br>Failed to update! Try Manuell to update? <a href="http://twbbler.googlecode.com/svn/trunk/down/'.str_replace(' ', '', $xml->version.".zip").'">Click</a>" <br>';
 			    echo $zip_ar;
 			}
+			unlink("update.zip");
 		    }  
 		}else{
 		    echo "Kein Update verfügbar";
