@@ -27,20 +27,20 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 		    </div> 
 		    <div class="left"> 
 		    <?php if(!$return){ ?>
-			<form class="clearfix" action="#" method="post"> 
+			<form class="clearfix" action="login.php?login=true" method="post"> 
 			    <h1 class="padlock">Mitglieder Login</h1> 
 			    <label class="grey" for="log">Nickname:</label> 
-			    <input class="field" type="text" name="log" id="log" value="" size="23"> 
+			    <input class="field" type="text" name="nickname" id="log" value="" size="23"> 
 			    <label class="grey" for="pwd">Password:</label> 
-			    <input class="field" type="password" name="pwd" id="pwd" size="50">
+			    <input class="field" type="password" name="password" id="pwd" size="50">
 			    <div class="clear"></div> 
 			    <input type="submit" name="submit" value="Login" class="bt_login"> 
-			    <a class="lost-pwd" href="#">Passwort verloren?</a> 
 			</form> 
 		    <?php }else{ ?>
 			<img src="<?=wcf::getAvatar($_COOKIE['twibber_nick'])?>" id="useravatar">
 			<p>Willkommen <?=$_COOKIE['twibber_nick']?>!</p>
 			<p>Du hast bereits <?=$Twibber->getStats($_COOKIE['twibber_nick'])?> mal getwibbert.</p>
+			<p><a href="login.php?mode=logout">Ausloggen</a></p>
 		    <?php } ?>
 		    </div>
 		    <div class="left right">
@@ -88,6 +88,6 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	<script src="script/jquery.NobleCount.min.js"></script>
 	<script src="script/jquery.freeow.min.js"></script>
-	<script src="script/script.min.js"></script>
+	<script src="script/script.js"></script>
     </body>
 </html>

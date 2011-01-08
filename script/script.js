@@ -50,13 +50,13 @@ function insert_nick(nick){
 }
 
 function open(){
-	$("#open").click(function(){
-		$("div#panel").slideDown("slow");
-	});	
-	$("#close").click(function(){
-		$("div#panel").slideUp("slow");
-	});		
-	$("#toggle a").click(function () {
-		$("#toggle a").toggle();
-	});		
+    $("#open").click(function(){
+	$("div#panel").slideDown("slow");
+    });	
+    $("#close").click(function(){
+        $("div#panel").slideUp("slow");
+    });		
+    $("#toggle a").click(function () {
+	$("#toggle a").toggle();
+    });		
 }
