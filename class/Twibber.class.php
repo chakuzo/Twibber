@@ -34,11 +34,8 @@ class Twibber {
 	    echo "<div id='twibber'>";
 	    $false_array = array();
 	    while($result = $query->fetch_assoc()){
+		$this->replace_text($result['text']);
 		if(stristr($result['date'], date('Y')) === FALSE){ $false_array[] = $result; continue; }
-		$text = str_replace("\\","",$result['text']);
-		$text = preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@','<a href="$1">$1</a>',$text);
-		$text = preg_replace('/@([A-Za-z_-]*)/i','<a href="?nick=$1" onclick="return dyn_get(true, false, this.innerText.replace(/@/,\'\'));">@$1</a> ',$text);
-		$text = preg_replace('/\#([A-Za-zäüöß_-]*)/i','<a href="?search=$1" class="hash" onclick="return dyn_get(true, false, false, this.innerText.replace(/\#/,\'\'));">#$1</a> ',$text);
 		echo "<div id='twibb'>";
 		echo "<div id='avatar'><img src='".wcf::getAvatar($result['nickname'])."'></div>";
 		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerHTML);'>".$result['nickname']."</div>";
@@ -47,10 +44,6 @@ class Twibber {
 		echo "</div>";
 	    }
 	    foreach($false_array as $result){
-		$text = str_replace("\\","",$result['text']);
-		$text = preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@','<a href="$1">$1</a>',$text);
-		$text = preg_replace('/@([A-Za-z_-]*)/i','<a href="?nick=$1" onclick="return dyn_get(true, false, this.innerText.replace(/@/,\'\'));">@$1</a> ',$text);
-		$text = preg_replace('/\#([A-Za-zäüöß_-]*)/i','<a href="?search=$1" class="hash" onclick="return dyn_get(true, false, false, this.innerText.replace(/\#/,\'\'));">#$1</a> ',$text);
 		echo "<div id='twibb'>";
 		echo "<div id='avatar'><img src='".wcf::getAvatar($result['nickname'])."'></div>";
 		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerHTML);'>".$result['nickname']."</div>";
@@ -66,10 +59,7 @@ class Twibber {
 	    $query = $mysqli->query("SELECT * FROM `twibber_entry` WHERE `nickname` = '".$nick."' ORDER BY `date` DESC");
 	    echo "<div id='twibber'>";
 	    while($result = $query->fetch_assoc()){
-		$text = str_replace("\\","",$result['text']);
-		$text = preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@','<a href="$1">$1</a>',$text);
-		$text = preg_replace('/@([A-Za-z_-]*)/i','<a href="?nick=$1" onclick="return dyn_get(true, false, this.innerText.replace(/@/,\'\'));">@$1</a> ',$text);
-		$text = preg_replace('/\#([A-Za-zäüöß_-]*)/i','<a href="?search=$1" class="hash" onclick="return dyn_get(true, false, false, this.innerText.replace(/\#/,\'\'));">#$1</a> ',$text);
+		$this->replace_text($result['text']);
 		echo "<div id='twibb'>";
 		echo "<div id='avatar'><img src='".wcf::getAvatar($result['nickname'])."'></div>";
 		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerHTML);'>".$result['nickname']."</div>";
@@ -93,10 +83,7 @@ class Twibber {
 	$query = $mysqli->query("SELECT * FROM `twibber_entry` WHERE `text` LIKE '%".$needle."%' ORDER BY `date` DESC");
 	echo "<div id='twibber'>";
 	    while($result = $query->fetch_assoc()){
-		$text = str_replace("\\","",$result['text']);
-		$text = preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@','<a href="$1">$1</a>',$text);
-		$text = preg_replace('/@([A-Za-z_-]*)/i','<a href="?nick=$1" onclick="return dyn_get(true, false, this.innerText.replace(/@/,\'\'));">@$1</a> ',$text);
-		$text = preg_replace('/\#([A-Za-zäüöß_-]*)/i','<a href="?search=$1" class="hash" onclick="return dyn_get(true, false, false, this.innerText.replace(/\#/,\'\'));">#$1</a> ',$text);
+		$this->replace_text($result['text']);
 		echo "<div id='twibb'>";
 		echo "<div id='avatar'><img src='".wcf::getAvatar($result['nickname'])."'></div>";
 		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerText);'>".$result['nickname']."</div>";
@@ -117,6 +104,13 @@ class Twibber {
 	$query = $mysqli->query("SELECT `text` FROM `twibber_entry` WHERE `nickname` = '".$nickname."'");
 	$row_cnt = $query->num_rows;
 	return $row_cnt;
+    }
+    function replace_text($text){
+	$text = str_replace("\\","",$result['text']);
+	$text = preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@','<a href="$1">$1</a>',$text);
+	$text = preg_replace('/@([A-Za-z_-]*)/i','<a href="?nick=$1" onclick="return dyn_get(true, false, this.innerText.replace(/@/,\'\'));">@$1</a> ',$text);
+	$text = preg_replace('/\#([A-Za-zäüöß_-]*)/i','<a href="?search=$1" class="hash" onclick="return dyn_get(true, false, false, this.innerText.replace(/\#/,\'\'));">#$1</a> ',$text);
+	return $text;
     }
 }
 class wcf{
@@ -172,14 +166,20 @@ class wcf{
 	$salt = strip_tags($salt);
 	$salt = $mysqli2->real_escape_string($salt);
 	define("ENCRYPTION_ENCRYPT_BEFORE_SALTING", false);
-	$query = $mysqli2->query("SELECT `rankID` FROM `".wcf_name_prefix."user` WHERE `username` = '".$nickname."' AND `salt` = '".$salt."' AND `password` = '".StringUtil::getDoubleSaltedHash($pw, $salt)."'");
+	$query = $mysqli2->query("SELECT `userID` FROM `".wcf_name_prefix."user` WHERE `username` = '".$nickname."' AND `salt` = '".$salt."' AND `password` = '".StringUtil::getDoubleSaltedHash($pw, $salt)."'");
 	$result = $query->fetch_object();
+	$query = $mysqli2->query("SELECT `groupID` FROM `".wcf_name_prefix."user_to_groups` WHERE `userID` = ".$result->userID);
+	$result = $query->fetch_assoc();
 	if($update){
-	    return ($result->rankID != wcf_admin_groupid || $result->rankID != wcf_update_groupid)?false:true;
+	    foreach($result as $key => $value){
+		if($value == wcf_admin_groupid || $value == wcf_update_groupid){ return true; }
+	    }
 	}else{
-	    return ($result->rankID != wcf_admin_groupid)?false:true;
+	    foreach($result as $key => $value){
+		if($value == wcf_admin_groupid || $value == wcf_update_groupid){ return true; }
+	    }
 	}
-	return true;
+	return false;
     }
 }
 
