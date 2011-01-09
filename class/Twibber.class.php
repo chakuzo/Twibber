@@ -34,8 +34,8 @@ class Twibber {
 	    echo "<div id='twibber'>";
 	    $false_array = array();
 	    while($result = $query->fetch_assoc()){
-		$this->replace_text($result['text']);
 		if(stristr($result['date'], date('Y')) === FALSE){ $false_array[] = $result; continue; }
+		$text = $this->replace_text($result['text']);
 		echo "<div id='twibb'>";
 		echo "<div id='avatar'><img src='".wcf::getAvatar($result['nickname'])."'></div>";
 		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerHTML);'>".$result['nickname']."</div>";
@@ -45,6 +45,7 @@ class Twibber {
 	    }
 	    foreach($false_array as $result){
 		echo "<div id='twibb'>";
+		$text = $this->replace_text($result['text']);
 		echo "<div id='avatar'><img src='".wcf::getAvatar($result['nickname'])."'></div>";
 		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerHTML);'>".$result['nickname']."</div>";
 		echo "<div id='content'>".$text."</div>";
@@ -59,7 +60,7 @@ class Twibber {
 	    $query = $mysqli->query("SELECT * FROM `twibber_entry` WHERE `nickname` = '".$nick."' ORDER BY `date` DESC");
 	    echo "<div id='twibber'>";
 	    while($result = $query->fetch_assoc()){
-		$this->replace_text($result['text']);
+		$text = $this->replace_text($result['text']);
 		echo "<div id='twibb'>";
 		echo "<div id='avatar'><img src='".wcf::getAvatar($result['nickname'])."'></div>";
 		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerHTML);'>".$result['nickname']."</div>";
@@ -83,7 +84,7 @@ class Twibber {
 	$query = $mysqli->query("SELECT * FROM `twibber_entry` WHERE `text` LIKE '%".$needle."%' ORDER BY `date` DESC");
 	echo "<div id='twibber'>";
 	    while($result = $query->fetch_assoc()){
-		$this->replace_text($result['text']);
+		$text = $this->replace_text($result['text']);
 		echo "<div id='twibb'>";
 		echo "<div id='avatar'><img src='".wcf::getAvatar($result['nickname'])."'></div>";
 		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerText);'>".$result['nickname']."</div>";
@@ -169,14 +170,13 @@ class wcf{
 	$query = $mysqli2->query("SELECT `userID` FROM `".wcf_name_prefix."user` WHERE `username` = '".$nickname."' AND `salt` = '".$salt."' AND `password` = '".StringUtil::getDoubleSaltedHash($pw, $salt)."'");
 	$result = $query->fetch_object();
 	$query = $mysqli2->query("SELECT `groupID` FROM `".wcf_name_prefix."user_to_groups` WHERE `userID` = ".$result->userID);
-	$result = $query->fetch_assoc();
 	if($update){
-	    foreach($result as $key => $value){
-		if($value == wcf_admin_groupid || $value == wcf_update_groupid){ return true; }
+	    while($result = $query->fetch_assoc()){
+		if($result['groupID'] == wcf_admin_groupid || $result['groupID'] == wcf_update_groupid){ return true; }
 	    }
 	}else{
-	    foreach($result as $key => $value){
-		if($value == wcf_admin_groupid || $value == wcf_update_groupid){ return true; }
+	    while($result = $query->fetch_assoc()){
+		if($result['groupID'] == wcf_admin_groupid){ return true; }
 	    }
 	}
 	return false;
