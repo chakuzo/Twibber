@@ -40,6 +40,7 @@ function dyn_submit(){
 	    $("#status").freeow(ret, ret.replace(/!/,'')+" gesendet!", {classes: ["smokey"], autoHideDelay: 2500});
 	});
 	$("#input_text").val("");
+	$("#counter").text("250");
     }else{
 	alert("Error! Nachricht zu lang, keine Nachricht vorhanden oder kein Nickname eingegeben.");
     }
