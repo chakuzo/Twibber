@@ -9,7 +9,7 @@
 -->
 
 <update>
-    <version>0.3 rc2</version>
+    <version>0.3</version>
     <update_files>all</update_files>
-    <note>No note</note>
+    <note>Finaly better support for all screens</note>
 </update>

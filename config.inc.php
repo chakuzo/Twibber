@@ -15,6 +15,8 @@ define("mysql_user_wcf","");
 define("mysql_pw_wcf","");
 define("mysql_db_wcf","");
 define("mysql_local_wcf","localhost");
+define("wcf_admin_groupid","1"); // Please provide the group id from the acp from the wcf. DANGER! If you provide the false id, member can update and in future in the Twibber ACP
+define("wcf_update_groupid",""); // Here you can add the group id of an group, which can only update. No access to acp, but maybe more active and more online, so can update more often.
 
 /*
  * Examples:

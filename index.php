@@ -84,10 +84,10 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 		}
 	    ?>
 	</div>
-	<footer>Twibber is developed by Kurtextrem, Math-Board<!-- &amp; Anima --></footer>
+	<footer>Twibber is developed by <a href="#">Twibber Group</a></footer>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	<script src="script/jquery.NobleCount.min.js"></script>
 	<script src="script/jquery.freeow.min.js"></script>
-	<script src="script/script.js"></script>
+	<script src="script/script.min.js"></script>
     </body>
 </html>

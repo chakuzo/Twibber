@@ -175,7 +175,7 @@ class wcf{
 	define("ENCRYPTION_ENCRYPT_BEFORE_SALTING", false);
 	$query = $mysqli2->query("SELECT `rankID` FROM `".wcf_name_prefix."user` WHERE `username` = '".$nickname."' AND `salt` = '".$salt."' AND `password` = '".StringUtil::getDoubleSaltedHash($pw, $salt)."'");
 	$result = $query->fetch_object();
-	if($result->rankID != '1') return false;
+	if($result->rankID != wcf_admin_groupid || $result->rankID != wcf_update_groupid) return false;
 	return true;
     }
     
