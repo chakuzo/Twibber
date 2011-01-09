@@ -38,7 +38,7 @@ class Twibber {
 		$text = str_replace("\\","",$result['text']);
 		$text = wordwrap($text,76,"<br>",true);
 		$text = preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@','<a href="$1">$1</a>',$text);
-		$text = preg_replace('/@([A-Za-z_-]*) /i','<a href="?nick=$1" onclick="return dyn_get(true, false, this.innerText.replace(/@/,\'\'));">@$1</a> ',$text);
+		$text = preg_replace('/@([A-Za-z_-]*)/i','<a href="?nick=$1" onclick="return dyn_get(true, false, this.innerText.replace(/@/,\'\'));">@$1</a> ',$text);
 		$text = preg_replace('/\#([A-Za-zäüöß_-]*)/i','<a href="?search=$1" class="hash" onclick="return dyn_get(true, false, false, this.innerText.replace(/\#/,\'\'));">#$1</a> ',$text);
 		echo "<div id='twibb'>";
 		echo "<div id='avatar'><img src='".wcf::getAvatar($result['nickname'])."'></div>";
@@ -51,7 +51,7 @@ class Twibber {
 		$text = str_replace("\\","",$result['text']);
 		$text = wordwrap($text,76,"<br>",true);
 		$text = preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@','<a href="$1">$1</a>',$text);
-		$text = preg_replace('/@([A-Za-z_-]*) /i','<a href="?nick=$1" onclick="return dyn_get(true, false, this.innerText.replace(/@/,\'\'));">@$1</a> ',$text);
+		$text = preg_replace('/@([A-Za-z_-]*)/i','<a href="?nick=$1" onclick="return dyn_get(true, false, this.innerText.replace(/@/,\'\'));">@$1</a> ',$text);
 		$text = preg_replace('/\#([A-Za-zäüöß_-]*)/i','<a href="?search=$1" class="hash" onclick="return dyn_get(true, false, false, this.innerText.replace(/\#/,\'\'));">#$1</a> ',$text);
 		echo "<div id='twibb'>";
 		echo "<div id='avatar'><img src='".wcf::getAvatar($result['nickname'])."'></div>";
@@ -71,7 +71,7 @@ class Twibber {
 		$text = str_replace("\\","",$result['text']);
 		$text = wordwrap($text,76,"<br>",true);
 		$text = preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@','<a href="$1">$1</a>',$text);
-		$text = preg_replace('/@([A-Za-z_-]*) /i','<a href="?nick=$1" onclick="return dyn_get(true, false, this.innerText.replace(/@/,\'\'));">@$1</a> ',$text);
+		$text = preg_replace('/@([A-Za-z_-]*)/i','<a href="?nick=$1" onclick="return dyn_get(true, false, this.innerText.replace(/@/,\'\'));">@$1</a> ',$text);
 		$text = preg_replace('/\#([A-Za-zäüöß_-]*)/i','<a href="?search=$1" class="hash" onclick="return dyn_get(true, false, false, this.innerText.replace(/\#/,\'\'));">#$1</a> ',$text);
 		echo "<div id='twibb'>";
 		echo "<div id='avatar'><img src='".wcf::getAvatar($result['nickname'])."'></div>";
@@ -99,7 +99,7 @@ class Twibber {
 		$text = str_replace("\\","",$result['text']);
 		$text = wordwrap($text,76,"<br>",true);
 		$text = preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@','<a href="$1">$1</a>',$text);
-		$text = preg_replace('/@([A-Za-z_-]*) /i','<a href="?nick=$1" onclick="return dyn_get(true, false, this.innerText.replace(/@/,\'\'));">@$1</a> ',$text);
+		$text = preg_replace('/@([A-Za-z_-]*)/i','<a href="?nick=$1" onclick="return dyn_get(true, false, this.innerText.replace(/@/,\'\'));">@$1</a> ',$text);
 		$text = preg_replace('/\#([A-Za-zäüöß_-]*)/i','<a href="?search=$1" class="hash" onclick="return dyn_get(true, false, false, this.innerText.replace(/\#/,\'\'));">#$1</a> ',$text);
 		echo "<div id='twibb'>";
 		echo "<div id='avatar'><img src='".wcf::getAvatar($result['nickname'])."'></div>";
