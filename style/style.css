@@ -104,6 +104,8 @@ time{
     background: -webkit-gradient(linear, left top, left bottom, from(#e8e8e8), to(#bababa));
     background: -moz-linear-gradient(top,  #e8e8e8,  #bababa);
     min-height: 50px;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 #nickname{
     /*text-align: left;*/

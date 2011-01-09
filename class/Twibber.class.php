@@ -107,7 +107,7 @@ class Twibber {
 	return $row_cnt;
     }
     function replace_text($text){
-	$text = str_replace("\\","",$result['text']);
+	$text = str_replace("\\","",$text);
 	$text = preg_replace('@(https?://([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?)@','<a href="$1">$1</a>',$text);
 	$text = preg_replace('/@([A-Za-z_-]*)/i','<a href="?nick=$1" onclick="return dyn_get(true, false, this.innerText.replace(/@/,\'\'));">@$1</a> ',$text);
 	$text = preg_replace('/\#([A-Za-zäüöß_-]*)/i','<a href="?search=$1" class="hash" onclick="return dyn_get(true, false, false, this.innerText.replace(/\#/,\'\'));">#$1</a> ',$text);
