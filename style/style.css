@@ -189,13 +189,6 @@ img{
 }
 
 @media screen and (max-width: 1170px) {
-    textarea {
-	width: 30em;
-    }
-    time {
-	left: 38%;
-    }
-    .right {
-	margin-bottom: 10px;
-    }
+    /* By Max */
+    @import url("small_style.css");
 }

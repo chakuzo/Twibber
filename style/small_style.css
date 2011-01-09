@@ -1,0 +1,161 @@
+body {
+    background-color: #404040;
+    background-image: url("../res/backgrounds/top.png");
+    background-repeat: repeat-x;
+    margin: 0;
+}
+footer {
+    left: 0;
+    position: absolute;
+}
+header {
+}
+textarea {
+    border: 1px solid grey;
+    border-radius: 4px 4px 4px 4px;
+    font-family: Arial,serif;
+    height: 100px;
+    outline: medium none;
+    padding: 8px;
+    width: 500px;
+}
+input {
+    border: 1px solid grey;
+}
+textarea:hover, textarea:active, input:hover, input:active, textarea:focus, input:focus {
+    box-shadow: 0 0 5px red;
+}
+#post_it {
+    background-color: #7BBDD7;
+    border: 1px solid black;
+    border-radius: 10px 10px 10px 10px;
+    color: black;
+    height: 100%;
+    margin-left: 15%;
+    margin-right: 15%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+h3 {
+    cursor: default;
+    font-family: 'Yanone Kaffeesatz',arial,serif;
+    font-size: 17px;
+    letter-spacing: 0.1em;
+    margin-top: 10px;
+    text-shadow: 0 0 2px white;
+}
+label {
+    margin-left: 12%;
+}
+#twibb {
+    margin-bottom: 10px;
+    margin-left: 15%;
+    text-align: center;
+}
+time {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: -moz-linear-gradient(center top , #7CBFDA, #6AA4BA) repeat scroll 0 0 transparent;
+    border-color: -moz-use-text-color black black;
+    border-right: 1px solid black;
+    border-style: none solid solid;
+    border-width: 0 1px 1px;
+    cursor: default;
+    display: inline-block;
+    font-family: 'Reenie Beanie',arial,serif;
+    font-size: 17px;
+    left: 40.4%;
+    max-width: 105px;
+    position: relative;
+    text-align: right;
+}
+#content {
+    background: -moz-linear-gradient(center top , #E8E8E8, #BABABA) repeat scroll 0 0 transparent;
+    border: 1px solid black;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    cursor: default;
+    font-family: 'Droid Sans',arial,serif;
+    margin-left: 5px;
+    min-height: 50px;
+}
+#nickname {
+}
+#status {
+}
+.nickname {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: -moz-linear-gradient(center top , #7CBFDA, #6AA4BA) repeat scroll 0 0 transparent;
+    border-color: black black -moz-use-text-color;
+    border-style: solid solid none;
+    border-width: 1px 1px 0;
+    cursor: pointer;
+    font-family: 'Reenie Beanie',arial,serif;
+    margin-left: 5px;
+    max-width: 100px;
+}
+#logo {
+    margin-top: 20px;
+    text-align: center;
+}
+#logo img {
+    width: 300px;
+}
+#label_nick {
+    font-family: 'Neucha',arial,serif;
+}
+#avatar {
+    float: left;
+    height: 0;
+    left: -75px;
+    position: relative;
+    width: 0;
+}
+#avatar img {
+    height: 70px;
+}
+#wbblite2 {
+    background: url("../res/img/buttons/wbblite2.png") repeat scroll 0 0 transparent;
+    height: 20px;
+    width: 110px;
+}
+#logout {
+    background: url("../res/img/buttons/logout.png") repeat scroll 0 0 transparent;
+    height: 20px;
+    width: 60px;
+}
+#login {
+    background: url("../res/img/buttons/login.png") repeat scroll 0 0 transparent;
+    height: 20px;
+    width: 50px;
+}
+#wbblite2:hover {
+    background: url("../res/img/buttons/wbblite2H.png") repeat scroll 0 0 transparent;
+}
+#logout:hover {
+    background: url("../res/img/buttons/logoutH.png") repeat scroll 0 0 transparent;
+}
+#login:hover {
+    background: url("../res/img/buttons/loginH.png") repeat scroll 0 0 transparent;
+}
+#useravatar {
+    float: left;
+    height: 70px;
+    margin-right: 10px;
+}
+textarea {
+    width: 30em;
+}
+time {
+    left: 38%;
+}
+.right {
+    margin-bottom: 10px;
+}
