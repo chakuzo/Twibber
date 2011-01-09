@@ -1,6 +1,6 @@
 		    <div class="left"> 
 		        <h1>Kontrollzentrum</h1>		
-		        <p class="grey"><a href="http://twibber.wbblite2.de/?nick=<?=$_COOKIE['twibber_nick']?>">Profil</a></p> 
+		        <p class="grey"><a href="/?nick=<?=$_COOKIE['twibber_nick']?>">Profil</a></p> 
 			<p class="grey"><a href="nicht gefunden">Profil Bearbeiten</a></p>
 		    </div> 
 		    <div class="left"> 
