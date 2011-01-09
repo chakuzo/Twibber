@@ -2,10 +2,10 @@
 include_once("../config.inc.php");
 include("../class/Twibber.class.php");
 $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt']);
-if(!$return) Header("Location: index.php");
+if(!$return) Header("Location: ../index.php");
 $return = wcf::getAdminOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt'], true);
-if(!$return) Header("Location: index.php");
-$version = "0.3";
+if(!$return) Header("Location: ../index.php");
+$version = "0.3rc1";
 ?><!doctype html>
 <html>
     <head>
