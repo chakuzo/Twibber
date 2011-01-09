@@ -6,23 +6,16 @@
         Nothing and everything.
 */
 body {
-    /*background-image: url("../res/backgrounds/default.png");*/
-	background-color: #404040;
-	background-image: url("../res/backgrounds/top.png");
-	background-repeat: repeat-x;
+    background-color: #404040;
+    background-image: url("../res/backgrounds/top.png");
+    background-repeat: repeat-x;
     margin: 0px;
 }
 footer {
     position: absolute;
-    left: 0px;
+    left: 0;
 }
 header {
-    /*text-align: right;
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.0, yellow),
-                color-stop(0.5, orange), color-stop(1.0, red));
-    background: -moz-gradient(linear, left top, left bottom, color-stop(0.0, yellow),
-                color-stop(0.5, orange), color-stop(1.0, red));
-    padding: 3px;*/
 }
 textarea { 
     -webkit-transition: -webkit-box-shadow 450ms linear 100ms;
@@ -43,7 +36,7 @@ input {
 textarea:hover, textarea:active, input:hover, input:active, textarea:focus, input:focus { 
     -webkit-box-shadow: red 0px 0px 5px;
     -moz-box-shadow: red 0px 0px 5px; 
-    box-shadow: red 0px 0px 5px;
+    box-shadow: 0 0 5px red;
 }
 
 #post_it{
@@ -185,12 +178,48 @@ time{
     height: 70px;
     margin-right: 10px;
 }
+
 /* Firefox -.- */
 img{
     border: 0px;
 }
 
+/* By Max */
 @media screen and (max-width: 1170px) {
-    /* By Max */
-    @import url("small_style.css");
+    #post_it {
+	background-color: #7BBDD7;
+	border: 1px solid black;
+	border-radius: 10px 10px 10px 10px;
+	color: black;
+	height: 100%;
+	margin-left: 15%;
+	margin-right: 15%;
+	padding-left: 10%;
+	padding-right: 10%;
+    }
+    h3 {
+	cursor: default;
+	font-family: 'Yanone Kaffeesatz',arial,serif;
+	font-size: 17px;
+	letter-spacing: 0.1em;
+	margin-top: 10px;
+	text-shadow: 0 0 2px white;
+    }
+    label {
+	margin-left: 12%;
+    }
+    #twibb {
+	margin-bottom: 10px;
+	margin-left: 15%;
+	text-align: center;
+    }
+    textarea {
+	width: 30em;
+    }
+    time {
+	left: 38%;
+    }
+    .right {
+	margin-bottom: 10px;
+    }
 }
