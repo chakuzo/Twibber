@@ -24,6 +24,10 @@ Milestone0.4:
 -Clean up the dirs | OK
 -Write script, which auto packs the update / install zip
 
+Milestone 0.5:
+-Smileys (a good idea or not?!)
+-befehle like (/google Nickname how to install twibber, or /gtfo Nickname get the fuck out!!11)
+
 Milestone1.0:
 -Inviduall Homepage | HALF
 -Follow (don't we need to implement before invidual userpage?!)

@@ -41,7 +41,7 @@ class Twibber {
 		$text = preg_replace('/\#([A-Za-zäüöß_-]*)/i','<a href="?search=$1" class="hash" onclick="return dyn_get(true, false, false, this.innerText.replace(/\#/,\'\'));">#$1</a> ',$text);
 		echo "<div id='twibb'>";
 		echo "<div id='avatar'><img src='".wcf::getAvatar($result['nickname'])."'></div>";
-		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerText);'>".$result['nickname']."</div>";
+		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerHTML);'>".$result['nickname']."</div>";
 		echo "<div id='content'>".$text."</div>";
 		echo "<time>".$result['date']."</time>";
 		echo "</div>";
@@ -53,7 +53,7 @@ class Twibber {
 		$text = preg_replace('/\#([A-Za-zäüöß_-]*)/i','<a href="?search=$1" class="hash" onclick="return dyn_get(true, false, false, this.innerText.replace(/\#/,\'\'));">#$1</a> ',$text);
 		echo "<div id='twibb'>";
 		echo "<div id='avatar'><img src='".wcf::getAvatar($result['nickname'])."'></div>";
-		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerText);'>".$result['nickname']."</div>";
+		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerHTML);'>".$result['nickname']."</div>";
 		echo "<div id='content'>".$text."</div>";
 		echo "<time>".$result['date']."</time>";
 		echo "</div>";
@@ -72,7 +72,7 @@ class Twibber {
 		$text = preg_replace('/\#([A-Za-zäüöß_-]*)/i','<a href="?search=$1" class="hash" onclick="return dyn_get(true, false, false, this.innerText.replace(/\#/,\'\'));">#$1</a> ',$text);
 		echo "<div id='twibb'>";
 		echo "<div id='avatar'><img src='".wcf::getAvatar($result['nickname'])."'></div>";
-		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerText);'>".$result['nickname']."</div>";
+		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerHTML);'>".$result['nickname']."</div>";
 		echo "<div id='content'>".$text."</div>";
 		echo "<time>".$result['date']."</time>";
 		echo "</div>";
