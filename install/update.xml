@@ -11,5 +11,5 @@
 <update>
     <version>0.3</version>
     <update_files>all</update_files>
-    <note>Finaly better support for all screens</note>
+    <note>Finaly better support for all screens. Need to configure config.inc.php again!</note>
 </update>

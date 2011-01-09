@@ -5,6 +5,9 @@ include("StringUtil.class.php");
 if(wcf_name_prefix == "WCF1_"){
     die("ERROR! Bitte füllen Sie config.inc.php richtig aus.");
 }
+if(wcf_update_groupid == ""){
+    die("ERROR! Bitte füllen sie config.inc.php richtig aus.");
+}
 
 $mysqli = new mysqli(mysql_local,mysql_user,mysql_pw,mysql_db);
 if ($mysqli->connect_error) {
