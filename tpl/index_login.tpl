@@ -6,7 +6,7 @@
 		        <p class="grey"><a href="?nick=<?=$_COOKIE['twibber_nick']?>">Profil</a></p> 
 			<p class="grey"><a href="#">Profil Bearbeiten</a></p>
 			<?php if($admin_ok){ ?><p class="grey"><a href="#">Twibber ACP</a></p> <?php } ?>
-			<?php if($update_ok){ ?><p class="grey"><a href="#">Updaten</a></p> <?php } ?>
+			<?php if($update_ok){ ?><p class="grey"><a href="install/update.php">Updaten</a></p> <?php } ?>
 		    </div> 
 		    <div class="left"> 
 			<h1>Willkommen <?=$_COOKIE['twibber_nick']?>!</h1>
