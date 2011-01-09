@@ -9,7 +9,7 @@
 -->
 
 <update>
-    <version>0.3</version>
+    <version>0.3 pl 1</version>
     <update_files>all</update_files>
-    <note>Finaly better support for all screens. Need to configure config.inc.php again!</note>
+    <note>No note!</note>
 </update>
