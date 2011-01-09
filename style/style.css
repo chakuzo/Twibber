@@ -1,7 +1,7 @@
 /* 
     Document   : style
     Created on : 27.12.2010, 15:29:10
-    Author     : Kurt
+    Author     : Kurtextrem, Math-Board, _MaX_
     Description:
         Nothing and everything.
 */
@@ -31,6 +31,7 @@ textarea {
     height: 100px;
     width: 500px;
     border-radius: 4px;
+    -moz-border-radius: 4px;
     font-family: Arial, serif;
     padding: 8px;
     outline: none;
@@ -50,6 +51,7 @@ textarea:hover, textarea:active, input:hover, input:active, textarea:focus, inpu
     margin-right: 25%;
     border: 1px solid black;
     border-radius: 10px;
+    -moz-border-radius: 10px;
     height: 100%;
     background-color: #7bbdd7;
     color: black;
@@ -93,6 +95,8 @@ time{
     border: 1px solid black;
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    -moz-border-radius-bottomleft: 5px;
     /*background: -webkit-gradient(linear, left top, left bottom, from(#7cbfda), to(#6aa4ba));
     background: -moz-linear-gradient(top,  #7cbfda,  #6aa4ba);*/
     font-family: 'Droid Sans', arial, serif;
@@ -177,13 +181,21 @@ time{
 #useravatar{
     float: left;
     height: 70px;
+    margin-right: 10px;
+}
+/* Firefox -.- */
+img{
+    border: 0px;
 }
 
-@media screen and (max-width: 1124px) {
-    textarea{
+@media screen and (max-width: 1170px) {
+    textarea {
 	width: 30em;
     }
-    time{
+    time {
 	left: 38%;
+    }
+    .right {
+	margin-bottom: 10px;
     }
 }
