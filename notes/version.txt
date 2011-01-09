@@ -6,6 +6,7 @@ Version 0.3 RC 2 was released on 08.01.2011 at 9:51. Rev 107 - 116.
 Version 0.3 RC 3 is beeing released tomorow. <-- canceld
 Version 0.3 was released on 09.01.2011 at 11:38. Rev 116 - 125. 
 Version 0.3 pl 1 was released on 09.01.2011 at 14:46. Ach scheiss auf rev, guckts halt durch!!1
+Version 0.3.2 was released on 09.01.2011 at 19:45.
 
 Milestone0.2:
 -----Design for all Screens fitting | FAIL--- -> moved to milestone 0.3 !!!
