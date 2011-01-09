@@ -167,7 +167,7 @@ class wcf{
 	if(!$result) return false;
 	return true;
     }
-    public static function getAdminOK($nickname, $pw, $salt){
+    public static function getAdminOK($nickname, $pw, $salt, $update = false){
 	global $mysqli2;
 	$nickname = strip_tags($nickname);
 	$nickname = $mysqli2->real_escape_string($nickname);
@@ -178,10 +178,13 @@ class wcf{
 	define("ENCRYPTION_ENCRYPT_BEFORE_SALTING", false);
 	$query = $mysqli2->query("SELECT `rankID` FROM `".wcf_name_prefix."user` WHERE `username` = '".$nickname."' AND `salt` = '".$salt."' AND `password` = '".StringUtil::getDoubleSaltedHash($pw, $salt)."'");
 	$result = $query->fetch_object();
-	if($result->rankID != wcf_admin_groupid || $result->rankID != wcf_update_groupid) return false;
+	if($update){
+	    return ($result->rankID != wcf_admin_groupid || $result->rankID != wcf_update_groupid)?false:true;
+	}else{
+	    return ($result->rankID != wcf_admin_groupid)?false:true;
+	}
 	return true;
     }
-    
 }
 
 /*
