@@ -222,4 +222,7 @@ img{
     .right {
 	margin-bottom: 10px;
     }
+    #logo img{
+	-webkit-transform: translate(-11em);
+    }
 }
