@@ -1,15 +1,4 @@
-Version 0.1 was released on 31.12.2010 at 15:15. Rev 0 - 78 reffers to it.
-Version 0.2 RC1 was released on 02.01.2011 at 18:13. Rev 78 - 92 reffers to it.
-Version 0.2 was missed. (ololo)
-Version 0.3 RC 1 was released on 06.01.2011 at 16:10 (16:39, 42, 17:01). Rev 92 - 107 reffers to it.
-Version 0.3 RC 2 was released on 08.01.2011 at 9:51. Rev 107 - 116.
-Version 0.3 RC 3 is beeing released tomorow. <-- canceld
-Version 0.3 was released on 09.01.2011 at 11:38. Rev 116 - 125. 
-Version 0.3 pl 1 was released on 09.01.2011 at 14:46. Ach scheiss auf rev, guckts halt durch!!1
-Version 0.3.2 was released on 09.01.2011 at 19:45.
-
 Milestone0.2:
------Design for all Screens fitting | FAIL--- -> moved to milestone 0.3 !!!
 -Order of twibbs right >.> (year 2010, 2011, 2011 is at the bottom of 2010) | OK (2011 - 2010 is working now, i have now one year to fix it for 2012 :D)
 -Better "copyright" | OK
 
@@ -39,6 +28,9 @@ Milestone1.0:
 -Localisation (english etc)
 -name change (?)
 (to be continued...)
+
+Milestone 1.2:
+-ACP
 
 Milestone2.0: 
 -Archiv
