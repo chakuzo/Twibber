@@ -17,13 +17,23 @@ if($_GET['new_entry'] == "1" && $return){
 }elseif(!$return){
     echo "Bitte einloggen!";
 }
-if($_GET['dyn_get'] == "1"){
+if(trim($_GET['dyn_get']) == "1"){
     $Twibber->fetchTwibber(true, true, '', 0, 90);
 }
-if($_GET['nick'] != ""){
+if(trim($_GET['nick']) != ""){
     $Twibber->fetchTwibber(true, false, $_GET['nick']);
 }
-if($_GET['search'] != ""){
+if(trim($_GET['search']) != ""){
     $Twibber->searchTwibber($_GET['search']);
+}
+if(trim($_GET['image']) != ""){
+    header("Content-type: image/png");
+    $text = strip_tags($_GET['image']);
+    $im = imagecreatefrompng("images/button1.png");
+    $orange = imagecolorallocate($im, 220, 210, 60);
+    $px = (imagesx($im) - 7.5 * strlen($text)) / 2;
+    imagestring($im, 3, $px, 9, $text, $orange);
+    imagepng($im);
+    imagedestroy($im);
 }
 ?>

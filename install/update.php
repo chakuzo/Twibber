@@ -36,7 +36,8 @@ $version = "0.3.2";
 			unlink("update.zip");
 		    }  
 		}else{
-		    echo "Kein Update verfügbar";
+		    echo "Kein Update verfügbar<br>";
+		    echo "Du magst Updates? Versuch doch mal <a href='#'>Nightly Builds</a> <b>Achtung! Es könnte unstabil sein, und nicht alles funktionieren.</b>";
 		}
 	    ?>
 	</div>

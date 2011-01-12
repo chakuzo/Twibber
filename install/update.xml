@@ -13,3 +13,8 @@
     <update_files>all</update_files>
     <note>No note!</note>
 </update>
+<nightly>
+    <file></file>
+    <replace></replace>
+    <replace_with></replace_with>
+</nightly>
