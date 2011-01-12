@@ -11,10 +11,10 @@
 		    <div class="left"> 
 			<h1>Willkommen <?=$_COOKIE['twibber_nick']?>!</h1>
 			<p>Du hast bereits <?=$Twibber->getStats($_COOKIE['twibber_nick'])?> mal getwibbert.</p>
-			<p class="grey">Hier findest du bald noch mehr Daten über dich und dein Twibber Profil.</p>
+			<p class="grey">Hier findest du bald noch mehr Daten &uuml;ber dich und dein Twibber Profil.</p>
 			<p><a href="login.php?mode=logout">Ausloggen</a></p>
 		    </div>
 		    <div class="left right">
 			<h1>Avatar</h1>
-			<img src="<?=wcf::getAvatar($_COOKIE['twibber_nick'])?>" id="useravatar" height="150" width="150">
+			<img src="<?=wcf::getAvatar($_COOKIE['twibber_nick'])?>" id="useravatar">
 		    </div>
