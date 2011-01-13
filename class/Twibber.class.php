@@ -104,7 +104,7 @@ class Twibber {
     }
     function replace_text($text){
 	$text = str_replace("\\","",$text);
-	$text = preg_replace('~((https?://|www\.)([-\w\.]+)+(:\d+)?(/([-]*)?)?)~i','<a href="$1">$1</a>',$text);
+	$text = preg_replace('/((?:https?|ftp):\/\/[^\s\'"\'<>()]+|www\.[^\s\'"\'<>()]+|[\-\w.+]+@(?:[\-\w]+\.)+[\w]{2,6})/i','<a href="$1">$1</a>',$text);
 	$text = preg_replace('/@(.+)/','<a href="?nick=$1" onclick="return dyn_get(true, false, this.innerText.replace(/@/,\'\'));">@$1</a> ',$text);
 	$text = preg_replace('/#(.+)/','<a href="?search=$1" class="hash" onclick="return dyn_get(true, false, false, this.innerText.replace(~#~,\'\'));">#$1</a> ',$text);
 	return $text;
