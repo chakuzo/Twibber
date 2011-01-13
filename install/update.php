@@ -13,8 +13,7 @@ $version = "0.3.3";
         <title>Update</title>
     </head>
     <body>
-	<div>
-	    <?php
+	<div><?php
 		if($_GET['update'] == 'nightly'){
 		    $zip = new ZipArchive();
 		    $filename = "nightly.zip";
