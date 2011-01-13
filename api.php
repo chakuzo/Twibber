@@ -14,8 +14,6 @@ if($_GET['new_entry'] == "1" && $return){
     }elseif($nick == ""){
 	echo "Kein Nickname!";
     }
-}elseif(!$return){
-    echo "Bitte einloggen!";
 }
 if(trim($_GET['dyn_get']) == "1"){
     $Twibber->fetchTwibber(true, true, '', 0, 90);
@@ -45,5 +43,10 @@ if(trim($_GET['image']) != ""){
     ImagePNG($im);
     ImageDestroy($im);
     ImageDestory($avatar);
+    exit();
+}
+
+if(!$return){
+   echo "Bitte einloggen!";
 }
 ?>

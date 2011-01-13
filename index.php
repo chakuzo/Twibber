@@ -42,8 +42,8 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 	<div id="logo"><a href="index.php"><img src="res/img/logo.png"></a></div>
 	<div id="post_it">
 	    <h3><?=$_COOKIE['twibber_nick']?>, was machst du grade?</h3>
-	    <textarea id="input_text" maxlength="250" autofocus placeholder="Schreib deinen Freunden hier, was du gerade tust."></textarea>
-	    <br><div class="right"><label for="input_text" id="counter">0 Zeichen</label><button id="twibber_it" onclick="dyn_submit();">Twibbern</button></div>
+	    <?php if($return) { ?> <textarea id="input_text" maxlength="250" autofocus placeholder="Schreib deinen Freunden hier, was du gerade tust."></textarea> 
+	    <br><div class="right"><label for="input_text" id="counter">0 Zeichen</label><button id="twibber_it" onclick="dyn_submit();">Twibbern</button></div><?php } ?>
 	    <?php
 		if($_GET['nick'] == "" && $_GET['search'] == ""){
 		    $Twibber->fetchTwibber(true,true);
