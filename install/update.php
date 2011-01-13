@@ -22,7 +22,7 @@ $version = "0.3.3";
 			exit("cannot open <$filename><br>");
 		    }
 		    $zip->addEmptyDir('class');
-		    $zip->addFromString('class/update.php', file_get_contents("https://twbbler.googlecode.com/svn/trunk/class/Twibber.class.php"));
+		    $zip->addFromString('class/Twibber.class.php', file_get_contents("https://twbbler.googlecode.com/svn/trunk/class/Twibber.class.php"));
 		    $zip->addEmptyDir('install');
 		    $zip->addFromString('install/update.php', file_get_contents("https://twbbler.googlecode.com/svn/trunk/install/update.php"));
 		    $zip->addEmptyDir('script');
