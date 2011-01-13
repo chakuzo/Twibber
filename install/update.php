@@ -36,7 +36,6 @@ $version = "0.3.2";
 		    $zip->addFromString('api.php', file_get_contents("https://twbbler.googlecode.com/svn/trunk/api.php"));
 		    $zip->addFromString('index.php', file_get_contents("https://twbbler.googlecode.com/svn/trunk/index.php"));
 		    $zip->addFromString('login.php', file_get_contents("https://twbbler.googlecode.com/svn/trunk/login.php"));
-		    $zip->addFromString('test.txt', 'Dateiinhalt kommt hier');
 		    $zip->close();
 		    $zip = new ZipArchive();
 		    $filename = "nightly.zip";
