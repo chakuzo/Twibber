@@ -31,9 +31,10 @@ if(trim($_GET['image']) != ""){
     $nick = strip_tags($_GET['image']);
     $im = @ImageCreate (468, 60)
       or die ("Kann keinen neuen GD-Bild-Stream erzeugen");
-    $avatar = imagecreatefrompng(wcf::getAvatar($nick)); 
-    $new_width = "60";
-    $new_height = "60";
+    $avatar = imagecreatefrompng("http://www.wbblite2.de/wcf/images/avatars/avatar-328.png"); 
+    $new_width = 60;
+    $new_height = 60;
+    $avatar = ImageResize($avatar, $new_width, $new_height);
     //$im = imagecreatefrompng("images/button1.png");
     $background_color = ImageColorAllocate ($im, 0, 0, 0);
     $text_color = ImageColorAllocate ($im, 233, 14, 91);
@@ -41,7 +42,7 @@ if(trim($_GET['image']) != ""){
     ImageStringUp($im, 2, 5, 55, "_________", $text_color);
     ImageString($im, 5, 80, 0, $nick."'s letzter Twib:", $text_color);
     ImageString($im, 4, 80, 15, '--> '.$Twibber->fetchTwibber(true, false, $nick, 0, 30, true).'', $text_color);
-    ImageCopyResampled($im, $avatar, 20, 0, 0, 0, $new_width, $new_height, "468", "60");
+    ImageCopyresampled($im, $avatar, 20, 0, 0, 0, $new_width, $new_height, 468, 60);
     ImagePNG($im);
     ImageDestroy($im);
     ImageDestory($avatar);
