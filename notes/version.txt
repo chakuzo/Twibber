@@ -10,13 +10,13 @@ Milestone0.3:
 -Design for all Screens fitting | OK (ty max)
 
 Milestone0.4:
--First Signature image
+-First Signature image | OK
 -Clean up the dirs | OK
--Write script, which auto packs the update / install zip
+-Write script, which auto packs the update / install zip (nightly builder) | BEGIN
 
 Milestone 0.5:
--Smileys (a good idea or not?!)
--befehle like (/google Nickname how to install twibber, or /gtfo Nickname get the fuck out!!11)
+-Localisation (english etc)
+-timeline api like twitter
 
 Milestone1.0:
 -Inviduall Homepage | HALF
@@ -24,10 +24,14 @@ Milestone1.0:
 -Lists 
 -Retwibb
 -Answer | HALF
--Real homepage for twibber
--Localisation (english etc)
+-Real homepage for twibber (twibber.de)
+
 -name change (?)
 (to be continued...)
+
+Milestone1.0 ME: 
+-befehle like (/google Nickname how to install twibber, or /gtfo Nickname get the fuck out!!11)
+-Smileys (a good idea or not?!)
 
 Milestone 1.2:
 -ACP
