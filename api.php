@@ -26,7 +26,7 @@ if(trim($_GET['search']) != ""){
 }
 if(trim($_GET['image']) != ""){
     Header("Content-type: image/png");
-    $nick = wcf::getAvatar(strip_tags($_GET['image']));
+    $nick = strip_tags($_GET['image']);
     $img = @ImageCreateTrueColor (468, 60)
       or die ("Kann keinen neuen GD-Bild-Stream erzeugen"); 
     $new_width = 60;
@@ -38,6 +38,7 @@ if(trim($_GET['image']) != ""){
     ImageStringUp($img, 2, 5, 55, "_________", $text_color);
     ImageString($img, 5, 80, 0, $nick."'s letzter Twib:", $text_color);
     ImageString($img, 4, 80, 15, '--> '.$Twibber->fetchTwibber(true, false, $nick, 0, 30, true).'', $text_color);
+    $nick = wcf::getAvatar(strip_tags($_GET['image']));
     $image_data = getimagesize($nick);
     if ($image_data['mime'] == 'image/png') { // ty _MaX_
 	$avatar = imagecreatefrompng($nick);
