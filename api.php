@@ -34,7 +34,6 @@ if(trim($_GET['image']) != ""){
     $avatar = imagecreatefrompng("http://www.wbblite2.de/wcf/images/avatars/avatar-328.png"); 
     $new_width = 60;
     $new_height = 60;
-    $avatar = ImageResize($avatar, $new_width, $new_height);
     //$im = imagecreatefrompng("images/button1.png");
     $background_color = ImageColorAllocate ($im, 0, 0, 0);
     $text_color = ImageColorAllocate ($im, 233, 14, 91);
