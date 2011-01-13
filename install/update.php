@@ -15,6 +15,38 @@ $version = "0.3.2";
     <body>
 	<div>
 	    <?php
+		if($_GET['update'] == 'nightly'){
+		    $zip = new ZipArchive();
+		    $filename = "nightly.zip";
+		    $zip_ar = $zip->open($filename, ZIPARCHIVE::CREATE);
+		    if ($zip_ar !== TRUE) {
+			exit("cannot open <$filename><br>");
+		    }
+		    $zip->addEmptyDir('class');
+		    $zip->addFromString('class/update.php', file_get_contents("https://twbbler.googlecode.com/svn/trunk/class/Twibber.class.php"));
+		    $zip->addEmptyDir('install');
+		    $zip->addFromString('install/update.php', file_get_contents("https://twbbler.googlecode.com/svn/trunk/install/update.php"));
+		    $zip->addEmptyDir('script');
+		    $zip->addFromString('script/script.min.js', file_get_contents("https://twbbler.googlecode.com/svn/trunkscript/script.min.js"));
+		    $zip->addEmptyDir('style');
+		    $zip->addFromString('style/style.css', file_get_contents("https://twbbler.googlecode.com/svn/trunk/style/style.css"));
+		    $zip->addEmptyDir('tpl');
+		    $zip->addFromString('tpl/index.tpl', file_get_contents("https://twbbler.googlecode.com/svn/trunk/tpl/index.tpl"));
+		    $zip->addFromString('tpl/index_login.tpl', file_get_contents("https://twbbler.googlecode.com/svn/trunk/tpl/index_login.tpl"));
+		    $zip->addFromString('api.php', file_get_contents("https://twbbler.googlecode.com/svn/trunk/api.php"));
+		    $zip->addFromString('index.php', file_get_contents("https://twbbler.googlecode.com/svn/trunk/index.php"));
+		    $zip->addFromString('login.php', file_get_contents("https://twbbler.googlecode.com/svn/trunk/login.php"));
+		    if ($zip_ar === TRUE) {
+			$zip->extractTo("../");
+			$zip->close();
+			echo '<br>Nightly Version installiert!<br>';
+		    } else {
+			echo '<br>Failed to update!<br>';
+			echo $zip_ar;
+		    }
+		    unlink("nightly.zip");
+		    exit();
+		}
 		$xml = simplexml_load_file("http://twbbler.googlecode.com/svn/trunk/install/update.xml");
 		if($xml->version != $version){
 		    echo "Update verfügbar! <a href='update.php?update=update'>Updates Installieren</a><br>";
@@ -34,10 +66,10 @@ $version = "0.3.2";
 			    echo $zip_ar;
 			}
 			unlink("update.zip");
-		    }  
+		    }
 		}else{
 		    echo "Kein Update verfügbar<br>";
-		    echo "Du magst Updates? Versuch doch mal <a href='#'>Nightly Builds</a> <b>Achtung! Es könnte unstabil sein, und nicht alles funktionieren.</b>";
+		    echo "Du magst Updates? Versuch doch mal <a href='update.php?update=nightly'>Nightly Builds</a> <b>Achtung! Es könnte unstabil sein, und nicht alles funktionieren.</b>";
 		}
 	    ?>
 	</div>

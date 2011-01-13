@@ -12,10 +12,10 @@
     <version>0.3.2</version>
     <update_files>all</update_files>
     <note>No note!</note>
-    <nightly>
+    <alpha>
 	<file></file>
 	<replace></replace>
 	<replace_with></replace_with>
-    </nightly>
+    </alpha>
 </update>
 

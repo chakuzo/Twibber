@@ -2,7 +2,7 @@
 		        <h1>Willkommen zu Twibber!</h1>		
 		        <p class="grey">Was ist Twibber? Twibber ist ein MicroBlogging System, wie z.B. <a href="http://twitter.com">Twitter</a></p> 
 			<h2>Download</h2> 
-			<p class="grey">Twibber ist Open Source! Du kannst es unter <a href="http://code.google.com/p/twbbler/">Google Code</a> downloaden. Achtung! Es ist eine Beta.</p> 
+			<p class="grey">Twibber ist Open Source! Du kannst es unter <a href="http://code.google.com/p/twbbler/">Google Code</a> downloaden. Achtung! Es ist eine Beta. Bugs reporten unter <a href='http://code.google.com/p/twbbler/issues/list'>Issue List</a></p> 
 		    </div> 
 		    <div class="left"> 
 			<form class="clearfix" action="login.php?login=true" method="post"> 

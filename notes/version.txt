@@ -16,7 +16,13 @@ Milestone0.4:
 
 Milestone 0.5:
 -Localisation (english etc)
--timeline api like twitter
+-timeline api like twitter for _MaX_'s  Signature script
+<_MaX_>'tweeter' => $node->getElementsByTagName('screen_name')->item(0)->nodeValue,
+<_MaX_>'text' => $node->getElementsByTagName('text')->item(0)->nodeValue,
+<_MaX_>'link' => $node->getElementsByTagName('id')->item(0)->nodeValue,
+<_MaX_>'date' => $node->getElementsByTagName('created_at')->item(0)->nodeValue,
+<_MaX_>'avatar' => $node->getElementsByTagName('profile_image_url')->item(0)->nodeValue,
+<_MaX_>'source' => $node->getElementsByTagName('source')->item(0)->nodeValue
 
 Milestone1.0:
 -Inviduall Homepage | HALF
