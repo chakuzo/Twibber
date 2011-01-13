@@ -27,9 +27,9 @@ if ($mysqli2->connect_error) {
  * @TODO All fetch_assoc to fetch_object.
  */
 class Twibber {
-    function fetchTwibber($latest = true, $global = false, $nick = '', $start = '0', $end = '30'){
+    function fetchTwibber($latest = true, $global = false, $nick = '', $start = '0', $end = '30', $signature = false){
 	global $mysqli;
-	if($global){
+	if($global && !$signature){
 	    $query = $mysqli->query("SELECT * FROM `twibber_entry` ORDER BY `date` DESC LIMIT ".$start." , ".$end);
 	    echo "<div id='twibber'>";
 	    $false_array = array();
@@ -54,7 +54,7 @@ class Twibber {
 	    }
 	    echo "</div>";
 	}
-	if($global == false && $nick != ''){
+	if($global == false && $nick != '' && !$signature){
 	    $nick = $mysqli->real_escape_string($nick);
 	    $nick = strip_tags($nick);
 	    $query = $mysqli->query("SELECT * FROM `twibber_entry` WHERE `nickname` = '".$nick."' ORDER BY `date` DESC");
@@ -69,6 +69,15 @@ class Twibber {
 		echo "</div>";
 	    }
 	    echo "</div>";
+	}
+	if($signature && $nick != ''){
+	    $nick = $mysqli->real_escape_string($nick);
+	    $nick = strip_tags($nick);
+	    $query = $mysqli->query("SELECT * FROM `twibber_entry` WHERE `nickname` = '".$nick."' ORDER BY `date` DESC");
+	    while($result = $query->fetch_assoc()){
+		if(stristr($result['date'], date('Y')) === FALSE){ continue; }
+		return str_replace("\\","",$result['text']);
+	    }
 	}
     }
     function createTwibber($message, $usernick){
