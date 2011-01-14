@@ -1,5 +1,5 @@
 <?php
-include("class/Twibber.class.php");
+include("lib/class/Twibber.class.php");
 $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt']);
 ?>
 <!doctype html>
@@ -7,9 +7,9 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>TWiBBer - Das WBB MicroBlogging Social Network</title>
-	<link rel="stylesheet" href="style/style.min.css" type="text/css">
-	<link rel="stylesheet" href="style/freeow.min.css" type="text/css">
-	<link rel="stylesheet" href="style/slide.min.css" type="text/css">
+	<link rel="stylesheet" href="lib/style/style.min.css" type="text/css">
+	<link rel="stylesheet" href="lib/style/freeow.min.css" type="text/css">
+	<link rel="stylesheet" href="lib/style/slide.min.css" type="text/css">
 	<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz' rel='stylesheet' type='text/css'> 
 	<link href='http://fonts.googleapis.com/css?family=Neucha' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Reenie+Beanie' rel='stylesheet' type='text/css'>
@@ -19,7 +19,7 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 	<header id="toppanel">
 	    <div id="panel"> 
 		<div class="content clearfix"> 
-		    <?php if(!$return){ include("tpl/index.tpl"); }else{ include("tpl/index_login.tpl"); } ?>
+		    <?php if(!$return){ include("lib/tpl/index.tpl"); }else{ include("lib/tpl/index_login.tpl"); } ?>
 		</div>
 	    </div> 
 	    <div class="tab"> 
@@ -29,7 +29,7 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 		<li class="sep">|</li> 
 		<li id="toggle">
 		    <a id="open" class="open" href="#">
-			<?php if(!$return){ ?><img src="res/img/cleardot.gif" alt="Login" id="login"><?php }else{ ?>
+			<?php if(!$return){ ?><img src="images/img/cleardot.gif" alt="Login" id="login"><?php }else{ ?>
 		    Panel öffnen
 			<?php } ?>
 		    </a><a id="close" class="close" style="display: none;" href="#">Panel schließen</a>
@@ -39,7 +39,7 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 	    </div>
 	</header>
 	<div id="status"></div>
-	<div id="logo"><a href="index.php"><img src="res/img/logo.png"></a></div>
+	<div id="logo"><a href="index.php"><img src="images/img/logo.png"></a></div>
 	<div id="post_it">
 	    <h3><?=$_COOKIE['twibber_nick']?>, was machst du grade?</h3>
 	    <?php if($return) { ?> <textarea id="input_text" maxlength="250" autofocus placeholder="Schreib deinen Freunden hier, was du gerade tust."></textarea> 
@@ -56,8 +56,8 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 	</div>
 	<footer>Twibber is developed by <a href="#">Twibber Group</a></footer>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-	<script src="script/jquery.NobleCount.min.js"></script>
-	<script src="script/jquery.freeow.min.js"></script>
-	<script src="script/script.min.js"></script>
+	<script src="lib/script/jquery.NobleCount.min.js"></script>
+	<script src="lib/script/jquery.freeow.min.js"></script>
+	<script src="lib/script/script.min.js"></script>
     </body>
 </html>

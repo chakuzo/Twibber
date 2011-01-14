@@ -54,7 +54,7 @@ The default template function produces markup matching this outline
     height: 48px;
     top: 5px;
     left: 10px;
-    background: transparent url(../res/img/notice.png) no-repeat 0 0;
+    background: transparent url(../../images/img/notice.png) no-repeat 0 0;
     z-index: 1;
 }
 #status .close {
@@ -68,7 +68,7 @@ The default template function produces markup matching this outline
     z-index: 2;
 }
 #status div:hover .close {
-    background: transparent url(../res/img/close.png) no-repeat 0 0;
+    background: transparent url(../../images/img/close.png) no-repeat 0 0;
 }
 
 
@@ -128,7 +128,7 @@ The default template function produces markup matching this outline
 /* OSX */
 #status .osx .background {
     border: 1px solid #939393;
-    background: #eee url(../res/img/osx/background.png) repeat-y top left;
+    background: #eee url(../../images/img/osx/background.png) repeat-y top left;
     -moz-box-shadow: 2px 2px 3px #888;
     -webkit-box-shadow: 2px 2px 3px #888;
     box-shadow: 2px 2px 3px #888;
@@ -146,14 +146,14 @@ The default template function produces markup matching this outline
     height: 16px;
     top: 1px;
     left: 1px;
-    background: transparent url(../res/img/osx/close.png) no-repeat 0 0;
+    background: transparent url(../../images/img/osx/close.png) no-repeat 0 0;
     z-index: 2;
 }
 #status .osx:hover .close {
-    background: transparent url(../res/img/osx/close.png) no-repeat -16px 0;
+    background: transparent url(../../images/img/osx/close.png) no-repeat -16px 0;
 }
 
 
 /* Icons */
-#status .slide .icon   { background-image: url(../res/img/slide.png); }
-#status .pushpin .icon { background-image: url(../res/img/pushpin.png); }
+#status .slide .icon   { background-image: url(../../images/img/slide.png); }
+#status .pushpin .icon { background-image: url(../../images/img/pushpin.png); }
