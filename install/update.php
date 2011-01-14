@@ -28,7 +28,7 @@ $version = "0.3.3";
 		    $zip->addEmptyDir('script');
 		    $zip->addFromString('script/script.min.js', file_get_contents("https://twbbler.googlecode.com/svn/trunk/script/script.min.js"));
 		    $zip->addEmptyDir('style');
-		    $zip->addFromString('style/style.css', file_get_contents("https://twbbler.googlecode.com/svn/trunk/style/style.css"));
+		    $zip->addFromString('style/style.min.css', file_get_contents("https://twbbler.googlecode.com/svn/trunk/style/style.min.css"));
 		    $zip->addEmptyDir('tpl');
 		    $zip->addFromString('tpl/index.tpl', file_get_contents("https://twbbler.googlecode.com/svn/trunk/tpl/index.tpl"));
 		    $zip->addFromString('tpl/index_login.tpl', file_get_contents("https://twbbler.googlecode.com/svn/trunk/tpl/index_login.tpl"));
@@ -42,9 +42,9 @@ $version = "0.3.3";
 		    if ($zip_ar === TRUE) {
 			$zip->extractTo("../");
 			$zip->close();
-			echo '<br>Nightly Version installiert!<br>';
+			echo 'Nightly Version installiert!<br>';
 		    } else {
-			echo '<br>Failed to update!<br>';
+			echo 'Failed to update!<br>';
 			echo $zip_ar;
 		    }
 		    unlink("nightly.zip");
