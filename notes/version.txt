@@ -12,7 +12,7 @@ Milestone0.3:
 Milestone0.4:
 -First Signature image | OK
 -Clean up the dirs | OK
--Write script, which auto packs the update / install zip (nightly builder) | BEGIN
+-Write script, which auto packs the update / install zip (nightly builder) | OK
 
 Milestone 0.5:
 -Localisation (english etc)
@@ -31,7 +31,6 @@ Milestone1.0:
 -Retwibb
 -Answer | HALF
 -Real homepage for twibber (twibber.de)
-
 -name change (?)
 (to be continued...)
 
