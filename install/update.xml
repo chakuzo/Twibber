@@ -9,9 +9,10 @@
 -->
 
 <update>
-    <version>0.3.3</version>
+    <version>0.4</version>
     <update_files>all</update_files>
-    <note>No note!</note>
+    <note>0.4 with first signature image :)</note>
+    <delete></delete>
     <alpha>
 	<file></file>
 	<replace></replace>

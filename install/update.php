@@ -1,6 +1,6 @@
 <?php
 include_once("../config.inc.php");
-include("../class/Twibber.class.php");
+include("../lib/class/Twibber.class.php");
 $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt']);
 if(!$return) Header("Location: ../index.php");
 $return = wcf::getAdminOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt'], true);
@@ -21,17 +21,18 @@ $version = "0.3.3";
 		    if ($zip_ar !== TRUE) {
 			exit("cannot open <$filename><br>");
 		    }
-		    $zip->addEmptyDir('class');
-		    $zip->addFromString('class/Twibber.class.php', file_get_contents("https://twbbler.googlecode.com/svn/trunk/class/Twibber.class.php"));
+		    $zip->addEmptyDir('lib');
+		    $zip->addEmptyDir('lib/class');
+		    $zip->addFromString('lib/class/Twibber.class.php', file_get_contents("https://twbbler.googlecode.com/svn/trunk/class/Twibber.class.php"));
 		    $zip->addEmptyDir('install');
 		    $zip->addFromString('install/update.php', file_get_contents("https://twbbler.googlecode.com/svn/trunk/install/update.php"));
-		    $zip->addEmptyDir('script');
-		    $zip->addFromString('script/script.min.js', file_get_contents("https://twbbler.googlecode.com/svn/trunk/script/script.min.js"));
-		    $zip->addEmptyDir('style');
-		    $zip->addFromString('style/style.min.css', file_get_contents("https://twbbler.googlecode.com/svn/trunk/style/style.min.css"));
-		    $zip->addEmptyDir('tpl');
-		    $zip->addFromString('tpl/index.tpl', file_get_contents("https://twbbler.googlecode.com/svn/trunk/tpl/index.tpl"));
-		    $zip->addFromString('tpl/index_login.tpl', file_get_contents("https://twbbler.googlecode.com/svn/trunk/tpl/index_login.tpl"));
+		    $zip->addEmptyDir('lib/script');
+		    $zip->addFromString('lib/script/script.min.js', file_get_contents("https://twbbler.googlecode.com/svn/trunk/script/script.min.js"));
+		    $zip->addEmptyDir('lib/style');
+		    $zip->addFromString('lib/style/style.min.css', file_get_contents("https://twbbler.googlecode.com/svn/trunk/style/style.min.css"));
+		    $zip->addEmptyDir('lib/tpl');
+		    $zip->addFromString('lib/tpl/index.tpl', file_get_contents("https://twbbler.googlecode.com/svn/trunk/tpl/index.tpl"));
+		    $zip->addFromString('lib/tpl/index_login.tpl', file_get_contents("https://twbbler.googlecode.com/svn/trunk/tpl/index_login.tpl"));
 		    $zip->addFromString('api.php', file_get_contents("https://twbbler.googlecode.com/svn/trunk/api.php"));
 		    $zip->addFromString('index.php', file_get_contents("https://twbbler.googlecode.com/svn/trunk/index.php"));
 		    $zip->addFromString('login.php', file_get_contents("https://twbbler.googlecode.com/svn/trunk/login.php"));
