@@ -36,17 +36,18 @@ if(trim($_GET['image']) != ""){
     $text_color = ImageColorAllocate ($img, 233, 14, 91);
     ImageStringUp($img, 2, 0, 55, "Twibber", $text_color);
     ImageStringUp($img, 2, 5, 55, "_________", $text_color);
-    ImageString($img, 5, 80, 0, $nick.$lang_gd_last_twib, $text_color);
-    ImageString($img, 4, 80, 15, '--> '.
+    ImageString($img, 5, 82, 0, $nick.$lang_gd_last_twib, $text_color);
+    $font_file = "./lib/font/Comfortaa-Bold.ttf";
+    ImageFTText($img, 14, 0, 90, 30, $text_color, $font_file, '--> "'.
 	    wordwrap(
-		    utf8_encode(
-			    html_entity_decode(
-				    $Twibber->fetchTwibber(true, false, $nick, 0, 30, true)
-			    )
-		    ), 42, "\n", true
-	    )
-    , $text_color);
-    $nick = wcf::getAvatar(strip_tags($_GET['image']));
+	    //utf8_encode(
+		html_entity_decode(
+		    $Twibber->fetchTwibber(true, false, $nick, 0, 30, true)
+		) //)
+	    , 42, "\n", true).'"'
+    );
+    //$nick = wcf::getAvatar(strip_tags($_GET['image']));
+    $nick = "http://www.wbblite2.de/wcf/images/avatars/avatar-328.png";
     $image_data = getimagesize($nick);
     if ($image_data['mime'] == 'image/png') { // ty _MaX_
 	$avatar = imagecreatefrompng($nick);
