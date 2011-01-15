@@ -15,6 +15,7 @@ Milestone0.4:
 -Write script, which auto packs the update / install zip (nightly builder) | OK
 
 Milestone 0.5:
+-Favicon
 -Localisation (english etc)
 -timeline api like twitter for _MaX_'s  Signature script
 <_MaX_>'tweeter' => $node->getElementsByTagName('screen_name')->item(0)->nodeValue,
