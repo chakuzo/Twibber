@@ -16,7 +16,7 @@ $lang_no_message = "Bitte geben Sie eine Nachricht ein, bevor Sie 'Twibbern' kli
 $lang_message_too_long = "Nachricht zu lang!";
 $lang_no_nick = "Kein Nickname angegeben. Bitte loggen Sie sich ein!";
 $lang_gd_error = "Kann keinen neuen GD-Bild-Stream erzeugen";
-$lang_gd_last_twib = "'s letzter Twib:";
+$lang_gd_last_twib = "'s neuster Twib:";
 /* index.php */
 $lang_title = "TWiBBer - Das WBB MicroBlogging Social Network";
 /* install/update.php */

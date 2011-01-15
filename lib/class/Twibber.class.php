@@ -1,7 +1,7 @@
 <?php
 include("StringUtil.class.php");
-@include_once("../../config.inc.php");
-include("../lang/de.".twibber_lang.".php");
+@include_once("./config.inc.php");
+@include_once("./lib/lang/".twibber_lang.".lang.php");
 
 if(wcf_name_prefix == "WCF1_"){
     die($prefix_error);
