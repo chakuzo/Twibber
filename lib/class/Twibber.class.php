@@ -1,22 +1,23 @@
 <?php
 include("StringUtil.class.php");
 @include_once("../../config.inc.php");
+include("../lang/de.".twibber_lang.".php");
 
 if(wcf_name_prefix == "WCF1_"){
-    die("ERROR! Bitte füllen Sie config.inc.php richtig aus.");
+    die($prefix_error);
 }
 if(wcf_update_groupid == ""){
-    die("ERROR! Bitte füllen sie config.inc.php richtig aus.");
+    die($group_id_error);
 }
 
 $mysqli = new mysqli(mysql_local,mysql_user,mysql_pw,mysql_db);
 if ($mysqli->connect_error) {
-    die('Connect Error (' . $mysqli->connect_errno . ') '
+    die($mysql_connect_error.' (' . $mysqli->connect_errno . ') '
             . $mysqli->connect_error);
 }
 $mysqli2 = new mysqli(mysql_local_wcf,mysql_user_wcf,mysql_pw_wcf,mysql_db_wcf);
 if ($mysqli2->connect_error) {
-    die('Connect Error in WCF Database (' . $mysqli2->connect_errno . ') '
+    die($mysql_wcf_connect_erorr.' (' . $mysqli2->connect_errno . ') '
             . $mysqli2->connect_error);
 }
 

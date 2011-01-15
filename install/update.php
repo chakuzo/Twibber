@@ -43,9 +43,9 @@ $version = "0.4";
 		    if ($zip_ar === TRUE) {
 			$zip->extractTo("../");
 			$zip->close();
-			echo 'Nightly Version installiert!<br>';
+			echo $lang_nightly_ok.'<br>';
 		    } else {
-			echo 'Failed to update!<br>';
+			echo $lang_update_fail.'<br>';
 			echo $zip_ar;
 		    }
 		    unlink("nightly.zip");
@@ -53,8 +53,8 @@ $version = "0.4";
 		}
 		$xml = simplexml_load_file("http://twbbler.googlecode.com/svn/trunk/install/update.xml");
 		if($xml->version != $version){
-		    echo "Update verfügbar! <a href='update.php?update=update'>Updates Installieren</a><br>";
-		    echo 'Notes: '.$xml->note;
+		    echo $lang_update." <a href='update.php?update=update'>".$lang_update_install."</a><br>";
+		    echo  $lang_update_notes.' '.$xml->note;
 		    $files = $xml->update_files;
 		    $zip = new ZipArchive;
 		    if($_GET['update'] == 'update'){

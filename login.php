@@ -15,7 +15,7 @@ if($_POST['nickname'] != "" && $_POST['password'] != ""){
 	setcookie("twibber_salt", wcf::getSalt($_POST['nickname']), time()+(365 * 24 * 60 * 60));
 	Header("Location: index.php");
     }else{
-	echo "Falsches Passwort / Falscher Benutzername.";
+	echo $lang_false_pw_nick;
     }
 }
 ?>
