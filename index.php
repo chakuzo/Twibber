@@ -1,4 +1,5 @@
 <?php
+include("config.inc.php");
 include("lib/class/Twibber.class.php");
 $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt']);
 ?>
