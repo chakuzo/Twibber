@@ -1,6 +1,6 @@
 <?php
 include("StringUtil.class.php");
-@include_once("./config.inc.php");
+@include_once("../../config.inc.php");
 
 if(wcf_name_prefix == "WCF1_"){
     die("ERROR! Bitte füllen Sie config.inc.php richtig aus.");
