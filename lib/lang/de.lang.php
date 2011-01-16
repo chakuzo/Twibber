@@ -25,4 +25,7 @@ $lang_update_fail = "Fehler beim Updaten auf den Nightly Build!";
 $lang_update = "Update verfügbar!";
 $lang_update_install = "Updates installieren";
 $lang_update_notes = "Notizen:";
+$lang_updated_from = "Geupdatet von";
+$lang_updated_to = "zu";
+$lang_no_update = "Kein Update verfügbar";
 ?>

@@ -66,7 +66,7 @@ $version = "0.4";
 			if ($zip_ar === TRUE) {
 			    $zip->extractTo("../");
 			    $zip->close();
-			    echo '<br>Geupdatet von '.$version.' zu '.$xml->version.'!<br>';
+			    echo '<br>'.$lang_updated_from.' '.$version.' '.$lang_updated_to.' '.$xml->version.'!<br>';
 			} else {
 			    echo '<br>Failed to update! Try Manuell to update? <a href="http://twbbler.googlecode.com/svn/trunk/down/'.str_replace(' ', '', $xml->version.".zip").'">Click</a>" <br>';
 			    echo $zip_ar;
@@ -74,7 +74,7 @@ $version = "0.4";
 			unlink("update.zip");
 		    }
 		}else{
-		    echo "Kein Update verfügbar<br>";
+		    echo $lang_no_update."<br>";
 		    echo "Du magst Updates? Versuch doch mal <a href='update.php?update=nightly'>Nightly Builds</a> <b>Achtung! Es könnte unstabil sein, und nicht alles funktionieren.</b>";
 		}
 	    ?>

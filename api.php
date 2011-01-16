@@ -38,13 +38,13 @@ if(trim($_GET['image']) != ""){
     ImageStringUp($img, 2, 5, 55, "_________", $text_color);
     ImageString($img, 5, 82, 0, $nick.$lang_gd_last_twib, $text_color);
     $font_file = "./lib/font/Comfortaa-Bold.ttf";
-    ImageFTText($img, 14, 0, 90, 30, $text_color, $font_file, '--> "'.
+    ImageFTText($img, 14, 0, 90, 30, $text_color, $font_file, '" '.
 	    wordwrap(
 	    //utf8_encode(
 		html_entity_decode(
 		    $Twibber->fetchTwibber(true, false, $nick, 0, 30, true)
 		) //)
-	    , 42, "\n", true).'"'
+	    , 39, "\n", true).' "'
     );
     //$nick = wcf::getAvatar(strip_tags($_GET['image']));
     $nick = "http://www.wbblite2.de/wcf/images/avatars/avatar-328.png";
