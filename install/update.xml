@@ -13,6 +13,7 @@
     <update_files>all</update_files>
     <note>0.4 with first signature image :)</note>
     <delete></delete>
+    <sqlstate></sqlstate>
     <alpha>
 	<file></file>
 	<replace></replace>

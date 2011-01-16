@@ -3,6 +3,11 @@ include("StringUtil.class.php");
 @include_once("./config.inc.php");
 @include_once("./lib/lang/".twibber_lang.".lang.php");
 
+$use_difficult_method = false;
+if(!date_default_timezone_set('Europe/Berlin')){
+    $use_difficult_method = true;
+}
+
 if(wcf_name_prefix == "WCF1_"){
     die($prefix_error);
 }
@@ -36,22 +41,12 @@ class Twibber {
 	    $false_array = array();
 	    while($result = $query->fetch_assoc()){
 		if(stristr($result['date'], date('Y')) === FALSE){ $false_array[] = $result; continue; }
-		$text = $this->replace_text($result['text']);
-		echo "<div id='twibb'>";
-		echo "<div id='avatar'><img src='".wcf::getAvatar($result['nickname'])."'></div>";
-		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerHTML);'>".$result['nickname']."</div>";
-		echo "<div id='content'>".$text."</div>";
-		echo "<time>".$result['date']."</time>";
-		echo "</div>";
+		$text = $this->twibberfy_text($result['text']);
+		$this->twibberfy_output($text, $result['nickname'], $result['date']);
 	    }
 	    foreach($false_array as $result){
-		echo "<div id='twibb'>";
-		$text = $this->replace_text($result['text']);
-		echo "<div id='avatar'><img src='".wcf::getAvatar($result['nickname'])."'></div>";
-		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerHTML);'>".$result['nickname']."</div>";
-		echo "<div id='content'>".$text."</div>";
-		echo "<time>".$result['date']."</time>";
-		echo "</div>";
+		$text = $this->twibberfy_text($result['text']);
+		$this->twibberfy_output($text, $result['nickname'], $result['date']);
 	    }
 	    echo "</div>";
 	}
@@ -61,13 +56,8 @@ class Twibber {
 	    $query = $mysqli->query("SELECT * FROM `twibber_entry` WHERE `nickname` = '".$nick."' ORDER BY `date` DESC");
 	    echo "<div id='twibber'>";
 	    while($result = $query->fetch_assoc()){
-		$text = $this->replace_text($result['text']);
-		echo "<div id='twibb'>";
-		echo "<div id='avatar'><img src='".wcf::getAvatar($result['nickname'])."'></div>";
-		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerHTML);'>".$result['nickname']."</div>";
-		echo "<div id='content'>".$text."</div>";
-		echo "<time>".$result['date']."</time>";
-		echo "</div>";
+		$text = $this->twibberfy_text($result['text']);
+		$this->twibberfy_output($text, $result['nickname'], $result['date']);
 	    }
 	    echo "</div>";
 	}
@@ -94,13 +84,8 @@ class Twibber {
 	$query = $mysqli->query("SELECT * FROM `twibber_entry` WHERE `text` LIKE '%".$needle."%' ORDER BY `date` DESC");
 	echo "<div id='twibber'>";
 	    while($result = $query->fetch_assoc()){
-		$text = $this->replace_text($result['text']);
-		echo "<div id='twibb'>";
-		echo "<div id='avatar'><img src='".wcf::getAvatar($result['nickname'])."'></div>";
-		echo "<div class='".$result['nickname']." nickname' onclick='insert_nick(this.innerText);'>".$result['nickname']."</div>";
-		echo "<div id='content'>".$text."</div>";
-		echo "<time>".$result['date']."</time>";
-		echo "</div>";
+		$text = $this->twibberfy_text($result['text']);
+		$this->twibberfy_output($text, $result['nickname'], $result['date']);
 	    }
 	echo "</div>";
     }
@@ -112,12 +97,21 @@ class Twibber {
 	$row_cnt = $query->num_rows;
 	return $row_cnt;
     }
-    function replace_text($text){
+    function twibberfy_text($text){
 	$text = str_replace("\\","",$text);
 	$text = preg_replace('/@([^ ]+)/','@<a href="?nick=$1" onclick="return dyn_get(true, false, this.innerText.replace(/@/,\'\'));">$1</a>',$text);
 	$text = preg_replace('/((?:https?|ftp):\/\/[^\s\'"\'<>()]+|www\.[^\s\'"\'<>()]+|[\-\w.+]+@(?:[\-\w]+\.)+[\w]{2,6})/i','<a href="$1">$1</a>',$text);
 	$text = preg_replace('/[^\/\?](#[^ ]+)/',' <a href="?search=$1" class="hash" onclick="return dyn_get(true, false, false, this.innerText.replace(~#~,\'\'));">$1</a>',$text);
 	return $text;
+    }
+    function twibberfy_output($text, $nickname, $date){
+	echo "<div id='twibb'>";
+	    echo "<div id='avatar'><img src='".wcf::getAvatar($nickname)."'></div>";
+	    echo "<div class='".$nickname." nickname' onclick='insert_nick(this.innerHTML);'>".$nickname."</div>";
+	    echo "<div id='content'>".$text."</div>";
+	    echo "<time title='".$date."'>".Date_Difference::getString(strtotime($date))."</time>";
+	    echo strtotime($date);
+	echo "</div>";
     }
 }
 class wcf{
@@ -239,6 +233,66 @@ class youtube{
 	preg_match('/<img src="(.*)" alt="Video"/', $contents, $matches);
 	$return['thub'] = $matches[1];
     }
+}
+
+/* 
+ * JavaScript Pretty Date 
+ * Copyright (c) 2008 John Resig (jquery.com) 
+ * Licensed under the MIT license. 
+ */ 
+
+// Ported to PHP >= 5.1 by Zach Leatherman (zachleat.com) 
+// Slight modification denoted below to handle months and years. 
+class Date_Difference 
+{ 
+    public static function getStringResolved($date, $compareTo = NULL) 
+    { 
+        if(!is_null($compareTo)) { 
+            $compareTo = new DateTime($compareTo); 
+        } 
+        return self::getString(new DateTime($date), $compareTo); 
+    } 
+
+    public static function getString(DateTime $date, DateTime $compareTo = NULL) 
+    { 
+        if(is_null($compareTo)) { 
+            $compareTo = new DateTime('now'); 
+        } 
+        $diff = $compareTo->format('U') - $date->format('U'); 
+        $dayDiff = floor($diff / 86400); 
+
+        if(is_nan($dayDiff) || $dayDiff < 0) { 
+            return ''; 
+        } 
+                 
+        if($dayDiff == 0) { 
+            if($diff < 60) { 
+                return 'Just now'; 
+            } elseif($diff < 120) { 
+                return '1 minute ago'; 
+            } elseif($diff < 3600) { 
+                return floor($diff/60) . ' minutes ago'; 
+            } elseif($diff < 7200) { 
+                return '1 hour ago'; 
+            } elseif($diff < 86400) { 
+                return floor($diff/3600) . ' hours ago'; 
+            } 
+        } elseif($dayDiff == 1) { 
+            return 'Yesterday'; 
+        } elseif($dayDiff < 7) { 
+            return $dayDiff . ' days ago'; 
+        } elseif($dayDiff == 7) { 
+            return '1 week ago'; 
+        } elseif($dayDiff < (7*6)) { // Modifications Start Here 
+            // 6 weeks at most 
+            return ceil($dayDiff/7) . ' weeks ago'; 
+        } elseif($dayDiff < 365) { 
+            return ceil($dayDiff/(365/12)) . ' months ago'; 
+        } else { 
+            $years = round($dayDiff/365); 
+            return $years . ' year' . ($years != 1 ? 's' : '') . ' ago'; 
+        } 
+    } 
 }
 
 $Twibber = new Twibber();
