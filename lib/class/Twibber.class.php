@@ -109,8 +109,7 @@ class Twibber {
 	    echo "<div id='avatar'><img src='".wcf::getAvatar($nickname)."'></div>";
 	    echo "<div class='".$nickname." nickname' onclick='insert_nick(this.innerHTML);'>".$nickname."</div>";
 	    echo "<div id='content'>".$text."</div>";
-	    echo "<time title='".$date."'>".Date_Difference::getString(strtotime($date))."</time>";
-	    echo strtotime($date);
+	    echo "<time title='".$date."'>".Date_Difference::getStringResolved($date)."</time>";
 	echo "</div>";
     }
 }
@@ -243,6 +242,7 @@ class youtube{
 
 // Ported to PHP >= 5.1 by Zach Leatherman (zachleat.com) 
 // Slight modification denoted below to handle months and years. 
+// Modified by @Kurtextrem.
 class Date_Difference 
 { 
     public static function getStringResolved($date, $compareTo = NULL) 
@@ -267,15 +267,17 @@ class Date_Difference
                  
         if($dayDiff == 0) { 
             if($diff < 60) { 
-                return 'Just now'; 
+                return $lang_date_just_now; 
             } elseif($diff < 120) { 
-                return '1 minute ago'; 
+                return $lang_date_one_minute_ago; 
             } elseif($diff < 3600) { 
-                return floor($diff/60) . ' minutes ago'; 
+                return sprintf($lang_date_minutes_ago, floor($diff/60)); 
             } elseif($diff < 7200) { 
-                return '1 hour ago'; 
+                return $lang_date_one_houre_ago; 
             } elseif($diff < 86400) { 
-                return floor($diff/3600) . ' hours ago'; 
+		var_dump(floor($diff/3600));
+		printf($lang_date_hours_ago, floor($diff/3600));
+                return sprintf($lang_date_hours_ago, floor($diff/3600)); 
             } 
         } elseif($dayDiff == 1) { 
             return 'Yesterday'; 
