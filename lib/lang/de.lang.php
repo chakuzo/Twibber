@@ -35,7 +35,6 @@ $lang_no_nick = "Kein Nickname angegeben. Bitte loggen Sie sich ein!";
 $lang_gd_error = "Kann keinen neuen GD-Bild-Stream erzeugen";
 $lang_gd_last_twib = "'s neuster Twib:";
 /* index.php */
-$lang_title = "TWiBBer - Das WBB MicroBlogging Social Network";
 /* install/update.php */
 $lang_nightly_ok = "Nightly Version installiert!";
 $lang_update_fail = "Fehler beim Updaten auf den Nightly Build!";

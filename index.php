@@ -6,7 +6,7 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>TWiBBer - Das WBB MicroBlogging Social Network</title>
+        <title>TWiBBer - WBB MicroBlogging Social Network</title>
 	<link rel="stylesheet" href="lib/style/style.min.css" type="text/css">
 	<link rel="stylesheet" href="lib/style/freeow.min.css" type="text/css">
 	<link rel="stylesheet" href="lib/style/slide.min.css" type="text/css">

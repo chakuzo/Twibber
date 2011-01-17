@@ -297,14 +297,20 @@ class Date_Difference
             return $lang_date_one_day_ago;
         } elseif($dayDiff < (7*6)) { // Modifications Start Here 
             // 6 weeks at most 
-            return sprintf($lang_date_weeks_ago, ceil($dayDiff/7)); 
+	    $weeks = ceil($dayDiff/7);
+	    $text = $lang_date_one_week_ago;
+	    if($weeks != 1) $text = $lang_date_years_ago;
+            return sprintf($text, $weeks); 
         } elseif($dayDiff < 365) { 
-            return sprintf($lang_date_months_ago, ceil($dayDiff/(365/12)));
+	    $months = ceil($dayDiff/(365/12));
+	    $text = $lang_date_one_month_ago;
+	    if($years != 1) $text = $lang_date_months_ago;
+            return sprintf($text, ceil($dayDiff/(365/12)));
         } else { 
             $years = round($dayDiff/365); 
-	    $ending = $lang_date_one_year_ago;
-	    if($years != 1) $ending = $lang_date_years_ago;
-            return sprintf($ending, $years);
+	    $text = $lang_date_one_year_ago;
+	    if($years != 1) $text = $lang_date_years_ago;
+            return sprintf($text, $years);
         } 
     } 
 }
