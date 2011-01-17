@@ -255,19 +255,7 @@ class Date_Difference
 
     public static function getString(DateTime $date, DateTime $compareTo = NULL) 
     { 
-	global $lang_date_just_now;
-	global $lang_date_yesterday;
-	global $lang_date_one_minute_ago;
-	global $lang_date_one_houre_ago;
-	global $lang_date_one_day_ago;
-	global $lang_date_one_week_ago;
-	global $lang_date_one_month_ago;
-	global $lang_date_one_year_ago;
-	global $lang_date_minutes_ago;
-	global $lang_date_hours_ago;
-	global $lang_date_days_ago;
-	global $lang_date_weeks_ago;
-	global $lang_date_years_ago;
+	global $lang_date_just_now, $lang_date_yesterday, $lang_date_one_minute_ago, $lang_date_one_houre_ago, $lang_date_one_day_ago, $lang_date_one_week_ago, $lang_date_one_month_ago, $lang_date_one_year_ago, $lang_date_minutes_ago, $lang_date_hours_ago, $lang_date_days_ago, $lang_date_weeks_ago, $lang_date_years_ago; # IMBA! xD
 	
         if(is_null($compareTo)) { 
             $compareTo = new DateTime('now'); 
