@@ -256,16 +256,18 @@ class Date_Difference
     public static function getString(DateTime $date, DateTime $compareTo = NULL) 
     { 
 	global $lang_date_just_now;
+	global $lang_date_yesterday;
 	global $lang_date_one_minute_ago;
-	global $lang_date_one_year_ago;
 	global $lang_date_one_houre_ago;
-	global $lang_date_one_month_ago;
 	global $lang_date_one_day_ago;
+	global $lang_date_one_week_ago;
+	global $lang_date_one_month_ago;
+	global $lang_date_one_year_ago;
 	global $lang_date_minutes_ago;
 	global $lang_date_hours_ago;
-	global $lang_date_yesterday;
 	global $lang_date_days_ago;
 	global $lang_date_weeks_ago;
+	global $lang_date_years_ago;
 	
         if(is_null($compareTo)) { 
             $compareTo = new DateTime('now'); 
@@ -299,7 +301,7 @@ class Date_Difference
             // 6 weeks at most 
 	    $weeks = ceil($dayDiff/7);
 	    $text = $lang_date_one_week_ago;
-	    if($weeks != 1) $text = $lang_date_years_ago;
+	    if($weeks != 1) $text = $lang_date_weeks_ago;
             return sprintf($text, $weeks); 
         } elseif($dayDiff < 365) { 
 	    $months = ceil($dayDiff/(365/12));
