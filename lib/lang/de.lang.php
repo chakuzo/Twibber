@@ -18,13 +18,13 @@ $lang_date_one_houre_ago = "Vor einer Stunde";
 $lang_date_one_day_ago = "Vor einem Tag";
 $lang_date_one_week_ago = "Vor einer Woche";
 $lang_date_one_month_ago = "Vor einem Monat";
-$lang_date_one_month_ago = "Vor einem Jahr";
+$lang_date_one_year_ago = "Vor einem Jahr";
 $lang_date_minutes_ago = 'Vor %s Minuten';
 $lang_date_hours_ago = 'Vor %s Stunden';
 $lang_date_days_ago = 'Vor %s Tagen';
 $lang_date_weeks_ago = 'Vor %s Wochen';
 $lang_date_months_ago = 'Vor %s Monaten';
-$lang_date_years_ago = 'Vor %s Monaten';
+$lang_date_years_ago = 'Vor %s Jahren';
 /* login.php */
 $lang_false_pw_nick = "Falsches Passwort / Falscher Benutzername. Versuchen Sie es <a href='../index.php'>nocheinmal</a>!";
 /* api.php */

@@ -257,12 +257,16 @@ class Date_Difference
     { 
 	global $lang_date_just_now;
 	global $lang_date_one_minute_ago;
-	global $lang_date_minutes_ago;
+	global $lang_date_one_year_ago;
 	global $lang_date_one_houre_ago;
+	global $lang_date_one_month_ago;
 	global $lang_date_one_day_ago;
+	global $lang_date_minutes_ago;
 	global $lang_date_hours_ago;
 	global $lang_date_yesterday;
 	global $lang_date_days_ago;
+	global $lang_date_weeks_ago;
+	
         if(is_null($compareTo)) { 
             $compareTo = new DateTime('now'); 
         } 
@@ -298,7 +302,9 @@ class Date_Difference
             return sprintf($lang_date_months_ago, ceil($dayDiff/(365/12)));
         } else { 
             $years = round($dayDiff/365); 
-            return $years . ' year' . ($years != 1 ? 's' : '') . ' ago'; 
+	    $ending = $lang_date_one_year_ago;
+	    if($years != 1) $ending = $lang_date_years_ago;
+            return sprintf($ending, $years);
         } 
     } 
 }
