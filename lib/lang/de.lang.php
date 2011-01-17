@@ -12,10 +12,19 @@ $lang_group_id_error = "ERROR! Bitte geben Sie in <config.inc.php> Zeile 19 / 20
 $lang_mysql_connect_error = "Verbindungsfehler. Haben Sie <config.inc.php> Zeile 5-8 richtig ausgefüllt?";
 $lang_mysql_wcf_connect_erorr = "Verbindungsfehler. Haben Sie <config.inc.php> Zeile 15-18 richtig ausgefüllt?";
 $lang_date_just_now = "Gerade jetzt";
+$lang_date_yesterday = "Gestern";
 $lang_date_one_minute_ago = "Vor einer Minute";
-$lang_date_minutes_ago = "Vor %s Minuten";
 $lang_date_one_houre_ago = "Vor einer Stunde";
-$lang_date_hours_ago = "Vor %s Stunden";
+$lang_date_one_day_ago = "Vor einem Tag";
+$lang_date_one_week_ago = "Vor einer Woche";
+$lang_date_one_month_ago = "Vor einem Monat";
+$lang_date_one_month_ago = "Vor einem Jahr";
+$lang_date_minutes_ago = 'Vor %s Minuten';
+$lang_date_hours_ago = 'Vor %s Stunden';
+$lang_date_days_ago = 'Vor %s Tagen';
+$lang_date_weeks_ago = 'Vor %s Wochen';
+$lang_date_months_ago = 'Vor %s Monaten';
+$lang_date_years_ago = 'Vor %s Monaten';
 /* login.php */
 $lang_false_pw_nick = "Falsches Passwort / Falscher Benutzername. Versuchen Sie es <a href='../index.php'>nocheinmal</a>!";
 /* api.php */

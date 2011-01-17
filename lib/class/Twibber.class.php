@@ -255,6 +255,14 @@ class Date_Difference
 
     public static function getString(DateTime $date, DateTime $compareTo = NULL) 
     { 
+	global $lang_date_just_now;
+	global $lang_date_one_minute_ago;
+	global $lang_date_minutes_ago;
+	global $lang_date_one_houre_ago;
+	global $lang_date_one_day_ago;
+	global $lang_date_hours_ago;
+	global $lang_date_yesterday;
+	global $lang_date_days_ago;
         if(is_null($compareTo)) { 
             $compareTo = new DateTime('now'); 
         } 
@@ -271,25 +279,23 @@ class Date_Difference
             } elseif($diff < 120) { 
                 return $lang_date_one_minute_ago; 
             } elseif($diff < 3600) { 
-                return sprintf($lang_date_minutes_ago, floor($diff/60)); 
+		return sprintf($lang_date_minutes_ago, floor($diff/60)); 
             } elseif($diff < 7200) { 
                 return $lang_date_one_houre_ago; 
             } elseif($diff < 86400) { 
-		var_dump(floor($diff/3600));
-		printf($lang_date_hours_ago, floor($diff/3600));
                 return sprintf($lang_date_hours_ago, floor($diff/3600)); 
             } 
         } elseif($dayDiff == 1) { 
-            return 'Yesterday'; 
+            return $lang_date_yesterday; 
         } elseif($dayDiff < 7) { 
-            return $dayDiff . ' days ago'; 
+            return sprintf($lang_date_days_ago, $dayDiff); 
         } elseif($dayDiff == 7) { 
-            return '1 week ago'; 
+            return $lang_date_one_day_ago;
         } elseif($dayDiff < (7*6)) { // Modifications Start Here 
             // 6 weeks at most 
-            return ceil($dayDiff/7) . ' weeks ago'; 
+            return sprintf($lang_date_weeks_ago, ceil($dayDiff/7)); 
         } elseif($dayDiff < 365) { 
-            return ceil($dayDiff/(365/12)) . ' months ago'; 
+            return sprintf($lang_date_months_ago, ceil($dayDiff/(365/12)));
         } else { 
             $years = round($dayDiff/365); 
             return $years . ' year' . ($years != 1 ? 's' : '') . ' ago'; 
