@@ -38,6 +38,7 @@ $version = "0.4";
 		    $zip->addFromString('api.php', file_get_contents("https://twbbler.googlecode.com/svn/trunk/api.php"));
 		    $zip->addFromString('index.php', file_get_contents("https://twbbler.googlecode.com/svn/trunk/index.php"));
 		    $zip->addFromString('login.php', file_get_contents("https://twbbler.googlecode.com/svn/trunk/login.php"));
+		    $zip->addFromString('.htaccess', file_get_contents("https://twbbler.googlecode.com/svn/trunk/.htaccess"));
 		    $zip->close();
 		    $zip = new ZipArchive();
 		    $filename = "nightly.zip";
