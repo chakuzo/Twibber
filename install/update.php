@@ -1,5 +1,6 @@
 <?php
 include_once("../config.inc.php");
+include_once("../lib/lang/".twibber_lang.".lang.php");
 include("../lib/class/Twibber.class.php");
 $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt']);
 if(!$return) Header("Location: ../index.php");
