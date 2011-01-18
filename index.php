@@ -17,11 +17,11 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
     </head>
     <body>
 	<header id="toppanel">
-	    <div id="panel"> 
+	    <nav id="panel"> 
 		<div class="content clearfix"> 
 		    <?php if(!$return){ include("lib/tpl/index.tpl"); }else{ include("lib/tpl/index_login.tpl"); } ?>
 		</div>
-	    </div> 
+	    </nav> 
 	    <div class="tab"> 
 		<ul class="login"> 
 		<li class="left">&nbsp;</li> 
@@ -40,7 +40,7 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 	</header>
 	<div id="status"></div>
 	<div id="logo"><a href="index.php"><img src="images/img/logo.png"></a></div>
-	<div id="post_it">
+	<section id="post_it">
 	    <h3><?=$_COOKIE['twibber_nick']?>, was machst du grade?</h3>
 	    <?php if($return) { ?> <textarea id="input_text" maxlength="250" autofocus placeholder="Schreib deinen Freunden hier, was du gerade tust."></textarea> 
 	    <br><div class="right"><label for="input_text" id="counter">0 Zeichen</label><button id="twibber_it" onclick="dyn_submit();">Twibbern</button></div><?php } ?>
@@ -53,8 +53,10 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 		    $Twibber->searchTwibber($_GET['search']);
 		}
 	    ?>
-	</div>
-	<footer>Twibber is developed by <a href="#">Twibber Group</a></footer>
+	</section>
+	<footer>Twibber is developed by <a href="#">Twibber Group</a><a href="http://www.w3.org/html/logo/">
+<img src="http://www.w3.org/html/logo/badge/html5-badge-h-css3-performance-semantics.png" width="197" height="64" alt="HTML5 Powered with CSS3 / Styling, Performance &amp; Integration, and Semantics" title="HTML5 Powered with CSS3 / Styling, Performance &amp; Integration, and Semantics">
+</a></footer>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	<script src="lib/script/jquery.NobleCount.min.js"></script>
 	<script src="lib/script/jquery.freeow.min.js"></script>
