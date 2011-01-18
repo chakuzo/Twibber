@@ -36,6 +36,8 @@ $version = "0.4";
 		    $zip->addFromString('lib/tpl/index_login.tpl', file_get_contents("https://twbbler.googlecode.com/svn/trunk/lib/tpl/index_login.tpl"));
 		    $zip->addEmptyDir('lib/lang');
 		    $zip->addFromString('lib/lang/de.lang.php', file_get_contents("https://twbbler.googlecode.com/svn/trunk/lib/lang/de.lang.php"));
+		    $zip->addEmptyDir('lib/font');
+		    $zip->addFromString('lib/font/Comfortaa-Bold.ttf', file_get_contents("https://twbbler.googlecode.com/svn/trunk/lib/font/Comfortaa-Bold.ttf"));
 		    $zip->addFromString('api.php', file_get_contents("https://twbbler.googlecode.com/svn/trunk/api.php"));
 		    $zip->addFromString('index.php', file_get_contents("https://twbbler.googlecode.com/svn/trunk/index.php"));
 		    $zip->addFromString('login.php', file_get_contents("https://twbbler.googlecode.com/svn/trunk/login.php"));
