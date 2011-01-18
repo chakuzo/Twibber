@@ -54,9 +54,9 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 		}
 	    ?>
 	</section>
-	<footer>Twibber is developed by <a href="#">Twibber Group</a><a href="http://www.w3.org/html/logo/">
+	<footer><a href="http://www.w3.org/html/logo/">
 <img src="http://www.w3.org/html/logo/badge/html5-badge-h-css3-performance-semantics.png" width="197" height="64" alt="HTML5 Powered with CSS3 / Styling, Performance &amp; Integration, and Semantics" title="HTML5 Powered with CSS3 / Styling, Performance &amp; Integration, and Semantics">
-</a></footer>
+</a>Twibber is developed by <a href="#">Twibber Group</a></footer>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	<script src="lib/script/jquery.NobleCount.min.js"></script>
 	<script src="lib/script/jquery.freeow.min.js"></script>

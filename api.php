@@ -59,6 +59,7 @@ if(trim($_GET['image']) != ""){
         $avatar = imagecreatefromgif($nick);
         imagecopyresampled($img, $avatar, 20, 0, 0, 0, 60, 60, imagesx($avatar), imagesy($avatar));
     }
+    ImageString($img, 5, 400, 45, $lang_gd_date, $text_color);
     ImagePNG($img);
     ImageDestroy($img);
     ImageDestory($avatar);

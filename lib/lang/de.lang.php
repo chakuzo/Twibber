@@ -34,6 +34,7 @@ $lang_message_too_long = "Nachricht zu lang!";
 $lang_no_nick = "Kein Nickname angegeben. Bitte loggen Sie sich ein!";
 $lang_gd_error = "Kann keinen neuen GD-Bild-Stream erzeugen";
 $lang_gd_last_twib = "'s neuster Twib:";
+$lang_gd_date = "Am: ";
 /* index.php */
 /* install/update.php */
 $lang_nightly_ok = "Nightly Version installiert!";
