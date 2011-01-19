@@ -14,8 +14,10 @@ body {
 footer {
     position: absolute;
     left: 0;
+    display: block;
 }
 header {
+    display: block;
 }
 textarea { 
     -webkit-transition: -webkit-box-shadow 450ms linear 100ms;
@@ -182,6 +184,10 @@ time{
 /* Firefox -.- */
 img{
     border: 0px;
+}
+
+section{
+    display: block;
 }
 
 /* By Max */
