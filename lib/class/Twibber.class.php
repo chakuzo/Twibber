@@ -106,7 +106,7 @@ class Twibber {
     }
     function twibberfy_output($text, $nickname, $date){
 	echo "<div id='twibb'>";
-	    echo "<div id='avatar'><img src='".wcf::getAvatar($nickname)."'></div>";
+	    echo "<div id='avatar'><a href='#' onclick='return dyn_get(true, false, '".$nickname."');'></div>";
 	    echo "<div class='".$nickname." nickname' onclick='insert_nick(this.innerHTML);'>".$nickname."</div>";
 	    echo "<div id='content'>".$text."</div>";
 	    echo "<time title='".$date."'>".Date_Difference::getStringResolved($date)."</time>";
