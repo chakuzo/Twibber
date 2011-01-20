@@ -190,6 +190,9 @@ section{
     display: block;
 }
 
+#counter{
+    font-family: 'Allan', arial, serif;
+}
 /* By Max */
 @media screen and (max-width: 1170px) {
     #post_it {
