@@ -73,7 +73,7 @@ $version = "0.4.1";
 			    $zip->close();
 			    echo '<br>'.$lang_updated_from.' '.$version.' '.$lang_updated_to.' '.$xml->version.'!<br>';
 			} else {
-			    echo '<br>Failed to update! Try Manuell to update? <a href="http://twbbler.googlecode.com/svn/trunk/down/'.str_replace(' ', '', $xml->version.".zip").'">Click</a>" <br>';
+			    echo '<br>Failed to update! Try Manuell to update? <a href="http://twbbler.googlecode.com/svn/trunk/down/'.str_replace(' ', '', $xml->version.".zip").'">Click</a><br>';
 			    echo $zip_ar;
 			}
 			unlink("update.zip");
