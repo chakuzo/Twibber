@@ -28,13 +28,13 @@ $lang_date_years_ago = '%s year ago';
 /* login.php */
 $lang_false_pw_nick = "Wrong Password / Wrong Username. Try <a href='../index.php'>again</a>!";
 /* api.php */
-$lang_success = "Erfolgreich!";
+$lang_success = "Success!";
 $lang_no_message = "Please enter a message, before you click 'Twibber'";
 $lang_message_too_long = "Message too long!";
 $lang_no_nick = "No nickname entered. Login again!";
 $lang_gd_error = "Can't create GD-Image-Stream";
 $lang_gd_last_twib = "'s newest Twibb:";
-$lang_gd_date = "On: ";
+$lang_gd_date = "At ";
 /* index.php */
 /* install/update.php */
 $lang_nightly_ok = "Nightly Version installed!";

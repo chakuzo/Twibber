@@ -9,9 +9,9 @@
 -->
 
 <update>
-    <version>0.4</version>
+    <version>0.4.1</version>
     <update_files>all</update_files>
-    <note>0.4 with first signature image :)</note>
+    <note>New logo, begin of localisation</note>
     <delete></delete>
     <sqlstate></sqlstate>
     <alpha>
