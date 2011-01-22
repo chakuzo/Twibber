@@ -38,7 +38,7 @@ $version = "0.4";
 		    $zip->addFromString('lib/lang/de.lang.php', file_get_contents("https://twbbler.googlecode.com/svn/trunk/lib/lang/de.lang.php"));
 		    $zip->addEmptyDir('images');
 		    $zip->addEmptyDir('images/img');
-		    $zip->addFromString('images/img', file_get_contents("https://twbbler.googlecode.com/svn/trunk/images/img/logo.png"));
+		    $zip->addFromString('images/img/logo.png', file_get_contents("https://twbbler.googlecode.com/svn/trunk/images/img/logo.png"));
 		    $zip->addFromString('api.php', file_get_contents("https://twbbler.googlecode.com/svn/trunk/api.php"));
 		    $zip->addFromString('index.php', file_get_contents("https://twbbler.googlecode.com/svn/trunk/index.php"));
 		    $zip->addFromString('login.php', file_get_contents("https://twbbler.googlecode.com/svn/trunk/login.php"));
