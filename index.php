@@ -10,6 +10,7 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 	<link rel="stylesheet" href="lib/style/style.min.css" type="text/css">
 	<link rel="stylesheet" href="lib/style/freeow.min.css" type="text/css">
 	<link rel="stylesheet" href="lib/style/slide.min.css" type="text/css">
+	<link rel="shortcut icon" type="image/x-icon" href="images/img/favicon.ico">
 	<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz' rel='stylesheet' type='text/css'> 
 	<link href='http://fonts.googleapis.com/css?family=Neucha' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Reenie+Beanie' rel='stylesheet' type='text/css'>
