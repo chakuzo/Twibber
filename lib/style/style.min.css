@@ -68,14 +68,14 @@ time{
     border: 1px solid black;
     border-top: 0px;
     cursor: default;
-    max-width: 105px;
     font-family: 'Reenie Beanie', arial, serif;
     background: -webkit-gradient(linear, left top, left bottom, from(#7cbfda), to(#6aa4ba));
     background: -moz-linear-gradient(top,  #7cbfda,  #6aa4ba);
     font-size: 20px;
     display: inline-block;
-    left: 40.4%;
+    left: 39%;
     padding: 0 2px 0 2px;
+    min-width: 107px;
 }
 #content{
     border: 1px solid black;
@@ -199,7 +199,7 @@ section{
 	width: 30em;
     }
     time {
-	left: 38%;
+	left: 36.7%;
     }
     .right {
 	margin-bottom: 10px;
