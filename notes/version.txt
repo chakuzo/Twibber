@@ -15,15 +15,7 @@ Milestone0.4:
 -Write script, which auto packs the update / install zip (nightly builder) | OK
 
 Milestone 0.5:
--Favicon
--Localisation (english etc)
--timeline api like twitter for _MaX_'s  Signature script
-<_MaX_>'tweeter' => $node->getElementsByTagName('screen_name')->item(0)->nodeValue,
-<_MaX_>'text' => $node->getElementsByTagName('text')->item(0)->nodeValue,
-<_MaX_>'link' => $node->getElementsByTagName('id')->item(0)->nodeValue,
-<_MaX_>'date' => $node->getElementsByTagName('created_at')->item(0)->nodeValue,
-<_MaX_>'avatar' => $node->getElementsByTagName('profile_image_url')->item(0)->nodeValue,
-<_MaX_>'source' => $node->getElementsByTagName('source')->item(0)->nodeValue
+-Favicon | OK
 
 Milestone1.0:
 -Inviduall Homepage | HALF
@@ -38,6 +30,14 @@ Milestone1.0:
 Milestone1.0 ME: 
 -befehle like (/google Nickname how to install twibber, or /gtfo Nickname get the fuck out!!11)
 -Smileys (a good idea or not?!)
+-Localisation (english etc) | BEGIN (moved from 0.5, maybe better syntax if we use $lang['langXY'];
+-timeline api like twitter for _MaX_'s  Signature script
+<_MaX_>'tweeter' => $node->getElementsByTagName('screen_name')->item(0)->nodeValue,
+<_MaX_>'text' => $node->getElementsByTagName('text')->item(0)->nodeValue,
+<_MaX_>'link' => $node->getElementsByTagName('id')->item(0)->nodeValue,
+<_MaX_>'date' => $node->getElementsByTagName('created_at')->item(0)->nodeValue,
+<_MaX_>'avatar' => $node->getElementsByTagName('profile_image_url')->item(0)->nodeValue,
+<_MaX_>'source' => $node->getElementsByTagName('source')->item(0)->nodeValue
 
 Milestone 1.2:
 -ACP
