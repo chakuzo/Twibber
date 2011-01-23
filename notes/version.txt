@@ -32,6 +32,7 @@ Milestone1.0 ME:
 -befehle like (/google Nickname how to install twibber, or /gtfo Nickname get the fuck out!!11)
 -Smileys (a good idea or not?!)
 -Localisation (english etc) | BEGIN (moved from 0.5, maybe better syntax if we use $lang['langXY'];
+-Use Twibber as Guestbook (LOL)
 -timeline api like twitter for _MaX_'s  Signature script
 <_MaX_>'tweeter' => $node->getElementsByTagName('screen_name')->item(0)->nodeValue,
 <_MaX_>'text' => $node->getElementsByTagName('text')->item(0)->nodeValue,
