@@ -16,6 +16,7 @@ Milestone0.4:
 
 Milestone 0.5:
 -Favicon | OK
+-Logo | OK
 
 Milestone1.0:
 -Inviduall Homepage | HALF

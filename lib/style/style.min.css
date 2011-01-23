@@ -1,10 +1,3 @@
-/* 
-    Document   : style
-    Created on : 27.12.2010, 15:29:10
-    Author     : Kurtextrem, Math-Board, _MaX_
-    Description:
-        Nothing and everything.
-*/
 body {
     background-color: #404040;
     background-image: url("../../images/backgrounds/top.png");
@@ -72,19 +65,17 @@ label{
 time{
     position: relative;
     text-align: right;
-    /*display: block;*/
     border: 1px solid black;
     border-top: 0px;
-    /*margin-left: 23.6em;*/
     cursor: default;
     max-width: 105px;
-    /*margin-left: 23.8em;*/
     font-family: 'Reenie Beanie', arial, serif;
     background: -webkit-gradient(linear, left top, left bottom, from(#7cbfda), to(#6aa4ba));
     background: -moz-linear-gradient(top,  #7cbfda,  #6aa4ba);
-    font-size: 17px;
+    font-size: 20px;
     display: inline-block;
     left: 40.4%;
+    padding: 0 2px 0 2px;
 }
 #content{
     border: 1px solid black;
@@ -92,8 +83,6 @@ time{
     border-bottom-left-radius: 5px;
     -moz-border-radius-topright: 5px;
     -moz-border-radius-bottomleft: 5px;
-    /*background: -webkit-gradient(linear, left top, left bottom, from(#7cbfda), to(#6aa4ba));
-    background: -moz-linear-gradient(top,  #7cbfda,  #6aa4ba);*/
     font-family: 'Droid Sans', arial, serif;
     cursor: default;
     background: -webkit-gradient(linear, left top, left bottom, from(#e8e8e8), to(#bababa));
@@ -101,22 +90,6 @@ time{
     min-height: 50px;
     text-overflow: ellipsis;
     overflow: hidden;
-}
-#nickname{
-    /*text-align: left;*/
-}
-#status{
-/*    position: absolute;
-    top: 0px;
-    left: 0px;
-    background-color: yellow;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
-    border-bottom-right-radius: 5px;
-    padding-right: 5px;
-    display: none;
-    color: black;
-*/
 }
 .nickname{
     border: 1px solid black;
@@ -181,7 +154,6 @@ time{
     margin-right: 10px;
 }
 
-/* Firefox -.- */
 img{
     border: 0px;
 }
@@ -193,7 +165,8 @@ section{
 #counter{
     font-family: 'Allan', arial, serif;
 }
-/* By Max */
+
+
 @media screen and (max-width: 1170px) {
     #post_it {
 	background-color: #7BBDD7;
