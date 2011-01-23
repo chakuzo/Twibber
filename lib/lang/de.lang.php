@@ -36,6 +36,9 @@ $lang_gd_error = "Kann keinen neuen GD-Bild-Stream erzeugen";
 $lang_gd_last_twib = "'s neuster Twibb:";
 $lang_gd_date = "Am: ";
 /* index.php */
+$lang = array(
+    'guest' => 'Gast'
+);
 /* install/update.php */
 $lang_nightly_ok = "Nightly Version installiert!";
 $lang_update_fail = "Fehler beim Updaten auf den Nightly Build!";
