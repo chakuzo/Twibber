@@ -64,6 +64,6 @@ function open(){
 }
 
 function load_dips(global, nick, search){
-    page = page++;
+    page++;
     dyn_get(true, global, nick, search);
 }
