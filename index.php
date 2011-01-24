@@ -45,6 +45,7 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 	    <h3><?=(!empty($_COOKIE['twibber_nick']))?$_COOKIE['twibber_nick']:$lang['guest']?>, was machst du grade?</h3>
 	    <?php if($return) { ?> <textarea id="input_text" maxlength="250" autofocus placeholder="Schreib deinen Freunden hier, was du gerade tust."></textarea> 
 	    <br><div class="right"><label for="input_text" id="counter">0 Zeichen</label><button id="twibber_it" onclick="dyn_submit();">Twibbern</button></div><?php } ?>
+	    <div id="twibber">
 	    <?php
 		if($_GET['nick'] == "" && $_GET['search'] == ""){
 		    $Twibber->fetchTwibber(true,true);
@@ -54,7 +55,8 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 		    $Twibber->searchTwibber($_GET['search']);
 		}
 	    ?>
-	    <button type='button' onclick='load_dips(true)'>Mehr Twibbs laden</button>
+	    </div>
+	    <button type='button' onclick='load_dips(true)' id='more_twibbs'>Mehr Twibbs laden</button>
 	</section>
 	<footer><a href="http://www.w3.org/html/logo/">
 <img src="http://www.w3.org/html/logo/badge/html5-badge-h-css3-performance-semantics.png" width="197" height="64" alt="HTML5 Powered with CSS3 / Styling, Performance &amp; Integration, and Semantics" title="HTML5 Powered with CSS3 / Styling, Performance &amp; Integration, and Semantics">
