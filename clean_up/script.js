@@ -65,5 +65,6 @@ function open(){
 
 function load_dips(global, nick, search){
     page++;
+    $("#status").freeow("Loading", "Neue Twibbs werden geladen!", {classes: ["smokey"], autoHideDelay: 2500});
     dyn_get(true, global, nick, search);
 }
