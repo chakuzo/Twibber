@@ -54,6 +54,7 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 		    $Twibber->searchTwibber($_GET['search']);
 		}
 	    ?>
+	    <button type='button' onclick='load_dips(true)'>Mehr Twibbs laden</button>
 	</section>
 	<footer><a href="http://www.w3.org/html/logo/">
 <img src="http://www.w3.org/html/logo/badge/html5-badge-h-css3-performance-semantics.png" width="197" height="64" alt="HTML5 Powered with CSS3 / Styling, Performance &amp; Integration, and Semantics" title="HTML5 Powered with CSS3 / Styling, Performance &amp; Integration, and Semantics">

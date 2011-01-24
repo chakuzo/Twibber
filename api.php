@@ -16,7 +16,8 @@ if($_GET['new_entry'] == "1" && $return){
     }
 }
 if(trim($_GET['dyn_get']) == "1"){
-    $Twibber->fetchTwibber(true, true, '', 0, 90);
+    $mult = ($_GET['page'] == '')?1:intval($_GET['page']);
+    $Twibber->fetchTwibber(true, true, '', 0, $mult*20);
 }
 if(trim($_GET['nick']) != ""){
     $Twibber->fetchTwibber(true, false, $_GET['nick']);

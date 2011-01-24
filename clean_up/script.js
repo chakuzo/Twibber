@@ -2,6 +2,7 @@ $(document).ready(function(){
    interval = window.setInterval("dyn_get(true, true)", 20000);
    open();
 });
+var page = 1;
 
 $('#input_text').NobleCount('#counter',{
     on_negative: function(t_obj, char_area, c_settings, char_rem){
@@ -19,15 +20,15 @@ $('#input_text').NobleCount('#counter',{
 });
 function dyn_get(latest, global, nick, search){
     if(global){
-	$.get("api.php?dyn_get=1",function(ret){ $("#twibber").html(ret); });
+	$.get("api.php?dyn_get=1&page="+page,function(ret){ $("#twibber").html(ret); });
 	return false;
     }
     if(nick != ''){
-	$.get("api.php",{nick:nick},function(ret){ $("#twibber").html(ret); });
+	$.get("api.php?page="+page,{nick:nick},function(ret){ $("#twibber").html(ret); });
 	return false;
     }
     if(search != ''){
-	$.get("api.php",{search:search},function(ret){ $("#twibber").html(ret); });
+	$.get("api.php?page="+page,{search:search},function(ret){ $("#twibber").html(ret); });
 	return false;
     }
     return true;
@@ -60,4 +61,9 @@ function open(){
     $("#toggle a").click(function () {
 	$("#toggle a").toggle();
     });		
+}
+
+function load_dips(global, nick, search){
+    page = page++;
+    dyn_get(true, global, nick, search);
 }

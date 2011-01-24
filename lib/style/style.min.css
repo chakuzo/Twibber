@@ -94,7 +94,6 @@ time{
 .nickname{
     border: 1px solid black;
     border-bottom: 0px;
-    /*margin-right: 25em;*/
     cursor: pointer;
     max-width: 100px;
     font-family: 'Reenie Beanie', arial, serif;
@@ -165,6 +164,11 @@ section{
 #counter{
     font-family: 'Allan', arial, serif;
 }
+button[type=button]{
+    background-color: white;
+    margin-left: 2.5%;
+    padding: 10px 20em 10px 20em;
+}
 
 
 @media screen and (max-width: 1170px) {
@@ -206,5 +210,6 @@ section{
     }
     #logo img{
 	-webkit-transform: translate(-11em);
+	-moz-transform: translate(-11em);
     }
 }

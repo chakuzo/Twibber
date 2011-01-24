@@ -33,7 +33,7 @@ if ($mysqli2->connect_error) {
  * @TODO All fetch_assoc to fetch_object.
  */
 class Twibber {
-    function fetchTwibber($latest = true, $global = false, $nick = '', $start = '0', $end = '30', $signature = false){
+    function fetchTwibber($latest = true, $global = false, $nick = '', $start = '0', $end = '20', $signature = false){
 	global $mysqli;
 	if($global && !$signature){
 	    $query = $mysqli->query("SELECT * FROM `twibber_entry` ORDER BY `date` DESC LIMIT ".$start." , ".$end);
