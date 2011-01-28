@@ -54,6 +54,8 @@ function insert_nick(nick){
 function open(){
     $("#open").click(function(){
 	$("#panel").slideDown("slow");
+	// For basically all browsers, which not using webkit
+	$("#panel").style("display","block");
     });	
     $("#close").click(function(){
         $("#panel").slideUp("slow");
