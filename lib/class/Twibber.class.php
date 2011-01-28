@@ -93,10 +93,10 @@ class Twibber {
     }
     function twibberfy_text($text){
 	$text = str_replace("\\","",$text);
-	$text = preg_replace('/@([^ :]+)/','@<a href="?nick=$1" onclick="return dyn_get(true, false, this.innerText);">$1</a>',$text);
+	$text = preg_replace('/@([A-Za-z0-9_-]+)/','@<a href="?nick=$1" onclick="return dyn_get(true, false, this.innerText);">$1</a>',$text);
 	$text = preg_replace('/((?:https?|ftp):\/\/[^\s\'"\'<>()]+|www\.[^\s\'"\'<>()]+|[\-\w.+]+@(?:[\-\w]+\.)+[\w]{2,6})/i','<a href="$1">$1</a>',$text);
-	$text = preg_replace('/ (#[^ -,:;."\']+)/',' <a href="?search=$1" class="hash" onclick="return dyn_get(true, false, false, this.innerText.replace(/#/,\'\'));">$1</a>',$text);
-	$text = preg_replace('/^(#[^ -,:;."\']+)/',' <a href="?search=$1" class="hash" onclick="return dyn_get(true, false, false, this.innerText.replace(/#/,\'\'));">$1</a>',$text);
+	$text = preg_replace('/ (#[A-Za-z0-9_-]+)/',' <a href="?search=$1" class="hash" onclick="return dyn_get(true, false, false, this.innerText.replace(/#/,\'\'));">$1</a>',$text);
+	$text = preg_replace('/^(#[A-Za-z0-9_-]+)/',' <a href="?search=$1" class="hash" onclick="return dyn_get(true, false, false, this.innerText.replace(/#/,\'\'));">$1</a>',$text);
 	return $text;
     }
     function twibberfy_output($text, $nickname, $date){
@@ -178,7 +178,8 @@ class wcf{
 }
 
 /*
- * Copyright 2010 - 2010 by Kurtextrem
+ * @AUTHOR Kurtextrem
+ * @Contact kurtextrem@gmail.com
  * function: getTitle($id)
  * returns: The title of the video.
  * example: http://m.youtube.com/watch?v=dsBbdKmjquM
