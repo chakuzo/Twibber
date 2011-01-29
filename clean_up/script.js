@@ -1,5 +1,5 @@
 $(document).ready(function(){
-   interval = window.setInterval("dyn_get(true, true)", 20000);
+   interval = window.setInterval("dyn_get(false, true)", 20000);
    open();
 });
 var page = 1;
