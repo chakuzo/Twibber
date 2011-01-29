@@ -17,10 +17,12 @@ if($_GET['new_entry'] == "1" && $return){
 }
 if(trim($_GET['dyn_get']) == "1"){
     $mult = ($_GET['page'] == '')?1:intval($_GET['page']);
-    $Twibber->fetchTwibber($_GET['latest'], true, '', 0, $mult*20);
+    $latest = ($_GET['latest'] == 'true')?true:false;
+    $Twibber->fetchTwibber($latest, true, '', 0, $mult*20);
 }
 if(trim($_GET['nick']) != ""){
-    $Twibber->fetchTwibber($_GET['latest'], false, $_GET['nick']);
+    $latest = ($_GET['latest'] == 'true')?true:false;
+    $Twibber->fetchTwibber($latest, false, $_GET['nick']);
 }
 if(trim($_GET['search']) != ""){
     $Twibber->searchTwibber($_GET['search']);
