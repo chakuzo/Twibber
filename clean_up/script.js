@@ -20,15 +20,15 @@ $('#input_text').NobleCount('#counter',{
 });
 function dyn_get(latest, global, nick, search){
     if(global){
-	$.get("api.php?dyn_get=1&page="+page,function(ret){ $("#twibber").html(ret); });
+	$.get("api.php?dyn_get=1&latest="+latest+"&page="+page,function(ret){ $("#twibber").html(ret); });
 	return false;
     }
     if(nick != ''){
-	$.get("api.php?page="+page,{nick:nick},function(ret){ $("#twibber").html(ret); });
+	$.get("api.php?latest="+latest+"&page="+page,{nick:nick},function(ret){ $("#twibber").html(ret); });
 	return false;
     }
     if(search != ''){
-	$.get("api.php?page="+page,{search:search},function(ret){ $("#twibber").html(ret); });
+	$.get("api.php?latest="+latest+"&page="+page,{search:search},function(ret){ $("#twibber").html(ret); });
 	return false;
     }
     return true;
@@ -67,5 +67,5 @@ function open(){
 function load_dips(global, nick, search){
     page++;
     $("#status").freeow("Loading", "Neue Twibbs werden geladen!", {classes: ["smokey"], autoHideDelay: 2500});
-    dyn_get(true, global, nick, search);
+    dyn_get(false, global, nick, search);
 }

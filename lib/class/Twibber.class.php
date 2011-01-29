@@ -39,13 +39,15 @@ class Twibber {
 	    $query = $mysqli->query("SELECT * FROM `twibber_entry` ORDER BY `date` DESC LIMIT ".$start." , ".$end);
 	    $false_array = array();
 	    while($result = $query->fetch_assoc()){
-		if(stristr($result['date'], date('Y')) === FALSE){ $false_array[] = $result; continue; }
+		if(stristr($result['date'], date('Y') && $latest) === FALSE){ $false_array[] = $result; continue; }
 		$text = $this->twibberfy_text($result['text']);
 		$this->twibberfy_output($text, $result['nickname'], $result['date']);
 	    }
-	    foreach($false_array as $result){
-		$text = $this->twibberfy_text($result['text']);
-		$this->twibberfy_output($text, $result['nickname'], $result['date']);
+	    if(!$latest){
+		foreach($false_array as $result){
+		    $text = $this->twibberfy_text($result['text']);
+		    $this->twibberfy_output($text, $result['nickname'], $result['date']);
+		}
 	    }
 	}
 	if($global == false && $nick != '' && !$signature){
