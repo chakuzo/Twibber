@@ -59,9 +59,8 @@ class Twibber
 			$nick = $mysqli->real_escape_string($nick);
 			$nick = strip_tags($nick);
 			$query = $mysqli->query("SELECT * FROM `twibber_entry` WHERE `nickname` = '" . $nick . "' ORDER BY `id` DESC LIMIT " . $start . " , " . $end);
-			while ($result = $query->fetch_assoc()) {
-				return str_replace("\\", "", $result['text']);
-			}
+			$result = $query->fetch_assoc();
+			return array(str_replace("\\", "", $result['text']), $result['date']);
 		}
 	}
 
