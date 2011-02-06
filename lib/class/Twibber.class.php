@@ -4,7 +4,7 @@ include("StringUtil.class.php");
 @include_once("./lib/lang/" . twibber_lang . ".lang.php");
 
 $use_difficult_method = false;
-if (!date_default_timezone_set('Europe/Berlin')) {
+if (!date_default_timezone_set($lang_timezone)) {
 	$use_difficult_method = true;
 }
 
@@ -39,27 +39,17 @@ class Twibber
 	{
 		global $mysqli;
 		if ($global && !$signature) {
-			$query = $mysqli->query("SELECT * FROM `twibber_entry` ORDER BY `date` DESC LIMIT " . $start . " , " . $end);
+			$query = $mysqli->query("SELECT * FROM `twibber_entry` ORDER BY `id` DESC LIMIT " . $start . " , " . $end);
 			$false_array = array();
 			while ($result = $query->fetch_assoc()) {
-				if (stristr($result['date'], date('Y')) === FALSE || stristr($result['date'], date('m.Y')) === FALSE) {
-					$false_array[] = $result;
-					continue;
-				}
 				$text = $this->twibberfy_text($result['text']);
 				$this->twibberfy_output($text, $result['nickname'], $result['date']);
-			}
-			if (!$latest) {
-				foreach ($false_array as $result) {
-					$text = $this->twibberfy_text($result['text']);
-					$this->twibberfy_output($text, $result['nickname'], $result['date']);
-				}
 			}
 		}
 		if ($global == false && $nick != '' && !$signature) {
 			$nick = $mysqli->real_escape_string($nick);
 			$nick = strip_tags($nick);
-			$query = $mysqli->query("SELECT * FROM `twibber_entry` WHERE `nickname` = '" . $nick . "' ORDER BY `date` DESC LIMIT " . $start . " , " . $end);
+			$query = $mysqli->query("SELECT * FROM `twibber_entry` WHERE `nickname` = '" . $nick . "' ORDER BY `id` DESC LIMIT " . $start . " , " . $end);
 			while ($result = $query->fetch_assoc()) {
 				$text = $this->twibberfy_text($result['text']);
 				$this->twibberfy_output($text, $result['nickname'], $result['date']);
@@ -68,11 +58,8 @@ class Twibber
 		if ($signature && $nick != '') {
 			$nick = $mysqli->real_escape_string($nick);
 			$nick = strip_tags($nick);
-			$query = $mysqli->query("SELECT * FROM `twibber_entry` WHERE `nickname` = '" . $nick . "' ORDER BY `date` DESC LIMIT " . $start . " , " . $end);
+			$query = $mysqli->query("SELECT * FROM `twibber_entry` WHERE `nickname` = '" . $nick . "' ORDER BY `id` DESC LIMIT " . $start . " , " . $end);
 			while ($result = $query->fetch_assoc()) {
-				if (stristr($result['date'], date('Y')) === FALSE) {
-					continue;
-				}
 				return str_replace("\\", "", $result['text']);
 			}
 		}

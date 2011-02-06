@@ -1,5 +1,5 @@
 <?php
-/* DE Sprach Datei 
+/* DE Sprach Datei
  * @author: Kurtextrem, Math-Board
  * @contact: kurtextrem@gmail.com
  * Example:
@@ -7,6 +7,7 @@
  * Mehr dazu: http://de2.php.net/manual/de/function.sprintf.php
  */
 /* lib/class/Twibber.class.php */
+$lang_timezone = "Europe/Berlin";
 $lang_prefix_error = "ERROR! Bitte ändern Sie in <config.inc.php> Zeile 9 zum richtigen Präfix!";
 $lang_group_id_error = "ERROR! Bitte geben Sie in <config.inc.php> Zeile 19 / 20 eine ID an!";
 $lang_mysql_connect_error = "Verbindungsfehler. Haben Sie <config.inc.php> Zeile 5-8 richtig ausgefüllt?";
