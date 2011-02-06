@@ -55,15 +55,15 @@ if (trim($_GET['image']) != "") {
 	$image_data = getimagesize($avatar_nick);
 	if ($image_data['mime'] == 'image/png') { // ty _MaX_
 		$avatar = imagecreatefrompng($avatar_nick);
-		imagecopyresampled($img, $avatar, 20, 0, 0, 0, 60, 60, imagesx($avatar_nick), imagesy($avatar_nick));
+		imagecopyresampled($img, $avatar, 20, 0, 0, 0, 60, 60, imagesx($avatar), imagesy($avatar));
 	} elseif ($image_data['mime'] == 'image/jpeg' or $image_data['mime'] == 'image/pjpeg') {
 		$avatar = imagecreatefromjpeg($avatar_nick);
-		imagecopyresampled($img, $avatar_nick, 20, 0, 0, 0, 60, 60, imagesx($avatar), imagesy($avatar));
+		imagecopyresampled($img, $avatar, 20, 0, 0, 0, 60, 60, imagesx($avatar), imagesy($avatar));
 	} elseif ($image_data['mime'] == 'image/gif') {
 		$avatar = imagecreatefromgif($avatar_nick);
-		imagecopyresampled($img, $avatar_nick, 20, 0, 0, 0, 60, 60, imagesx($avatar_nick), imagesy($avatar_nick));
+		imagecopyresampled($img, $avatar, 20, 0, 0, 0, 60, 60, imagesx($avatar), imagesy($avatar));
 	}
-	ImageString($img, 5, 400, 45, $lang_gd_date . $return_array[1], $text_color);
+	ImageString($img, 2, 347, 45, $lang_gd_date . $return_array[1], $text_color);
 	ImagePNG($img);
 	ImageDestroy($img);
 	ImageDestory($avatar_nick);
