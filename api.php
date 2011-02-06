@@ -40,7 +40,7 @@ if (trim($_GET['image']) != "") {
 	$text_color = ImageColorAllocate($img, 233, 14, 91);
 	ImageStringUp($img, 2, 0, 55, "Twibber", $text_color);
 	ImageStringUp($img, 2, 5, 55, "_________", $text_color);
-	ImageString($img, 5, 82, 0, $nick . $lang_gd_last_twib . $return_array[1], $text_color);
+	ImageString($img, 5, 82, 0, $nick . $lang_gd_last_twib, $text_color);
 	$font_file = "./lib/font/Comfortaa-Bold.ttf";
 	ImageFTText($img, 10, 0, 90, 30, $text_color, $font_file, '" ' .
 			wordwrap(
@@ -63,7 +63,7 @@ if (trim($_GET['image']) != "") {
 		$avatar = imagecreatefromgif($avatar_nick);
 		imagecopyresampled($img, $avatar_nick, 20, 0, 0, 0, 60, 60, imagesx($avatar_nick), imagesy($avatar_nick));
 	}
-	ImageString($img, 5, 400, 45, $lang_gd_date, $text_color);
+	ImageString($img, 5, 400, 45, $lang_gd_date . $return_array[1], $text_color);
 	ImagePNG($img);
 	ImageDestroy($img);
 	ImageDestory($avatar_nick);
