@@ -68,6 +68,8 @@ $version = "0.5";
 			if ($zip_ar === TRUE) {
 			    $zip->extractTo("../");
 			    $zip->close();
+				//$delete = explode(",",$xml->delete);
+				//array_map("unlink", $delete);
 				mysql_query($xml->sqlstate);
 			    echo '<br>'.$lang_updated_from.' '.$version.' '.$lang_updated_to.' '.$xml->version.'!<br>';
 			} else {
