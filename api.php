@@ -50,8 +50,8 @@ if (trim($_GET['image']) != "") {
 					) //)
 					, 39, "\n", true) . ' "'
 	);
-	#$avatar_nick = wcf::getAvatar(strip_tags($_GET['image']));
-	$avatar_nick = "http://www.wbblite2.de/wcf/images/avatars/avatar-328.png";
+	$avatar_nick = wcf::getAvatar(strip_tags($_GET['image']));
+	//$avatar_nick = "http://www.wbblite2.de/wcf/images/avatars/avatar-328.png";
 	$image_data = getimagesize($avatar_nick);
 	if ($image_data['mime'] == 'image/png') { // ty _MaX_
 		$avatar = imagecreatefrompng($avatar_nick);
