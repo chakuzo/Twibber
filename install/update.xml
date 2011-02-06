@@ -13,10 +13,10 @@
     <update_files>all</update_files>
     <note>New logo, begin of localisation</note>
     <delete></delete>
-    <sqlstate>ALTER TABLE `twibber_entry` ADD `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST ;</sqlstate>
-    <alpha>
+    <sqlstate>ALTER TABLE `twibber_entry` ADD `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST</sqlstate>
+    <nightly>
 		<file></file>
 		<replace></replace>
 		<replace_with></replace_with>
-    </alpha>
+    </nightly>
 </update>
