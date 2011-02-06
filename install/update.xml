@@ -9,14 +9,14 @@
 -->
 
 <update>
-    <version>0.4.1</version>
+    <version>0.5</version>
     <update_files>all</update_files>
     <note>New logo, begin of localisation</note>
     <delete></delete>
-    <sqlstate></sqlstate>
+    <sqlstate>ALTER TABLE `twibber_entry` ADD `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST ;</sqlstate>
     <alpha>
-	<file></file>
-	<replace></replace>
-	<replace_with></replace_with>
+		<file></file>
+		<replace></replace>
+		<replace_with></replace_with>
     </alpha>
 </update>

@@ -2,7 +2,7 @@ Milestone0.2:
 -Order of twibbs right >.> (year 2010, 2011, 2011 is at the bottom of 2010) | OK (2011 - 2010 is working now, i have now one year to fix it for 2012 :D)
 -Better "copyright" | OK
 
-Milestone0.3: 
+Milestone0.3:
 -Autoupdate | OK
 -Marking left chars ... for example, 250 red, 234 lightred | OK
 -Better ordner structure | OK
@@ -17,18 +17,19 @@ Milestone0.4:
 Milestone 0.5:
 -Favicon | OK
 -Logo | OK
+-Use of ids instead of date sorting (why i dont think about that before?!) | OK
 
 Milestone1.0:
 -Inviduall Homepage | HALF
 -Follow (don't we need to implement before invidual userpage?!)
--Lists 
+-Lists
 -Retwibb
 -Answer | HALF
 -Real homepage for twibber (twibber.de)
 -name change (?)
 (to be continued...)
 
-Milestone1.0 ME: 
+Milestone1.0 ME:
 -befehle like (/google Nickname how to install twibber, or /gtfo Nickname get the fuck out!!11)
 -Smileys (a good idea or not?!)
 -Localisation (english etc) | BEGIN (moved from 0.5, maybe better syntax if we use $lang['langXY'];
@@ -44,6 +45,6 @@ Milestone1.0 ME:
 Milestone 1.2:
 -ACP
 
-Milestone2.0: 
+Milestone2.0:
 -Archiv
 -invidual userpage (is already implemented in wcf?)
