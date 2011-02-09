@@ -1,25 +1,15 @@
 var page = 1;
 var hashbefore = window.location.hash;
+var nick_g = '', search_g = '', global_g = false;
 $(document).ready(function(){
 	open();
+	checkHash();
 	$("a").live("click", function(){
-		if(location.hash != hashbefore){
-			hashbefore = location.hash;
-			var hash = location.hash.replace('#', '');
-			// @TODO multiple hash, first trail with ";" then "#" ...
-			hash = hash.split('=');
-			switch(hash[0]){
-				case 'nick':
-					dyn_get(true, false, hash[1]);
-					break;
-				case 'search':
-					dyn_get(true, false, '', hash[1]);
-					break;
-				default:
-					interval = window.setInterval("dyn_get(true, true)", 20000);
-					break;
-			}
-		}
+		checkHash();
+	});
+	$("#more_twibbs").click(function(){
+		reset_vars();
+		load_dips(global_g, nick_g, search_g);
 	});
 });
 
@@ -39,23 +29,31 @@ $('#input_text').NobleCount('#counter',{
 });
 function dyn_get(latest, global, nick, search){
 	if(global){
-		$.get("api.php?dyn_get=1&latest="+latest+"&page="+page,function(ret){
+		$.get("api.php", {
+			dyn_get: 1,
+			latest: latest,
+			page: page
+		}, function(ret){
 			$("#twibber").html(ret);
 		});
 		return false;
 	}
 	if(nick != ''){
-		$.get("api.php?latest="+latest+"&page="+page,{
-			nick:nick
-		},function(ret){
+		$.get("api.php", {
+			nick: nick,
+			latest: latest,
+			page: page
+		}, function(ret){
 			$("#twibber").html(ret);
 		});
 		return false;
 	}
 	if(search != ''){
-		$.get("api.php?latest="+latest+"&page="+page,{
-			search:search
-		},function(ret){
+		$.get("api.php", {
+			search: search,
+			latest: latest,
+			page: page
+		}, function(ret){
 			$("#twibber").html(ret);
 		});
 		return false;
@@ -65,11 +63,12 @@ function dyn_get(latest, global, nick, search){
 function dyn_submit(){
 	var text = $("#input_text").val();
 	if(text.replace(/^\s+|\s+$/g,"") != "" && text.length <= 250 && $("#nickname").val() != ""){
-		$.post("api.php?new_entry=1",{
-			text:text
+		$.post("api.php",{
+			text: text,
+			new_entry: 1
 		},function(ret){
 			dyn_get(true, true);
-			$("#status").freeow(ret, ret.replace(/!/,'')+" gesendet!", {
+			$("#status").freeow(ret, ret.replace('!','')+" gesendet!", {
 				classes: ["smokey"],
 				autoHideDelay: 2500
 			});
@@ -105,4 +104,32 @@ function load_dips(global, nick, search){
 		autoHideDelay: 2500
 	});
 	dyn_get(false, global, nick, search);
+}
+
+function checkHash(){
+	if(location.hash != hashbefore)
+		hashbefore = location.hash;
+	var hash = location.hash.replace(/#/g, '');
+	// @TODO multiple hash, first trail with ";" then "#" ...
+	hash = hash.split('=');
+	switch(hash[0]){
+		case 'nick':
+			dyn_get(true, false, hash[1]);
+			nick_g = hash[1];
+			break;
+		case 'search':
+			dyn_get(true, false, '', hash[1]);
+			search_g = hash[1];
+			break;
+		default:
+			interval = window.setInterval("dyn_get(true, true)", 20000);
+			global_g = true;
+			break;
+	}
+}
+
+function reset_vars(){
+	search_g = '';
+	global_g = false;
+	nick_g = '';
 }
