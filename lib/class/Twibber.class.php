@@ -35,7 +35,7 @@ if ($mysqli2->connect_error) {
 class Twibber
 {
 
-	function fetchTwibber($latest = true, $global = false, $nick = '', $start = '0', $end = '30', $signature = false)
+	function fetchTwibber($latest = true, $global = false, $nick = '', $start = 0, $end = 30, $signature = false)
 	{
 		global $mysqli;
 		if ($global && !$signature) {
@@ -72,7 +72,7 @@ class Twibber
 		$mysqli->query("INSERT INTO `twibber_entry`(`nickname`,`text`,`date`) VALUES('" . $usernick . "','" . $message . "','" . date("d.m.Y H:i:s") . "')");
 	}
 
-	function searchTwibber($needle)
+	function searchTwibber($needle, $start = 0, $end = 30)
 	{
 		global $mysqli;
 		$needle = $mysqli->real_escape_string($needle);

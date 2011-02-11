@@ -1,16 +1,16 @@
 var page = 1;
-var hashbefore = window.location.hash;
-var nick_g = '', search_g = '', global_g = false;
+var hash_before = window.location.hash;
+var nick_g = '', search_g = '', global_g = false, interval;
 $(document).ready(function(){
 	open();
-	checkHash();
-	$("a").live("click", function(){
-		checkHash(true);
-	});
+	handleHash();
+	interval2 = window.setInterval("checkHash(true)", 100);
 	$("#more_twibbs").click(function(){
-		reset_vars();
 		checkHash();
 		load_dips(global_g, nick_g, search_g);
+	});
+	$("#logo > a > img").click(function(){
+		dyn_get(true, true);
 	});
 });
 
@@ -100,36 +100,60 @@ function open(){
 
 function load_dips(global, nick, search){
 	page++;
-	$("#status").freeow("Loading", "Neue Twibbs werden geladen!", {
+	$("#status").freeow("Loading", "Mehr Twibbs werden geladen!", {
 		classes: ["smokey"],
 		autoHideDelay: 2500
 	});
 	dyn_get(false, global, nick, search);
 }
 
-function checkHash(action){
-	if(location.hash != hashbefore)
-		hashbefore = location.hash;
+function handleHash(){
+	if(interval != undefined)
+		window.clearInterval(interval);
+	var hash = checkHash();
+	switch(hash[0]){
+		case 'nick':
+			$("#status").freeow("Loading", "Twibbs von "+hash[1]+" werden geladen", {
+				classes: ["smokey"],
+				autoHideDelay: 1500
+			});
+			dyn_get(true, false, hash[1]);
+			break;
+		case 'search':
+			$("#status").freeow("Loading", "Twibbs werden gesucht ("+hash[1]+")", {
+				classes: ["smokey"],
+				autoHideDelay: 1500
+			});
+			dyn_get(true, false, '', hash[1]);
+			break;
+		default:
+			interval = window.setInterval("dyn_get(true, true)", 20000);
+			break;
+	}
+}
+
+function checkHash(handle){
+	reset_vars();
+	if(location.hash != hash_before){
+		hash_before = location.hash;
+		if(handle)
+			handleHash();
+	}
 	var hash = location.hash.replace(/#/g, '');
 	// @TODO multiple hash, first trail with ";" then "#" ...
 	hash = hash.split('=');
 	switch(hash[0]){
 		case 'nick':
-			if(action)
-				dyn_get(true, false, hash[1]);
 			nick_g = hash[1];
 			break;
 		case 'search':
-			if(action)
-				dyn_get(true, false, '', hash[1]);
 			search_g = hash[1];
 			break;
 		default:
-			if(action)
-				interval = window.setInterval("dyn_get(true, true)", 20000);
 			global_g = true;
 			break;
 	}
+	return hash;
 }
 
 function reset_vars(){
