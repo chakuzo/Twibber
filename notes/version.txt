@@ -21,6 +21,14 @@ Milestone 0.5:
 
 Milestone 0.6:
 -Link able pages for search etc (ex: #search=blup) | OK
+- JSON API (for the next point important, too)
+-timeline api like twitter for _MaX_'s  Signature script
+<_MaX_>'tweeter' => $node->getElementsByTagName('screen_name')->item(0)->nodeValue,
+<_MaX_>'text' => $node->getElementsByTagName('text')->item(0)->nodeValue,
+<_MaX_>'link' => $node->getElementsByTagName('id')->item(0)->nodeValue,
+<_MaX_>'date' => $node->getElementsByTagName('created_at')->item(0)->nodeValue,
+<_MaX_>'avatar' => $node->getElementsByTagName('profile_image_url')->item(0)->nodeValue,
+<_MaX_>'source' => $node->getElementsByTagName('source')->item(0)->nodeValue
 
 Milestone1.0:
 -Inviduall Homepage | HALF
@@ -37,13 +45,6 @@ Milestone1.0 ME:
 -Smileys (a good idea or not?!)
 -Localisation (english etc) | BEGIN (moved from 0.5, maybe better syntax if we use $lang['langXY'];
 -Use Twibber as Guestbook (LOL)
--timeline api like twitter for _MaX_'s  Signature script
-<_MaX_>'tweeter' => $node->getElementsByTagName('screen_name')->item(0)->nodeValue,
-<_MaX_>'text' => $node->getElementsByTagName('text')->item(0)->nodeValue,
-<_MaX_>'link' => $node->getElementsByTagName('id')->item(0)->nodeValue,
-<_MaX_>'date' => $node->getElementsByTagName('created_at')->item(0)->nodeValue,
-<_MaX_>'avatar' => $node->getElementsByTagName('profile_image_url')->item(0)->nodeValue,
-<_MaX_>'source' => $node->getElementsByTagName('source')->item(0)->nodeValue
 
 Milestone 1.2:
 -ACP
