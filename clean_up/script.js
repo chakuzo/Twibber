@@ -5,10 +5,11 @@ $(document).ready(function(){
 	open();
 	checkHash();
 	$("a").live("click", function(){
-		checkHash();
+		checkHash(true);
 	});
 	$("#more_twibbs").click(function(){
 		reset_vars();
+		checkHash();
 		load_dips(global_g, nick_g, search_g);
 	});
 });
@@ -106,7 +107,7 @@ function load_dips(global, nick, search){
 	dyn_get(false, global, nick, search);
 }
 
-function checkHash(){
+function checkHash(action){
 	if(location.hash != hashbefore)
 		hashbefore = location.hash;
 	var hash = location.hash.replace(/#/g, '');
@@ -114,15 +115,18 @@ function checkHash(){
 	hash = hash.split('=');
 	switch(hash[0]){
 		case 'nick':
-			dyn_get(true, false, hash[1]);
+			if(action)
+				dyn_get(true, false, hash[1]);
 			nick_g = hash[1];
 			break;
 		case 'search':
-			dyn_get(true, false, '', hash[1]);
+			if(action)
+				dyn_get(true, false, '', hash[1]);
 			search_g = hash[1];
 			break;
 		default:
-			interval = window.setInterval("dyn_get(true, true)", 20000);
+			if(action)
+				interval = window.setInterval("dyn_get(true, true)", 20000);
 			global_g = true;
 			break;
 	}
