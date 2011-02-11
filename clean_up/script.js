@@ -139,8 +139,8 @@ function checkHash(handle){
 		if(handle)
 			handleHash();
 	}
-	var hash = location.hash.replace(/#/g, '');
-	// @TODO multiple hash, first trail with ";" then "#" ...
+	var hash = location.hash.replace('#', '');
+	// @TODO multiple hash, first trail with ";" then "#" ..., support search for #hash tags
 	hash = hash.split('=');
 	switch(hash[0]){
 		case 'nick':
