@@ -19,6 +19,9 @@ Milestone 0.5:
 -Logo | OK
 -Use of ids instead of date sorting (why i dont think about that before?!) | OK
 
+Milestone 0.6:
+-Link able pages for search etc (ex: #search=blup) | OK
+
 Milestone1.0:
 -Inviduall Homepage | HALF
 -Follow (don't we need to implement before invidual userpage?!)

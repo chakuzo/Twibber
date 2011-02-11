@@ -14,7 +14,12 @@ if ($_GET['new_entry'] == "1" && $return) {
 	} elseif ($nick == "") {
 		echo $lang_no_nick;
 	}
+	exit();
+} elseif (!$return) {
+	echo $lang_no_nick;
+	exit();
 }
+Header("Access-Control-Allow-Origin: *");
 if (trim($_GET['dyn_get']) == "1") {
 	$mult = ($_GET['page'] == '') ? 1 : intval($_GET['page']);
 	$latest = ($_GET['latest'] == 'true') ? true : false;
@@ -68,9 +73,5 @@ if (trim($_GET['image']) != "") {
 	ImageDestroy($img);
 	ImageDestory($avatar_nick);
 	exit();
-}
-
-if (!$return) {
-	echo $lang_no_nick;
 }
 ?>
