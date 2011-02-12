@@ -3,23 +3,19 @@ include("lib/class/Twibber.class.php");
 $nick = strip_tags($_COOKIE['twibber_nick']);
 $return = wcf::getLoginOK($nick, $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt']);
 $text = $_POST['text'];
-if ($_GET['new_entry'] == "1" && $return) {
-	if (trim($text) != "" && strlen($text) <= 250 && $nick != "") {
+if ($_GET['new_entry'] == "1" && $return && $nick != '') {
+	echo "Test";
+	if (trim($text) != "" && strlen($text) <= 250) {
 		$Twibber->createTwibber(htmlspecialchars($text), htmlspecialchars($nick));
 		echo $lang_success;
 	} elseif (trim($text) == "") {
 		echo $lang_no_message;
 	} elseif (strlen($text) > 250) {
 		echo $message_too_long;
-	} elseif ($nick == "") {
-		echo $lang_no_nick;
 	}
 	exit();
-} elseif ($_GET['new_entry'] == "1") {
-	echo $lang_no_nick;
-	exit();
 }
-//Header("Access-Control-Allow-Origin: *");
+Header("Access-Control-Allow-Origin: *");
 if (trim($_GET['dyn_get']) == "1") {
 	$mult = ($_GET['page'] == '') ? 1 : intval($_GET['page']);
 	$latest = ($_GET['latest'] == 'true') ? true : false;

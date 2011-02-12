@@ -64,9 +64,8 @@ function dyn_get(latest, global, nick, search){
 function dyn_submit(){
 	var text = $("#input_text").val();
 	if(text.replace(/^\s+|\s+$/g,"") != "" && text.length <= 250 && $("#nickname").val() != ""){
-		$.post("api.php",{
-			text: text,
-			new_entry: 1
+		$.post("api.php?new_entry=1",{
+			text: text
 		},function(ret){
 			dyn_get(true, true);
 			$("#status").freeow(ret, ret.replace('!','')+" gesendet!", {
