@@ -15,7 +15,7 @@ if ($_GET['new_entry'] == "1" && $return) {
 		echo $lang_no_nick;
 	}
 	exit();
-} elseif (!$return) {
+} elseif ($_GET['new_entry'] == "1") {
 	echo $lang_no_nick;
 	exit();
 }
