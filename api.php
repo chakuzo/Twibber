@@ -4,7 +4,6 @@ $nick = strip_tags($_COOKIE['twibber_nick']);
 $return = wcf::getLoginOK($nick, $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt']);
 $text = $_POST['text'];
 if ($_GET['new_entry'] == "1" && $return && $nick != '') {
-	echo "Test";
 	if (trim($text) != "" && strlen($text) <= 250) {
 		$Twibber->createTwibber(htmlspecialchars($text), htmlspecialchars($nick));
 		echo $lang_success;
