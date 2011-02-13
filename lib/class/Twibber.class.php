@@ -34,10 +34,14 @@ if ($mysqli2->connect_error) {
  */
 class Twibber
 {
+	private $mysqli;
+
+	function __construct($mysqli){
+		$this->mysqli = $mysqli;
+	}
 
 	function fetchTwibber($latest = true, $global = false, $nick = '', $start = 0, $end = 30, $signature = false)
 	{
-		global $mysqli;
 		if ($global && !$signature) {
 			$query = $mysqli->query("SELECT * FROM `twibber_entry` ORDER BY `id` DESC LIMIT " . $start . " , " . $end);
 			$false_array = array();
@@ -66,7 +70,6 @@ class Twibber
 
 	function createTwibber($message, $usernick)
 	{
-		global $mysqli;
 		$message = $mysqli->real_escape_string($message);
 		$usernick = $mysqli->real_escape_string($usernick);
 		$mysqli->query("INSERT INTO `twibber_entry`(`nickname`,`text`,`date`) VALUES('" . $usernick . "','" . $message . "','" . date("d.m.Y H:i:s") . "')");
@@ -74,7 +77,6 @@ class Twibber
 
 	function searchTwibber($needle, $start = 0, $end = 30)
 	{
-		global $mysqli;
 		$needle = $mysqli->real_escape_string($needle);
 		$needle = strip_tags($needle);
 		$query = $mysqli->query("SELECT * FROM `twibber_entry` WHERE `text` LIKE '%" . $needle . "%' ORDER BY `date` DESC LIMIT " . $start . " , " . $end);
@@ -86,7 +88,6 @@ class Twibber
 
 	function getStats($nickname)
 	{
-		global $mysqli;
 		$nick = $mysqli->real_escape_string($nickname);
 		$nick = strip_tags($nickname);
 		$query = $mysqli->query("SELECT `text` FROM `twibber_entry` WHERE `nickname` = '" . $nickname . "'");
@@ -119,9 +120,14 @@ class Twibber
 class wcf
 {
 
+	private $mysqli2;
+
+	static function __construct($mysqli2){
+		$this->mysqli2 = $mysqli2;
+	}
+
 	public static function getData($nickname, $password)
 	{
-		global $mysqli2;
 		$nickname = strip_tags($nickname);
 		$password = strip_tags($password);
 		$nickname = $mysqli2->real_escape_string($nickname);
@@ -138,7 +144,6 @@ class wcf
 
 	public static function getAvatar($nickname)
 	{
-		global $mysqli2;
 		$nickname = strip_tags($nickname);
 		$nickname = $mysqli2->real_escape_string($nickname);
 		$query = $mysqli2->query("SELECT `avatarID` FROM `" . wcf_name_prefix . "user` WHERE `username` = '" . $nickname . "'");
@@ -148,7 +153,6 @@ class wcf
 
 	public static function getSalt($nickname)
 	{
-		global $mysqli2;
 		$nickname = strip_tags($nickname);
 		$nickname = $mysqli2->real_escape_string($nickname);
 		$query = $mysqli2->query("SELECT `salt` FROM `" . wcf_name_prefix . "user` WHERE `username` = '" . $nickname . "'");
@@ -158,7 +162,6 @@ class wcf
 
 	public static function getLoginOK($nickname, $pw, $salt)
 	{
-		global $mysqli2;
 		$nickname = strip_tags($nickname);
 		$nickname = $mysqli2->real_escape_string($nickname);
 		$pw = strip_tags($pw);
@@ -175,7 +178,6 @@ class wcf
 
 	public static function getAdminOK($nickname, $pw, $salt, $update = false)
 	{
-		global $mysqli2;
 		$nickname = strip_tags($nickname);
 		$nickname = $mysqli2->real_escape_string($nickname);
 		$pw = strip_tags($pw);
@@ -343,7 +345,7 @@ class Date_Difference
 
 }
 
-$Twibber = new Twibber();
-$wcf = new wcf();
+$Twibber = new Twibber($mysqli);
+$wcf = new wcf($mysqli2);
 $youtube = new youtube();
 ?>
