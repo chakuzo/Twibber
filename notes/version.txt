@@ -1,5 +1,5 @@
 Milestone0.2:
--Order of twibbs right >.> (year 2010, 2011, 2011 is at the bottom of 2010) | OK (2011 - 2010 is working now, i have now one year to fix it for 2012 :D)
+-Order of twibbs right >.> (year 2010, 2011, 2011 is at the bottom of 2010) | OK (for ever, see mstone 0.5)
 -Better "copyright" | OK
 
 Milestone0.3:
@@ -21,6 +21,10 @@ Milestone 0.5:
 
 Milestone 0.6:
 -Link able pages for search etc (ex: #search=blup) | OK
+-valid pages | HALF (ok for this milestone)
+-Answer (Facebook like, or twitter?) | BEGIN (Facebook)
+
+Milestone 0.7:
 - JSON API (for the next point important, too)
 -timeline api like twitter for _MaX_'s  Signature script
 <_MaX_>'tweeter' => $node->getElementsByTagName('screen_name')->item(0)->nodeValue,
@@ -30,12 +34,14 @@ Milestone 0.6:
 <_MaX_>'avatar' => $node->getElementsByTagName('profile_image_url')->item(0)->nodeValue,
 <_MaX_>'source' => $node->getElementsByTagName('source')->item(0)->nodeValue
 
+Milestone 0.9:
+-valid pages complete !! 
+
 Milestone1.0:
 -Inviduall Homepage | HALF
 -Follow (don't we need to implement before invidual userpage?!)
 -Lists
 -Retwibb
--Answer | HALF
 -Real homepage for twibber (twibber.de)
 -name change (?)
 (to be continued...)

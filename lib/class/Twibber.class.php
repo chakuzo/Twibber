@@ -43,7 +43,7 @@ class Twibber
 	function fetchTwibber($latest = true, $global = false, $nick = '', $start = 0, $end = 30, $signature = false)
 	{
 		if ($global && !$signature) {
-			$query = $mysqli->query("SELECT * FROM `twibber_entry` ORDER BY `id` DESC LIMIT " . $start . " , " . $end);
+			$query = $this->mysqli->query("SELECT * FROM `twibber_entry` ORDER BY `id` DESC LIMIT " . $start . " , " . $end);
 			$false_array = array();
 			while ($result = $query->fetch_assoc()) {
 				$text = $this->twibberfy_text($result['text']);
@@ -51,18 +51,18 @@ class Twibber
 			}
 		}
 		if ($global == false && $nick != '' && !$signature) {
-			$nick = $mysqli->real_escape_string($nick);
+			$nick = $this->mysqli->real_escape_string($nick);
 			$nick = strip_tags($nick);
-			$query = $mysqli->query("SELECT * FROM `twibber_entry` WHERE `nickname` = '" . $nick . "' ORDER BY `id` DESC LIMIT " . $start . " , " . $end);
+			$query = $this->mysqli->query("SELECT * FROM `twibber_entry` WHERE `nickname` = '" . $nick . "' ORDER BY `id` DESC LIMIT " . $start . " , " . $end);
 			while ($result = $query->fetch_assoc()) {
 				$text = $this->twibberfy_text($result['text']);
 				$this->twibberfy_output($text, $result['nickname'], $result['date']);
 			}
 		}
 		if ($signature && $nick != '') {
-			$nick = $mysqli->real_escape_string($nick);
+			$nick = $this->mysqli->real_escape_string($nick);
 			$nick = strip_tags($nick);
-			$query = $mysqli->query("SELECT * FROM `twibber_entry` WHERE `nickname` = '" . $nick . "' ORDER BY `id` DESC LIMIT " . $start . " , " . $end);
+			$query = $this->mysqli->query("SELECT * FROM `twibber_entry` WHERE `nickname` = '" . $nick . "' ORDER BY `id` DESC LIMIT " . $start . " , " . $end);
 			$result = $query->fetch_assoc();
 			return array(str_replace("\\", "", $result['text']), $result['date']);
 		}
@@ -70,16 +70,16 @@ class Twibber
 
 	function createTwibber($message, $usernick)
 	{
-		$message = $mysqli->real_escape_string($message);
-		$usernick = $mysqli->real_escape_string($usernick);
+		$message = $this->mysqli->real_escape_string($message);
+		$usernick = $this->mysqli->real_escape_string($usernick);
 		$mysqli->query("INSERT INTO `twibber_entry`(`nickname`,`text`,`date`) VALUES('" . $usernick . "','" . $message . "','" . date("d.m.Y H:i:s") . "')");
 	}
 
 	function searchTwibber($needle, $start = 0, $end = 30)
 	{
-		$needle = $mysqli->real_escape_string($needle);
+		$needle = $this->mysqli->real_escape_string($needle);
 		$needle = strip_tags($needle);
-		$query = $mysqli->query("SELECT * FROM `twibber_entry` WHERE `text` LIKE '%" . $needle . "%' ORDER BY `date` DESC LIMIT " . $start . " , " . $end);
+		$query = $this->mysqli->query("SELECT * FROM `twibber_entry` WHERE `text` LIKE '%" . $needle . "%' ORDER BY `date` DESC LIMIT " . $start . " , " . $end);
 		while ($result = $query->fetch_assoc()) {
 			$text = $this->twibberfy_text($result['text']);
 			$this->twibberfy_output($text, $result['nickname'], $result['date']);
@@ -88,9 +88,9 @@ class Twibber
 
 	function getStats($nickname)
 	{
-		$nick = $mysqli->real_escape_string($nickname);
+		$nick = $this->mysqli->real_escape_string($nickname);
 		$nick = strip_tags($nickname);
-		$query = $mysqli->query("SELECT `text` FROM `twibber_entry` WHERE `nickname` = '" . $nickname . "'");
+		$query = $this->mysqli->query("SELECT `text` FROM `twibber_entry` WHERE `nickname` = '" . $nickname . "'");
 		$row_cnt = $query->num_rows;
 		return $row_cnt;
 	}
@@ -107,7 +107,7 @@ class Twibber
 
 	function twibberfy_output($text, $nickname, $date)
 	{
-		echo "<div id='twibb'>";
+		echo "<div class='twibb'>";
 		echo "<div id='avatar'><a href='#nick=" . $nickname . "'><img src='" . wcf::getAvatar($nickname) . "'></a></div>";
 		echo "<div class='" . $nickname . " nickname' onclick='insert_nick(\"" . $nickname . "\");'>" . $nickname . "</div>";
 		echo "<div id='content'>" . $text . "</div>";
@@ -120,20 +120,20 @@ class Twibber
 class wcf
 {
 
-	private $mysqli2;
+	private static $mysqli2;
 
-	static function __construct($mysqli2){
-		$this->mysqli2 = $mysqli2;
+	function __construct($mysqli2){
+		self::$mysqli2 = $mysqli2;
 	}
 
 	public static function getData($nickname, $password)
 	{
 		$nickname = strip_tags($nickname);
 		$password = strip_tags($password);
-		$nickname = $mysqli2->real_escape_string($nickname);
-		$password = $mysqli2->real_escape_string($password);
+		$nickname = self::$mysqli2->real_escape_string($nickname);
+		$password = self::$mysqli2->real_escape_string($password);
 		$sql = "SELECT username, password, salt FROM " . wcf_name_prefix . "user WHERE username = '" . $nickname . "'";
-		$query = $mysqli2->query($sql);
+		$query = self::$mysqli2->query($sql);
 		$result = $query->fetch_object();
 		if (!$result)
 			return false;
@@ -145,8 +145,8 @@ class wcf
 	public static function getAvatar($nickname)
 	{
 		$nickname = strip_tags($nickname);
-		$nickname = $mysqli2->real_escape_string($nickname);
-		$query = $mysqli2->query("SELECT `avatarID` FROM `" . wcf_name_prefix . "user` WHERE `username` = '" . $nickname . "'");
+		$nickname = self::$mysqli2->real_escape_string($nickname);
+		$query = self::$mysqli2->query("SELECT `avatarID` FROM `" . wcf_name_prefix . "user` WHERE `username` = '" . $nickname . "'");
 		$result = $query->fetch_object();
 		return "http://www.wbblite2.de/wcf/images/avatars/avatar-" . $result->avatarID . ".png";
 	}
@@ -154,8 +154,8 @@ class wcf
 	public static function getSalt($nickname)
 	{
 		$nickname = strip_tags($nickname);
-		$nickname = $mysqli2->real_escape_string($nickname);
-		$query = $mysqli2->query("SELECT `salt` FROM `" . wcf_name_prefix . "user` WHERE `username` = '" . $nickname . "'");
+		$nickname = self::$mysqli2->real_escape_string($nickname);
+		$query = self::$mysqli2->query("SELECT `salt` FROM `" . wcf_name_prefix . "user` WHERE `username` = '" . $nickname . "'");
 		$result = $query->fetch_object();
 		return $result->salt;
 	}
@@ -163,13 +163,13 @@ class wcf
 	public static function getLoginOK($nickname, $pw, $salt)
 	{
 		$nickname = strip_tags($nickname);
-		$nickname = $mysqli2->real_escape_string($nickname);
+		$nickname = self::$mysqli2->real_escape_string($nickname);
 		$pw = strip_tags($pw);
-		$pw = $mysqli2->real_escape_string($pw);
+		$pw = self::$mysqli2->real_escape_string($pw);
 		$salt = strip_tags($salt);
-		$salt = $mysqli2->real_escape_string($salt);
+		$salt = self::$mysqli2->real_escape_string($salt);
 		define("ENCRYPTION_ENCRYPT_BEFORE_SALTING", false);
-		$query = $mysqli2->query("SELECT `password` FROM `" . wcf_name_prefix . "user` WHERE `username` = '" . $nickname . "' AND `salt` = '" . $salt . "' AND `password` = '" . StringUtil::getDoubleSaltedHash($pw, $salt) . "'");
+		$query = self::$mysqli2->query("SELECT `password` FROM `" . wcf_name_prefix . "user` WHERE `username` = '" . $nickname . "' AND `salt` = '" . $salt . "' AND `password` = '" . StringUtil::getDoubleSaltedHash($pw, $salt) . "'");
 		$result = $query->fetch_object();
 		if (!$result)
 			return false;
@@ -179,15 +179,15 @@ class wcf
 	public static function getAdminOK($nickname, $pw, $salt, $update = false)
 	{
 		$nickname = strip_tags($nickname);
-		$nickname = $mysqli2->real_escape_string($nickname);
+		$nickname = self::$mysqli2->real_escape_string($nickname);
 		$pw = strip_tags($pw);
-		$pw = $mysqli2->real_escape_string($pw);
+		$pw = self::$mysqli2->real_escape_string($pw);
 		$salt = strip_tags($salt);
-		$salt = $mysqli2->real_escape_string($salt);
+		$salt = self::$mysqli2->real_escape_string($salt);
 		define("ENCRYPTION_ENCRYPT_BEFORE_SALTING", false);
-		$query = $mysqli2->query("SELECT `userID` FROM `" . wcf_name_prefix . "user` WHERE `username` = '" . $nickname . "' AND `salt` = '" . $salt . "' AND `password` = '" . StringUtil::getDoubleSaltedHash($pw, $salt) . "'");
+		$query = self::$mysqli2->query("SELECT `userID` FROM `" . wcf_name_prefix . "user` WHERE `username` = '" . $nickname . "' AND `salt` = '" . $salt . "' AND `password` = '" . StringUtil::getDoubleSaltedHash($pw, $salt) . "'");
 		$result = $query->fetch_object();
-		$query = $mysqli2->query("SELECT `groupID` FROM `" . wcf_name_prefix . "user_to_groups` WHERE `userID` = " . $result->userID);
+		$query = self::$mysqli2->query("SELECT `groupID` FROM `" . wcf_name_prefix . "user_to_groups` WHERE `userID` = " . $result->userID);
 		if ($update) {
 			while ($result = $query->fetch_assoc()) {
 				if ($result['groupID'] == wcf_admin_groupid || $result['groupID'] == wcf_update_groupid) {
