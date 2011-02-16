@@ -49,7 +49,11 @@ class Twibber
 			$false_array = array();
 			while ($result = $query->fetch_assoc()) {
 				$text = $this->twibberfy_text($result['text']);
-				$this->twibberfy_output($text, $result['nickname'], $result['date']);
+				if ($result['to_id'] != 0) {
+					$this->twibberfy_output($text, $result['nickname'], $result['date']);
+				} else {
+					$this->twibberfy_output($text, $result['nickname'], $result['date'], true);
+				}
 			}
 		}
 		if ($global == false && $nick != '' && !$signature) {
@@ -115,14 +119,22 @@ class Twibber
 		return $text;
 	}
 
-	function twibberfy_output($text, $nickname, $date)
+	function twibberfy_output($text, $nickname, $date, $comment = false)
 	{
-		echo "<div class='twibb'>";
-		echo "<div id='avatar'><a href='#nick=" . $nickname . "'><img src='" . wcf::getAvatar($nickname) . "'></a></div>";
-		echo "<div class='" . $nickname . " nickname' onclick='insert_nick(\"" . $nickname . "\");'>" . $nickname . "</div>";
-		echo "<div id='content'>" . $text . "</div>";
-		echo "<time title='" . $date . "'>" . Date_Difference::getStringResolved($date) . "</time>";
-		echo "</div>";
+		if (!$comment) {
+			echo "<div class='twibb'>";
+			echo "<div id='avatar'><a href='#nick=" . $nickname . "'><img src='" . wcf::getAvatar($nickname) . "'></a></div>";
+			echo "<div class='" . $nickname . " nickname' onclick='insert_nick(\"" . $nickname . "\");'>" . $nickname . "</div>";
+			echo "<div id='content'>" . $text . "</div>";
+			echo "<time title='" . $date . "'>" . Date_Difference::getStringResolved($date) . "</time>";
+			echo "</div>";
+		}else{
+			echo "<div class='comment'>";
+			echo "<div id='avatar'><a href='#nick=" . $nickname . "'><img src='" . wcf::getAvatar($nickname) . "'></a></div>";
+			echo "<div id='content'><strong>". $nickname. ":</strong> " . $text . "</div>";
+			echo "<time title='" . $date . "'>" . Date_Difference::getStringResolved($date) . "</time>";
+			echo "</div>";
+		}
 	}
 
 }
@@ -159,7 +171,7 @@ class wcf
 		$nickname = self::$mysqli2->real_escape_string($nickname);
 		$query = self::$mysqli2->query("SELECT `avatarID` FROM `" . wcf_name_prefix . "user` WHERE `username` = '" . $nickname . "'");
 		$result = $query->fetch_object();
-		return "http://www.wbblite2.de/wcf/images/avatars/avatar-" . $result->avatarID . ".png";
+		return wcf_dir."/images/avatars/avatar-" . $result->avatarID . ".png";
 	}
 
 	public static function getSalt($nickname)
