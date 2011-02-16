@@ -77,7 +77,7 @@ time{
     padding: 0 2px 0 2px;
     min-width: 107px;
 }
-#content{
+.twibb_content{
     border: 1px solid black;
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -112,14 +112,14 @@ time{
 #label_nick{
     font-family: 'Neucha', arial, serif;
 }
-#avatar{
+.avatar{
     position: relative;
     left: -75px;
     float: left;
     height: 0px;
     width: 0px;
 }
-#avatar img{
+.avatar img{
     height: 70px;
 }
 #wbblite2{
@@ -177,6 +177,17 @@ button[type=button]{
 
 .comment{
 	margin-left: 40px;
+}
+
+.comment_banner{
+	font-family: 'Droid Sans', arial, serif;
+	display: none;
+	height: 0px;
+}
+.comment_link{
+	color: white !important;
+	text-decoration: none;
+	background-color: blue;
 }
 
 

@@ -36,10 +36,12 @@ class Twibber
 {
 
 	private $mysqli;
+	private $lang_comment;
 
-	function __construct($mysqli)
+	function __construct($mysqli, $lang_comment)
 	{
 		$this->mysqli = $mysqli;
+		$this->lang_comment = $lang_comment;
 	}
 
 	function fetchTwibber($latest = true, $global = false, $nick = '', $start = 0, $end = 30, $signature = false)
@@ -123,15 +125,16 @@ class Twibber
 	{
 		if (!$comment) {
 			echo "<div class='twibb'>";
-			echo "<div id='avatar'><a href='#nick=" . $nickname . "'><img src='" . wcf::getAvatar($nickname) . "'></a></div>";
+			echo "<div class='avatar'><a href='#nick=" . $nickname . "'><img src='" . wcf::getAvatar($nickname) . "'></a></div>";
 			echo "<div class='" . $nickname . " nickname' onclick='insert_nick(\"" . $nickname . "\");'>" . $nickname . "</div>";
-			echo "<div id='content'>" . $text . "</div>";
+			echo "<div class='twibb_content'>" . $text . "</div>";
+			echo "<div class='comment_banner'><a href='#' class='comment_link'>".$this->lang_comment."</a></div>";
 			echo "<time title='" . $date . "'>" . Date_Difference::getStringResolved($date) . "</time>";
 			echo "</div>";
 		}else{
 			echo "<div class='comment'>";
-			echo "<div id='avatar'><a href='#nick=" . $nickname . "'><img src='" . wcf::getAvatar($nickname) . "'></a></div>";
-			echo "<div id='content'><strong>". $nickname. ":</strong> " . $text . "</div>";
+			echo "<div class='avatar'><a href='#nick=" . $nickname . "'><img src='" . wcf::getAvatar($nickname) . "'></a></div>";
+			echo "<div class='twibb_content'><strong>". $nickname. ":</strong> " . $text . "</div>";
 			echo "<time title='" . $date . "'>" . Date_Difference::getStringResolved($date) . "</time>";
 			echo "</div>";
 		}
@@ -368,7 +371,7 @@ class Date_Difference
 
 }
 
-$Twibber = new Twibber($mysqli);
+$Twibber = new Twibber($mysqli, $lang_comment);
 $wcf = new wcf($mysqli2);
 $youtube = new youtube();
 ?>

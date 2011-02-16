@@ -9,6 +9,12 @@ $(document).ready(function(){
 		checkHash();
 		load_dips(global_g, nick_g, search_g);
 	});
+	$(".twibb").live("mouseover mouseout", function(event){
+		if(event.type == 'mouseover')
+			$(this.children[3]).show();
+		if(event.type == 'mouseout')
+			$(this.children[3]).hide();
+	});
 	$("#logo > a > img").click(function(){
 		dyn_get(true, true);
 	});

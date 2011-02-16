@@ -6,6 +6,7 @@
  * %s ersetzt den content dazwischen, nützlich für "Vor X Minuten", oder "Du hast schon X mal gedipt."
  * Mehr dazu: http://de2.php.net/manual/de/function.sprintf.php
  */
+
 /* lib/class/Twibber.class.php */
 $lang_timezone = "Europe/Berlin";
 $lang_prefix_error = "ERROR! Bitte ändern Sie in <config.inc.php> Zeile 9 zum richtigen Präfix!";
@@ -26,8 +27,11 @@ $lang_date_days_ago = 'Vor %s Tagen';
 $lang_date_weeks_ago = 'Vor %s Wochen';
 $lang_date_months_ago = 'Vor %s Monaten';
 $lang_date_years_ago = 'Vor %s Jahren';
+$lang_comment = 'Kommentieren';
+
 /* login.php */
 $lang_false_pw_nick = "Falsches Passwort / Falscher Benutzername. Versuchen Sie es <a href='../index.php'>erneut</a>!";
+
 /* api.php */
 $lang_success = "Erfolgreich!";
 $lang_no_message = "Bitte geben Sie eine Nachricht ein, bevor Sie 'Twibbern' klicken!";
@@ -36,10 +40,12 @@ $lang_no_nick = "Kein Nickname angegeben. Bitte loggen Sie sich ein!";
 $lang_gd_error = "Kann keinen neuen GD-Bild-Stream erzeugen";
 $lang_gd_last_twib = "'s neuster Twibb:";
 $lang_gd_date = "Am: ";
+
 /* index.php */
 $lang = array(
     'guest' => 'Gast'
 );
+
 /* install/update.php */
 $lang_nightly_ok = "Nightly Version installiert!";
 $lang_update_fail = "Fehler beim Updaten auf den Nightly Build!";

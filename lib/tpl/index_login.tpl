@@ -1,14 +1,16 @@
 		    <?php $admin_ok = wcf::getAdminOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt']);
 		    $update_ok = wcf::getAdminOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt'], true);
 		    ?>
-		    <div class="left"> 
-		        <h1>Kontrollzentrum</h1>		
-		        <p class="grey"><a href="?nick=<?=$_COOKIE['twibber_nick']?>">Profil</a></p> 
+		    <div class="left">
+		        <h1>Kontrollzentrum</h1>
+		        <p class="grey"><a href="?nick=<?=$_COOKIE['twibber_nick']?>">Profil</a></p>
 			<p class="grey"><a href="#">Profil Bearbeiten</a></p>
+			<p class="grey"><a href="#" onclick="window.clearInterval(interval);">Aktuallsieren stoppen</a></p>
+			<p class="grey"><a href="#" onclick="handleHash();">Aktuallisieren (fortsetzen)</a></p>
 			<?php if($admin_ok){ ?><p class="grey"><a href="#">Twibber ACP</a></p> <?php } ?>
 			<?php if($update_ok){ ?><p class="grey"><a href="install/update.php">Updaten</a></p> <?php } ?>
-		    </div> 
-		    <div class="left"> 
+		    </div>
+		    <div class="left">
 			<h1>Willkommen <?=$_COOKIE['twibber_nick']?>!</h1>
 			<p>Du hast bereits <?=$Twibber->getStats($_COOKIE['twibber_nick'])?> mal getwibbert.</p>
 			<p class="grey">Hier findest du bald noch mehr Daten &uuml;ber dich und dein Twibber Profil.</p>
