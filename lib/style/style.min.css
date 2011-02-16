@@ -175,46 +175,50 @@ button[type=button]{
     border-radius: 5px;
 }
 
+.comment{
+	margin-left: 40px;
+}
+
 
 @media screen and (max-width: 1170px) {
     #post_it {
-	background-color: #7BBDD7;
-	border: 1px solid black;
-	border-radius: 10px 10px 10px 10px;
-	color: black;
-	height: 100%;
-	margin-left: 15%;
-	margin-right: 15%;
-	padding-left: 10%;
-	padding-right: 10%;
+		background-color: #7BBDD7;
+		border: 1px solid black;
+		border-radius: 10px 10px 10px 10px;
+		color: black;
+		height: 100%;
+		margin-left: 15%;
+		margin-right: 15%;
+		padding-left: 10%;
+		padding-right: 10%;
     }
     h3 {
-	cursor: default;
-	font-family: 'Yanone Kaffeesatz',arial,serif;
-	font-size: 17px;
-	letter-spacing: 0.1em;
-	margin-top: 10px;
-	text-shadow: 0 0 2px white;
+		cursor: default;
+		font-family: 'Yanone Kaffeesatz',arial,serif;
+		font-size: 17px;
+		letter-spacing: 0.1em;
+		margin-top: 10px;
+		text-shadow: 0 0 2px white;
     }
     label {
-	margin-left: 12%;
+		margin-left: 12%;
     }
     #twibb {
-	margin-bottom: 10px;
-	margin-left: 15%;
-	text-align: center;
+		margin-bottom: 10px;
+		margin-left: 15%;
+		text-align: center;
     }
     textarea {
-	width: 30em;
+		width: 30em;
     }
     time {
-	left: 36.7%;
+		left: 36.7%;
     }
     .right {
-	margin-bottom: 10px;
+		margin-bottom: 10px;
     }
     #logo img{
-	-webkit-transform: translate(-11em);
-	-moz-transform: translate(-11em);
+		-webkit-transform: translate(-11em);
+		-moz-transform: translate(-11em);
     }
 }

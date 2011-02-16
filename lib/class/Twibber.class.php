@@ -49,7 +49,7 @@ class Twibber
 			$false_array = array();
 			while ($result = $query->fetch_assoc()) {
 				$text = $this->twibberfy_text($result['text']);
-				if ($result['to_id'] != 0) {
+				if ($result['to_id'] == 0) {
 					$this->twibberfy_output($text, $result['nickname'], $result['date']);
 				} else {
 					$this->twibberfy_output($text, $result['nickname'], $result['date'], true);
