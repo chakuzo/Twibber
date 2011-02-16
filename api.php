@@ -4,13 +4,14 @@ $nick = strip_tags($_COOKIE['twibber_nick']);
 $return = wcf::getLoginOK($nick, $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt']);
 $text = $_POST['text'];
 if ($_GET['new_entry'] == "1" && $return && $nick != '') {
-	if($_GET['retweet'])
-		exit();
-
-	if($_GET['comment'])
-		exit();
 
 	if (trim($text) != "" && strlen($text) <= 250) {
+		if ($_GET['retwibb'])
+			exit();
+		if ($_GET['comment'] == '1') {
+			$Twibber->createTwibbComment(htmlspecialchars($text), htmlspecialchars($nick), htmlspecialchars($_POST['to_id']));
+			exit($lang_success);
+		}
 		$Twibber->createTwibber(htmlspecialchars($text), htmlspecialchars($nick));
 		echo $lang_success;
 	} elseif (trim($text) == "") {
@@ -19,6 +20,9 @@ if ($_GET['new_entry'] == "1" && $return && $nick != '') {
 		echo $message_too_long;
 	}
 	exit();
+}
+if ($_GET['new_entry'] == "1" && ($nick == '' xor !$return)) {
+	exit($lang_no_nick);
 }
 Header("Access-Control-Allow-Origin: *");
 if (trim($_GET['dyn_get']) == "1") {

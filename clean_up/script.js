@@ -61,12 +61,21 @@ function dyn_get(latest, global, nick, search){
 	}
 	return true;
 }
-function dyn_submit(){
+function dyn_submit(to_id){
 	var text = $("#input_text").val();
+	var url = "api.php?new_entry=1";
+	var options = {
+		text: text
+	};
+	if(to_id != ''){
+		url = "api.php?new_entry=1&comment=1";
+		options = {
+			text: text,
+			to_id: to_id
+		}
+	}
 	if(text.replace(/^\s+|\s+$/g,"") != "" && text.length <= 250 && $("#nickname").val() != ""){
-		$.post("api.php?new_entry=1",{
-			text: text
-		},function(ret){
+		$.post(url, options,function(ret){
 			dyn_get(true, true);
 			$("#status").freeow(ret, ret.replace('!','')+" gesendet!", {
 				classes: ["smokey"],

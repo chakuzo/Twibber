@@ -34,9 +34,11 @@ if ($mysqli2->connect_error) {
  */
 class Twibber
 {
+
 	private $mysqli;
 
-	function __construct($mysqli){
+	function __construct($mysqli)
+	{
 		$this->mysqli = $mysqli;
 	}
 
@@ -73,6 +75,14 @@ class Twibber
 		$message = $this->mysqli->real_escape_string($message);
 		$usernick = $this->mysqli->real_escape_string($usernick);
 		$mysqli->query("INSERT INTO `twibber_entry`(`nickname`,`text`,`date`) VALUES('" . $usernick . "','" . $message . "','" . date("d.m.Y H:i:s") . "')");
+	}
+
+	function createTwibbComment($message, $usernick, $to_id)
+	{
+		$message = $this->mysqli->real_escape_string($message);
+		$usernick = $this->mysqli->real_escape_string($usernick);
+		$id = $this->mysqli->real_escape_string($to_id);
+		$mysqli->query("INSERT INTO `twibber_entry`(`nickname`,`text`,`date`, `to_id`) VALUES('" . $usernick . "','" . $message . "','" . date("d.m.Y H:i:s") . "', '" . $id . "')");
 	}
 
 	function searchTwibber($needle, $start = 0, $end = 30)
@@ -122,7 +132,8 @@ class wcf
 
 	private static $mysqli2;
 
-	function __construct($mysqli2){
+	function __construct($mysqli2)
+	{
 		self::$mysqli2 = $mysqli2;
 	}
 
