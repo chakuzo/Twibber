@@ -190,6 +190,10 @@ button[type=button]{
 	background-color: blue;
 }
 
+#in_comment_to{
+	display: none;
+}
+
 
 @media screen and (max-width: 1170px) {
     #post_it {

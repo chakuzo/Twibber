@@ -18,6 +18,9 @@ $(document).ready(function(){
 	$("#logo > a > img").click(function(){
 		dyn_get(true, true);
 	});
+	$(".comment_link").live("click", function(){
+		$("#in_comment_to").text("");
+	});
 });
 
 $('#input_text').NobleCount('#counter',{

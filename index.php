@@ -42,6 +42,7 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 	<div id="status"></div>
 	<div id="logo"><a href="#page=index"><img src="images/img/logo.png"></a></div>
 	<section id="post_it">
+		<div id='in_comment_to'></div>
 	    <h3><?=(!empty($_COOKIE['twibber_nick']))?$_COOKIE['twibber_nick']:$lang['guest']?>, was machst du grade?</h3>
 	    <?php if($return) { ?> <textarea id="input_text" maxlength="250" autofocus placeholder="Schreib deinen Freunden hier, was du gerade tust."></textarea>
 	    <br><div class="right"><label for="input_text" id="counter">0 Zeichen</label><button id="twibber_it" onclick="dyn_submit();">Twibbern</button></div><?php } ?>
