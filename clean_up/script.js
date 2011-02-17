@@ -22,7 +22,7 @@ $(document).ready(function(){
 		$("#in_comment_to").text("in reply to: <a href='#' class='reply_to_link'>"+$(this).parents()[1].id+"</a>");
 	});
 	$(".reply_to_link").live("click", function(){
-		$("#"+$(this).text()).css('border', '5px solid yellow');
+		$("#"+$(this).text()).css('border', '5px solid yellow').delay(2000).css('border', '0');
 	});
 });
 
