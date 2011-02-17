@@ -19,7 +19,10 @@ $(document).ready(function(){
 		dyn_get(true, true);
 	});
 	$(".comment_link").live("click", function(){
-		$("#in_comment_to").text("");
+		$("#in_comment_to").text("in reply to: <a href='#' class='reply_to_link'>"+$(this).parents()[1].id+"</a>");
+	});
+	$(".reply_to_link").live("click", function(){
+		$("#"+$(this).text()).css('border', '5px solid yellow');
 	});
 });
 

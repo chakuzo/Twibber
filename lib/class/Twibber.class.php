@@ -1,4 +1,5 @@
 <?php
+
 include("StringUtil.class.php");
 @include_once("./config.inc.php");
 @include_once("./lib/lang/" . twibber_lang . ".lang.php");
@@ -52,9 +53,9 @@ class Twibber
 			while ($result = $query->fetch_assoc()) {
 				$text = $this->twibberfy_text($result['text']);
 				if ($result['to_id'] == 0) {
-					$this->twibberfy_output($text, $result['nickname'], $result['date']);
+					$this->twibberfy_output($text, $result['nickname'], $result['date'], false, $result['id']);
 				} else {
-					$this->twibberfy_output($text, $result['nickname'], $result['date'], true);
+					$this->twibberfy_output($text, $result['nickname'], $result['date'], true, $result['id']);
 				}
 			}
 		}
@@ -121,20 +122,20 @@ class Twibber
 		return $text;
 	}
 
-	function twibberfy_output($text, $nickname, $date, $comment = false)
+	function twibberfy_output($text, $nickname, $date, $comment = false, $id)
 	{
 		if (!$comment) {
-			echo "<div class='twibb'>";
+			echo "<div class='twibb' id='".$id."'>";
 			echo "<div class='avatar'><a href='#nick=" . $nickname . "'><img src='" . wcf::getAvatar($nickname) . "'></a></div>";
 			echo "<div class='" . $nickname . " nickname' onclick='insert_nick(\"" . $nickname . "\");'>" . $nickname . "</div>";
 			echo "<div class='twibb_content'>" . $text . "</div>";
-			echo "<div class='comment_banner'><a href='#' class='comment_link'>".$this->lang_comment."</a></div>";
+			echo "<div class='comment_banner'><a href='#' class='comment_link'>" . $this->lang_comment . "</a></div>";
 			echo "<time title='" . $date . "'>" . Date_Difference::getStringResolved($date) . "</time>";
 			echo "</div>";
-		}else{
+		} else {
 			echo "<div class='comment'>";
 			echo "<div class='avatar'><a href='#nick=" . $nickname . "'><img src='" . wcf::getAvatar($nickname) . "'></a></div>";
-			echo "<div class='twibb_content'><strong>". $nickname. ":</strong> " . $text . "</div>";
+			echo "<div class='twibb_content'><strong>" . $nickname . ":</strong> " . $text . "</div>";
 			echo "<time title='" . $date . "'>" . Date_Difference::getStringResolved($date) . "</time>";
 			echo "</div>";
 		}
@@ -174,7 +175,7 @@ class wcf
 		$nickname = self::$mysqli2->real_escape_string($nickname);
 		$query = self::$mysqli2->query("SELECT `avatarID` FROM `" . wcf_name_prefix . "user` WHERE `username` = '" . $nickname . "'");
 		$result = $query->fetch_object();
-		return wcf_dir."/images/avatars/avatar-" . $result->avatarID . ".png";
+		return wcf_dir . "/images/avatars/avatar-" . $result->avatarID . ".png";
 	}
 
 	public static function getSalt($nickname)
@@ -374,4 +375,5 @@ class Date_Difference
 $Twibber = new Twibber($mysqli, $lang_comment);
 $wcf = new wcf($mysqli2);
 $youtube = new youtube();
+
 ?>
