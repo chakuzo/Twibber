@@ -1,10 +1,9 @@
 var page = 1;
-var hash_before = window.location.hash;
 var nick_g = '', search_g = '', global_g = false, interval;
+window.onhashchange = checkHash(true);
 $(document).ready(function(){
 	open();
 	handleHash();
-	interval2 = window.setInterval("checkHash(true)", 100);
 	$("#more_twibbs").click(function(){
 		checkHash();
 		load_dips(global_g, nick_g, search_g);
@@ -19,10 +18,10 @@ $(document).ready(function(){
 		dyn_get(true, true);
 	});
 	$(".comment_link").live("click", function(){
-		$("#in_comment_to").text("in reply to: <a href='#' class='reply_to_link'>"+$(this).parents()[1].id+"</a>");
+		$("#in_comment_to").html("in reply to: <a href='#' class='reply_to_link'>"+$(this).parents()[1].id+"</a>").show();
 	});
 	$(".reply_to_link").live("click", function(){
-		$("#"+$(this).text()).css('border', '5px solid yellow').delay(2000).css('border', '0');
+		$("#"+parseInt($(this).text())).css('border', '5px solid yellow').delay(2000).css('border', '0');
 	});
 });
 
@@ -96,6 +95,7 @@ function dyn_submit(to_id){
 		});
 		$("#input_text").val("");
 		$("#counter").text("250");
+		$("#in_reply_to").html("");
 	}else{
 		alert("Error! Nachricht zu lang, keine Nachricht vorhanden oder kein Nickname eingegeben.");
 	}
