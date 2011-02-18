@@ -1,8 +1,8 @@
 <?php
 
 require_once("StringUtil.class.php");
-@require_once('./config.inc.php');
-@require_once('./lib/lang/' . TWIBBER_LANG . '.lang.php');
+require_once('./config.inc.php');
+require_once('./lib/lang/' . TWIBBER_LANG . '.lang.php');
 
 $use_difficult_method = false;
 if (!date_default_timezone_set($lang_timezone)) {
@@ -195,7 +195,7 @@ class wcf
 		$pw = self::$mysqli2->real_escape_string($pw);
 		$salt = strip_tags($salt);
 		$salt = self::$mysqli2->real_escape_string($salt);
-		define("ENCRYPTION_ENCRYPT_BEFORE_SALTING", false);
+		define('ENCRYPTION_ENCRYPT_BEFORE_SALTING', false);
 		$query = self::$mysqli2->query("SELECT password FROM " . wcf_name_prefix . "user WHERE username = '" . $nickname . "' AND salt = '" . $salt . "' AND password = '" . StringUtil::getDoubleSaltedHash($pw, $salt) . "'");
 		$result = $query->fetch_object();
 		if (!$result)
@@ -211,7 +211,7 @@ class wcf
 		$pw = self::$mysqli2->real_escape_string($pw);
 		$salt = strip_tags($salt);
 		$salt = self::$mysqli2->real_escape_string($salt);
-		define("ENCRYPTION_ENCRYPT_BEFORE_SALTING", false);
+		define('ENCRYPTION_ENCRYPT_BEFORE_SALTING', false);
 		$query = self::$mysqli2->query("SELECT userID FROM " . wcf_name_prefix . "user WHERE username = '" . $nickname . "' AND salt = '" . $salt . "' AND password = '" . StringUtil::getDoubleSaltedHash($pw, $salt) . "'");
 		$result = $query->fetch_object();
 		$query = self::$mysqli2->query("SELECT groupID FROM " . wcf_name_prefix . "user_to_groups WHERE userID = " . $result->userID);

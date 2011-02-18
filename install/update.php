@@ -1,11 +1,11 @@
 <?php
-include_once("../config.inc.php");
-include_once("../lib/lang/".twibber_lang.".lang.php");
-include("../lib/class/Twibber.class.php");
+require_once("../config.inc.php");
+require_once("../lib/lang/".TWIBBER_LANG.".lang.php");
+require_once("../lib/class/Twibber.class.php");
 $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt']);
-if(!$return) Header("Location: ../index.php");
+if(!$return) header("Location: ../index.php");
 $return = wcf::getAdminOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt'], true);
-if(!$return) Header("Location: ../index.php");
+if(!$return) header("Location: ../index.php");
 $version = "0.5";
 ?><!doctype html>
 <html>
