@@ -1,5 +1,5 @@
 <?php
-include("lib/class/Twibber.class.php");
+require_once("lib/class/Twibber.class.php");
 $nick = strip_tags($_COOKIE['twibber_nick']);
 $return = wcf::getLoginOK($nick, $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt']);
 $text = $_POST['text'];
