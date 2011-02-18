@@ -1,8 +1,8 @@
 <?php
 
 require_once("StringUtil.class.php");
-@include_once("./config.inc.php");
-@include_once("./lib/lang/" . twibber_lang . ".lang.php");
+@require_once('./config.inc.php');
+@require_once('./lib/lang/' . TWIBBER_LANG . '.lang.php');
 
 $use_difficult_method = false;
 if (!date_default_timezone_set($lang_timezone)) {
@@ -12,7 +12,7 @@ if (!date_default_timezone_set($lang_timezone)) {
 if (wcf_name_prefix == "WCF1_") {
 	die($prefix_error);
 }
-if (wcf_update_groupid == "") {
+if (empty(wcf_update_groupid)) {
 	die($group_id_error);
 }
 

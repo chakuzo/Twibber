@@ -9,7 +9,7 @@ define("mysql_db","database"); // The Database Name
 define("mysql_local","localhost"); // I think you shouldnt change this..
 define("wcf_name_prefix","WCF1_"); // The prefix which is used for the wcf !!!
 				    // Provide it with syntax "wcfX_", X as a number !!!
-define("twibber_lang","de"); // If youre from UK / USA change "de" to "en".
+define("TWIBBER_LANG","de"); // If youre from UK / USA change "de" to "en".
 
 /**
  * Fill out the Data for the connection to read out the WCF Data.
