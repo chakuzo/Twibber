@@ -1,8 +1,8 @@
 <?php
 
 require_once("StringUtil.class.php");
-@require_once('./config.inc.php');
-@require_once('./lib/lang/' . TWIBBER_LANG . '.lang.php');
+require_once('./config.inc.php');
+require_once('./lib/lang/' . TWIBBER_LANG . '.lang.php');
 
 $use_difficult_method = false;
 if (!date_default_timezone_set($lang_timezone)) {
