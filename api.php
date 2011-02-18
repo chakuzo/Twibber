@@ -24,7 +24,7 @@ if ($_GET['new_entry'] == 1 && $return && empty($nick)) {
 if ($_GET['new_entry'] == 1 && (empty($nick) xor !$return)) {
 	exit($lang_no_nick);
 }
-Header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Origin: *");
 if (trim($_GET['dyn_get']) == 1) {
 	$mult = (empty($_GET['page'])) ? 1 : intval($_GET['page']);
 	$latest = ($_GET['latest'] == 'true');
