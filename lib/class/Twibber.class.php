@@ -1,6 +1,6 @@
 <?php
 
-include("StringUtil.class.php");
+require_once("StringUtil.class.php");
 @include_once("./config.inc.php");
 @include_once("./lib/lang/" . twibber_lang . ".lang.php");
 
