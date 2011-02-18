@@ -1,5 +1,5 @@
 <?php
-include("Twibber.class.php");
+require_once("Twibber.class.php");
 If(wcf_name_prefix == "WCF1_"){
     die("Konfigurieren Sie bitte Twibber.class.php !");
 }else{
