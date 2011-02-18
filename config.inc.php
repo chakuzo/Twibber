@@ -1,6 +1,6 @@
 <?php
 /**
- * Fill out the Data to the connection.
+ * Fill out the Data to the connection. Git Test
  */
 
 define("mysql_user",""); // The User for the Database
