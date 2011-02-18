@@ -1,6 +1,6 @@
 <?php
 /**
- * Fill out the Data to the connection.
+ * Fill out the Data to the connection. Love testing it
  */
 
 define("mysql_user",""); // The User for the Database
