@@ -1,0 +1,9 @@
+
+*/.svn/
+/.svn/
+*/.svn/*
+/.svn/*
+.svn
+nbproject
+clean_up
+down

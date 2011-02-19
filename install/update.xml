@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : update.xml
+    Created on : 2. Januar 2011, 15:07
+    Author     : Kurt
+    Description:
+        Update XML file
+-->
+
+<update>
+    <version>0.5</version>
+    <update_files>all</update_files>
+    <note>New logo, begin of localisation</note>
+    <delete></delete>
+    <sqlstate>ALTER TABLE `twibber_entry` ADD `to_id` INT NULL DEFAULT NULL AFTER `id`</sqlstate>
+    <nightly>
+		<file></file>
+		<replace></replace>
+		<replace_with></replace_with>
+    </nightly>
+</update>
