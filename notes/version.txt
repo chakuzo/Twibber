@@ -35,7 +35,7 @@ Milestone 0.7:
 <_MaX_>'source' => $node->getElementsByTagName('source')->item(0)->nodeValue
 
 Milestone 0.9:
--valid pages complete !! 
+-valid pages complete !!
 
 Milestone1.0:
 -Inviduall Homepage | HALF

@@ -1,5 +1,5 @@
 <?php
-include("lib/class/Twibber.class.php");
+require_once("lib/class/Twibber.class.php");
 $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt']);
 
 ?><!doctype html>
@@ -21,11 +21,14 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 		<header id="toppanel">
 			<nav id="panel">
 				<div class="content clearfix">
-<?php if (!$return) {
-	include("lib/tpl/index.tpl");
-} else {
-	include("lib/tpl/index_login.tpl");
-} ?>
+					<?php
+					if (!$return) {
+						include("lib/tpl/index.tpl");
+					} else {
+						include("lib/tpl/index_login.tpl");
+					}
+
+					?>
 				</div>
 			</nav>
 			<div class="tab">
@@ -36,7 +39,7 @@ $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_CO
 					<li id="toggle">
 						<a id="open" class="open" href="#">
 <?php if (!$return) { ?><img src="images/img/cleardot.gif" alt="Login" id="login"><?php } else { ?>
-			    Panel öffnen
+				    Panel öffnen
 <?php } ?>
 						</a><a id="close" class="close" style="display: none;" href="#">Panel schließen</a>
 					</li>

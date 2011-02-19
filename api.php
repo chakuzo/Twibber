@@ -1,44 +1,46 @@
 <?php
-include("lib/class/Twibber.class.php");
+
+require_once('lib/class/Twibber.class.php');
 $nick = strip_tags($_COOKIE['twibber_nick']);
 $return = wcf::getLoginOK($nick, $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt']);
 $text = $_POST['text'];
-if ($_GET['new_entry'] == "1" && $return && $nick != '') {
+if ($_GET['new_entry'] == 1 && $return && empty($nick)) {
 
 	if (trim($text) != "" && strlen($text) <= 250) {
 		if ($_GET['retwibb'])
 			exit();
-		if ($_GET['comment'] == '1') {
+		if ($_GET['comment'] == 1) {
 			$Twibber->createTwibbComment(htmlspecialchars($text), htmlspecialchars($nick), htmlspecialchars($_POST['to_id']));
 			exit($lang_success);
 		}
 		$Twibber->createTwibber(htmlspecialchars($text), htmlspecialchars($nick));
 		echo $lang_success;
-	} elseif (trim($text) == "") {
+	} elseif (empty(trim($text))) {
 		echo $lang_no_message;
 	} elseif (strlen($text) > 250) {
 		echo $message_too_long;
 	}
 	exit();
 }
-if ($_GET['new_entry'] == "1" && ($nick == '' xor !$return)) {
+
+if ($_GET['new_entry'] == 1 && (empty($nick) xor !$return)) {
 	exit($lang_no_nick);
 }
-Header("Access-Control-Allow-Origin: *");
-if (trim($_GET['dyn_get']) == "1") {
-	$mult = ($_GET['page'] == '') ? 1 : intval($_GET['page']);
-	$latest = ($_GET['latest'] == 'true') ? true : false;
+header("Access-Control-Allow-Origin: *");
+if (trim($_GET['dyn_get']) == 1) {
+	$mult = (empty($_GET['page'])) ? 1 : intval($_GET['page']);
+	$latest = ($_GET['latest'] == 'true');
 	$Twibber->fetchTwibber($latest, true, '', 0, $mult * 20);
 }
-if (trim($_GET['nick']) != "") {
+if (!empty(trim($_GET['nick']))) {
 	$latest = ($_GET['latest'] == 'true') ? true : false;
 	$Twibber->fetchTwibber($latest, false, $_GET['nick']);
 }
-if (trim($_GET['search']) != "") {
+if (!empty(trim($_GET['search']))) {
 	$Twibber->searchTwibber($_GET['search']);
 }
-if (trim($_GET['image']) != "") {
-	Header("Content-type: image/png");
+if (!empty(trim($_GET['image']))) {
+	header("Content-type: image/png");
 	$nick = ucwords(strip_tags($_GET['image']));
 	$return_array = $Twibber->fetchTwibber(true, false, $nick, 0, 30, true);
 	$img = @ImageCreateTrueColor(468, 60)
@@ -79,4 +81,5 @@ if (trim($_GET['image']) != "") {
 	ImageDestory($avatar_nick);
 	exit();
 }
+
 ?>

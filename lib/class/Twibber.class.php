@@ -1,18 +1,18 @@
 <?php
 
-include("StringUtil.class.php");
-@include_once("./config.inc.php");
-@include_once("./lib/lang/" . twibber_lang . ".lang.php");
+require_once('StringUtil.class.php');
+require_once('./config.inc.php');
+require_once('./lib/lang/' . TWIBBER_LANG . '.lang.php');
 
 $use_difficult_method = false;
 if (!date_default_timezone_set($lang_timezone)) {
 	$use_difficult_method = true;
 }
 
-if (wcf_name_prefix == "WCF1_") {
+if (wcf_name_prefix == 'WCF1_') {
 	die($prefix_error);
 }
-if (wcf_update_groupid == "") {
+if (wcf_update_groupid == '') {
 	die($group_id_error);
 }
 
@@ -48,7 +48,7 @@ class Twibber
 	function fetchTwibber($latest = true, $global = false, $nick = '', $start = 0, $end = 30, $signature = false)
 	{
 		if ($global && !$signature) {
-			$query = $this->mysqli->query("SELECT * FROM `twibber_entry` ORDER BY `id` DESC LIMIT " . $start . " , " . $end);
+			$query = $this->mysqli->query("SELECT * FROM twibber_entry ORDER BY id DESC LIMIT " . $start . " , " . $end);
 			$false_array = array();
 			while ($result = $query->fetch_assoc()) {
 				$text = $this->twibberfy_text($result['text']);
@@ -62,7 +62,7 @@ class Twibber
 		if ($global == false && $nick != '' && !$signature) {
 			$nick = $this->mysqli->real_escape_string($nick);
 			$nick = strip_tags($nick);
-			$query = $this->mysqli->query("SELECT * FROM `twibber_entry` WHERE `nickname` = '" . $nick . "' ORDER BY `id` DESC LIMIT " . $start . " , " . $end);
+			$query = $this->mysqli->query("SELECT * FROM twibber_entry WHERE nickname = '" . $nick . "' ORDER BY id DESC LIMIT " . $start . " , " . $end);
 			while ($result = $query->fetch_assoc()) {
 				$text = $this->twibberfy_text($result['text']);
 				$this->twibberfy_output($text, $result['nickname'], $result['date']);
@@ -71,7 +71,7 @@ class Twibber
 		if ($signature && $nick != '') {
 			$nick = $this->mysqli->real_escape_string($nick);
 			$nick = strip_tags($nick);
-			$query = $this->mysqli->query("SELECT * FROM `twibber_entry` WHERE `nickname` = '" . $nick . "' ORDER BY `id` DESC LIMIT " . $start . " , " . $end);
+			$query = $this->mysqli->query("SELECT * FROM twibber_entry WHERE nickname = '" . $nick . "' ORDER BY id DESC LIMIT " . $start . " , " . $end);
 			$result = $query->fetch_assoc();
 			return array(str_replace("\\", "", $result['text']), $result['date']);
 		}
@@ -81,7 +81,7 @@ class Twibber
 	{
 		$message = $this->mysqli->real_escape_string($message);
 		$usernick = $this->mysqli->real_escape_string($usernick);
-		$mysqli->query("INSERT INTO `twibber_entry`(`nickname`,`text`,`date`) VALUES('" . $usernick . "','" . $message . "','" . date("d.m.Y H:i:s") . "')");
+		$mysqli->query("INSERT INTO twibber_entry(nickname,text,date) VALUES('" . $usernick . "','" . $message . "','" . date("d.m.Y H:i:s") . "')");
 	}
 
 	function createTwibbComment($message, $usernick, $to_id)
@@ -89,14 +89,14 @@ class Twibber
 		$message = $this->mysqli->real_escape_string($message);
 		$usernick = $this->mysqli->real_escape_string($usernick);
 		$id = $this->mysqli->real_escape_string($to_id);
-		$mysqli->query("INSERT INTO `twibber_entry`(`nickname`,`text`,`date`, `to_id`) VALUES('" . $usernick . "','" . $message . "','" . date("d.m.Y H:i:s") . "', '" . $id . "')");
+		$mysqli->query("INSERT INTO twibber_entry(nickname,text,date, to_id) VALUES('" . $usernick . "','" . $message . "','" . date("d.m.Y H:i:s") . "', '" . $id . "')");
 	}
 
 	function searchTwibber($needle, $start = 0, $end = 30)
 	{
 		$needle = $this->mysqli->real_escape_string($needle);
 		$needle = strip_tags($needle);
-		$query = $this->mysqli->query("SELECT * FROM `twibber_entry` WHERE `text` LIKE '%" . $needle . "%' ORDER BY `date` DESC LIMIT " . $start . " , " . $end);
+		$query = $this->mysqli->query("SELECT * FROM twibber_entry WHERE text LIKE '%" . $needle . "%' ORDER BY date DESC LIMIT " . $start . " , " . $end);
 		while ($result = $query->fetch_assoc()) {
 			$text = $this->twibberfy_text($result['text']);
 			$this->twibberfy_output($text, $result['nickname'], $result['date']);
@@ -107,7 +107,7 @@ class Twibber
 	{
 		$nick = $this->mysqli->real_escape_string($nickname);
 		$nick = strip_tags($nickname);
-		$query = $this->mysqli->query("SELECT `text` FROM `twibber_entry` WHERE `nickname` = '" . $nickname . "'");
+		$query = $this->mysqli->query("SELECT text FROM twibber_entry WHERE nickname = '" . $nickname . "'");
 		$row_cnt = $query->num_rows;
 		return $row_cnt;
 	}
@@ -125,7 +125,7 @@ class Twibber
 	function twibberfy_output($text, $nickname, $date, $comment = false, $id)
 	{
 		if (!$comment) {
-			echo "<div class='twibb' id='".$id."'>";
+			echo "<div class='twibb' id='" . $id . "'>";
 			echo "<div class='avatar'><a href='#nick=" . $nickname . "'><img src='" . wcf::getAvatar($nickname) . "'></a></div>";
 			echo "<div class='" . $nickname . " nickname' onclick='insert_nick(\"" . $nickname . "\");'>" . $nickname . "</div>";
 			echo "<div class='twibb_content'>" . $text . "</div>";
@@ -173,7 +173,7 @@ class wcf
 	{
 		$nickname = strip_tags($nickname);
 		$nickname = self::$mysqli2->real_escape_string($nickname);
-		$query = self::$mysqli2->query("SELECT `avatarID` FROM `" . wcf_name_prefix . "user` WHERE `username` = '" . $nickname . "'");
+		$query = self::$mysqli2->query("SELECT avatarID FROM " . wcf_name_prefix . "user WHERE username = '" . $nickname . "'");
 		$result = $query->fetch_object();
 		return wcf_dir . "/images/avatars/avatar-" . $result->avatarID . ".png";
 	}
@@ -182,7 +182,7 @@ class wcf
 	{
 		$nickname = strip_tags($nickname);
 		$nickname = self::$mysqli2->real_escape_string($nickname);
-		$query = self::$mysqli2->query("SELECT `salt` FROM `" . wcf_name_prefix . "user` WHERE `username` = '" . $nickname . "'");
+		$query = self::$mysqli2->query("SELECT salt FROM " . wcf_name_prefix . "user WHERE username = '" . $nickname . "'");
 		$result = $query->fetch_object();
 		return $result->salt;
 	}
@@ -195,8 +195,8 @@ class wcf
 		$pw = self::$mysqli2->real_escape_string($pw);
 		$salt = strip_tags($salt);
 		$salt = self::$mysqli2->real_escape_string($salt);
-		define("ENCRYPTION_ENCRYPT_BEFORE_SALTING", false);
-		$query = self::$mysqli2->query("SELECT `password` FROM `" . wcf_name_prefix . "user` WHERE `username` = '" . $nickname . "' AND `salt` = '" . $salt . "' AND `password` = '" . StringUtil::getDoubleSaltedHash($pw, $salt) . "'");
+		define('ENCRYPTION_ENCRYPT_BEFORE_SALTING', false);
+		$query = self::$mysqli2->query("SELECT password FROM " . wcf_name_prefix . "user WHERE username = '" . $nickname . "' AND salt = '" . $salt . "' AND password = '" . StringUtil::getDoubleSaltedHash($pw, $salt) . "'");
 		$result = $query->fetch_object();
 		if (!$result)
 			return false;
@@ -211,10 +211,10 @@ class wcf
 		$pw = self::$mysqli2->real_escape_string($pw);
 		$salt = strip_tags($salt);
 		$salt = self::$mysqli2->real_escape_string($salt);
-		define("ENCRYPTION_ENCRYPT_BEFORE_SALTING", false);
-		$query = self::$mysqli2->query("SELECT `userID` FROM `" . wcf_name_prefix . "user` WHERE `username` = '" . $nickname . "' AND `salt` = '" . $salt . "' AND `password` = '" . StringUtil::getDoubleSaltedHash($pw, $salt) . "'");
+		define('ENCRYPTION_ENCRYPT_BEFORE_SALTING', false);
+		$query = self::$mysqli2->query("SELECT userID FROM " . wcf_name_prefix . "user WHERE username = '" . $nickname . "' AND salt = '" . $salt . "' AND password = '" . StringUtil::getDoubleSaltedHash($pw, $salt) . "'");
 		$result = $query->fetch_object();
-		$query = self::$mysqli2->query("SELECT `groupID` FROM `" . wcf_name_prefix . "user_to_groups` WHERE `userID` = " . $result->userID);
+		$query = self::$mysqli2->query("SELECT groupID FROM " . wcf_name_prefix . "user_to_groups WHERE userID = " . $result->userID);
 		if ($update) {
 			while ($result = $query->fetch_assoc()) {
 				if ($result['groupID'] == wcf_admin_groupid || $result['groupID'] == wcf_update_groupid) {
