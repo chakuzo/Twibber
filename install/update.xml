@@ -9,14 +9,14 @@
 -->
 
 <update>
-    <version>0.5</version>
-    <update_files>all</update_files>
-    <note>New logo, begin of localisation</note>
-    <delete></delete>
-    <sqlstate>ALTER TABLE twibber_entry ADD to_id INT NULL DEFAULT NULL AFTER id</sqlstate>
-    <nightly>
+	<version>0.5</version>
+	<update_files>all</update_files>
+	<note>New logo, begin of localisation</note>
+	<delete></delete>
+	<sqlstate>ALTER TABLE twibber_entry ADD to_id INT NULL DEFAULT NULL AFTER id</sqlstate>
+	<nightly>
 		<file></file>
 		<replace></replace>
 		<replace_with></replace_with>
-    </nightly>
+	</nightly>
 </update>

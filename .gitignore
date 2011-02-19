@@ -4,7 +4,6 @@
 /.svn/*
 .svn
 nbproject/*
-clean_up1
-clean_up/*
+clean_up
 down
 *.xcf
