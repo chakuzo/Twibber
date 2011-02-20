@@ -9,9 +9,9 @@
 -->
 
 <update>
-	<version>0.5</version>
+	<version>0.6</version>
 	<update_files>all</update_files>
-	<note>New logo, begin of localisation</note>
+	<note>Comment function</note>
 	<delete></delete>
 	<sqlstate>ALTER TABLE twibber_entry ADD to_id INT NULL DEFAULT NULL AFTER id</sqlstate>
 	<nightly>

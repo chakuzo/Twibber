@@ -22,7 +22,7 @@ Milestone 0.5:
 Milestone 0.6:
 -Link able pages for search etc (ex: #search=blup) | OK
 -valid pages | HALF (ok for this milestone)
--Answer (Facebook like, or twitter?) | BEGIN (Twibber like (fusion of twitter and facebook ;o))
+-Answer (Facebook like, or twitter?) | OK (Twibber like (fusion of twitter and facebook ;o))
 
 Milestone 0.7:
 - JSON API (for the next point important, too)
