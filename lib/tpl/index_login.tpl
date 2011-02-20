@@ -5,8 +5,7 @@
 		        <h1>Kontrollzentrum</h1>
 		        <p class="grey"><a href="?nick=<?=$_COOKIE['twibber_nick']?>">Profil</a></p>
 			<p class="grey"><a href="#">Profil Bearbeiten</a></p>
-			<p class="grey"><a href="#" onclick="window.clearInterval(interval);">Aktuallsieren stoppen</a></p>
-			<p class="grey"><a href="#" onclick="handleHash();">Aktuallisieren (fortsetzen)</a></p>
+			<p class="grey"><a href="#" id='refresh' class='stop'>Aktuallsieren stoppen</a></p>
 			<?php if($admin_ok){ ?><p class="grey"><a href="#">Twibber ACP</a></p> <?php } ?>
 			<?php if($update_ok){ ?><p class="grey"><a href="install/update.php">Updaten</a></p> <?php } ?>
 		    </div>

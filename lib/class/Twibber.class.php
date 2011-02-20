@@ -1,9 +1,10 @@
 <?php
 
-require_once('StringUtil.class.php');
-require_once('WCF.class.php');
 require_once('./config.inc.php');
 require_once('./lib/lang/' . TWIBBER_LANG . '.lang.php');
+require_once('StringUtil.class.php');
+require_once('WCF.class.php');
+require_once('PrettyDate.class.php');
 
 $use_difficult_method = false;
 if (!date_default_timezone_set($lang_timezone)) {
@@ -51,7 +52,7 @@ class Twibber
 				if ($result['to_id'] == 0) {
 					$this->twibberfy_output($text, $result['nickname'], $result['date'], false, $result['id']);
 				} else {
-					$this->twibberfy_output($text, $result['nickname'], $result['date'], true, $result['id']);
+					$this->twibberfy_output($text, $result['nickname'], $result['date'], true, $result['id'], $result['to_id']);
 				}
 			}
 		}
@@ -85,7 +86,7 @@ class Twibber
 		$message = $this->mysqli->real_escape_string($message);
 		$usernick = $this->mysqli->real_escape_string($usernick);
 		$id = $this->mysqli->real_escape_string($to_id);
-		$mysqli->query("INSERT INTO twibber_entry(nickname,text,date, to_id) VALUES('" . $usernick . "','" . $message . "','" . date("d.m.Y H:i:s") . "', '" . $id . "')");
+		$this->mysqli->query("INSERT INTO twibber_entry(nickname,text,date, to_id) VALUES('" . $usernick . "','" . $message . "','" . date("d.m.Y H:i:s") . "', '" . $id . "')");
 	}
 
 	function searchTwibber($needle, $start = 0, $end = 30)
@@ -118,7 +119,7 @@ class Twibber
 		return $text;
 	}
 
-	function twibberfy_output($text, $nickname, $date, $comment = false, $id)
+	function twibberfy_output($text, $nickname, $date, $comment = false, $id, $to_id = 0)
 	{
 		if (!$comment) {
 			echo "<div class='twibb' id='" . $id . "'>";
@@ -129,9 +130,8 @@ class Twibber
 			echo "<time title='" . $date . "'>" . Date_Difference::getStringResolved($date) . "</time>";
 			echo "</div>";
 		} else {
-			echo "<div class='comment'>";
-			echo "<div class='avatar'><a href='#nick=" . $nickname . "'><img src='" . wcf::getAvatar($nickname) . "'></a></div>";
-			echo "<div class='twibb_content'><strong>" . $nickname . ":</strong> " . $text . "</div>";
+			echo "<div class='comment' to_id='" . $to_id . "'>";
+			echo "<div class='twibb_content'><a href='#nick=" . $nickname . "'><strong>" . $nickname . ":</strong></a> " . $text . "</div>";
 			echo "<time title='" . $date . "'>" . Date_Difference::getStringResolved($date) . "</time>";
 			echo "</div>";
 		}

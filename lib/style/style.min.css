@@ -183,6 +183,7 @@ button[type=button]{
 	font-family: 'Droid Sans', arial, serif;
 	display: none;
 	height: 0px;
+	width: 1px;
 }
 .comment_link{
 	color: white !important;
@@ -197,6 +198,10 @@ button[type=button]{
 .remove{
 	color: red;
 	text-shadow: black 1px 1px 1px;
+}
+
+.comment > twibb_content{
+	text-align: left;
 }
 
 

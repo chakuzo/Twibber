@@ -22,7 +22,7 @@ Milestone 0.5:
 Milestone 0.6:
 -Link able pages for search etc (ex: #search=blup) | OK
 -valid pages | HALF (ok for this milestone)
--Answer (Facebook like, or twitter?) | BEGIN (Facebook)
+-Answer (Facebook like, or twitter?) | BEGIN (Twibber like (fusion of twitter and facebook ;o))
 
 Milestone 0.7:
 - JSON API (for the next point important, too)
@@ -33,6 +33,9 @@ Milestone 0.7:
 <_MaX_>'date' => $node->getElementsByTagName('created_at')->item(0)->nodeValue,
 <_MaX_>'avatar' => $node->getElementsByTagName('profile_image_url')->item(0)->nodeValue,
 <_MaX_>'source' => $node->getElementsByTagName('source')->item(0)->nodeValue
+
+Milestone 0.8:
+-real exception handling
 
 Milestone 0.9:
 -valid pages complete !!

@@ -25,9 +25,18 @@ if ($_GET['update'] == 'nightly') {
 	file_put_contents('nightly.zip', $contents);
 	$zip_ar = $zip->open($filename);
 	if ($zip_ar === TRUE) {
-		$zip->extractTo('../');
-		$zip->close();
-		echo $lang_nightly_ok . '<br>';
+		rename('../config.inc.php', '../config.inc.back.php');
+		$extract = $zip->extractTo('../');
+		if ($extract == true) {
+			$zip->close();
+			rename('../config.inc.back.php', '../config.inc.back.php');
+			$unlink = array('../.gitignore', '../README', 'sql.sql', 'install.php', 'update.xml', '../notes/install.txt', '../notes/version.txt');
+			array_map('unlink', $unlink);
+			rmdir('../notes');
+			echo $lang_nightly_ok . '<br>';
+		} else {
+			echo $lang_update_fail . '<br>';
+		}
 	} else {
 		echo $lang_update_fail . '<br>';
 		echo $zip_ar;

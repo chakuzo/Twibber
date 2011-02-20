@@ -4,7 +4,7 @@ require_once('lib/class/Twibber.class.php');
 $nick = strip_tags($_COOKIE['twibber_nick']);
 $return = wcf::getLoginOK($nick, $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt']);
 $text = $_POST['text'];
-if ($_GET['new_entry'] == 1 && $return && empty($nick)) {
+if ($_GET['new_entry'] == 1 && $return && !empty($nick)) {
 
 	if (trim($text) != "" && strlen($text) <= 250) {
 		if ($_GET['retwibb'])
@@ -15,7 +15,7 @@ if ($_GET['new_entry'] == 1 && $return && empty($nick)) {
 		}
 		$Twibber->createTwibber(htmlspecialchars($text), htmlspecialchars($nick));
 		echo $lang_success;
-	} elseif (empty(trim($text))) {
+	} elseif (trim($text) == '') {
 		echo $lang_no_message;
 	} elseif (strlen($text) > 250) {
 		echo $message_too_long;
@@ -32,14 +32,14 @@ if (trim($_GET['dyn_get']) == 1) {
 	$latest = ($_GET['latest'] == 'true');
 	$Twibber->fetchTwibber($latest, true, '', 0, $mult * 20);
 }
-if (!empty(trim($_GET['nick']))) {
+if (trim($_GET['nick']) != '') {
 	$latest = ($_GET['latest'] == 'true') ? true : false;
 	$Twibber->fetchTwibber($latest, false, $_GET['nick']);
 }
-if (!empty(trim($_GET['search']))) {
+if (trim($_GET['search']) != '') {
 	$Twibber->searchTwibber($_GET['search']);
 }
-if (!empty(trim($_GET['image']))) {
+if (trim($_GET['image']) != '') {
 	header("Content-type: image/png");
 	$nick = ucwords(strip_tags($_GET['image']));
 	$return_array = $Twibber->fetchTwibber(true, false, $nick, 0, 30, true);
