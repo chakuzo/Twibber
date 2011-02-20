@@ -9,11 +9,11 @@
 -->
 
 <update>
-	<version>0.6</version>
+	<version>0.6pl1</version>
 	<update_files>all</update_files>
-	<note>Comment function</note>
+	<note>Fixed avatar bug (edit config.inc.php, please)</note>
 	<delete></delete>
-	<sqlstate>ALTER TABLE twibber_entry ADD to_id INT NULL DEFAULT NULL AFTER id</sqlstate>
+	<sqlstate></sqlstate>
 	<nightly>
 		<file></file>
 		<replace></replace>

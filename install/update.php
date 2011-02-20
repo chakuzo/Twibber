@@ -8,7 +8,7 @@ if (!$return)
 $return = wcf::getAdminOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt'], true);
 if (!$return)
 	header('Location: ../index.php');
-$version = '0.6'; // do not remove. Important for Updates!
+$version = '0.6pl1'; // do not remove. Important for Updates!
 
 ?><!doctype html>
 <html>

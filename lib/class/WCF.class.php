@@ -38,7 +38,7 @@ class wcf
 		$nickname = self::$mysqli2->real_escape_string($nickname);
 		$query = self::$mysqli2->query("SELECT avatarID FROM " . wcf_name_prefix . "user WHERE username = '" . $nickname . "'");
 		$result = $query->fetch_object();
-		return wcf_dir . "/images/avatars/avatar-" . $result->avatarID . ".png";
+		return WCF_DIR . "/images/avatars/avatar-" . $result->avatarID . ".png";
 	}
 
 	public static function getSalt($nickname)
