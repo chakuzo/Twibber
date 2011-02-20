@@ -1,10 +1,10 @@
 <?php
 
-require_once('lib/class/Twibber.class.php');
+require_once('global.php');
 $nick = strip_tags($_COOKIE['twibber_nick']);
 $return = wcf::getLoginOK($nick, $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt']);
-$text = $_POST['text'];
-if ($_GET['new_entry'] == 1 && $return && !empty($nick)) {
+$text = (isset($_POST['text'])) ? $_POST['text'] : '';
+if (isset($_GET['new_entry']) && $_GET['new_entry'] == 1 && $return && !empty($nick)) {
 
 	if (trim($text) != "" && strlen($text) <= 250) {
 		if ($_GET['retwibb'])
@@ -23,24 +23,24 @@ if ($_GET['new_entry'] == 1 && $return && !empty($nick)) {
 	exit();
 }
 
-if ($_GET['new_entry'] == 1 && (empty($nick) xor !$return)) {
+if (isset($_GET['new_entry']) && $_GET['new_entry'] == 1 && (empty($nick) xor !$return)) {
 	exit($lang_no_nick);
 }
 header("Access-Control-Allow-Origin: *");
-if (trim($_GET['dyn_get']) == 1) {
+if (isset($_GET['dyn_get']) && trim($_GET['dyn_get']) == 1) {
 	$mult = (empty($_GET['page'])) ? 1 : intval($_GET['page']);
 	$latest = ($_GET['latest'] == 'true');
 	$Twibber->fetchTwibber($latest, true, '', 0, $mult * 20);
 }
-if (trim($_GET['nick']) != '') {
+if (isset($_GET['nick']) && trim($_GET['nick']) != '') {
 	$latest = ($_GET['latest'] == 'true') ? true : false;
 	$Twibber->fetchTwibber($latest, false, $_GET['nick']);
 }
-if (trim($_GET['search']) != '') {
+if (isset($_GET['search']) && trim($_GET['search']) != '') {
 	$Twibber->searchTwibber($_GET['search']);
 }
-if (trim($_GET['image']) != '') {
-	header("Content-type: image/png");
+if (isset($_GET['image']) && trim($_GET['image']) != '') {
+	header('Content-type: image/png');
 	$nick = ucwords(strip_tags($_GET['image']));
 	$return_array = $Twibber->fetchTwibber(true, false, $nick, 0, 30, true);
 	$img = @ImageCreateTrueColor(468, 60)
@@ -50,10 +50,10 @@ if (trim($_GET['image']) != '') {
 	//$im = imagecreatefrompng("images/button1.png");
 	$background_color = ImageColorAllocate($img, 0, 0, 0);
 	$text_color = ImageColorAllocate($img, 233, 14, 91);
-	ImageStringUp($img, 2, 0, 55, "Twibber", $text_color);
-	ImageStringUp($img, 2, 5, 55, "_________", $text_color);
+	ImageStringUp($img, 2, 0, 55, 'Twibber', $text_color);
+	ImageStringUp($img, 2, 5, 55, '_________', $text_color);
 	ImageString($img, 5, 82, 0, $nick . $lang_gd_last_twib, $text_color);
-	$font_file = "./lib/font/Comfortaa-Bold.ttf";
+	$font_file = './lib/font/Comfortaa-Bold.ttf';
 	ImageFTText($img, 10, 0, 90, 30, $text_color, $font_file, '" ' .
 			wordwrap(
 					//utf8_encode(

@@ -35,6 +35,8 @@ Milestone 0.7:
 <_MaX_>'source' => $node->getElementsByTagName('source')->item(0)->nodeValue
 
 Milestone 0.8:
+-ACP
+-rewrite install.php
 -real exception handling
 
 Milestone 0.9:
@@ -56,7 +58,7 @@ Milestone1.0 ME:
 -Use Twibber as Guestbook (LOL)
 
 Milestone 1.2:
--ACP
+
 
 Milestone2.0:
 -Archiv

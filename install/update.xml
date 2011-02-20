@@ -9,9 +9,9 @@
 -->
 
 <update>
-	<version>0.6pl1</version>
+	<version>0.6pl2</version>
 	<update_files>all</update_files>
-	<note>Fixed avatar bug (edit config.inc.php, please)</note>
+	<note>Fixed a few things</note>
 	<delete></delete>
 	<sqlstate></sqlstate>
 	<nightly>

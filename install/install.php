@@ -1,15 +1,15 @@
 <?php
 
-require_once('Twibber.class.php');
+require_once('../global.php');
 If (wcf_name_prefix == 'WCF1_') {
-	die("Konfigurieren Sie bitte Twibber.class.php !");
+	die('Konfigurieren Sie bitte Twibber.class.php !');
 } else {
 	if (!$mysqli->query(file_get_contents("sql.sql"))) {
-		die("Error: " . $mysqli->error . "\n");
+		die('Error: ' . $mysqli->error . '\n');
 	} else {
-		echo "Erfolgreich installiert!";
+		echo 'Erfolgreich installiert!';
+		unlink('sql.sql');
 		unlink(__FILE__);
-		unlink("sql.sql");
 	}
 }
 

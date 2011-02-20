@@ -1,23 +1,15 @@
 <?php
-require_once('../config.inc.php');
-require_once('../lib/lang/' . TWIBBER_LANG . '.lang.php');
-require_once('../lib/class/Twibber.class.php');
+require_once('../global.php');
 $return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt']);
 if (!$return)
 	header('Location: ../index.php');
 $return = wcf::getAdminOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt'], true);
 if (!$return)
 	header('Location: ../index.php');
-$version = '0.6pl1'; // do not remove. Important for Updates!
+$version = '0.6pl2'; // do not remove. Important for Updates!
 
-?><!doctype html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Update</title>
-    </head>
-    <body>
-		<div><?php
+include_once('../lib/tpl/header.tpl');
+
 if ($_GET['update'] == 'nightly') {
 	$zip = new ZipArchive();
 	$filename = 'nightly.zip';
@@ -29,7 +21,7 @@ if ($_GET['update'] == 'nightly') {
 		$extract = $zip->extractTo('../');
 		if ($extract == true) {
 			$zip->close();
-			rename('../config.inc.back.php', '../config.inc.back.php');
+			rename('../config.inc.back.php', '../config.inc.php');
 			$unlink = array('../.gitignore', '../README', 'sql.sql', 'install.php', 'update.xml', '../notes/install.txt', '../notes/version.txt');
 			array_map('unlink', $unlink);
 			rmdir('../notes');
@@ -41,7 +33,7 @@ if ($_GET['update'] == 'nightly') {
 		echo $lang_update_fail . '<br>';
 		echo $zip_ar;
 	}
-	unlink("nightly.zip");
+	unlink('nightly.zip');
 	exit();
 }
 $xml = simplexml_load_file('https://github.com/chakuzo/Twibber/raw/master/install/update.xml');
@@ -53,10 +45,10 @@ if ($xml->version != $version) {
 	if ($_GET['update'] == 'update') {
 		$content = file_get_contents('http://github.com/downloads/chakuzo/Twibber/ ' . str_replace(' ', '', $xml->version . '.zip'));
 
-		file_put_contents("update.zip", $content);
-		$zip_ar = $zip->open("update.zip");
+		file_put_contents('update.zip', $content);
+		$zip_ar = $zip->open('update.zip');
 		if ($zip_ar === TRUE) {
-			$zip->extractTo("../");
+			$zip->extractTo('../');
 			$zip->close();
 			//$delete = explode(", ",$xml->delete);
 			//array_map("unlink", $delete);
@@ -66,14 +58,13 @@ if ($xml->version != $version) {
 			echo '<br>Failed to update! Try Manuell to update? <a href="http://github.com/downloads/chakuzo/Twibber/ ' . str_replace(' ', '', $xml->version . '.zip') . '">Click</a><br>';
 			echo $zip_ar;
 		}
-		unlink("update.zip");
+		unlink('update.zip');
 	}
 } else {
-	echo $lang_no_update . "<br>";
+	echo $lang_no_update . '<br>';
 	echo "Du magst Updates? Versuch doch mal <a href='update.php?update=nightly'>Nightly Builds</a> <b>Achtung! Es könnte unstabil sein, und nicht alles funktionieren.</b>";
 }
 
+include_once('../lib/tpl/footer.tpl');
+
 ?>
-		</div>
-    </body>
-</html>

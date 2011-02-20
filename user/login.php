@@ -1,7 +1,7 @@
 <?php
 
-require_once('lib/class/Twibber.class.php');
-if ($_GET['mode'] == 'logout') {
+require_once('../global.php');
+if (isset($_GET['mode']) && $_GET['mode'] == 'logout') {
 	setcookie('twibber_nick', '', time() - 3600);
 	setcookie('twibber_pw', '', time() - 3600);
 	setcookie('twibber_salt', '', time() - 3600);

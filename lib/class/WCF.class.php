@@ -1,5 +1,11 @@
 <?php
 
+if (is_file('./config.inc.php') && is_file('./lib/lang/' . TWIBBER_LANG . '.lang.php')) {
+	require_once('./config.inc.php');
+	require_once('./lib/lang/' . TWIBBER_LANG . '.lang.php');
+}
+require_once('StringUtil.class.php');
+
 $mysqli2 = new mysqli(mysql_local_wcf, mysql_user_wcf, mysql_pw_wcf, mysql_db_wcf);
 if ($mysqli2->connect_error) {
 	die($mysql_wcf_connect_erorr . ' (' . $mysqli2->connect_errno . ') '
@@ -38,7 +44,7 @@ class wcf
 		$nickname = self::$mysqli2->real_escape_string($nickname);
 		$query = self::$mysqli2->query("SELECT avatarID FROM " . wcf_name_prefix . "user WHERE username = '" . $nickname . "'");
 		$result = $query->fetch_object();
-		return WCF_DIR . "/images/avatars/avatar-" . $result->avatarID . ".png";
+		return WCF_DIR . '/images/avatars/avatar-' . $result->avatarID . '.png';
 	}
 
 	public static function getSalt($nickname)
@@ -58,7 +64,8 @@ class wcf
 		$pw = self::$mysqli2->real_escape_string($pw);
 		$salt = strip_tags($salt);
 		$salt = self::$mysqli2->real_escape_string($salt);
-		define('ENCRYPTION_ENCRYPT_BEFORE_SALTING', false);
+		if (!defined('ENCRYPTION_ENCRYPT_BEFORE_SALTING'))
+			define('ENCRYPTION_ENCRYPT_BEFORE_SALTING', false);
 		$query = self::$mysqli2->query("SELECT password FROM " . wcf_name_prefix . "user WHERE username = '" . $nickname . "' AND salt = '" . $salt . "' AND password = '" . StringUtil::getDoubleSaltedHash($pw, $salt) . "'");
 		$result = $query->fetch_object();
 		if (!$result)
@@ -74,7 +81,8 @@ class wcf
 		$pw = self::$mysqli2->real_escape_string($pw);
 		$salt = strip_tags($salt);
 		$salt = self::$mysqli2->real_escape_string($salt);
-		define('ENCRYPTION_ENCRYPT_BEFORE_SALTING', false);
+		if (!defined('ENCRYPTION_ENCRYPT_BEFORE_SALTING'))
+			define('ENCRYPTION_ENCRYPT_BEFORE_SALTING', false);
 		$query = self::$mysqli2->query("SELECT userID FROM " . wcf_name_prefix . "user WHERE username = '" . $nickname . "' AND salt = '" . $salt . "' AND password = '" . StringUtil::getDoubleSaltedHash($pw, $salt) . "'");
 		$result = $query->fetch_object();
 		$query = self::$mysqli2->query("SELECT groupID FROM " . wcf_name_prefix . "user_to_groups WHERE userID = " . $result->userID);

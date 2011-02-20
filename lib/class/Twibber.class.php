@@ -2,7 +2,6 @@
 
 require_once('./config.inc.php');
 require_once('./lib/lang/' . TWIBBER_LANG . '.lang.php');
-require_once('StringUtil.class.php');
 require_once('WCF.class.php');
 require_once('PrettyDate.class.php');
 
@@ -78,7 +77,7 @@ class Twibber
 	{
 		$message = $this->mysqli->real_escape_string($message);
 		$usernick = $this->mysqli->real_escape_string($usernick);
-		$mysqli->query("INSERT INTO twibber_entry(nickname,text,date) VALUES('" . $usernick . "','" . $message . "','" . date("d.m.Y H:i:s") . "')");
+		$this->mysqli->query("INSERT INTO twibber_entry(nickname,text,date) VALUES('" . $usernick . "','" . $message . "','" . date("d.m.Y H:i:s") . "')");
 	}
 
 	function createTwibbComment($message, $usernick, $to_id)
