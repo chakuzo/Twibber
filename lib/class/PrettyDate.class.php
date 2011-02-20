@@ -22,7 +22,7 @@ class Date_Difference
 
 	public static function getString(DateTime $date, DateTime $compareTo = NULL)
 	{
-		global $lang_date_just_now, $lang_date_yesterday, $lang_date_one_minute_ago, $lang_date_one_houre_ago, $lang_date_one_day_ago, $lang_date_one_week_ago, $lang_date_one_month_ago, $lang_date_one_year_ago, $lang_date_minutes_ago, $lang_date_hours_ago, $lang_date_days_ago, $lang_date_weeks_ago, $lang_date_years_ago; # IMBA! xD
+		global $lang_date_just_now, $lang_date_yesterday, $lang_date_one_minute_ago, $lang_date_one_houre_ago, $lang_date_one_day_ago, $lang_date_one_week_ago, $lang_date_one_month_ago, $lang_date_one_year_ago, $lang_date_minutes_ago, $lang_date_hours_ago, $lang_date_days_ago, $lang_date_weeks_ago, $lang_date_years_ago, $lang_date_months_ago; # IMBA! xD
 
 		if (is_null($compareTo)) {
 			$compareTo = new DateTime('now');
@@ -62,7 +62,7 @@ class Date_Difference
 		} elseif ($dayDiff < 365) {
 			$months = ceil($dayDiff / (365 / 12));
 			$text = $lang_date_one_month_ago;
-			if ($years != 1)
+			if ($months != 1)
 				$text = $lang_date_months_ago;
 			return sprintf($text, ceil($dayDiff / (365 / 12)));
 		} else {

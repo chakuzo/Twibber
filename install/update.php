@@ -10,7 +10,7 @@ $version = '0.6pl2'; // do not remove. Important for Updates!
 
 include_once('../lib/tpl/header.tpl');
 
-if ($_GET['update'] == 'nightly') {
+if (isset($_GET['update']) && $_GET['update'] == 'nightly') {
 	$zip = new ZipArchive();
 	$filename = 'nightly.zip';
 	$contents = file_get_contents('http://github.com/chakuzo/Twibber/zipball/master');

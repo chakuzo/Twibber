@@ -1,10 +1,7 @@
 <?php
 
-if (is_file('./config.inc.php') && is_file('./lib/lang/' . TWIBBER_LANG . '.lang.php')) {
-	require_once('./config.inc.php');
-	require_once('./lib/lang/' . TWIBBER_LANG . '.lang.php');
-}
-require_once('StringUtil.class.php');
+if (is_file('../global.php'))
+	require_once('../global.php');
 
 $mysqli2 = new mysqli(mysql_local_wcf, mysql_user_wcf, mysql_pw_wcf, mysql_db_wcf);
 if ($mysqli2->connect_error) {

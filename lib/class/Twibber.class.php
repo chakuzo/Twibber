@@ -1,9 +1,7 @@
 <?php
 
-require_once('./config.inc.php');
-require_once('./lib/lang/' . TWIBBER_LANG . '.lang.php');
-require_once('WCF.class.php');
-require_once('PrettyDate.class.php');
+if (is_file('../global.php'))
+	require_once('../global.php');
 
 $use_difficult_method = false;
 if (!date_default_timezone_set($lang_timezone)) {

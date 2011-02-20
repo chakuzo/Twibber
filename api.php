@@ -7,9 +7,9 @@ $text = (isset($_POST['text'])) ? $_POST['text'] : '';
 if (isset($_GET['new_entry']) && $_GET['new_entry'] == 1 && $return && !empty($nick)) {
 
 	if (trim($text) != "" && strlen($text) <= 250) {
-		if ($_GET['retwibb'])
+		if (isset($_GET['retwibb']) && $_GET['retwibb'])
 			exit();
-		if ($_GET['comment'] == 1) {
+		if (isset($_GET['comment']) && $_GET['comment'] == 1) {
 			$Twibber->createTwibbComment(htmlspecialchars($text), htmlspecialchars($nick), htmlspecialchars($_POST['to_id']));
 			exit($lang_success);
 		}
