@@ -34,6 +34,9 @@ Milestone 0.7:
 <_MaX_>'avatar' => $node->getElementsByTagName('profile_image_url')->item(0)->nodeValue,
 <_MaX_>'source' => $node->getElementsByTagName('source')->item(0)->nodeValue
 
+Milestone 0.8:
+-real exception handling
+
 Milestone 0.9:
 -valid pages complete !!
 
