@@ -1,8 +1,10 @@
 <?php
 
 require_once('global.php');
-$nick = strip_tags($_COOKIE['twibber_nick']);
-$return = wcf::getLoginOK($nick, $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt']);
+$nick = (isset($_COOKIE['twibber_nick'])) ? strip_tags($_COOKIE['twibber_nick']) : '';
+$pw = (isset($_COOKIE['twibber_pw'])) ? $_COOKIE['twibber_pw'] : '';
+$salt = (isset($_COOKIE['twibber_salt'])) ? $_COOKIE['twibber_salt'] : '';
+$return = wcf::getLoginOK($nick, $pw, $salt);
 $text = (isset($_POST['text'])) ? $_POST['text'] : '';
 if (isset($_GET['new_entry']) && $_GET['new_entry'] == 1 && $return && !empty($nick)) {
 

@@ -29,4 +29,6 @@ define('WCF_DIR', 'http://example.com/wcf'); // The complete URL for the wcf dir
  * examples provided in most cases already
  */
 
+# MAKE SURE THAT THERE IS NO LINE BREAK AT END OF FILE!!!
+
 ?>
