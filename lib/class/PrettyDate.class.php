@@ -8,7 +8,7 @@
 
 // Ported to PHP >= 5.1 by Zach Leatherman (zachleat.com)
 // Slight modification denoted below to handle months and years.
-// Modified by @Kurtextrem.
+// Language add by Kurtextrem.
 class Date_Difference
 {
 

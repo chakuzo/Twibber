@@ -1,11 +1,17 @@
 <?php
 
+// include all class
 require_once('global.php');
+
+// To avoid warnings
 $nick = (isset($_COOKIE['twibber_nick'])) ? strip_tags($_COOKIE['twibber_nick']) : '';
 $pw = (isset($_COOKIE['twibber_pw'])) ? $_COOKIE['twibber_pw'] : '';
 $salt = (isset($_COOKIE['twibber_salt'])) ? $_COOKIE['twibber_salt'] : '';
-$return = wcf::getLoginOK($nick, $pw, $salt);
 $text = (isset($_POST['text'])) ? $_POST['text'] : '';
+
+// Check if user is logged in
+$return = WCF::getLoginOK($nick, $pw, $salt);
+
 if (isset($_GET['new_entry']) && $_GET['new_entry'] == 1 && $return && !empty($nick)) {
 
 	if (trim($text) != "" && strlen($text) <= 250) {
@@ -28,6 +34,8 @@ if (isset($_GET['new_entry']) && $_GET['new_entry'] == 1 && $return && !empty($n
 if (isset($_GET['new_entry']) && $_GET['new_entry'] == 1 && (empty($nick) xor !$return)) {
 	exit($lang_no_nick);
 }
+
+//anywhen important for JSONP or something else
 header("Access-Control-Allow-Origin: *");
 if (isset($_GET['dyn_get']) && trim($_GET['dyn_get']) == 1) {
 	$mult = (empty($_GET['page'])) ? 1 : intval($_GET['page']);
@@ -64,7 +72,7 @@ if (isset($_GET['image']) && trim($_GET['image']) != '') {
 					) //)
 					, 39, "\n", true) . ' "'
 	);
-	$avatar_nick = wcf::getAvatar(strip_tags($_GET['image']));
+	$avatar_nick = WCF::getAvatar(strip_tags($_GET['image']));
 	//$avatar_nick = "http://www.wbblite2.de/wcf/images/avatars/avatar-328.png";
 	$image_data = getimagesize($avatar_nick);
 	if ($image_data['mime'] == 'image/png') { // ty _MaX_

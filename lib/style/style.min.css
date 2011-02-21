@@ -200,10 +200,13 @@ button[type=button]{
 	text-shadow: black 1px 1px 1px;
 }
 
-.comment > twibb_content{
-	text-align: left;
+.comment.avater{
+	height: 50px;
 }
 
+.comment time{
+	left: 38.1%;
+}
 
 @media screen and (max-width: 1170px) {
     #post_it {

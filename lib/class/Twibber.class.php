@@ -24,12 +24,17 @@ if ($mysqli->connect_error) {
 /**
  * Classes for Twibber
  *
- * @author Kurt
- * @TODO All fetch_assoc to fetch_object.
+ * @author kurtextrem
+ * @todo All fetch_assoc to fetch_object.
+ * @license	GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
+ *
  */
 class Twibber
 {
 
+	/**
+	 * @var MySQLI
+	 */
 	private $mysqli;
 	private $lang_comment;
 
@@ -120,7 +125,7 @@ class Twibber
 	{
 		if (!$comment) {
 			echo "<div class='twibb' id='" . $id . "'>";
-			echo "<div class='avatar'><a href='#nick=" . $nickname . "'><img src='" . wcf::getAvatar($nickname) . "'></a></div>";
+			echo "<div class='avatar'><a href='#nick=" . $nickname . "'><img src='" . WCF::getAvatar($nickname) . "'></a></div>";
 			echo "<div class='" . $nickname . " nickname' onclick='insert_nick(\"" . $nickname . "\");'>" . $nickname . "</div>";
 			echo "<div class='twibb_content'>" . $text . "</div>";
 			echo "<div class='comment_banner'><a href='#' class='comment_link'>" . $this->lang_comment . "</a></div>";
@@ -128,6 +133,7 @@ class Twibber
 			echo "</div>";
 		} else {
 			echo "<div class='comment' to_id='" . $to_id . "'>";
+			echo "<div class='avatar'><a href='#nick=" . $nickname . "'><img src='" . WCF::getAvatar($nickname) . "'></a></div>";
 			echo "<div class='twibb_content'><a href='#nick=" . $nickname . "'><strong>" . $nickname . ":</strong></a> " . $text . "</div>";
 			echo "<time title='" . $date . "'>" . Date_Difference::getStringResolved($date) . "</time>";
 			echo "</div>";

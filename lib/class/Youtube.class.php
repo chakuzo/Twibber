@@ -1,68 +1,91 @@
 <?php
 
-/*
- * @AUTHOR Kurtextrem
- * @Contact kurtextrem@gmail.com
- * function: getTitle($id)
- * returns: The title of the video.
- * example: http://m.youtube.com/watch?v=dsBbdKmjquM
- * example for return: Phineas und Ferb - Gitchi Gitchi Goo [HQ] (German)
- * function: getLength($id)
- * returns: The length of the video.
- * function: getRate($id, $image)
- * returns: the rate image if image = true, if its false, it returns the number.
- * example for return: 5.0 stars
- * function: getAll() Most effizient!
- * returns: Array. Array['title'], Array['length'], Array['rate'], Array['rateIMG'], Array['thub'].
+/**
+ * A tiny class for youtube functions.
+ * @author Kurtextrem
+ * @version 1.0
  */
-
-class youtube
+class Youtube
 {
 
+	/**
+	 * @var boolean
+	 */
+	private $JSON;
+
+	/**
+	 * JSON output?
+	 * @param boolean $json_enabled
+	 * @return -
+	 */
+	function __construct($json_enabled = null)
+	{
+		$this->JSON = $json_enabled;
+	}
+
+	/**
+	 * Returns the title
+	 * @param string $id
+	 * @return mixed
+	 */
 	function getTitle($id)
 	{
-		$contents = file_get_contents("http://m.youtube.com/watch?v=" . $id);
-		$titel = preg_match("/<title>YouTube - (.*)<\/title>/", $contents, $matches);
-		return $matches[1];
+		$contents = file_get_contents('http://m.youtube.com/watch?v=' . $id);
+		$titel = preg_match('~<title>YouTube - (.*)</title>~', $contents, $matches);
+		return ($this->JSON != 1) ? $matches[1] : json_encode($matches[1]);
 	}
 
+	/**
+	 * Returns the length of the video
+	 * @param string $id
+	 * @return mixed
+	 */
 	function getLength($id)
 	{
-		$contents = file_get_contents("http://m.youtube.com/watch?v=" . $id);
-		$length = preg_match("/<div>([0-9:]*)&nbsp;/", $contents, $matches);
-		return $matches[1];
+		$contents = file_get_contents('http://m.youtube.com/watch?v=' . $id);
+		$length = preg_match('/<div>([0-9:]*)&nbsp;/', $contents, $matches);
+		return ($this->JSON != 1) ? $matches[1] : json_encode($matches[1]);
 	}
 
-	function getRate($id, $image = true)
+	/**
+	 * Returns the rate
+	 * @param string $id
+	 * @param bool $image
+	 * @return mixed
+	 */
+	function getRate($id, $image = null)
 	{
-		$contents = file_get_contents("http://m.youtube.com/watch?v=" . $id);
-		if ($image) {
-			$rate = preg_match('/<img src="(.*)" alt=".+ stars"/', $contents, $matches);
-			return $matches[1];
-		} else {
-			$rate = preg_match('/<img src=".*" alt="(.+ stars)"/', $contents, $matches);
-			return $matches[1];
-		}
+		$contents = file_get_contents('http://m.youtube.com/watch?v=' . $id);
+		preg_match('/<img src="(.*)" alt="(.+ stars)"/', $contents, $matches);
+		if ($image == true)
+			return ($this->JSON != 1) ? $matches[1] : json_encode($matches[2]);
+		return ($this->JSON != 1) ? $matches[1] : json_encode($matches[1]);
 	}
 
-	function getAll()
+	/**
+	 * A fusion of all functions
+	 * @param string $id
+	 * @return mixed
+	 */
+	function getAll($id)
 	{
 		$return = Array();
-		$contents = file_get_contents("http://m.youtube.com/watch?v=" . $id);
-		preg_match("/<title>YouTube - (.*)<\/title>/", $contents, $matches);
-		$return['titel'] = $matches[1];
+		$contents = file_get_contents('http://m.youtube.com/watch?v=' . $id);
+		preg_match('~<title>YouTube - (.*)</title>~', $contents, $matches);
+		$return['title'] = $matches[1];
 		preg_match("/<div>([0-9:]*)&nbsp;/", $contents, $matches);
 		$return['length'] = $matches[1];
-		preg_match('/<img src="(.*)" alt=".+ stars"/', $contents, $matches);
+		preg_match('/<img src="(.*)" alt="(.+ stars)"/', $contents, $matches);
 		$return['rateIMG'] = $matches[1];
-		preg_match('/<img src=".*" alt="(.+ stars)"/', $contents, $matches);
-		$return['rate'] = $matches[1];
+		$return['rate'] = $matches[2];
 		preg_match('/<img src="(.*)" alt="Video"/', $contents, $matches);
 		$return['thub'] = $matches[1];
+		return ($this->JSON != 1) ? $matches[1] : json_encode($matches[1]);
 	}
 
 }
 
-$youtube = new youtube();
+//$Youtube = new Youtube();
+//echo $Youtube->getTitle('YoWOqB2q3BQ');
 
 ?>

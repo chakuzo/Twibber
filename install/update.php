@@ -1,9 +1,10 @@
 <?php
+
 require_once('../global.php');
-$return = wcf::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt']);
+$return = WCF::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt']);
 if (!$return)
 	header('Location: ../index.php');
-$return = wcf::getAdminOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt'], true);
+$return = WCF::getAdminOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt'], true);
 if (!$return)
 	header('Location: ../index.php');
 $version = '0.6pl2'; // do not remove. Important for Updates!
@@ -22,7 +23,7 @@ if (isset($_GET['update']) && $_GET['update'] == 'nightly') {
 		if ($extract == true) {
 			$zip->close();
 			rename('../config.inc.back.php', '../config.inc.php');
-			$unlink = array('../.gitignore', '../README', 'sql.sql', 'install.php', 'update.xml', '../notes/install.txt', '../notes/version.txt');
+			$unlink = array('../.gitignore', '../README.txt', 'sql.sql', 'install.php', 'update.xml', '../notes/install.txt');
 			array_map('unlink', $unlink);
 			rmdir('../notes');
 			echo $lang_nightly_ok . '<br>';

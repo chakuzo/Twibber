@@ -1,15 +1,24 @@
 <?php
 
+// workarround for "@"
 if (is_file('../global.php'))
 	require_once('../global.php');
 
+// connect
 $mysqli2 = new mysqli(mysql_local_wcf, mysql_user_wcf, mysql_pw_wcf, mysql_db_wcf);
 if ($mysqli2->connect_error) {
 	die($mysql_wcf_connect_erorr . ' (' . $mysqli2->connect_errno . ') '
 			. $mysqli2->connect_error);
 }
 
-class wcf
+/**
+ * Important functions for twibber
+ *
+ * @author kurtextrem
+ * @license	GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
+ *
+ */
+class WCF
 {
 
 	private static $mysqli2;
@@ -101,6 +110,6 @@ class wcf
 
 }
 
-$wcf = new wcf($mysqli2);
+$wcf = new WCF($mysqli2);
 
 ?>
