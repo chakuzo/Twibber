@@ -3,24 +3,6 @@
 if (is_file('../global.php'))
 	require_once('../global.php');
 
-$use_difficult_method = false;
-if (!date_default_timezone_set($lang_timezone)) {
-	$use_difficult_method = true;
-}
-
-if (wcf_name_prefix == 'WCF1_') {
-	die($prefix_error);
-}
-if (wcf_update_groupid == '') {
-	die($group_id_error);
-}
-
-$mysqli = new mysqli(mysql_local, mysql_user, mysql_pw, mysql_db);
-if ($mysqli->connect_error) {
-	die($mysql_connect_error . ' (' . $mysqli->connect_errno . ') '
-			. $mysqli->connect_error);
-}
-
 /**
  * Classes for Twibber
  *
@@ -32,16 +14,18 @@ if ($mysqli->connect_error) {
 class Twibber
 {
 
-	/**
-	 * @var MySQLI
-	 */
-	private $mysqli;
-	private $lang_comment;
 
-	function __construct($mysqli, $lang_comment)
+	private $mysqli;
+	/**
+	 * Language array
+	 * @var Array
+	 */
+	private $lang;
+
+	function __construct($mysqli, Array $lang)
 	{
 		$this->mysqli = $mysqli;
-		$this->lang_comment = $lang_comment;
+		$this->lang = $lang;
 	}
 
 	function fetchTwibber($latest = true, $global = false, $nick = '', $start = 0, $end = 30, $signature = false)
@@ -141,7 +125,5 @@ class Twibber
 	}
 
 }
-
-$Twibber = new Twibber($mysqli, $lang_comment);
 
 ?>

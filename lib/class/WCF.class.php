@@ -4,13 +4,6 @@
 if (is_file('../global.php'))
 	require_once('../global.php');
 
-// connect
-$mysqli2 = new mysqli(mysql_local_wcf, mysql_user_wcf, mysql_pw_wcf, mysql_db_wcf);
-if ($mysqli2->connect_error) {
-	die($mysql_wcf_connect_erorr . ' (' . $mysqli2->connect_errno . ') '
-			. $mysqli2->connect_error);
-}
-
 /**
  * Important functions for twibber
  *
@@ -109,7 +102,5 @@ class WCF
 	}
 
 }
-
-$wcf = new WCF($mysqli2);
 
 ?>

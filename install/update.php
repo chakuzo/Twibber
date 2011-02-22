@@ -7,7 +7,6 @@ if (!$return)
 $return = WCF::getAdminOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt'], true);
 if (!$return)
 	header('Location: ../index.php');
-$version = '0.6pl2'; // do not remove. Important for Updates!
 
 include_once('../lib/tpl/header.tpl');
 
