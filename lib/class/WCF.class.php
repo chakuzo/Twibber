@@ -16,7 +16,7 @@ class WCF
 
 	private static $mysqli2;
 
-	function __construct($mysqli2)
+	public function __construct($mysqli2)
 	{
 		self::$mysqli2 = $mysqli2;
 	}
