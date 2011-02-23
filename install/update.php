@@ -2,11 +2,15 @@
 
 require_once('../global.php');
 $return = WCF::getLoginOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt']);
-if (!$return)
+if (!$return) {
 	header('Location: ../index.php');
+	exit;
+}
 $return = WCF::getAdminOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt'], true);
-if (!$return)
+if (!$return) {
 	header('Location: ../index.php');
+	exit;
+}
 
 include_once('../lib/tpl/header.tpl');
 
@@ -24,7 +28,7 @@ if (isset($_GET['update']) && $_GET['update'] == 'nightly') {
 			rename('../config.inc.back.php', '../config.inc.php');
 			$unlink = array('../.gitignore', '../README.txt', 'sql.sql', 'install.php', 'update.xml', '../notes/install.txt');
 			array_map('unlink', $unlink);
-			rmdir('../notes');
+			@rmdir('../notes');
 			echo $lang_nightly_ok . '<br>';
 		} else {
 			echo $lang_update_fail . '<br>';
@@ -33,7 +37,7 @@ if (isset($_GET['update']) && $_GET['update'] == 'nightly') {
 		echo $lang_update_fail . '<br>';
 		echo $zip_ar;
 	}
-	unlink('nightly.zip');
+	@unlink('nightly.zip');
 	exit();
 }
 $xml = simplexml_load_file('https://github.com/chakuzo/Twibber/raw/master/install/update.xml');
@@ -58,11 +62,11 @@ if ($xml->version != $version) {
 			echo '<br>Failed to update! Try Manuell to update? <a href="http://github.com/downloads/chakuzo/Twibber/ ' . str_replace(' ', '', $xml->version . '.zip') . '">Click</a><br>';
 			echo $zip_ar;
 		}
-		unlink('update.zip');
+		@unlink('update.zip');
 	}
 } else {
 	echo $lang_no_update . '<br>';
-	echo "Du magst Updates? Versuch doch mal <a href='update.php?update=nightly'>Nightly Builds</a> <b>Achtung! Es könnte unstabil sein, und nicht alles funktionieren.</b>";
+	echo "Du magst Updates? Versuch doch mal <a href='update.php?update=nightly'>Nightly Builds</a> <b>Achtung! Es könnte instabil sein, und nicht alles funktionieren.</b>";
 }
 
 include_once('../lib/tpl/footer.tpl');
