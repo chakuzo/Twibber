@@ -1,7 +1,7 @@
 <?php
 
 // Reports everything on world + catches exceptions
-error_reporting(-1);
+error_reporting(E_ALL | E_STRICT | E_NOTICE | E_WARNING);
 set_exception_handler('exception_handler');
 
 // Base
@@ -29,13 +29,13 @@ if (wcf_update_groupid == '') {
 // MySQL(i) init
 $mysqli = new mysqli(mysql_local, mysql_user, mysql_pw, mysql_db);
 if ($mysqli->connect_error) {
-	Throw new Exception($lang['mysql_connect_error'] . ' (' . $mysqli->connect_errno . ') '
+	throw new Exception($lang['mysql_connect_error'] . ' (' . $mysqli->connect_errno . ') '
 			. $mysqli->connect_error);
 }
 
 $mysqli2 = new mysqli(mysql_local_wcf, mysql_user_wcf, mysql_pw_wcf, mysql_db_wcf);
 if ($mysqli2->connect_error) {
-	Throw new Exception($lang['mysql_wcf_connect_erorr'] . ' (' . $mysqli2->connect_errno . ') '
+	throw new Exception($lang['mysql_wcf_connect_erorr'] . ' (' . $mysqli2->connect_errno . ') '
 			. $mysqli2->connect_error);
 }
 
