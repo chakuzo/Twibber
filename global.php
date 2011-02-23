@@ -27,7 +27,7 @@ if (wcf_update_groupid == '') {
 }
 
 // MySQL(i) init
-$mysqli = new mysqli(mysql_local, mysql_user, mysql_pw, mysql_db);
+$mysqli = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PW, MYSQL_DB);
 if ($mysqli->connect_error) {
 	throw new Exception($lang['mysql_connect_error'] . ' (' . $mysqli->connect_errno . ') '
 			. $mysqli->connect_error);

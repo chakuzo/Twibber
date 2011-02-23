@@ -3,10 +3,10 @@
 /**
  * Fill out the Data to the connection.
  */
-define('mysql_user', ''); // The User for the Database
-define('mysql_pw', 'password'); // The Password for the User
-define('mysql_db', 'database'); // The Database Name
-define('mysql_local', 'localhost'); // I think you shouldnt change this..
+define('MYSQL_USER', ''); // The User for the Database
+define('MYSQL_PW', 'password'); // The Password for the User
+define('MYSQL_DB', 'database'); // The Database Name
+define('MYSQL_HOST', 'localhost');
 define('wcf_name_prefix', 'WCF1_'); // The prefix which is used for the wcf !!!
 // Provide it with syntax 'wcfX_', X as a number !!!
 define('TWIBBER_LANG', 'de'); // If youre from UK / USA change 'de' to 'en'.
