@@ -22,13 +22,13 @@ class Twibber
 	 */
 	private $lang;
 
-	function __construct($mysqli, Array $lang)
+	public function __construct($mysqli, Array $lang)
 	{
 		$this->mysqli = $mysqli;
 		$this->lang = $lang;
 	}
 
-	function fetchTwibber($latest = true, $global = false, $nick = '', $start = 0, $end = 30, $signature = false)
+	public function fetchTwibber($latest = true, $global = false, $nick = '', $start = 0, $end = 30, $signature = false)
 	{
 		if ($global && !$signature) {
 			$query = $this->mysqli->query("SELECT * FROM twibber_entry ORDER BY id DESC LIMIT " . $start . " , " . $end);
@@ -60,14 +60,14 @@ class Twibber
 		}
 	}
 
-	function createTwibber($message, $usernick)
+	public function createTwibber($message, $usernick)
 	{
 		$message = $this->mysqli->real_escape_string($message);
 		$usernick = $this->mysqli->real_escape_string($usernick);
 		$this->mysqli->query("INSERT INTO twibber_entry(nickname,text,date) VALUES('" . $usernick . "','" . $message . "','" . date("d.m.Y H:i:s") . "')");
 	}
 
-	function createTwibbComment($message, $usernick, $to_id)
+	public function createTwibbComment($message, $usernick, $to_id)
 	{
 		$message = $this->mysqli->real_escape_string($message);
 		$usernick = $this->mysqli->real_escape_string($usernick);
@@ -75,7 +75,7 @@ class Twibber
 		$this->mysqli->query("INSERT INTO twibber_entry(nickname,text,date, to_id) VALUES('" . $usernick . "','" . $message . "','" . date("d.m.Y H:i:s") . "', '" . $id . "')");
 	}
 
-	function searchTwibber($needle, $start = 0, $end = 30)
+	public function searchTwibber($needle, $start = 0, $end = 30)
 	{
 		$needle = $this->mysqli->real_escape_string($needle);
 		$needle = strip_tags($needle);
@@ -86,7 +86,7 @@ class Twibber
 		}
 	}
 
-	function getStats($nickname)
+	public function getStats($nickname)
 	{
 		$nick = $this->mysqli->real_escape_string($nickname);
 		$nick = strip_tags($nickname);
@@ -95,7 +95,7 @@ class Twibber
 		return $row_cnt;
 	}
 
-	function twibberfy_text($text)
+	public function twibberfy_text($text)
 	{
 		$text = str_replace("\\", "", $text);
 		$text = preg_replace('/@([A-Za-z0-9_-]+)/', '@<a href="#nick=$1">$1</a>', $text);
@@ -105,7 +105,7 @@ class Twibber
 		return $text;
 	}
 
-	function twibberfy_output($text, $nickname, $date, $comment = false, $id, $to_id = 0)
+	public function twibberfy_output($text, $nickname, $date, $comment = false, $id, $to_id = 0)
 	{
 		if (!$comment) {
 			echo "<div class='twibb' id='" . $id . "'>";
