@@ -18,7 +18,7 @@ class Youtube
 	 * @param boolean $json_enabled
 	 * @return -
 	 */
-	function __construct($json_enabled = null)
+	public function __construct($json_enabled = null)
 	{
 		$this->JSON = $json_enabled;
 	}
@@ -28,7 +28,7 @@ class Youtube
 	 * @param string $id
 	 * @return mixed
 	 */
-	function getTitle($id)
+	public function getTitle($id)
 	{
 		$contents = file_get_contents('http://m.youtube.com/watch?v=' . $id);
 		$titel = preg_match('~<title>YouTube - (.*)</title>~', $contents, $matches);
@@ -40,7 +40,7 @@ class Youtube
 	 * @param string $id
 	 * @return mixed
 	 */
-	function getLength($id)
+	public function getLength($id)
 	{
 		$contents = file_get_contents('http://m.youtube.com/watch?v=' . $id);
 		$length = preg_match('/<div>([0-9:]*)&nbsp;/', $contents, $matches);
@@ -53,7 +53,7 @@ class Youtube
 	 * @param bool $image
 	 * @return mixed
 	 */
-	function getRate($id, $image = null)
+	public function getRate($id, $image = null)
 	{
 		$contents = file_get_contents('http://m.youtube.com/watch?v=' . $id);
 		preg_match('/<img src="(.*)" alt="(.+ stars)"/', $contents, $matches);
@@ -67,7 +67,7 @@ class Youtube
 	 * @param string $id
 	 * @return mixed
 	 */
-	function getAll($id)
+	public function getAll($id)
 	{
 		$return = Array();
 		$contents = file_get_contents('http://m.youtube.com/watch?v=' . $id);
