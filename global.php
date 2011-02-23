@@ -2,7 +2,12 @@
 
 // Reports everything on world + catches exceptions
 error_reporting(E_ALL | E_STRICT | E_NOTICE | E_WARNING);
-set_exception_handler('exception_handler');
+set_exception_handler(
+		array(
+			'exceptions',
+			'exceptions_handler'
+		)
+);
 
 // Base
 require_once('config.inc.php');
@@ -15,7 +20,6 @@ require_once('lib/class/WCF.class.php');
 require_once('lib/class/Twibber.class.php');
 require_once('lib/class/Update.class.php');
 //require_once('lib/class/Youtube.class.php');
-
 // Sets default timezone
 date_default_timezone_set($lang_timezone);
 

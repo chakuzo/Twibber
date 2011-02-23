@@ -14,7 +14,6 @@ if (is_file('../global.php'))
 class Twibber
 {
 
-
 	private $mysqli;
 	/**
 	 * Language array
