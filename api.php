@@ -43,7 +43,7 @@ if (isset($_GET['dyn_get']) && trim($_GET['dyn_get']) == 1) {
 	$Twibber->fetchTwibber($latest, true, '', 0, $mult * 20);
 }
 if (isset($_GET['nick']) && trim($_GET['nick']) != '') {
-	$latest = ($_GET['latest'] == 'true') ? true : false;
+	$latest = ($_GET['latest'] == 'true');
 	$Twibber->fetchTwibber($latest, false, $_GET['nick']);
 }
 if (isset($_GET['search']) && trim($_GET['search']) != '') {
