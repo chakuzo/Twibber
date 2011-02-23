@@ -1,5 +1,5 @@
 <div id="status"></div>
-<div id="logo"><a href="#page=index"><img src="images/img/logo.png"></a></div>
+<div id="logo"><a href="#page=index"><img src="<?php echo TWIBBER_DIR ?>/images/img/logo.png"></a></div>
 <section id="post_it">
 	<h3><?php echo (!empty($_COOKIE['twibber_nick'])) ? $_COOKIE['twibber_nick'] : $lang['guest']; ?>, was machst du grade?</h3>
 	<h3 id='in_comment_to'></h3>
