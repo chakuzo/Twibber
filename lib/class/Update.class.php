@@ -23,7 +23,7 @@ class Update
 	 * Sets $this->lang to $lang array.
 	 * @param array $lang
 	 */
-	function __construct(array $lang)
+	public function __construct(array $lang)
 	{
 		$this->lang = $lang;
 	}
@@ -31,7 +31,7 @@ class Update
 	/**
 	 * Updates to nightly version.
 	 */
-	function updateNightly()
+	public function updateNightly()
 	{
 		$zip = new ZipArchive();
 		$filename = 'nightly.zip';
@@ -75,7 +75,7 @@ class Update
 	 * @param object $xml
 	 * @param mixed $version
 	 */
-	function updateMain($xml, $version = null)
+	public function updateMain($xml, $version = null)
 	{
 		$content = file_get_contents('http://github.com/downloads/chakuzo/Twibber/ ' . str_replace(' ', '', $xml->version . '.zip'));
 		file_put_contents('update.zip', $content);
@@ -100,7 +100,7 @@ class Update
 	 * @param boolean $only_return
 	 * @return mixed
 	 */
-	function checkUpdate($handle = false, $only_return = false)
+	public function checkUpdate($handle = false, $only_return = false)
 	{
 		$xml = simplexml_load_file('https://github.com/chakuzo/Twibber/raw/master/install/update.xml');
 		if ($xml->version != $this->version) {
@@ -123,7 +123,7 @@ class Update
 	 * @param boolean $dir
 	 * @return mixed
 	 */
-	function unlink(array $unlink, $dir = false)
+	public function unlink(array $unlink, $dir = false)
 	{
 		foreach ($unlink as $index => $file) {
 			if (file_exists($file)) {

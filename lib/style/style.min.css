@@ -1,3 +1,8 @@
+<?php
+include_once('../config.inc.php');
+if (Gzip_enabled)
+	ob_start("ob_gzhandler");
+?>
 body {
     background-color: #404040;
     background-image: url("../../images/backgrounds/top.png");

@@ -1,13 +1,17 @@
 <?php
 
 // Reports everything on world + catches exceptions
-error_reporting(E_ALL | E_STRICT | E_NOTICE | E_WARNING);
+error_reporting(E_ALL | E_STRICT | E_NOTICE | E_WARNING);
 set_exception_handler(
 		array(
 			'exceptions',
 			'exceptions_handler'
 		)
 );
+
+// GZip compression
+if (Gzip_enabled)
+	ob_start("ob_gzhandler");
 
 // Base
 require_once('config.inc.php');
@@ -20,6 +24,7 @@ require_once('lib/class/WCF.class.php');
 require_once('lib/class/Twibber.class.php');
 require_once('lib/class/Update.class.php');
 //require_once('lib/class/Youtube.class.php');
+
 // Sets default timezone
 date_default_timezone_set($lang_timezone);
 
@@ -37,7 +42,7 @@ if ($mysqli->connect_error) {
 			. $mysqli->connect_error);
 }
 
-$mysqli2 = new mysqli(mysql_local_wcf, mysql_user_wcf, mysql_pw_wcf, mysql_db_wcf);
+$mysqli2 = new mysqli(MYSQL_HOST_WCF, MYSQL_USER_WCF, MYSQL_PW_WCF, MYSQL_DB_WCF);
 if ($mysqli2->connect_error) {
 	throw new Exception($lang['mysql_wcf_connect_erorr'] . ' (' . $mysqli2->connect_errno . ') '
 			. $mysqli2->connect_error);
