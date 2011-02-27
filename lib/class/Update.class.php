@@ -49,7 +49,8 @@ class Update
 					'sql.sql',
 					'install.php',
 					'update.xml',
-					'../notes/install.txt'
+					'../notes/install.txt',
+					'../config.inc.php'
 				);
 				array_map(
 						array(
