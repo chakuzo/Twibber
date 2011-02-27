@@ -59,12 +59,12 @@ class Update
 						), $unlink
 				);
 				$this->unlink('../notes', true);
-				echo $lang['nightly_ok'] . '<br>';
+				echo $this->lang['nightly_ok'] . '<br>';
 			} else {
-				echo $lang['update_fail'] . '<br>';
+				echo $this->lang['update_fail'] . '<br>';
 			}
 		} else {
-			echo $lang['update_fail'] . '<br>';
+			echo $this->lang['update_fail'] . '<br>';
 			echo $zip_ar;
 		}
 		$this->unlink('nightly.zip');
@@ -86,7 +86,7 @@ class Update
 			$zip->close();
 			if (!empty($xml->sqlstate))
 				mysql_query($xml->sqlstate);
-			echo '<br>' . $lang['updated_from'] . ' ' . $version . ' ' . $lang['updated_to'] . ' ' . $xml->version . '!<br>';
+			echo '<br>' . $this->lang['updated_from'] . ' ' . $version . ' ' . $this->lang['updated_to'] . ' ' . $xml->version . '!<br>';
 		} else {
 			echo '<br>Failed to update! Try Manuell to update? <a href="http://github.com/downloads/chakuzo/Twibber/ ' . str_replace(' ', '', $xml->version . '.zip') . '">Click</a><br>';
 			echo $zip_ar;
@@ -108,11 +108,11 @@ class Update
 				return $xml;
 			if ($handle)
 				$this->updateMain();
-			echo $lang['update'] . " <a href='update.php?update=main'>" . $lang_update_install . "</a><br>";
-			echo $lang['update_notes'] . ' ' . $xml->note;
+			echo $this->lang['update'] . " <a href='update.php?update=main'>" . $lang_update_install . "</a><br>";
+			echo $this->lang['update_notes'] . ' ' . $xml->note;
 			return;
 		}
-		echo $lang['no_update'] . '<br>';
+		echo $this->lang['no_update'] . '<br>';
 		echo "Du magst Updates? Versuch doch mal <a href='update.php?update=nightly'>Nightly Builds</a> <b>Achtung! Es könnte unstabil sein, und nicht alles funktionieren.</b>";
 		return;
 	}

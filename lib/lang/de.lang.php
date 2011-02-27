@@ -8,7 +8,7 @@
  * Mehr dazu: http://de2.php.net/manual/de/function.sprintf.php
  */
 
-$lang = Array(
+$lang = array(
 
 	/* lib/class/Twibber.class.php */
 	'timezone' => 'Europe/Berlin',

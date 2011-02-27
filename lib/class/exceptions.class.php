@@ -15,8 +15,6 @@ class exceptions extends Exception
 	public static function exceptions_handler($exception)
 	{
 		echo 'Exception: ' . var_dump($exception) . '<br>';
-		debug_print_backtrace();
-		return;
 	}
 
 }

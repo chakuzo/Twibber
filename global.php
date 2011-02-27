@@ -18,7 +18,14 @@ require_once('lib/class/exceptions.class.php');
 
 // Sets default timezone
 date_default_timezone_set($lang['timezone']);
-// Sets exception handler
+
+// Sets exception & error handler
+set_error_handler(
+		array(
+			'Error',
+			'error_handler'
+		)
+);
 set_exception_handler(
 		array(
 			'exceptions',
