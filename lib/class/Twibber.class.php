@@ -47,7 +47,7 @@ class Twibber
 			$query = $this->mysqli->query("SELECT * FROM twibber_entry WHERE nickname = '" . $nick . "' ORDER BY id DESC LIMIT " . $start . " , " . $end);
 			while ($result = $query->fetch_assoc()) {
 				$text = $this->twibberfy_text($result['text']);
-				$this->twibberfy_output($text, $result['nickname'], $result['date']);
+				$this->twibberfy_output($text, $result['nickname'], $result['date'], $result['id']);
 			}
 		}
 		if ($signature && $nick != '') {
@@ -121,7 +121,7 @@ class Twibber
 		} else {
 			echo "<div class='twibb_content'><a href='#nick=" . $nickname . "'><strong>" . $nickname . ":</strong></a> " . $text . "</div>";
 		}
-		
+
 		echo "<time title='" . $date . "'>" . Date_Difference::getStringResolved($date) . "</time>";
 		echo '</div>';
 	}
