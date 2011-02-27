@@ -1,6 +1,6 @@
 <?php
 
-require_once('global.php');
+require_once('./global.php');
 
 $twibber_nick = (isset($_COOKIE['twibber_nick'])) ? $_COOKIE['twibber_nick'] : '';
 $twibber_pw = (isset($_COOKIE['twibber_pw'])) ? $_COOKIE['twibber_pw'] : '';
@@ -17,7 +17,7 @@ switch ($_GET['page']) {
 		break;
 
 	case 'login':
-		include_once('login.php');
+		include_once('user/login.php');
 		break;
 
 	default:
