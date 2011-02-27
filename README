@@ -1,5 +1,9 @@
 Twibber is a Microblogging System with Features of Twitter and Facebook.
 Read notes/install.txt for install notes.
+Read the Wiki Pages for more Infos
+
+Twibber ist ein Micrblogging System mit Features von Twitter und Facebook.
+Mehr zur installation in notes/install.txt und in den Wiki Seiten.
 
 ---
 
@@ -30,7 +34,6 @@ Milestone 0.6:
 -Answer (Facebook like, or twitter?) | OK (Twibber like (fusion of twitter and facebook ;o))
 
 Milestone 0.7:
-- JSON API (for the next point important, too)
 -timeline api like twitter for _MaX_'s  Signature script
 <_MaX_>'tweeter' => $node->getElementsByTagName('screen_name')->item(0)->nodeValue,
 <_MaX_>'text' => $node->getElementsByTagName('text')->item(0)->nodeValue,
@@ -58,6 +61,7 @@ Milestone1.0:
 (to be continued...)
 
 Milestone1.0 ME:
+- JSON API (for the next point important, too)
 -befehle like (/google Nickname how to install twibber, or /gtfo Nickname get the fuck out!!11)
 -Smileys (a good idea or not?!)
 -Localisation (english etc) | BEGIN (moved from 0.5, maybe better syntax if we use $lang['langXY'];

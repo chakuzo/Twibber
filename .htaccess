@@ -1,5 +1,2 @@
 RewriteEngine on
 RewriteRule sig/(.+)$ api.php?image=$1
-
-AddType application/x-httpd-php .js .css
-AddHandler application/x-httpd-php .js .css

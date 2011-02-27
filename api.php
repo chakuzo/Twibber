@@ -19,12 +19,12 @@ if (isset($_GET['new_entry']) && $_GET['new_entry'] == 1 && $return && !empty($n
 			exit();
 		if (isset($_GET['comment']) && $_GET['comment'] == 1) {
 			$Twibber->createTwibbComment(htmlspecialchars($text), htmlspecialchars($nick), htmlspecialchars($_POST['to_id']));
-			exit($lang_success);
+			exit($lang['success']);
 		}
 		$Twibber->createTwibber(htmlspecialchars($text), htmlspecialchars($nick));
-		echo $lang_success;
+		echo $lang['success'];
 	} elseif (trim($text) == '') {
-		echo $lang_no_message;
+		echo $lang['no_message'];
 	} elseif (strlen($text) > 250) {
 		echo $message_too_long;
 	}
@@ -32,11 +32,12 @@ if (isset($_GET['new_entry']) && $_GET['new_entry'] == 1 && $return && !empty($n
 }
 
 if (isset($_GET['new_entry']) && $_GET['new_entry'] == 1 && (empty($nick) xor !$return)) {
-	exit($lang_no_nick);
+	exit($lang['no_nick']);
 }
 
+@header("Access-Control-Allow-Origin: *");
+
 //anywhen important for JSONP or something else
-header("Access-Control-Allow-Origin: *");
 if (isset($_GET['dyn_get']) && trim($_GET['dyn_get']) == 1) {
 	$mult = (empty($_GET['page'])) ? 1 : intval($_GET['page']);
 	$latest = ($_GET['latest'] == 'true');
@@ -50,19 +51,16 @@ if (isset($_GET['search']) && trim($_GET['search']) != '') {
 	$Twibber->searchTwibber($_GET['search']);
 }
 if (isset($_GET['image']) && trim($_GET['image']) != '') {
-	header('Content-type: image/png');
 	$nick = ucwords(strip_tags($_GET['image']));
 	$return_array = $Twibber->fetchTwibber(true, false, $nick, 0, 30, true);
-	$img = @ImageCreateTrueColor(468, 60)
+	$img = ImageCreateTrueColor(468, 60)
 			or die($gd_error);
-	$new_width = 60;
-	$new_height = 60;
 	//$im = imagecreatefrompng("images/button1.png");
 	$background_color = ImageColorAllocate($img, 0, 0, 0);
 	$text_color = ImageColorAllocate($img, 233, 14, 91);
 	ImageStringUp($img, 2, 0, 55, 'Twibber', $text_color);
 	ImageStringUp($img, 2, 5, 55, '_________', $text_color);
-	ImageString($img, 5, 82, 0, $nick . $lang_gd_last_twib, $text_color);
+	ImageString($img, 5, 82, 0, $nick . $lang['gd_last_twib'], $text_color);
 	$font_file = './lib/font/Comfortaa-Bold.ttf';
 	ImageFTText($img, 10, 0, 90, 30, $text_color, $font_file, '" ' .
 			wordwrap(
@@ -85,7 +83,8 @@ if (isset($_GET['image']) && trim($_GET['image']) != '') {
 		$avatar = imagecreatefromgif($avatar_nick);
 		imagecopyresampled($img, $avatar, 20, 0, 0, 0, 60, 60, imagesx($avatar), imagesy($avatar));
 	}
-	ImageString($img, 2, 347, 45, $lang_gd_date . $return_array[1], $text_color);
+	ImageString($img, 2, 347, 45, $lang['gd_date'] . $return_array[1], $text_color);
+	header('Content-type: image/png');
 	ImagePNG($img);
 	ImageDestroy($img);
 	ImageDestory($avatar_nick);

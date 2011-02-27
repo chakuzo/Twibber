@@ -21,7 +21,7 @@ class Twibber
 	 */
 	private $lang;
 
-	public function __construct($mysqli, Array $lang)
+	public function __construct($mysqli, array $lang)
 	{
 		$this->mysqli = $mysqli;
 		$this->lang = $lang;
@@ -111,7 +111,7 @@ class Twibber
 			echo "<div class='avatar'><a href='#nick=" . $nickname . "'><img src='" . WCF::getAvatar($nickname) . "'></a></div>";
 			echo "<div class='" . $nickname . " nickname' onclick='insert_nick(\"" . $nickname . "\");'>" . $nickname . "</div>";
 			echo "<div class='twibb_content'>" . $text . "</div>";
-			echo "<div class='comment_banner'><a href='#' class='comment_link'>" . $this->lang_comment . "</a></div>";
+			echo "<div class='comment_banner'><a href='#' class='comment_link'>" . $this->lang['comment'] . "</a></div>";
 			echo "<time title='" . $date . "'>" . Date_Difference::getStringResolved($date) . "</time>";
 			echo "</div>";
 		} else {

@@ -2,16 +2,6 @@
 
 // Reports everything on world + catches exceptions
 error_reporting(E_ALL | E_STRICT | E_NOTICE | E_WARNING);
-set_exception_handler(
-		array(
-			'exceptions',
-			'exceptions_handler'
-		)
-);
-
-// GZip compression
-if (Gzip_enabled)
-	ob_start("ob_gzhandler");
 
 // Base
 require_once('config.inc.php');
@@ -23,10 +13,22 @@ require_once('lib/class/StringUtil.class.php');
 require_once('lib/class/WCF.class.php');
 require_once('lib/class/Twibber.class.php');
 require_once('lib/class/Update.class.php');
+require_once('lib/class/exceptions.class.php');
 //require_once('lib/class/Youtube.class.php');
 
 // Sets default timezone
-date_default_timezone_set($lang_timezone);
+date_default_timezone_set($lang['timezone']);
+// Sets exception handler
+set_exception_handler(
+		array(
+			'exceptions',
+			'exceptions_handler'
+		)
+);
+
+// GZip compression
+if (GZip_enabled)
+	ob_start('ob_gzhandler');
 
 if (wcf_name_prefix == 'WCF1_') {
 	die($prefix_error);

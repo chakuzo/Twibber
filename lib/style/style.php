@@ -1,0 +1,262 @@
+<?php
+
+header('Content-type: text/css');
+
+include_once('../../config.inc.php');
+
+if (Gzip_enabled)
+	ob_start('ob_gzhandler');
+
+?>
+body {
+    background-color: #404040;
+    background-image: url("../../images/backgrounds/top.png");
+    background-repeat: repeat-x;
+    margin: 0px;
+}
+footer {
+    position: absolute;
+    left: 0;
+    display: block;
+}
+header {
+    display: block;
+}
+textarea {
+    -webkit-transition: -webkit-box-shadow 450ms linear 100ms;
+    border: 1px solid grey;
+    margin-left: 12%;
+    height: 100px;
+    width: 500px;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    font-family: Arial, serif;
+    padding: 8px;
+    outline: none;
+}
+input {
+    -webkit-transition: -webkit-box-shadow 450ms linear 100ms;
+    border: 1px solid grey;
+}
+textarea:hover, textarea:active, input:hover, input:active, textarea:focus, input:focus {
+    -webkit-box-shadow: red 0px 0px 5px;
+    -moz-box-shadow: red 0px 0px 5px;
+    box-shadow: 0 0 5px red;
+}
+
+#post_it{
+    margin-left: 25%;
+    margin-right: 25%;
+    border: 1px solid black;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    height: 100%;
+    background-color: #7bbdd7;
+    color: black;
+}
+h3{
+    font-family: 'Yanone Kaffeesatz', arial, serif;
+    text-shadow: white 0 0 2px;
+    letter-spacing: 0.1em;
+    font-size: 17px;
+    margin-top: 10px;
+    margin-left: 12%;
+    cursor: default;
+}
+label{
+    margin-left: 12%;
+}
+.twibb{
+    margin-left: 12%;
+    margin-right: 12%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+time{
+    position: relative;
+    text-align: right;
+    border: 1px solid black;
+    border-top: 0px;
+    cursor: default;
+    font-family: 'Reenie Beanie', arial, serif;
+    background: -webkit-gradient(linear, left top, left bottom, from(#7cbfda), to(#6aa4ba));
+    background: -moz-linear-gradient(top,  #7cbfda,  #6aa4ba);
+    font-size: 20px;
+    display: inline-block;
+    left: 39%;
+    padding: 0 2px 0 2px;
+    min-width: 107px;
+}
+.twibb_content{
+    border: 1px solid black;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    font-family: 'Droid Sans', arial, serif;
+    cursor: default;
+    background: -webkit-gradient(linear, left top, left bottom, from(#e8e8e8), to(#bababa));
+    background: -moz-linear-gradient(top,  #e8e8e8,  #bababa);
+    min-height: 50px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.nickname{
+    border: 1px solid black;
+    border-bottom: 0px;
+    cursor: pointer;
+    max-width: 100px;
+    font-family: 'Reenie Beanie', arial, serif;
+    background: -webkit-gradient(linear, left top, left bottom, from(#7cbfda), to(#6aa4ba));
+    background: -moz-linear-gradient(top,  #7cbfda,  #6aa4ba);
+}
+
+#logo{
+    /*position: fixed;*/
+    text-align: center;
+	margin-top: 20px;
+}
+#logo img{
+    width: 300px;
+}
+#label_nick{
+    font-family: 'Neucha', arial, serif;
+}
+.avatar{
+    position: relative;
+    left: -75px;
+    float: left;
+    height: 0px;
+    width: 0px;
+}
+.avatar img{
+    height: 70px;
+}
+#wbblite2{
+    width: 110px;
+    height: 20px;
+    background: url("../../images/img/buttons/wbblite2.png");
+}
+#logout{
+    width: 60px;
+    height: 20px;
+    background: url("../../images/img/buttons/logout.png");
+}
+#login{
+    width: 50px;
+    height: 20px;
+    background: url("../../images/img/buttons/login.png");
+}
+#wbblite2:hover{
+    background: url("../../images/img/buttons/wbblite2H.png");
+}
+#logout:hover{
+    background: url("../../images/img/buttons/logoutH.png");
+}
+#login:hover{
+    background: url("../../images/img/buttons/loginH.png");
+}
+
+#useravatar{
+    float: left;
+    height: 150px;
+    margin-right: 10px;
+}
+
+img{
+    border: 0px;
+}
+
+section{
+    display: block;
+}
+
+#counter{
+    font-family: 'Allan', arial, serif;
+}
+button[type=button]{
+    background: -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+    background: -moz-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+    margin-left: 2.5%;
+    color: #333;
+    padding: 10px 20em 10px 20em;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.comment{
+	margin-left: 40px;
+}
+
+.comment_banner{
+	font-family: 'Droid Sans', arial, serif;
+	display: none;
+	height: 0px;
+	width: 1px;
+}
+.comment_link{
+	color: white !important;
+	text-decoration: none;
+	background-color: blue;
+}
+
+#in_comment_to{
+	display: none;
+}
+
+.remove{
+	color: red;
+	text-shadow: black 1px 1px 1px;
+}
+
+.comment.avater{
+	height: 50px;
+}
+
+.comment time{
+	left: 38.1%;
+}
+
+@media screen and (max-width: 1170px) {
+    #post_it {
+		background-color: #7BBDD7;
+		border: 1px solid black;
+		border-radius: 10px 10px 10px 10px;
+		color: black;
+		height: 100%;
+		margin-left: 15%;
+		margin-right: 15%;
+		padding-left: 10%;
+		padding-right: 10%;
+    }
+    h3 {
+		cursor: default;
+		font-family: 'Yanone Kaffeesatz',arial,serif;
+		font-size: 17px;
+		letter-spacing: 0.1em;
+		margin-top: 10px;
+		text-shadow: 0 0 2px white;
+    }
+    label {
+		margin-left: 12%;
+    }
+    #twibb {
+		margin-bottom: 10px;
+		margin-left: 15%;
+		text-align: center;
+    }
+    textarea {
+		width: 30em;
+    }
+    time {
+		left: 36.7%;
+    }
+    .right {
+		margin-bottom: 10px;
+    }
+    #logo img{
+		-webkit-transform: translate(-11em);
+		-moz-transform: translate(-11em);
+    }
+}
