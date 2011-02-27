@@ -218,6 +218,10 @@ button[type=button]{
 	left: 38.1%;
 }
 
+.close{
+	display: none;
+}
+
 @media screen and (max-width: 1170px) {
     #post_it {
 		background-color: #7BBDD7;

@@ -5,7 +5,7 @@
 	<p class="grey">Twibber ist Open Source! Du kannst es bei <a href="https://github.com/chakuzo/Twibber">Github</a> downloaden. Achtung! Es ist eine Beta. Bugs reporten unter <a href='https://github.com/chakuzo/Twibber/issues'>Issue List</a></p>
 </div>
 <div class="left">
-	<form class="clearfix" action="index.php?page=login&login=true" method="post">
+	<form class="clearfix" action="index.php?page=login&amp;login=true" method="post">
 		<h1 class="padlock">Mitglieder Login</h1>
 		<label class="grey" for="log">Nickname:</label>
 		<input class="field" type="text" name="nickname" id="log" value="" size="23">

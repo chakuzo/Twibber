@@ -37,7 +37,7 @@
 							<?php if (!$return) { ?><img src="<?php echo TWIBBER_DIR ?>/images/img/cleardot.gif" alt="Login" id="login"><?php } else { ?>
 							    Panel öffnen
 							<?php } ?>
-						</a><a id="close" class="close" style="display: none;" href="#">Panel schließen</a>
+						</a><a id="close" class="close" href="#">Panel schließen</a>
 					</li>
 					<li class="right">&nbsp;</li>
 				</ul>
