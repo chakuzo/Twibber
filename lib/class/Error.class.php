@@ -20,7 +20,7 @@ class Error
 	{
 		switch ($errno) {
 			case E_USER_ERROR:
-				echo '<b>Fatal ERROR:</b><br><i>[' . $errno . ']</i> ' . $errstr . ' on ' . $errline . ' in file ' . $errfile . '<br>';
+				echo '<h3>Fatal ERROR:</h3><br><i>[' . $errno . ']</i> ' . $errstr . ' on ' . $errline . ' in file ' . $errfile . '<br>';
 				echo 'Stacktrace:<br>';
 				debug_print_backtrace();
 				exit();

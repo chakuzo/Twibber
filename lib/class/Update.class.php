@@ -17,7 +17,7 @@ class Update
 	 * Version var.
 	 * @var mixed
 	 */
-	public $version = '0.6';
+	public $version = '0.6.5';
 
 	/**
 	 * Sets $this->lang to $lang array.
@@ -43,7 +43,6 @@ class Update
 			$extract = $zip->extractTo('../');
 			if ($extract) {
 				$zip->close();
-				rename('../config.inc.back.php', '../config.inc.php');
 				$unlink = array(
 					'../.gitignore',
 					'../README.txt',
@@ -63,11 +62,12 @@ class Update
 			} else {
 				echo $this->lang['update_fail'] . '<br>';
 			}
+			rename('../config.inc.back.php', '../config.inc.php');
 		} else {
 			echo $this->lang['update_fail'] . '<br>';
 			echo $zip_ar;
 		}
-		$this->unlink('nightly.zip');
+		unlink('nightly.zip');
 	}
 
 	/**
@@ -91,7 +91,7 @@ class Update
 			echo '<br>Failed to update! Try Manuell to update? <a href="http://github.com/downloads/chakuzo/Twibber/ ' . str_replace(' ', '', $xml->version . '.zip') . '">Click</a><br>';
 			echo $zip_ar;
 		}
-		$this->unlink('update.zip');
+		unlink('update.zip');
 	}
 
 	/**
@@ -104,12 +104,14 @@ class Update
 	{
 		$xml = simplexml_load_file('https://github.com/chakuzo/Twibber/raw/master/install/update.xml');
 		if ($xml->version != $this->version) {
-			if($only_return)
+			if ($only_return)
 				return $xml;
 			if ($handle)
 				$this->updateMain();
-			echo $this->lang['update'] . " <a href='update.php?update=main'>" . $lang_update_install . "</a><br>";
+			echo '<h3>';
+			echo $this->lang['update'] . " <a href='update.php?update=main'>" . $this->lang['update_install'] . "</a><br>";
 			echo $this->lang['update_notes'] . ' ' . $xml->note;
+			echo '</h3>';
 			return;
 		}
 		echo $this->lang['no_update'] . '<br>';

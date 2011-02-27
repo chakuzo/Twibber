@@ -35,7 +35,7 @@
 					<li id="toggle">
 						<a id="open" class="open" href="#">
 							<?php if (!$return) { ?><img src="<?php echo TWIBBER_DIR ?>/images/img/cleardot.gif" alt="Login" id="login"><?php } else { ?>
-						    Panel öffnen
+							    Panel öffnen
 							<?php } ?>
 						</a><a id="close" class="close" style="display: none;" href="#">Panel schließen</a>
 					</li>
@@ -43,3 +43,6 @@
 				</ul>
 			</div>
 		</header>
+		<div id="status"></div>
+		<div id="logo"><a href="#page=index"><img src="<?php echo TWIBBER_DIR ?>/images/img/logo.png"></a></div>
+		<section id="post_it">
