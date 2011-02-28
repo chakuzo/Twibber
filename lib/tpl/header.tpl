@@ -7,11 +7,11 @@
 		<link rel="stylesheet" href="<?php echo TWIBBER_DIR ?>/lib/style/freeow.min.css" type="text/css">
 		<link rel="stylesheet" href="<?php echo TWIBBER_DIR ?>/lib/style/slide.min.css" type="text/css">
 		<link rel="shortcut icon" type="image/x-icon" href="<?php echo TWIBBER_DIR ?>/images/img/favicon.ico">
-		<link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz' rel='stylesheet' type='text/css'>
-		<link href='http://fonts.googleapis.com/css?family=Neucha' rel='stylesheet' type='text/css'>
-		<link href='http://fonts.googleapis.com/css?family=Reenie+Beanie' rel='stylesheet' type='text/css'>
-		<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
-		<link href='http://fonts.googleapis.com/css?family=Allan:bold' rel='stylesheet' type='text/css'>
+		<link href='//fonts.googleapis.com/css?family=Yanone+Kaffeesatz' rel='stylesheet' type='text/css'>
+		<link href='//fonts.googleapis.com/css?family=Neucha' rel='stylesheet' type='text/css'>
+		<link href='//fonts.googleapis.com/css?family=Reenie+Beanie' rel='stylesheet' type='text/css'>
+		<link href='//fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+		<link href='//fonts.googleapis.com/css?family=Allan:bold' rel='stylesheet' type='text/css'>
     </head>
     <body>
 		<header id="toppanel">
