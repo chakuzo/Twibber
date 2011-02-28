@@ -124,7 +124,7 @@ class Update
 	 * Avoids error, if file is deleted or something else.
 	 * @param array $unlink
 	 * @param boolean $dir
-	 * @return mixed
+	 * @return boolean
 	 */
 	public function unlink(array $unlink, $dir = false)
 	{
@@ -132,12 +132,14 @@ class Update
 			if (file_exists($file)) {
 				if ($dir) {
 					rmdir($file);
-					return;
+					continue;
 				}
 
-				unlink($file);
+				if (!unlink($file))
+					return false;
 			}
 		}
+		return;
 	}
 
 }

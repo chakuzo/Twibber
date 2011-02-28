@@ -37,9 +37,6 @@ set_exception_handler(
 if (GZip_enabled)
 	ob_start('ob_gzhandler');
 
-if (wcf_name_prefix == 'WCF1_') {
-	die($prefix_error);
-}
 if (wcf_update_groupid == '') {
 	die($group_id_error);
 }
