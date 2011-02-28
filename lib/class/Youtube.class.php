@@ -2,6 +2,7 @@
 
 /**
  * A tiny class for youtube functions.
+ *
  * @author Kurtextrem
  * @version 1.0
  */
@@ -14,6 +15,7 @@ class Youtube {
 
 	/**
 	 * JSON output?
+	 *
 	 * @param boolean $json_enabled
 	 * @return -
 	 */
@@ -22,7 +24,8 @@ class Youtube {
 	}
 
 	/**
-	 * Returns the title
+	 * Returns the title.
+	 *
 	 * @param string $id
 	 * @return mixed
 	 */
@@ -33,7 +36,8 @@ class Youtube {
 	}
 
 	/**
-	 * Returns the length of the video
+	 * Returns the length of the video.
+	 *
 	 * @param string $id
 	 * @return mixed
 	 */
@@ -44,7 +48,8 @@ class Youtube {
 	}
 
 	/**
-	 * Returns the rate
+	 * Returns the rate.
+	 *
 	 * @param string $id
 	 * @param bool $image
 	 * @return mixed
@@ -58,7 +63,8 @@ class Youtube {
 	}
 
 	/**
-	 * A fusion of all functions
+	 * A fusion of all functions.
+	 * 
 	 * @param string $id
 	 * @return mixed
 	 */
