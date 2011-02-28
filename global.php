@@ -55,7 +55,7 @@ if ($mysqli2->connect_error) {
 
 // Init
 $Twibber = new Twibber($mysqli, $lang);
-$WCF = new WCF($mysqli2); // only for calling construct, i can remove it and replace it with self::__construct();
+new WCF($mysqli2); // only for calling construct, i can remove it and replace it with self::__construct();
 $Update = new Update($lang); // same as over this line
 
 ?>

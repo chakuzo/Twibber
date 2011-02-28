@@ -1,43 +1,41 @@
 <?php
+
 /**
- * @author	Marcel Werk
+ * @author	Marcel Werk, modified from Kurtextrem for Twibber.
  * @copyright	2001-2009 WoltLab GmbH
  * @license	GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  * @package	com.woltlab.wcf
  * @category 	Community Framework
  */
+
 // set exception handler
-set_exception_handler(array('WCF', 'handleException'));
+set_exception_handler(array('TwibberCore', 'handleException'));
 
 // set php error handler
-set_error_handler(array('WCF', 'handleError'), E_ALL);
+set_error_handler(array('TwibberCore', 'handleError'), E_ALL);
 
 // set shutdown function
-register_shutdown_function(array('WCF', 'destruct'));
-
-function escapeString($string) {
-	return WCF::getDB()->escapeString($string);
-}
+register_shutdown_function(array('TwibberCore', 'destruct'));
 
 /**
  * Includes the required util or exception classes automatically.
- * 
+ *
  * @param 	string		$className
  */
 function __autoload($className) {
 	// search util class in wcf dir
-	if (file_exists(WCF_DIR . 'lib/util/' . $className . '.class.php')) {
+	if (file_exists(TWIBBER_DIR . 'lib/util/' . $className . '.class.php')) {
 		// include file
-		require_once(WCF_DIR . 'lib/util/' . $className . '.class.php');
+		require_once(TWIBBER_DIR . 'lib/util/' . $className . '.class.php');
 		return;
 	}
 	// search exception class in wcf dir
-	if (file_exists(WCF_DIR . 'lib/system/exception/' . $className . '.class.php')) {
+	if (file_exists(TWIBBER_DIR . 'lib/system/exception/' . $className . '.class.php')) {
 		// include file
-		require_once(WCF_DIR . 'lib/system/exception/' . $className . '.class.php');
+		require_once(TWIBBER_DIR . 'lib/system/exception/' . $className . '.class.php');
 		return;
 	}
-	
+
 	// search util or exception class in application dirs
 	global $packageDirs;
 	if (isset($packageDirs) && is_array($packageDirs)) {
