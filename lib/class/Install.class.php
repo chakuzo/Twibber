@@ -5,14 +5,12 @@
  *
  * @author Kurt
  */
-class Install
-{
+class Install {
 
 	/**
 	 * Checks all requirements for Twibber.
 	 */
-	public function check_server()
-	{
+	public function check_server() {
 		try {
 			if (version_compare(PHP_VERSION, '5.2') == -1)
 				throw new exception('Your server / webspace is running a PHP version below 5.2.x, please change this!');
@@ -29,20 +27,44 @@ class Install
 		}
 	}
 
-	public function write_config($mysql_user, $mysql_pw, $mysql_db, $mysql_host, $wcf_prefix, $tb_lang, $tb_dir, $mysql_user_wcf, $mysql_pw_wcf, $mysql_db_wcf, $mysql_host_wcf, $admin_group_id, $update_group_id, $wcf_dir)
-	{
+	/**
+	 * Writes the config.inc.php file.
+	 *
+	 * @param string $mysql_user
+	 * @param string $mysql_pw
+	 * @param string $mysql_db
+	 * @param string $mysql_host
+	 * @param string $wcf_prefix
+	 * @param string $tb_lang
+	 * @param string $tb_dir
+	 * @param string $mysql_user_wcf
+	 * @param string $mysql_pw_wcf
+	 * @param string $mysql_db_wcf
+	 * @param string $mysql_host_wcf
+	 * @param mixed $admin_group_id
+	 * @param mixed $update_group_id
+	 * @param string $wcf_dir
+	 */
+	public function write_config($mysql_user, $mysql_pw, $mysql_db, $mysql_host, $wcf_prefix, $tb_lang, $tb_dir, $mysql_user_wcf, $mysql_pw_wcf, $mysql_db_wcf, $mysql_host_wcf, $admin_group_id, $update_group_id, $wcf_dir) {
 		$config = file('config.inc.php', FILE_SKIP_EMPTY_LINES);
 		var_dump($config);
 	}
 
-	public function exec_sql()
-	{
+	/**
+	 * Execute the SQL Query on the Database.
+	 */
+	public function exec_sql() {
 		if (!$mysqli->query(file_get_contents('sql.sql')))
 			die('Error: ' . $mysqli->error . '\n');
 	}
 
-	public function install()
-	{
+	public function install($step = 1) {
+		if ($step == 1)
+			$this->check_server();
+		if ($step == 2)
+			$this->unpack_all();
+		if ($step == 3)
+			$this->write_config();
 		/*
 		 * All should be done in install() and setted up in install.php
 		 * 1. check server
@@ -56,21 +78,18 @@ class Install
 		 */
 	}
 
-	public function edit_config()
-	{
+	public function edit_config() {
 		$config = file('config.inc.php', FILE_SKIP_EMPTY_LINES);
 	}
 
-	public function unzip_all()
-	{
+	public function unzip_all() {
 
 	}
 
 	/**
 	 * @see lib/class/Update.class.php
 	 */
-	public function unlink(array $unlink, $dir = false)
-	{
+	public function unlink(array $unlink, $dir = false) {
 		foreach ($unlink as $index => $file) {
 			if (file_exists($file)) {
 				if ($dir) {
@@ -83,6 +102,10 @@ class Install
 			}
 		}
 		return;
+	}
+
+	public function display_form($step = 1) {
+
 	}
 
 }

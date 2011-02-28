@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Contains string-related functions.
  *
@@ -34,8 +35,7 @@ class StringUtil {
 			// value
 			if (!defined('ENCRYPTION_ENCRYPT_BEFORE_SALTING') || ENCRYPTION_ENCRYPT_BEFORE_SALTING) {
 				$hash .= self::encrypt($value);
-			}
-			else {
+			} else {
 				$hash .= $value;
 			}
 
@@ -44,11 +44,11 @@ class StringUtil {
 				$hash .= $salt;
 			}
 			return self::encrypt($hash);
-		}
-		else {
+		} else {
 			return self::encrypt($value);
 		}
 	}
+
 	/**
 	 * Returns a double salted hash of the given value.
 	 *
@@ -194,7 +194,8 @@ class StringUtil {
 		$double = round($double, ($minDecimals > 2 ? $minDecimals : 2));
 
 		// remove last 0
-		if ($minDecimals < 2 && substr($double, -1) == '0') $double = substr($double, 0, -1);
+		if ($minDecimals < 2 && substr($double, -1) == '0')
+			$double = substr($double, 0, -1);
 
 		// replace decimal point
 		$double = str_replace('.', WCF::getLanguage()->get('wcf.global.decimalPoint'), $double);
@@ -235,8 +236,7 @@ class StringUtil {
 	public static function length($string) {
 		if (USE_MBSTRING) {
 			return mb_strlen($string);
-		}
-		else {
+		} else {
 			return strlen($string);
 		}
 	}
@@ -247,8 +247,7 @@ class StringUtil {
 	public static function indexOf($hayStack, $needle, $offset = 0) {
 		if (USE_MBSTRING) {
 			return mb_strpos($hayStack, $needle, $offset);
-		}
-		else {
+		} else {
 			return strpos($hayStack, $needle, $offset);
 		}
 	}
@@ -259,8 +258,7 @@ class StringUtil {
 	public static function indexOfIgnoreCase($hayStack, $needle, $offset = 0) {
 		if (USE_MBSTRING) {
 			return mb_strpos(self::toLowerCase($hayStack), self::toLowerCase($needle), $offset);
-		}
-		else {
+		} else {
 			return stripos($hayStack, $needle, $offset);
 		}
 	}
@@ -271,8 +269,7 @@ class StringUtil {
 	public static function lastIndexOf($hayStack, $needle) {
 		if (USE_MBSTRING) {
 			return mb_strrpos($hayStack, $needle);
-		}
-		else {
+		} else {
 			return strrpos($hayStack, $needle);
 		}
 	}
@@ -282,11 +279,13 @@ class StringUtil {
 	 */
 	public static function substring($string, $start, $length = null) {
 		if (USE_MBSTRING) {
-			if ($length !== null) return mb_substr($string, $start, $length);
+			if ($length !== null)
+				return mb_substr($string, $start, $length);
 			return mb_substr($string, $start);
 		}
 		else {
-			if ($length !== null) return substr($string, $start, $length);
+			if ($length !== null)
+				return substr($string, $start, $length);
 			return substr($string, $start);
 		}
 	}
@@ -297,8 +296,7 @@ class StringUtil {
 	public static function toLowerCase($string) {
 		if (USE_MBSTRING) {
 			return mb_strtolower($string);
-		}
-		else {
+		} else {
 			return strtolower($string);
 		}
 	}
@@ -309,8 +307,7 @@ class StringUtil {
 	public static function toUpperCase($string) {
 		if (USE_MBSTRING) {
 			return mb_strtoupper($string);
-		}
-		else {
+		} else {
 			return strtoupper($string);
 		}
 	}
@@ -321,8 +318,7 @@ class StringUtil {
 	public static function countSubstring($hayStack, $needle) {
 		if (USE_MBSTRING) {
 			return mb_substr_count($hayStack, $needle);
-		}
-		else {
+		} else {
 			return substr_count($hayStack, $needle);
 		}
 	}
@@ -332,9 +328,8 @@ class StringUtil {
 	 */
 	public static function firstCharToUpperCase($string) {
 		if (USE_MBSTRING) {
-			return self::toUpperCase(self::substring($string, 0, 1)).self::substring($string, 1);
-		}
-		else {
+			return self::toUpperCase(self::substring($string, 0, 1)) . self::substring($string, 1);
+		} else {
 			return ucfirst($string);
 		}
 	}
@@ -345,8 +340,7 @@ class StringUtil {
 	public static function wordsToUpperCase($string) {
 		if (USE_MBSTRING) {
 			return mb_convert_case($string, MB_CASE_TITLE);
-		}
-		else {
+		} else {
 			return ucwords($string);
 		}
 	}
@@ -364,14 +358,14 @@ class StringUtil {
 	public static function replaceIgnoreCase($search, $replace, $subject, &$count = 0) {
 		if (USE_MBSTRING) {
 			$startPos = self::indexOf(self::toLowerCase($subject), self::toLowerCase($search));
-			if ($startPos === false) return $subject;
+			if ($startPos === false)
+				return $subject;
 			else {
 				$endPos = $startPos + self::length($search);
 				$count++;
 				return self::substring($subject, 0, $startPos) . $replace . self::replaceIgnoreCase($search, $replace, self::substring($subject, $endPos), $count);
 			}
-		}
-		else {
+		} else {
 			return str_ireplace($search, $replace, $subject, $count);
 		}
 	}
@@ -385,7 +379,7 @@ class StringUtil {
 	 */
 	public static function unescape($string, $chars = '"') {
 		for ($i = 0, $j = strlen($chars); $i < $j; $i++) {
-			$string = self::replace('\\'.$chars[$i], $chars[$i], $string);
+			$string = self::replace('\\' . $chars[$i], $chars[$i], $string);
 		}
 
 		return $string;
@@ -400,12 +394,10 @@ class StringUtil {
 	public static function getCharacter($dec) {
 		if ($dec < 128) {
 			$utf = chr($dec);
-		}
-		else if ($dec < 2048) {
+		} else if ($dec < 2048) {
 			$utf = chr(192 + (($dec - ($dec % 64)) / 64));
 			$utf .= chr(128 + ($dec % 64));
-		}
-		else {
+		} else {
 			$utf = chr(224 + (($dec - ($dec % 4096)) / 4096));
 			$utf .= chr(128 + ((($dec % 4096) - ($dec % 64)) / 64));
 			$utf .= chr(128 + ($dec % 64));
@@ -449,7 +441,7 @@ class StringUtil {
 		$result = '';
 		for ($i = 0, $j = StringUtil::length($string); $i < $j; $i++) {
 			$char = StringUtil::substring($string, $i, 1);
-			$result .= '&#'.(USE_MBSTRING ? StringUtil::getCharValue($char) : ord($char)).';';
+			$result .= '&#' . (USE_MBSTRING ? StringUtil::getCharValue($char) : ord($char)) . ';';
 		}
 
 		return $result;
@@ -473,17 +465,17 @@ class StringUtil {
 	 * @return	boolean
 	 */
 	public static function isUTF8($string) {
-		/*return preg_match('/^(
-				[\x09\x0A\x0D\x20-\x7E]*		# ASCII
-			|	[\xC2-\xDF][\x80-\xBF]			# non-overlong 2-byte
-			|	\xE0[\xA0-\xBF][\x80-\xBF]		# excluding overlongs
-			|	[\xE1-\xEC\xEE\xEF][\x80-\xBF]{2}	# straight 3-byte
-			|	\xED[\x80-\x9F][\x80-\xBF]		# excluding surrogates
-			|	\xF0[\x90-\xBF][\x80-\xBF]{2}		# planes 1-3
-			|	[\xF1-\xF3][\x80-\xBF]{3}		# planes 4-15
-			|	\xF4[\x80-\x8F][\x80-\xBF]{2}		# plane 16
-			)*$/x', $string);
-		*/
+		/* return preg_match('/^(
+		  [\x09\x0A\x0D\x20-\x7E]*		# ASCII
+		  |	[\xC2-\xDF][\x80-\xBF]			# non-overlong 2-byte
+		  |	\xE0[\xA0-\xBF][\x80-\xBF]		# excluding overlongs
+		  |	[\xE1-\xEC\xEE\xEF][\x80-\xBF]{2}	# straight 3-byte
+		  |	\xED[\x80-\x9F][\x80-\xBF]		# excluding surrogates
+		  |	\xF0[\x90-\xBF][\x80-\xBF]{2}		# planes 1-3
+		  |	[\xF1-\xF3][\x80-\xBF]{3}		# planes 4-15
+		  |	\xF4[\x80-\x8F][\x80-\xBF]{2}		# plane 16
+		  )*$/x', $string);
+		 */
 		return preg_match('/(
 				[\xC2-\xDF][\x80-\xBF]			# non-overlong 2-byte
 			|	\xE0[\xA0-\xBF][\x80-\xBF]		# excluding overlongs
@@ -525,8 +517,10 @@ class StringUtil {
 	 * @return 	string		converted string
 	 */
 	public static function convertEncoding($inCharset, $outCharset, $string) {
-		if ($inCharset == 'ISO-8859-1' && $outCharset == 'UTF-8') return utf8_encode($string);
-		if ($inCharset == 'UTF-8' && $outCharset == 'ISO-8859-1') return utf8_decode($string);
+		if ($inCharset == 'ISO-8859-1' && $outCharset == 'UTF-8')
+			return utf8_encode($string);
+		if ($inCharset == 'UTF-8' && $outCharset == 'ISO-8859-1')
+			return utf8_decode($string);
 
 		//return iconv($inCharset, $outCharset, $string);
 		return mb_convert_encoding($string, $outCharset, $inCharset);
@@ -557,11 +551,10 @@ class StringUtil {
 			foreach ($forbiddenNames as $forbiddenName) {
 				if (self::indexOf($forbiddenName, '*') !== false) {
 					$forbiddenName = self::replace('\*', '.*', preg_quote($forbiddenName, '/'));
-					if (preg_match('/^'.$forbiddenName.'$/s', $word)) {
+					if (preg_match('/^' . $forbiddenName . '$/s', $word)) {
 						return false;
 					}
-				}
-				else {
+				} else {
 					if ($word == $forbiddenName) {
 						return false;
 					}
@@ -582,9 +575,8 @@ class StringUtil {
 	 */
 	public static function splitIntoChunks($string, $length = 75, $break = "\r\n") {
 		if (USE_MBSTRING) {
-			return mb_ereg_replace('.{'.$length.'}', "\\0".$break, $string);
-		}
-		else {
+			return mb_ereg_replace('.{' . $length . '}', "\\0" . $break, $string);
+		} else {
 			return chunk_split($string, $length, $break);
 		}
 	}
@@ -604,5 +596,7 @@ class StringUtil {
 	public static function getSaltHash($value, $salt) {
 		return self::getDoubleSaltedHash($value, $salt);
 	}
+
 }
+
 ?>

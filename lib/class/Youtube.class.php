@@ -5,8 +5,7 @@
  * @author Kurtextrem
  * @version 1.0
  */
-class Youtube
-{
+class Youtube {
 
 	/**
 	 * @var boolean
@@ -18,8 +17,7 @@ class Youtube
 	 * @param boolean $json_enabled
 	 * @return -
 	 */
-	public function __construct($json_enabled = null)
-	{
+	public function __construct($json_enabled = null) {
 		$this->JSON = $json_enabled;
 	}
 
@@ -28,8 +26,7 @@ class Youtube
 	 * @param string $id
 	 * @return mixed
 	 */
-	public function getTitle($id)
-	{
+	public function getTitle($id) {
 		$contents = file_get_contents('http://m.youtube.com/watch?v=' . $id);
 		$titel = preg_match('~<title>YouTube - (.*)</title>~', $contents, $matches);
 		return ($this->JSON != 1) ? $matches[1] : json_encode($matches[1]);
@@ -40,8 +37,7 @@ class Youtube
 	 * @param string $id
 	 * @return mixed
 	 */
-	public function getLength($id)
-	{
+	public function getLength($id) {
 		$contents = file_get_contents('http://m.youtube.com/watch?v=' . $id);
 		$length = preg_match('/<div>([0-9:]*)&nbsp;/', $contents, $matches);
 		return ($this->JSON != 1) ? $matches[1] : json_encode($matches[1]);
@@ -53,8 +49,7 @@ class Youtube
 	 * @param bool $image
 	 * @return mixed
 	 */
-	public function getRate($id, $image = null)
-	{
+	public function getRate($id, $image = null) {
 		$contents = file_get_contents('http://m.youtube.com/watch?v=' . $id);
 		preg_match('/<img src="(.*)" alt="(.+ stars)"/', $contents, $matches);
 		if ($image == true)
@@ -67,8 +62,7 @@ class Youtube
 	 * @param string $id
 	 * @return mixed
 	 */
-	public function getAll($id)
-	{
+	public function getAll($id) {
 		$return = Array();
 		$contents = file_get_contents('http://m.youtube.com/watch?v=' . $id);
 		preg_match('~<title>YouTube - (.*)</title>~', $contents, $matches);

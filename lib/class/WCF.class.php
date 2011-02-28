@@ -11,18 +11,15 @@ if (is_file('../global.php'))
  * @license	GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  *
  */
-class WCF
-{
+class WCF {
 
 	private static $mysqli2;
 
-	public function __construct($mysqli2)
-	{
+	public function __construct($mysqli2) {
 		self::$mysqli2 = $mysqli2;
 	}
 
-	public static function getData($nickname, $password)
-	{
+	public static function getData($nickname, $password) {
 		$nickname = strip_tags($nickname);
 		$password = strip_tags($password);
 		$nickname = self::$mysqli2->real_escape_string($nickname);
@@ -37,8 +34,7 @@ class WCF
 		return true;
 	}
 
-	public static function getAvatar($nickname)
-	{
+	public static function getAvatar($nickname) {
 		$nickname = strip_tags($nickname);
 		$nickname = self::$mysqli2->real_escape_string($nickname);
 		$query = self::$mysqli2->query("SELECT avatarID FROM " . wcf_name_prefix . "user WHERE username = '" . $nickname . "'");
@@ -46,8 +42,7 @@ class WCF
 		return WCF_DIR . '/images/avatars/avatar-' . $result->avatarID . '.png';
 	}
 
-	public static function getSalt($nickname)
-	{
+	public static function getSalt($nickname) {
 		$nickname = strip_tags($nickname);
 		$nickname = self::$mysqli2->real_escape_string($nickname);
 		$query = self::$mysqli2->query("SELECT salt FROM " . wcf_name_prefix . "user WHERE username = '" . $nickname . "'");
@@ -55,8 +50,7 @@ class WCF
 		return $result->salt;
 	}
 
-	public static function getLoginOK($nickname, $pw, $salt)
-	{
+	public static function getLoginOK($nickname, $pw, $salt) {
 		$nickname = strip_tags($nickname);
 		$nickname = self::$mysqli2->real_escape_string($nickname);
 		$pw = strip_tags($pw);
@@ -72,8 +66,7 @@ class WCF
 		return true;
 	}
 
-	public static function getAdminOK($nickname, $pw, $salt, $update = false)
-	{
+	public static function getAdminOK($nickname, $pw, $salt, $update = false) {
 		$nickname = strip_tags($nickname);
 		$nickname = self::$mysqli2->real_escape_string($nickname);
 		$pw = strip_tags($pw);

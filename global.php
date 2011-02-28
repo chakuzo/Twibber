@@ -15,7 +15,6 @@ require_once('lib/class/Twibber.class.php');
 require_once('lib/class/Update.class.php');
 require_once('lib/class/exceptions.class.php');
 //require_once('lib/class/Youtube.class.php');
-
 // Sets default timezone
 date_default_timezone_set($lang['timezone']);
 

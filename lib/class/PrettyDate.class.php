@@ -9,19 +9,16 @@
 // Ported to PHP >= 5.1 by Zach Leatherman (zachleat.com)
 // Slight modification denoted below to handle months and years.
 // Language add by Kurtextrem.
-class Date_Difference
-{
+class Date_Difference {
 
-	public static function getStringResolved($date, $compareTo = NULL)
-	{
+	public static function getStringResolved($date, $compareTo = NULL) {
 		if (!is_null($compareTo)) {
 			$compareTo = new DateTime($compareTo);
 		}
 		return self::getString(new DateTime($date), $compareTo);
 	}
 
-	public static function getString(DateTime $date, DateTime $compareTo = NULL)
-	{
+	public static function getString(DateTime $date, DateTime $compareTo = NULL) {
 		global $lang;
 
 		if (is_null($compareTo)) {
