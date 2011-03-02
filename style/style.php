@@ -5,7 +5,7 @@ header('Content-type: text/css');
 include_once('../../config.inc.php');
 
 if (Gzip_enabled)
-	ob_start('ob_gzhandler');
+	ob_start('GZIP_ENABLED');
 
 ?>
 body {

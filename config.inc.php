@@ -26,6 +26,6 @@ define('WCF_DIR', 'http://example.com/wcf'); // The complete URL of the WCF dir.
 /**
  * Mixed config
  */
-define('GZip_enabled', true); // Enabled GZip Compression
+define('GZIP_ENABLED', true); // Enabled GZip Compression
 
 ?>

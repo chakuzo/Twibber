@@ -33,7 +33,7 @@ set_exception_handler(
 );
 
 // GZip compression
-if (GZip_enabled)
+if (GZIP_ENABLED)
 	ob_start('ob_gzhandler');
 
 if (wcf_update_groupid == '') {
