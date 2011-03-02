@@ -10,7 +10,7 @@ class Install {
 	/**
 	 * Checks all requirements for Twibber.
 	 */
-	public function check_server() {
+	public function checkServer() {
 		try {
 			if (version_compare(PHP_VERSION, '5.2') == -1)
 				throw new exception('Your server / webspace is running a PHP version below 5.2.x, please change this!');
@@ -45,7 +45,7 @@ class Install {
 	 * @param mixed $update_group_id
 	 * @param string $wcf_dir
 	 */
-	public function write_config($mysql_user, $mysql_pw, $mysql_db, $mysql_host, $wcf_prefix, $tb_lang, $tb_dir, $mysql_user_wcf, $mysql_pw_wcf, $mysql_db_wcf, $mysql_host_wcf, $admin_group_id, $update_group_id, $wcf_dir) {
+	public function writeConfig($mysql_user, $mysql_pw, $mysql_db, $mysql_host, $wcf_prefix, $tb_lang, $tb_dir, $mysql_user_wcf, $mysql_pw_wcf, $mysql_db_wcf, $mysql_host_wcf, $admin_group_id, $update_group_id, $wcf_dir) {
 		$config = file('config.inc.php', FILE_SKIP_EMPTY_LINES);
 		var_dump($config);
 	}
@@ -53,18 +53,18 @@ class Install {
 	/**
 	 * Execute the SQL Query on the Database.
 	 */
-	public function exec_sql() {
+	public function execSql() {
 		if (!$mysqli->query(file_get_contents('sql.sql')))
 			die('Error: ' . $mysqli->error . '\n');
 	}
 
 	public function install($step = 1) {
 		if ($step == 1)
-			$this->check_server();
+			$this->checkServer();
 		if ($step == 2)
-			$this->unpack_all();
+			$this->unpackAll();
 		if ($step == 3)
-			$this->write_config();
+			$this->writeConfig();
 		/*
 		 * All should be done in install() and setted up in install.php
 		 * 1. check server
@@ -78,7 +78,7 @@ class Install {
 		 */
 	}
 
-	public function edit_config() {
+	public function editConfig() {
 		$config = file('config.inc.php', FILE_SKIP_EMPTY_LINES);
 	}
 
@@ -104,7 +104,7 @@ class Install {
 		return;
 	}
 
-	public function display_form($step = 1) {
+	public function displayForm($step = 1) {
 
 	}
 

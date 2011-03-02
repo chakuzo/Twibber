@@ -14,7 +14,7 @@ $return = WCF::getLoginOK($nick, $pw, $salt);
 
 if (isset($_GET['new_entry']) && $_GET['new_entry'] == 1 && $return && !empty($nick)) {
 
-	if (!empty(trim($text)) && strlen($text) <= 250) {
+	if (!empty(StringUtil::trim($text)) && strlen($text) <= 250) {
 		if (isset($_GET['retwibb']) && $_GET['retwibb'])
 			exit();
 		if (isset($_GET['comment']) && $_GET['comment'] == 1) {
@@ -23,7 +23,7 @@ if (isset($_GET['new_entry']) && $_GET['new_entry'] == 1 && $return && !empty($n
 		}
 		$Twibber->createTwibber(htmlspecialchars($text), htmlspecialchars($nick));
 		echo $lang['success'];
-	} elseif (trim($text) == '') {
+	} elseif (StringUtil::trim($text) == '') {
 		echo $lang['no_message'];
 	} elseif (strlen($text) > 250) {
 		echo $message_too_long;
@@ -38,19 +38,19 @@ if (isset($_GET['new_entry']) && $_GET['new_entry'] == 1 && (empty($nick) xor !$
 @header("Access-Control-Allow-Origin: *");
 
 //anywhen important for JSONP or something else
-if (isset($_GET['dyn_get']) && trim($_GET['dyn_get']) == 1) {
+if (isset($_GET['dyn_get']) && StringUtil::trim($_GET['dyn_get']) == 1) {
 	$mult = (empty($_GET['page'])) ? 1 : intval($_GET['page']);
 	$latest = ($_GET['latest'] == 'true');
 	$Twibber->fetchTwibber($latest, true, '', 0, $mult * 20);
 }
-if (isset($_GET['nick']) && !empty(trim($_GET['nick']))) {
+if (isset($_GET['nick']) && !empty(StringUtil::trim($_GET['nick']))) {
 	$latest = ($_GET['latest'] == 'true');
 	$Twibber->fetchTwibber($latest, false, $_GET['nick']);
 }
-if (isset($_GET['search']) && !empty(trim($_GET['search'])) {
+if (isset($_GET['search']) && !empty(StringUtil::trim($_GET['search'])) {
 	$Twibber->searchTwibber($_GET['search']);
 }
-if (isset($_GET['image']) && !empty(trim($_GET['image']))) {
+if (isset($_GET['image']) && !empty(StringUtil::trim($_GET['image']))) {
 	$nick = ucwords(strip_tags($_GET['image']));
 	$return_array = $Twibber->fetchTwibber(true, false, $nick, 0, 30, true);
 	$img = ImageCreateTrueColor(468, 60)
