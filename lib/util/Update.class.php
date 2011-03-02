@@ -12,11 +12,6 @@ class Update {
 	 * @var array
 	 */
 	private $lang;
-	/**
-	 * Version var.
-	 * @var mixed
-	 */
-	public $version = '0.6.5';
 
 	/**
 	 * Sets $this->lang to $lang array.
@@ -83,7 +78,7 @@ class Update {
 			$zip->close();
 			if (!empty($xml->sqlstate))
 				mysql_query($xml->sqlstate);
-			echo '<br>' . $this->lang['updated_from'] . ' ' . $version . ' ' . $this->lang['updated_to'] . ' ' . $xml->version . '!<br>';
+			echo '<br>' . $this->lang['updated_from'] . ' ' . TWIBBER_VERSION . ' ' . $this->lang['updated_to'] . ' ' . $xml->version . '!<br>';
 		} else {
 			echo '<br>Failed to update! Try Manuell to update? <a href="http://github.com/downloads/chakuzo/Twibber/ ' . str_replace(' ', '', $xml->version . '.zip') . '">Click</a><br>';
 			echo $zip_ar;
@@ -99,7 +94,7 @@ class Update {
 	 */
 	public function checkUpdate($handle = false, $only_return = false) {
 		$xml = simplexml_load_file('https://github.com/chakuzo/Twibber/raw/master/install/update.xml');
-		if ($xml->version != $this->version) {
+		if ($xml->version != TWIBBER_VERSION) {
 			if ($only_return)
 				return $xml;
 			if ($handle)

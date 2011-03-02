@@ -1,56 +1,33 @@
 <?php
 
 /**
- * @author	Marcel Werk, modified from Kurtextrem for Twibber.
- * @copyright	2001-2009 WoltLab GmbH
+ * Creates autoloader and error handlers
+ *
+ * @author	Kurtextrem
  * @license	GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
- * @package	com.woltlab.wcf
- * @category 	Community Framework
  */
+// exception handler
+set_exception_handler(array('Twibber', 'handleException'));
 
-// set exception handler
-set_exception_handler(array('TwibberCore', 'handleException'));
-
-// set php error handler
-set_error_handler(array('TwibberCore', 'handleError'), E_ALL);
-
-// set shutdown function
-register_shutdown_function(array('TwibberCore', 'destruct'));
+// error handler
+set_error_handler(array('Twibber', 'handleError'), E_ALL);
 
 /**
- * Includes the required util or exception classes automatically.
+ * Autoloads classes.
  *
- * @param 	string		$className
+ * @param string $className
  */
 function __autoload($className) {
-	// search util class in wcf dir
-	if (file_exists(TWIBBER_DIR . 'lib/util/' . $className . '.class.php')) {
-		// include file
-		require_once(TWIBBER_DIR . 'lib/util/' . $className . '.class.php');
-		return;
-	}
-	// search exception class in wcf dir
-	if (file_exists(TWIBBER_DIR . 'lib/system/exception/' . $className . '.class.php')) {
-		// include file
-		require_once(TWIBBER_DIR . 'lib/system/exception/' . $className . '.class.php');
+
+	if (file_exists(TWIBBER_DIR . '/lib/util/' . $className . '.class.php')) {
+		require_once(TWIBBER_DIR . '/lib/util/' . $className . '.class.php');
 		return;
 	}
 
-	// search util or exception class in application dirs
-	global $packageDirs;
-	if (isset($packageDirs) && is_array($packageDirs)) {
-		foreach ($packageDirs as $packageDir) {
-			if (file_exists($packageDir . 'lib/util/' . $className . '.class.php')) {
-				// include file
-				require_once($packageDir . 'lib/util/' . $className . '.class.php');
-				return;
-			}
-			if (file_exists($packageDir . 'lib/system/exception/' . $className . '.class.php')) {
-				// include file
-				require_once($packageDir . 'lib/system/exception/' . $className . '.class.php');
-				return;
-			}
-		}
+	if (file_exists(TWIBBER_DIR . '/lib/system/exception/' . $className . '.class.php')) {
+		require_once(TWIBBER_DIR . '/lib/system/exception/' . $className . '.class.php');
+		return;
 	}
 }
+
 ?>

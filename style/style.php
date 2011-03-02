@@ -2,10 +2,9 @@
 
 header('Content-type: text/css');
 
-include_once('../../config.inc.php');
+include_once('../lib/util/HeaderUtil.class.php');
 
-if (Gzip_enabled)
-	ob_start('ob_gzhandler');
+HeaderUtil::sendHeaders();
 
 ?>
 body {

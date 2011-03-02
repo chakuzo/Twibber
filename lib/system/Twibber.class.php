@@ -1,15 +1,18 @@
 <?php
 
-if (is_file('../global.php'))
-	require_once('../global.php');
+// define current twibber version
+define('TWIBBER_VERSION', '0.6.5');
+
+// Sets default timezone
+date_default_timezone_set($lang['timezone']);
+
+require_once(TWIBBER_DIR . '/lib/core.functions.php');
 
 /**
- * Classes for Twibber
+ * This is the main class for Twibber.
  *
- * @author kurtextrem
- * @todo All fetch_assoc to fetch_object.
+ * @author 	kurtextrem
  * @license	GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
- *
  */
 class Twibber {
 
@@ -115,6 +118,44 @@ class Twibber {
 
 		echo "<time title='" . $date . "'>" . Date_Difference::getStringResolved($date) . "</time>";
 		echo '</div>';
+	}
+
+	/**
+	 * Calls the show method on the given exception.
+	 *
+	 * @param	Exception	$e
+	 * @author Marcel Werk (A class from beautiful WCF)
+	 */
+	public static final function handleException(Exception $e) {
+		if ($e instanceof PrintableException) {
+			$e->show();
+			exit;
+		}
+
+		print $e;
+	}
+
+	/**
+	 * Catches php errors and throws instead a system exception.
+	 *
+	 * @author Marcel Werk (A class from beautiful WCF)
+	 * @param	integer		$errorNo
+	 * @param	string		$message
+	 * @param	string		$filename
+	 * @param	integer		$lineNo
+	 */
+	public static final function handleError($errorNo, $message, $filename, $lineNo) {
+		if (error_reporting() != 0) {
+			$type = 'error';
+			switch ($errorNo) {
+				case 2: $type = 'warning';
+					break;
+				case 8: $type = 'notice';
+					break;
+			}
+
+			throw new SystemException('PHP ' . $type . ' in file ' . $filename . ' (' . $lineNo . '): ' . $message, 0);
+		}
 	}
 
 }

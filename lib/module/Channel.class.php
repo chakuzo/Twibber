@@ -14,14 +14,14 @@ class Channel extends Twibber {
 	public function __construct(array $channel) {
 		parrent::__construct();
 		$this->channel = $channel;
-		$this->CreateChannel($channel);
+		$this->createChannel($channel);
 	}
 
-	public function CreateChannel($channel) {
+	public function createChannel($channel) {
 
 	}
 
-	public function ListChannel() {
+	public function listChannel() {
 
 	}
 

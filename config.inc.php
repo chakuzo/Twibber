@@ -9,7 +9,6 @@ define('MYSQL_DB', 'database'); // The Database Name
 define('MYSQL_HOST', 'localhost'); // often localhost
 // Provide it with syntax 'wcfX_', X as a number !!!
 define('TWIBBER_LANG', 'de'); // If youre from UK / USA change 'de' to 'en'.
-define('TWIBBER_DIR', '/twibber'); // The dir of the twibber dir -> no trailing slash.
 
 /**
  * Fill out the Data for the connection to read out the WCF Data.
@@ -26,6 +25,8 @@ define('WCF_DIR', 'http://example.com/wcf'); // The complete URL of the WCF dir.
 /**
  * Mixed config
  */
-define('GZip_enabled', true); // Enabled GZip Compression
+define('HTTP_GZIP_ENABLED', true); // Enabled GZip Compression
+
+define('TWIBBER_DIR', __DIR__);
 
 ?>

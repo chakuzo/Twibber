@@ -34,6 +34,14 @@ Milestone 0.6:
 -Answer (Facebook like, or twitter?) | OK (Twibber like (fusion of twitter and facebook ;o))
 
 Milestone 0.7:
+-rewrite install.php
+-_all_ pages in twibber design !
+-real exception handling
+
+Milestone 0.8:
+-ACP
+
+Milestone whatever:
 -timeline api like twitter for _MaX_'s  Signature script
 <_MaX_>'tweeter' => $node->getElementsByTagName('screen_name')->item(0)->nodeValue,
 <_MaX_>'text' => $node->getElementsByTagName('text')->item(0)->nodeValue,
@@ -41,12 +49,6 @@ Milestone 0.7:
 <_MaX_>'date' => $node->getElementsByTagName('created_at')->item(0)->nodeValue,
 <_MaX_>'avatar' => $node->getElementsByTagName('profile_image_url')->item(0)->nodeValue,
 <_MaX_>'source' => $node->getElementsByTagName('source')->item(0)->nodeValue
-
-Milestone 0.8:
--ACP
--rewrite install.php
--_all_ pages in twibber design !
--real exception handling
 
 Milestone 0.9:
 -valid pages complete !!
