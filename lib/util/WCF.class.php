@@ -11,12 +11,8 @@ class WCF {
 
 	private static $mysqli2;
 
-	public function __construct() {
-		self::$mysqli2 = new mysqli(MYSQL_HOST_WCF, MYSQL_USER_WCF, MYSQL_PW_WCF, MYSQL_DB_WCF);
-		if ($mysqli2->connect_error) {
-			throw new Exception($lang['mysql_wcf_connect_erorr'] . ' (' . $mysqli2->connect_errno . ') '
-					. $mysqli2->connect_error);
-		}
+	public function __construct($mysqli2) {
+		self::$mysqli2 = $mysqli2;
 	}
 
 	public static function getData($nickname, $password) {
@@ -84,7 +80,7 @@ class WCF {
 			define('ENCRYPTION_ENCRYPT_BEFORE_SALTING', false);
 
 		$query = self::$mysqli2->query("SELECT password FROM " . wcf_name_prefix . "user WHERE username = '" . $nickname . "' AND salt = '" . $salt . "' AND password = '" . StringUtil::getDoubleSaltedHash($pw, $salt) . "'");
-		
+
 		$result = $query->fetch_object();
 
 		if (!$result)
