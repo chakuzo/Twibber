@@ -1,7 +1,7 @@
 <?php
 
 // define current twibber version
-define('TWIBBER_VERSION', '0.6.5');
+define('TWIBBER_VERSION', '0.6.6');
 
 // Sets default timezone
 date_default_timezone_set($lang['timezone']);
@@ -16,16 +16,15 @@ require_once(TWIBBER_DIR . '/lib/core.functions.php');
  */
 class Twibber {
 
-	private $mysqli;
 	/**
-	 * Language array
-	 * @var Array
+	 *	Database connection.
+	 *
+	 * @var type
 	 */
-	private $lang;
+	private $mysqli;
 
-	public function __construct($mysqli, array $lang) {
+	public function __construct($mysqli) {
 		$this->mysqli = $mysqli;
-		$this->lang = $lang;
 	}
 
 	public function fetchTwibber($latest = true, $global = false, $nick = '', $start = 0, $end = 30, $signature = false) {
@@ -111,7 +110,7 @@ class Twibber {
 		if (!$comment) {
 			echo "<div class='" . $nickname . " nickname'>" . $nickname . "</div>";
 			echo "<div class='twibb_content'>" . $text . "</div>";
-			echo "<div class='comment_banner'><a href='#' class='comment_link'>" . $this->lang['comment'] . "</a></div>";
+			echo "<div class='comment_banner'><a href='#' class='comment_link'>" . Lang::getLangString('comment') . "</a></div>";
 		} else {
 			echo "<div class='twibb_content'><a href='#nick=" . $nickname . "'><strong>" . $nickname . ":</strong></a> " . $text . "</div>";
 		}
