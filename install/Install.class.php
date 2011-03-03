@@ -7,75 +7,85 @@
  */
 class Install {
 	/**
+	 * Javascript function submit_form();
+	 */
+	const SUBMIT_FORM = '<script>
+		function submit_form(){
+			$.post("?step=5&action=5", $("form").serialize(), function(ret){eval(ret);});
+		}
+		</script>';
+
+	/**
 	 * The Form for Config.
 	 */
 	const CONFIG_FORM = '
-		<form action="?step=5">
+		<form action="?step=5&action=5" onsubmit="submit_form(); return false;">
 			Let\'s go to the Database Connections:
 			<table>
 				<tr>
 					<td>MySQL User:</td>
-					<td><input type="text" placeholder="MySQL User"></td>
+					<td><input type="text" name="mysql_user" placeholder="MySQL User"></td>
 				</tr>
 				<tr>
 					<td>MySQL Password:</td>
-					<td><input type="password" placeholder="MySQL PW"></td>
+					<td><input type="password" name="mysql_pw" placeholder="MySQL PW"></td>
 				</tr>
 				<tr>
 					<td>MySQL Database:</td>
-					<td><input type="text" placeholder="MySQL DB"></td>
+					<td><input type="text" name="mysql_db" placeholder="MySQL DB"></td>
 				</tr>
 				<tr>
 					<td>MySQL Host:</td>
-					<td><input type="text" value="localhost"></td>
+					<td><input type="text" name="mysql_host" value="localhost"></td>
 				</tr>
 				<tr>
 					<td>MySQL Prefix:</td>
-					<td><input type="text" value="twibber_" disabled></td>
+					<td><input type="text" name="mysql_prefix" value="twibber_" disabled></td>
 				</tr>
 			</table>
 			<hr>Now the <strong>WCF</strong> Database Connection:
 			<table>
 				<tr>
 					<td>MySQL User:</td>
-					<td><input type="text" placeholder="MySQL User"></td>
+					<td><input type="text" name="wcf_mysql_user" placeholder="MySQL User"></td>
 				</tr>
 				<tr>
 					<td>MySQL Password:</td>
-					<td><input type="password" placeholder="MySQL PW"></td>
+					<td><input type="password" name="wcf_mysql_pw" placeholder="MySQL PW"></td>
 				</tr>
 				<tr>
 					<td>MySQL Database:</td>
-					<td><input type="text" placeholder="MySQL DB"></td>
+					<td><input type="text" name="wcf_mysql_db" placeholder="MySQL DB"></td>
 				</tr>
 				<tr>
 					<td>MySQL Host:</td>
-					<td><input type="text" value="localhost"></td>
+					<td><input type="text" name="wcf_mysql_host" value="localhost"></td>
 				</tr>
 				<tr>
 					<td>MySQL Prefix:</td>
-					<td><input type="text" value="wcf1_"></td>
+					<td><input type="text" name="wcf_mysql_prefix" value="wcf1_"></td>
 				</tr>
 			</table>
 			<hr>Yeah, and at least the mixed Config:
 			<table>
 				<tr>
 					<td title="Please provide the group id from the acp from the WCF / WBB. DANGER! If you provide the false id, member can update and in future in the Twibber ACP">Admin Group ID:</td>
-					<td><input type="number" min="0" value="4"></td>
+					<td><input name="admin_group_id" type="number" min="0" value="4"></td>
 				</tr>
 				<tr>
 					<td title="Here you must add the group id of an group, which can only update. No access to acp, but maybe more active and more online, so can update more often.">Update Group ID:</td>
-					<td><input type="number" min="0" value="4"></td>
+					<td><input name="update_group_id" type="number" min="0" value="4"></td>
 				</tr>
 				<tr>
 					<td title="The complete URL of the WCF dir.">WCF Dir:</td>
-					<td><input type="text" placeholder="http://example.com/wcf"></td>
+					<td><input name="wcf_dir" type="text" placeholder="http://example.com/wcf"></td>
 				</tr>
 				<tr>
 					<td title="GZip makes Twibber really faster!">Enable GZip?</td>
-					<td><label><input type="checkbox" value="true" checked>Yes</label></td>
+					<td><label><input name="gzip_enabled" type="checkbox" value="true" checked>Yes</label></td>
 				</tr>
 			</table>
+			<button>Submit</button>
 		</form>
 		';
 
@@ -208,6 +218,7 @@ class Install {
 				break;
 
 			case 3:
+				echo self::SUBMIT_FORM;
 				echo self::CONFIG_FORM;
 				break;
 
@@ -220,7 +231,7 @@ class Install {
 				if ($unlink)
 					echo self::SETUP_DONE;
 				else
-					exit(self::SETUP_DONE.'Please delete the Folder /install/');
+					exit(self::SETUP_DONE . 'Please delete the Folder /install/');
 				break;
 
 			case 6:

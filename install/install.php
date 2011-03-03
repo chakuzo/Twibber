@@ -1,6 +1,10 @@
 <?php
 require_once('Install.class.php');
 $step = (isset($_GET['step'])) ? $_GET['step'] : 1;
+$action = (isset($_GET['action'])) ? $_GET['action'] : '';
+if(!empty($action)){
+	exit('alert("The config had been written successfully");');
+}
 
 ?>
 <!doctype html>
