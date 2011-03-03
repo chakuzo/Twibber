@@ -43,7 +43,7 @@ class Update {
 			}
 			rename('../config.inc.back.php', '../config.inc.php');
 		} else {
-			echo $this->lang['update_fail'] . '<br>';
+			echo $this->lang['update_fail'] . '<br>Error Code #';
 			echo $zip_ar;
 		}
 		unlink('nightly.zip');
@@ -66,7 +66,7 @@ class Update {
 				mysql_query($xml->sqlstate);
 			echo '<br>' . $this->lang['updated_from'] . ' ' . TWIBBER_VERSION . ' ' . $this->lang['updated_to'] . ' ' . $xml->version . '!<br>';
 		} else {
-			echo '<br>Failed to update! Try Manuell to update? <a href="http://github.com/downloads/chakuzo/Twibber/ ' . str_replace(' ', '', $xml->version . '.zip') . '">Click</a><br>';
+			echo '<br>Failed to update! Try Manuell to update? <a href="http://github.com/downloads/chakuzo/Twibber/ ' . str_replace(' ', '', $xml->version . '.zip') . '">Click</a><br>Error Code #';
 			echo $zip_ar;
 		}
 		unlink('update.zip');

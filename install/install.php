@@ -27,7 +27,7 @@ $step = (isset($_GET['step'])) ? $_GET['step'] : 1;
 			$Install->displayForm($step);
 
 			?>
-			<br><button onclick="location.search = '?step=<?php echo ++$step ?>'" disabled>Weiter</button>
+			<br><button onclick="location.search = '?step=<?php echo ++$step ?>'" disabled>Next</button>
 		</section>
 	</body>
 </html>

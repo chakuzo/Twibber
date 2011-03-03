@@ -7,6 +7,59 @@
  */
 class Install {
 
+	const CONFIG_FORM = '
+		<form action="?step=">
+			Let\'s go to the Database Connections:
+			<table>
+				<tr>
+					<td>MySQL User:</td>
+					<td><input type="text" placeholder="MySQL User"></td>
+				</tr>
+				<tr>
+					<td>MySQL Password:</td>
+					<td><input type="password" placeholder="MySQL PW"></td>
+				</tr>
+				<tr>
+					<td>MySQL Database:</td>
+					<td><input type="text" placeholder="MySQL DB"></td>
+				</tr>
+				<tr>
+					<td>MySQL Host:</td>
+					<td><input type="text" value="localhost"></td>
+				</tr>
+				<tr>
+					<td>MySQL Prefix:</td>
+					<td><input type="text" value="twibber_" disabled></td>
+				</tr>
+			</table>
+			<hr>Now the <strong>WCF</strong> Database Connection:
+			<table>
+				<tr>
+					<td>MySQL User:</td>
+					<td><input type="text" placeholder="MySQL User"></td>
+				</tr>
+				<tr>
+					<td>MySQL Password:</td>
+					<td><input type="password" placeholder="MySQL PW"></td>
+				</tr>
+				<tr>
+					<td>MySQL Database:</td>
+					<td><input type="text" placeholder="MySQL DB"></td>
+				</tr>
+				<tr>
+					<td>MySQL Host:</td>
+					<td><input type="text" value="localhost"></td>
+				</tr>
+				<tr>
+					<td>MySQL Prefix:</td>
+					<td><input type="text" value="wcf1_"></td>
+				</tr>
+			</table>
+		</form>
+		';
+
+	const SETUP_DONE = '<div class="success">Setup finished. Have fun with your Twibber Install :)</div>';
+
 	/**
 	 * Checks all requirements for Twibber.
 	 *
@@ -26,7 +79,7 @@ class Install {
 				throw new exception('GDLib is needed for Signature Images. Delete Line 24 + 25 on Install.class.php, to continue setup.');
 			if ($is_check) {
 				echo '<div class="success">Congratulation, your Server / Webspace is ready for Twibber.</div>';
-				echo '<script>$(document).ready(function(){$("button").removeAttr("disabled");});</script>';
+				$this->enableButton();
 			}
 		} catch (exception $e) {
 			echo '<div class="error">Error: ' . var_dump($exception) . '</div>';
@@ -75,37 +128,34 @@ class Install {
 			case 2:
 				$this->unzipAll(); // Unpack twibber
 				break;
-			case 3:
-				$this->writeConfig(); // Write config
-				break;
 			case 4:
 				$this->execSQL(); // exec sql
 				break;
-			case 5:
-				$this->unlink(array(__FILE__, 'sql.sql')); // unlink install
-				break;
 
 			default:
-				$this->checkServer();
+				$this->checkServer(); // checks server
 				break;
 		}
 	}
 
 	public function editConfig() {
 		$config = file('config.inc.php', FILE_SKIP_EMPTY_LINES);
+		var_dump($config);
 	}
 
 	/**
 	 * Extracts the Twibber.zip.
 	 */
 	public function unzipAll() {
-		$archive = new ZipArchive('twibber.zip');
+		$filename = 'Twibber.zip';
+		$archive = new ZipArchive();
 		$open = $archive->open($filename);
 		if ($open === true) {
 			$archive->extractTo(__DIR__);
-			echo $open;
+			echo 'Successfully extracted Twibber.zip.';
+			$this->enableButton();
 		}
-		die("Can't extract Twibber.zip!");
+		die("Can't extract Twibber.zip!<br>Error Code #" . $open);
 	}
 
 	/**
@@ -129,28 +179,38 @@ class Install {
 	public function displayForm($step = 1) {
 		switch ($step) {
 			case 2:
-				$this->unzipAll(); // Unpack twibber
+				$this->install(2);
 				break;
 			case 3:
 				$this->writeConfig(); // Write config
 				break;
 			case 4:
-				$this->execSQL(); // exec sql
+				$this->install(4); // exec sql
 				break;
 			case 5:
-				$this->unlink(array(__FILE__, 'sql.sql')); // unlink install
+				$unlink = $this->unlink(array(__FILE__, 'sql.sql')); // unlink install
+				if ($unlink)
+					$this->enableButton();
+				else
+					exit('Done install! Please delete the Folder /install/');
 				break;
 
-			default:
+			case 6:
+				echo SETUP_DONE;
 
-				?>
+			default:
+				echo '
 				Welcome to Twibber install.
 				<br><br>
-				So, here we go:
-				<?php
+				So, here we go:'
+				;
 				$this->checkServer(true);
 				break;
 		}
+	}
+
+	public function enableButton() {
+		echo '<script>$(document).ready(function(){$("button").removeAttr("disabled");});</script>';
 	}
 
 }
