@@ -3,9 +3,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>TWiBBer - WBB MicroBlogging Social Network</title>
-		<link rel="stylesheet" href="<?php echo TWIBBER_DIR ?>/lib/style/style.min.css" type="text/css">
-		<link rel="stylesheet" href="<?php echo TWIBBER_DIR ?>/lib/style/freeow.min.css" type="text/css">
-		<link rel="stylesheet" href="<?php echo TWIBBER_DIR ?>/lib/style/slide.min.css" type="text/css">
+		<link rel="stylesheet" href="<?php echo TWIBBER_DIR ?>/style/style.min.css" type="text/css">
+		<link rel="stylesheet" href="<?php echo TWIBBER_DIR ?>/style/freeow.min.css" type="text/css">
+		<link rel="stylesheet" href="<?php echo TWIBBER_DIR ?>/style/slide.min.css" type="text/css">
 		<link rel="shortcut icon" type="image/x-icon" href="<?php echo TWIBBER_DIR ?>/images/img/favicon.ico">
 		<link href='//fonts.googleapis.com/css?family=Yanone+Kaffeesatz' rel='stylesheet' type='text/css'>
 		<link href='//fonts.googleapis.com/css?family=Neucha' rel='stylesheet' type='text/css'>

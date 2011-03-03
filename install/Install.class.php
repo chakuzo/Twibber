@@ -9,8 +9,10 @@ class Install {
 
 	/**
 	 * Checks all requirements for Twibber.
+	 *
+	 * @param boolean $is_check
 	 */
-	public function checkServer() {
+	public function checkServer($is_check = false) {
 		try {
 			// PHP 5.3 is required
 			if (version_compare(PHP_VERSION, '5.3') == -1)
@@ -18,13 +20,17 @@ class Install {
 			$extensions = get_loaded_extensions();
 			if (array_search('xml', $extensions) === false)
 				throw new exception('Your server / webspace doenst have a XML Extension!');
-			if (safe_mode == 1)
+			if (defined('safe_mode'))
 				throw new exception('Safe Mode is on! Please disable it.');
-			if (!function_exists(gd_info()))
+			if (!function_exists('gd_info'))
 				throw new exception('GDLib is needed for Signature Images. Delete Line 24 + 25 on Install.class.php, to continue setup.');
-			$this->install();
+			if ($is_check) {
+				echo '<div class="success">Congratulation, your Server / Webspace is ready for Twibber.</div>';
+				echo '<script>$(document).ready(function(){$("button").removeAttr("disabled");});</script>';
+			}
 		} catch (exception $e) {
-			echo 'Error: ' . var_dump($exception) . '<br>';
+			echo '<div class="error">Error: ' . var_dump($exception) . '</div>';
+			exit();
 		}
 	}
 
@@ -59,36 +65,51 @@ class Install {
 			die('Error: ' . $mysqli->error . '\n');
 	}
 
+	/**
+	 * Handles the Step from Install.
+	 *
+	 * @param integer $step
+	 */
 	public function install($step = 1) {
-		if ($step == 1)
-			$this->checkServer();
-		if ($step == 2)
-			$this->unpackAll();
-		if ($step == 3)
-			$this->writeConfig();
-		/*
-		 * All should be done in install() and setted up in install.php
-		 * 1. check server
-		 * 2. if ok unpack all else exit
-		 * 3. write config
-		 * 4. exec sql
-		 * 5. delete install.php + __FILE__, if ok, exit, else show message.
-		 * unlink('sql.sql');
-		 * @unlink('install.php');
-		 * @unlink(__FILE__);
-		 */
+		switch ($step) {
+			case 2:
+				$this->unzipAll(); // Unpack twibber
+				break;
+			case 3:
+				$this->writeConfig(); // Write config
+				break;
+			case 4:
+				$this->execSQL(); // exec sql
+				break;
+			case 5:
+				$this->unlink(array(__FILE__, 'sql.sql')); // unlink install
+				break;
+
+			default:
+				$this->checkServer();
+				break;
+		}
 	}
 
 	public function editConfig() {
 		$config = file('config.inc.php', FILE_SKIP_EMPTY_LINES);
 	}
 
+	/**
+	 * Extracts the Twibber.zip.
+	 */
 	public function unzipAll() {
-
+		$archive = new ZipArchive('twibber.zip');
+		$open = $archive->open($filename);
+		if ($open === true) {
+			$archive->extractTo(__DIR__);
+			echo $open;
+		}
+		die("Can't extract Twibber.zip!");
 	}
 
 	/**
-	 * @see lib/class/Update.class.php
+	 * @see lib/module/Update.class.php
 	 */
 	public function unlink(array $unlink, $dir = false) {
 		foreach ($unlink as $index => $file) {
@@ -106,7 +127,30 @@ class Install {
 	}
 
 	public function displayForm($step = 1) {
+		switch ($step) {
+			case 2:
+				$this->unzipAll(); // Unpack twibber
+				break;
+			case 3:
+				$this->writeConfig(); // Write config
+				break;
+			case 4:
+				$this->execSQL(); // exec sql
+				break;
+			case 5:
+				$this->unlink(array(__FILE__, 'sql.sql')); // unlink install
+				break;
 
+			default:
+
+				?>
+				Welcome to Twibber install.
+				<br><br>
+				So, here we go:
+				<?php
+				$this->checkServer(true);
+				break;
+		}
 	}
 
 }

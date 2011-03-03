@@ -8,23 +8,9 @@
 class Update {
 
 	/**
-	 * Language array.
-	 * @var array
-	 */
-	private $lang;
-
-	/**
-	 * Sets $this->lang to $lang array.
-	 * @param array $lang
-	 */
-	public function __construct(array $lang) {
-		$this->lang = $lang;
-	}
-
-	/**
 	 * Updates to nightly version.
 	 */
-	public function updateNightly() {
+	public static function updateNightly() {
 		$zip = new ZipArchive();
 		$filename = 'nightly.zip';
 		$contents = file_get_contents('http://github.com/chakuzo/Twibber/zipball/master');
@@ -68,7 +54,7 @@ class Update {
 	 * @param object $xml
 	 * @param mixed $version
 	 */
-	public function updateMain($xml, $version = null) {
+	public static function updateMain($xml, $version = null) {
 		$content = file_get_contents('http://github.com/downloads/chakuzo/Twibber/ ' . str_replace(' ', '', $xml->version . '.zip'));
 		file_put_contents('update.zip', $content);
 		$zip = new ZipArchive;
@@ -92,7 +78,7 @@ class Update {
 	 * @param boolean $only_return
 	 * @return mixed
 	 */
-	public function checkUpdate($handle = false, $only_return = false) {
+	public static function checkUpdate($handle = false, $only_return = false) {
 		$xml = simplexml_load_file('https://github.com/chakuzo/Twibber/raw/master/install/update.xml');
 		if ($xml->version != TWIBBER_VERSION) {
 			if ($only_return)
@@ -116,7 +102,7 @@ class Update {
 	 * @param boolean $dir
 	 * @return boolean
 	 */
-	public function unlink(array $unlink, $dir = false) {
+	public static function unlink(array $unlink, $dir = false) {
 		foreach ($unlink as $index => $file) {
 			if (file_exists($file)) {
 				if ($dir) {
@@ -132,5 +118,25 @@ class Update {
 	}
 
 }
+
+$update = (isset($_GET['update'])) ? $_GET['update'] : '';
+
+include_once(TWIBBER_DIR . '/templates/header.tpl');
+
+switch ($update) {
+	case 'nightly':
+		$Update->updateNightly();
+		break;
+
+	case 'main':
+		$Update->updateMain($Update->checkUpdate(false, true));
+		break;
+
+	default:
+		$Update->checkUpdate();
+		break;
+}
+
+include_once(TWIBBER_DIR . '/templates/footer.tpl');
 
 ?>

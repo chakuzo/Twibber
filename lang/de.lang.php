@@ -40,7 +40,7 @@ $lang = array(
 	'no_message' => "Bitte geben Sie eine Nachricht ein, bevor Sie 'Twibbern' klicken!",
 	'message_too_long' => 'Nachricht zu lang!',
 	'no_nick' => 'Kein Nickname angegeben. Bitte loggen Sie sich ein!',
-	'gd_error' => 'Kann keinen neuen GD-Bild-Stream erzeugen',
+	'gd_error' => 'Kann keinen neuen GD-Bild-Stream erzeugen.',
 	'gd_last_twib' => "'s neuster Twibb:",
 	'gd_date' => 'Am: ',
 
@@ -55,7 +55,8 @@ $lang = array(
 	'update_notes' => 'Notizen:',
 	'updated_from' => 'Geupdatet von',
 	'updated_to' => 'zu',
-	'no_update' => 'Kein Update verfügbar'
+	'no_update' => 'Kein Update verfügbar.',
+	'no_action' => 'Keine valide Action!'
 );
 
 ?>

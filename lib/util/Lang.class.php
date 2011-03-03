@@ -1,11 +1,16 @@
 <?php
 
+// if lang array isnt here, load it.
+if (!isset($lang))
+	require_once(TWIBBER_DIR . 'lang/' . TWIBBER_LANG . '.lang.php');
+
 /**
  * Returns language specified strings.
  *
  * @author Kurt
  */
 class Lang {
+
 	/**
 	 * Language array.
 	 *
@@ -16,7 +21,7 @@ class Lang {
 	/**
 	 * @param array $lang
 	 */
-	public function __construct(array $lang){
+	public function __construct(array $lang) {
 		self::$lang = $lang;
 	}
 
@@ -26,9 +31,10 @@ class Lang {
 	 * @param string $ident
 	 * @return string
 	 */
-	public static function getLangString($ident){
+	public static function getLangString($ident) {
 		return self::$lang[$ident];
 	}
+
 }
 
 ?>

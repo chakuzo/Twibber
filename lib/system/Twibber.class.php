@@ -119,6 +119,10 @@ class Twibber {
 		echo '</div>';
 	}
 
+	public function deleteTwibb($id){
+		
+	}
+
 	/**
 	 * Calls the show method on the given exception.
 	 *

@@ -9,7 +9,7 @@ $update_ok = WCF::getAdminOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $
 	<p class="grey"><a href="#">Profil Bearbeiten</a></p>
 	<p class="grey"><a href="#" id='refresh' class='stop'>Aktuallsieren stoppen</a></p>
 	<?php if ($admin_ok) { ?><p class="grey"><a href="#">Twibber ACP</a></p> <?php } ?>
-	<?php if ($update_ok) { ?><p class="grey"><a href="install/update.php">Updaten</a></p> <?php } ?>
+	<?php if ($update_ok) { ?><p class="grey"><a href="index.php?page=Update">Updaten</a></p> <?php } ?>
 </div>
 <div class="left">
 	<h1>Willkommen <?php echo $_COOKIE['twibber_nick'] ?>!</h1>

@@ -107,7 +107,7 @@ class SystemException extends Exception implements PrintableException {
 						<b>error message:</b> <?php echo StringUtil::encodeHTML($this->getMessage()); ?><br />
 						<b>error code:</b> <?php echo intval($this->getCode()); ?><br />
 		<?php echo $this->information; ?>
-						<b>file:</b> <?php echo StringUtil::encodeHTML($this->getFile()); ?> (<?php echo $this->getLine(); ?>)<br />
+						<b>file:</b> <?php echo StringUtil::encodeHTML($this->getFile()); ?> (#<?php echo $this->getLine(); ?>)<br />
 						<b>php version:</b> <?php echo StringUtil::encodeHTML(phpversion()); ?><br />
 						<b>Twibber version:</b> <?php echo TWIBBER_VERSION; ?><br />
 						<b>date:</b> <?php echo gmdate('r'); ?><br />
