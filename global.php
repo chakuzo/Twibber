@@ -13,8 +13,4 @@ require_once(TWIBBER_DIR . '/lib/system/Twibber.class.php');
 // Send header
 HeaderUtil::sendHeaders();
 
-if (wcf_update_groupid == '') {
-	die($group_id_error);
-}
-
 ?>

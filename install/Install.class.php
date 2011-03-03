@@ -6,9 +6,11 @@
  * @author Kurt
  */
 class Install {
-
+	/**
+	 * The Form for Config.
+	 */
 	const CONFIG_FORM = '
-		<form action="?step=">
+		<form action="?step=5">
 			Let\'s go to the Database Connections:
 			<table>
 				<tr>
@@ -55,9 +57,31 @@ class Install {
 					<td><input type="text" value="wcf1_"></td>
 				</tr>
 			</table>
+			<hr>Yeah, and at least the mixed Config:
+			<table>
+				<tr>
+					<td title="Please provide the group id from the acp from the WCF / WBB. DANGER! If you provide the false id, member can update and in future in the Twibber ACP">Admin Group ID:</td>
+					<td><input type="number" min="0" value="4"></td>
+				</tr>
+				<tr>
+					<td title="Here you must add the group id of an group, which can only update. No access to acp, but maybe more active and more online, so can update more often.">Update Group ID:</td>
+					<td><input type="number" min="0" value="4"></td>
+				</tr>
+				<tr>
+					<td title="The complete URL of the WCF dir.">WCF Dir:</td>
+					<td><input type="text" placeholder="http://example.com/wcf"></td>
+				</tr>
+				<tr>
+					<td title="GZip makes Twibber really faster!">Enable GZip?</td>
+					<td><label><input type="checkbox" value="true" checked>Yes</label></td>
+				</tr>
+			</table>
 		</form>
 		';
 
+	/**
+	 * Setup Done const.
+	 */
 	const SETUP_DONE = '<div class="success">Setup finished. Have fun with your Twibber Install :)</div>';
 
 	/**
@@ -104,8 +128,9 @@ class Install {
 	 * @param mixed $admin_group_id
 	 * @param mixed $update_group_id
 	 * @param string $wcf_dir
+	 * @param boolean $gzip_on
 	 */
-	public function writeConfig($mysql_user, $mysql_pw, $mysql_db, $mysql_host, $wcf_prefix, $tb_lang, $tb_dir, $mysql_user_wcf, $mysql_pw_wcf, $mysql_db_wcf, $mysql_host_wcf, $admin_group_id, $update_group_id, $wcf_dir) {
+	public function writeConfig($mysql_user, $mysql_pw, $mysql_db, $mysql_host = 'localhost', $wcf_prefix, $tb_lang = 'de', $mysql_user_wcf, $mysql_pw_wcf, $mysql_db_wcf, $mysql_host_wcf = 'localhost', $admin_group_id = 4, $update_group_id = 4, $wcf_dir, $gzip_on = false) {
 		$config = file('config.inc.php', FILE_SKIP_EMPTY_LINES);
 		var_dump($config);
 	}
@@ -181,22 +206,26 @@ class Install {
 			case 2:
 				$this->install(2);
 				break;
+
 			case 3:
-				$this->writeConfig(); // Write config
+				echo self::CONFIG_FORM;
 				break;
+
 			case 4:
 				$this->install(4); // exec sql
 				break;
+
 			case 5:
 				$unlink = $this->unlink(array(__FILE__, 'sql.sql')); // unlink install
 				if ($unlink)
-					$this->enableButton();
+					echo self::SETUP_DONE;
 				else
-					exit('Done install! Please delete the Folder /install/');
+					exit(self::SETUP_DONE.'Please delete the Folder /install/');
 				break;
 
 			case 6:
-				echo SETUP_DONE;
+				echo self::SETUP_DONE;
+				break;
 
 			default:
 				echo '
