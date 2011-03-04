@@ -1,9 +1,18 @@
 <?php
 require_once('Install.class.php');
+
 $step = (isset($_GET['step'])) ? $_GET['step'] : 1;
 $action = (isset($_GET['action'])) ? $_GET['action'] : '';
-if(!empty($action)){
-	exit('alert("The config had been written successfully");');
+
+if (!empty($action)) {
+	$config_array = array('mysql_user', 'mysql_pw', 'mysql_db', 'wcf_prefix', 'mysql_user_wcf', 'mysql_pw_wcf', 'mysql_db_wcf', 'wcf_dir'); // Array to check, if they're empty
+
+	foreach ($config_array as $c => $value) // Loop through the array
+		if (empty($_GET[$value])) // if its empty...
+			exit('alert("Please fill out all fields!")'); // ...exit.
+
+	$Install->writeConfig($_GET['mysql_user']); // else write config...
+	exit('alert("The config had been written successfully");'); // ...and exit.
 }
 
 ?>
@@ -31,7 +40,7 @@ if(!empty($action)){
 			$Install->displayForm($step);
 
 			?>
-			<br><button onclick="location.search = '?step=<?php echo ++$step ?>'" disabled>Next</button>
+			<br><button onclick="location.search = '?step=<?php echo++$step ?>'" disabled>Next</button>
 		</section>
 	</body>
 </html>

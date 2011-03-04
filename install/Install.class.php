@@ -240,7 +240,7 @@ class Install {
 
 			default:
 				echo '
-				Welcome to Twibber install.
+				Welcome to Twibber install. If you have questions, take a look at <a href="https://github.com/chakuzo/Twibber/wiki/Howto-install-Twibber-(DE&EN)">Github Twibber Wiki</a>
 				<br><br>
 				So, here we go:'
 				;
