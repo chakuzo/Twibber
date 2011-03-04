@@ -211,6 +211,11 @@ class Install {
 		return;
 	}
 
+	/**
+	 * Displays the Form for $step.
+	 *
+	 * @param integer $step
+	 */
 	public function displayForm($step = 1) {
 		switch ($step) {
 			case 2:
