@@ -47,23 +47,23 @@ class Install {
 			<table>
 				<tr>
 					<td>MySQL User:</td>
-					<td><input type="text" name="wcf_mysql_user" placeholder="MySQL User"></td>
+					<td><input type="text" name="mysql_user_wcf" placeholder="MySQL User"></td>
 				</tr>
 				<tr>
 					<td>MySQL Password:</td>
-					<td><input type="password" name="wcf_mysql_pw" placeholder="MySQL PW"></td>
+					<td><input type="password" name="mysql_pw_wcf" placeholder="MySQL PW"></td>
 				</tr>
 				<tr>
 					<td>MySQL Database:</td>
-					<td><input type="text" name="wcf_mysql_db" placeholder="MySQL DB"></td>
+					<td><input type="text" name="wcf_mysql_db_wcf" placeholder="MySQL DB"></td>
 				</tr>
 				<tr>
 					<td>MySQL Host:</td>
-					<td><input type="text" name="wcf_mysql_host" value="localhost"></td>
+					<td><input type="text" name="mysql_host_wcf" value="localhost"></td>
 				</tr>
 				<tr>
 					<td>MySQL Prefix:</td>
-					<td><input type="text" name="wcf_mysql_prefix" value="wcf1_"></td>
+					<td><input type="text" name="wcf_prefix" value="wcf1_"></td>
 				</tr>
 			</table>
 			<hr>Yeah, and at least the mixed Config:
@@ -82,7 +82,11 @@ class Install {
 				</tr>
 				<tr>
 					<td title="GZip makes Twibber really faster!">Enable GZip?</td>
-					<td><label><input name="gzip_enabled" type="checkbox" value="true" checked>Yes</label></td>
+					<td><label><input name="gzip_on" type="checkbox" value="true" checked>Yes</label></td>
+				</tr>
+				<tr>
+					<td>Lanuage:</td>
+					<td><select name="tb_lang"><option value="de" selected>Deutsch<option value="en">English</select></td>
 				</tr>
 			</table>
 			<button>Submit</button>
