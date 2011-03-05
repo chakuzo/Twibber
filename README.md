@@ -15,8 +15,10 @@ Legend:
 _Italic_ = In progress.
 
 **Milestone0.2:**
-- Order of twibbs right >.> (year 2010, 2011, 2011 is at the bottom of 2010) | OK (for ever, see mstone 0.5)
-- Better "copyright" | OK
+<ul>
+<li> Order of twibbs right >.> (year 2010, 2011, 2011 is at the bottom of 2010) | OK (for ever, see mstone 0.5)
+<li> Better "copyright" | OK
+</ul>
 
 **Milestone0.3:**
 - Autoupdate | OK
