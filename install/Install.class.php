@@ -145,9 +145,29 @@ class Install {
 	 * @param boolean $gzip_on
 	 */
 	public static function writeConfig($mysql_user, $mysql_pw, $mysql_db, $mysql_host = 'localhost', $wcf_prefix, $tb_lang = 'de', $mysql_user_wcf, $mysql_pw_wcf, $mysql_db_wcf, $mysql_host_wcf = 'localhost', $admin_group_id = 4, $update_group_id = 4, $wcf_dir, $gzip_on = false) {
-		$config = file('config.inc.php', FILE_SKIP_EMPTY_LINES);
-		print_r($config);
-		if (file_put_contents('config.inc.php', $config))
+
+		// MySQL connection
+		$config = file('config.inc.php');
+		$config[5] = "define('MYSQL_USER', '" . $mysql_user . "'); // The User for the Database\n";
+		$config[6] = "define('MYSQL_PW', '" . $mysql_pw . "'); // The Password for the User\n";
+		$config[7] = "define('MYSQL_DB', '" . $mysql_db . "'); // The Database Name\n";
+		$config[8] = "define('MYSQL_HOST', '" . $mysql_host . "'); // often localhost\n";
+
+		// WCF connection
+		$config[13] = "define('MYSQL_USER_WCF', '" . $mysql_user_wcf . "'); // The Database Name\n";
+		$config[14] = "define('MYSQL_PW_WCF', '" . $mysql_pw_wcf . "'); // The Database Name\n";
+		$config[15] = "define('MYSQL_DB_WCF', '" . $mysql_db_wcf . "'); // The Database Name\n";
+		$config[16] = "define('MYSQL_HOST_WCF', '" . $mysql_host_wcf . "'); // The Database Name\n";
+		$config[17] = "define('wcf_name_prefix', '" . $wcf_prefix . "'); // The Database Name\n";
+
+		// mixed
+		$config[22] = "define('HTTP_GZIP_ENABLED', " . $gzip_on . "); // The Database Name\n";
+		$config[26] = "define('WCF_DIR', '" . $wcf_dir . "'); // The Database Name\n";
+		$config[28] = "define('TWIBBER_LANG', '" . $tb_lang . "'); // The Database Name\n";
+		$config[30] = "define('wcf_admin_groupid', " . $admin_group_id . "); // The Database Name\n";
+		$config[32] = "define('wcf_update_groupid', " . $update_group_id . "); // The Database Name\n";
+
+		if (file_put_contents('config.inc.php', $config) && @self::execSQL($mysql_user, $mysql_pw, $mysql_db, $mysql_host))
 			return true;
 		return false;
 	}
@@ -155,9 +175,14 @@ class Install {
 	/**
 	 * Execute the SQL Query on the Database.
 	 */
-	public function execSQL() {
+	public function execSQL($mysql_user, $mysql_pw, $mysql_db, $mysql_host) {
+		$mysqli = new mysqli($mysql_host, $mysql_user, $mysql_pw, $mysql_db);
+		if ($mysqli->connect_error) {
+			die('alert("MySQL Connect Error (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error . '");');
+		}
 		if (!$mysqli->query(file_get_contents('sql.sql')))
-			die('Error: ' . $mysqli->error . '\n');
+			die('alert("MySQL Error: ' . $mysqli->error . '");');
+		return true;
 	}
 
 	/**
@@ -170,19 +195,11 @@ class Install {
 			case 2:
 				$this->unzipAll(); // Unpack twibber
 				break;
-			case 4:
-				$this->execSQL(); // exec sql
-				break;
 
 			default:
 				$this->checkServer(); // checks server
 				break;
 		}
-	}
-
-	public static function editConfig() {
-		$config = file('config.inc.php', FILE_SKIP_EMPTY_LINES);
-		var_dump($config);
 	}
 
 	/**
@@ -196,9 +213,10 @@ class Install {
 			$archive->extractTo(__DIR__);
 			echo 'Successfully extracted Twibber.zip.';
 			$this->enableButton();
+			unlink('Twibber.zip');
 			return;
 		}
-		die("Can't extract Twibber.zip!<br>Error Code #" . $open);
+		die("Can't extract Twibber.zip. Please try again!<br>Error Code #" . $open);
 	}
 
 	/**
@@ -216,7 +234,7 @@ class Install {
 					return false;
 			}
 		}
-		return;
+		return true;
 	}
 
 	/**
@@ -236,15 +254,11 @@ class Install {
 				break;
 
 			case 4:
-				$this->install(4); // exec sql
-				break;
-
-			case 5:
-				$unlink = $this->unlink(array(__FILE__, 'sql.sql')); // unlink install
+				$unlink = $this->unlink(array(__FILE__, 'sql.sql', 'install.php')); // unlink install
 				if ($unlink)
 					echo self::SETUP_DONE;
 				else
-					exit(self::SETUP_DONE . 'Please delete the Folder /install/');
+					exit(self::SETUP_DONE . 'Please delete "sql.sql, install.php, Install.class.php"');
 				break;
 
 			default:

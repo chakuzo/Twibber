@@ -14,7 +14,6 @@ if (!empty($action)) {
 		}
 	}
 
-	settype($_REQUEST['gzip_on'], 'boolean');
 	$write = Install::writeConfig($_REQUEST['mysql_user'], $_REQUEST['mysql_pw'], $_REQUEST['mysql_db'], $_REQUEST['mysql_host'], $_REQUEST['wcf_prefix'], $_REQUEST['tb_lang'], $_REQUEST['mysql_user_wcf'], $_REQUEST['mysql_pw_wcf'], $_REQUEST['mysql_db_wcf'], $_REQUEST['mysql_host_wcf'], $_REQUEST['admin_group_id'], $_REQUEST['update_group_id'], $_REQUEST['wcf_dir'], $_REQUEST['gzip_on']); // else write config...
 
 	if ($write) // ...check if all ok
