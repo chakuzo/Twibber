@@ -193,6 +193,7 @@ class Install {
 			$archive->extractTo(__DIR__);
 			echo 'Successfully extracted Twibber.zip.';
 			$this->enableButton();
+			return;
 		}
 		die("Can't extract Twibber.zip!<br>Error Code #" . $open);
 	}
