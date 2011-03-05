@@ -28,8 +28,7 @@ if (!empty($_GET['action'])) {
 	}
 }
 
-if (!empty($_GET['page'])) {
-	include_once(TWIBBER_DIR . '/templates/header.tpl');
+include_once(TWIBBER_DIR . '/templates/header.tpl');
 
 	switch ($_GET['page']) {
 		case 'update':
@@ -45,7 +44,6 @@ if (!empty($_GET['page'])) {
 			break;
 	}
 
-	include_once(TWIBBER_DIR . '/templates/footer.tpl');
-}
+include_once(TWIBBER_DIR . '/templates/footer.tpl');
 
 ?>
