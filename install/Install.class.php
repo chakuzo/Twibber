@@ -239,10 +239,6 @@ class Install {
 					exit(self::SETUP_DONE . 'Please delete the Folder /install/');
 				break;
 
-			case 6:
-				echo self::SETUP_DONE;
-				break;
-
 			default:
 				echo '
 				Welcome to Twibber install. If you have questions, take a look at <a href="https://github.com/chakuzo/Twibber/wiki/Howto-install-Twibber-(DE&EN)">Github Twibber Wiki</a>
