@@ -12,7 +12,7 @@ class Channel extends Twibber {
 	public $channel;
 
 	public function __construct(array $channel) {
-		parrent::__construct();
+		parent::__construct();
 		$this->channel = $channel;
 		$this->createChannel($channel);
 	}
