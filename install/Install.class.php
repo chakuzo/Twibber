@@ -256,7 +256,7 @@ class Install {
 	}
 
 	public function enableButton() {
-		echo '<script>$(document).ready(function(){$("button").removeAttr("disabled");});</script>';
+		echo '<script>$(document).ready(function(){enableButton();});</script>';
 	}
 
 }
