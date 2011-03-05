@@ -55,7 +55,7 @@ class Install {
 				</tr>
 				<tr>
 					<td>MySQL Database:</td>
-					<td><input type="text" name="wcf_mysql_db_wcf" placeholder="MySQL DB"></td>
+					<td><input type="text" name="mysql_db_wcf" placeholder="MySQL DB"></td>
 				</tr>
 				<tr>
 					<td>MySQL Host:</td>
@@ -144,9 +144,12 @@ class Install {
 	 * @param string $wcf_dir
 	 * @param boolean $gzip_on
 	 */
-	public function writeConfig($mysql_user, $mysql_pw, $mysql_db, $mysql_host = 'localhost', $wcf_prefix, $tb_lang = 'de', $mysql_user_wcf, $mysql_pw_wcf, $mysql_db_wcf, $mysql_host_wcf = 'localhost', $admin_group_id = 4, $update_group_id = 4, $wcf_dir, $gzip_on = false) {
+	public static function writeConfig($mysql_user, $mysql_pw, $mysql_db, $mysql_host = 'localhost', $wcf_prefix, $tb_lang = 'de', $mysql_user_wcf, $mysql_pw_wcf, $mysql_db_wcf, $mysql_host_wcf = 'localhost', $admin_group_id = 4, $update_group_id = 4, $wcf_dir, $gzip_on = false) {
 		$config = file('config.inc.php', FILE_SKIP_EMPTY_LINES);
-		var_dump($config);
+		print_r($config);
+		if (file_put_contents('config.inc.php', $config))
+			return true;
+		return false;
 	}
 
 	/**
@@ -177,7 +180,7 @@ class Install {
 		}
 	}
 
-	public function editConfig() {
+	public static function editConfig() {
 		$config = file('config.inc.php', FILE_SKIP_EMPTY_LINES);
 		var_dump($config);
 	}
