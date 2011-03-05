@@ -60,7 +60,7 @@ Milestone1.0 ME:
 * Use Twibber as Guestbook (LOL)
 
 Milestone 1.2:
-* 
+* -
 
 Milestone2.0:
 * Archiv
