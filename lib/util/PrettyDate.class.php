@@ -19,7 +19,6 @@ class Date_Difference {
 	}
 
 	public static function getString(DateTime $date, DateTime $compareTo = NULL) {
-		global $lang;
 
 		if (is_null($compareTo)) {
 			$compareTo = new DateTime('now');
@@ -33,40 +32,40 @@ class Date_Difference {
 
 		if ($dayDiff == 0) {
 			if ($diff < 60) {
-				return $lang['date_just_now'];
+				return Lang::getLangString('date_just_now');
 			} elseif ($diff < 120) {
-				return $lang['date_one_minute_ago'];
+				return Lang::getLangString('date_one_minute_ago');
 			} elseif ($diff < 3600) {
-				return sprintf($lang['date_minutes_ago'], floor($diff / 60));
+				return sprintf(Lang::getLangString('date_minutes_ago'), floor($diff / 60));
 			} elseif ($diff < 7200) {
-				return $lang['date_one_houre_ago'];
+				return Lang::getLangString('date_one_houre_ago');
 			} elseif ($diff < 86400) {
-				return sprintf($lang['date_hours_ago'], floor($diff / 3600));
+				return sprintf(Lang::getLangString('date_hours_ago'), floor($diff / 3600));
 			}
 		} elseif ($dayDiff == 1) {
-			return $lang['date_yesterday'];
+			return Lang::getLangString('date_yesterday');
 		} elseif ($dayDiff < 7) {
-			return sprintf($lang['date_days_ago'], $dayDiff);
+			return sprintf(Lang::getLangString('date_days_ago'), $dayDiff);
 		} elseif ($dayDiff == 7) {
-			return $lang['date_one_day_ago'];
+			return Lang::getLangString('date_one_day_ago');
 		} elseif ($dayDiff < (7 * 6)) { // Modifications Start Here
 			// 6 weeks at most
 			$weeks = ceil($dayDiff / 7);
-			$text = $lang['date_one_week_ago'];
+			$text = Lang::getLangString('date_one_week_ago');
 			if ($weeks != 1)
-				$text = $lang['date_weeks_ago'];
+				$text = Lang::getLangString('date_weeks_ago');
 			return sprintf($text, $weeks);
 		} elseif ($dayDiff < 365) {
 			$months = ceil($dayDiff / (365 / 12));
-			$text = $lang['date_one_month_ago'];
+			$text = Lang::getLangString('date_one_month_ago');
 			if ($months != 1)
-				$text = $lang['date_months_ago'];
+				$text = Lang::getLangString('date_months_ago');
 			return sprintf($text, ceil($dayDiff / (365 / 12)));
 		} else {
 			$years = round($dayDiff / 365);
-			$text = $lang['date_one_year_ago'];
+			$text = Lang::getLangString('date_one_year_ago');
 			if ($years != 1)
-				$text = $lang['date_years_ago'];
+				$text = Lang::getLangString('date_years_ago');
 			return sprintf($text, $years);
 		}
 	}
