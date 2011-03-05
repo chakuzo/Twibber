@@ -96,7 +96,7 @@ class SystemException extends Exception implements PrintableException {
 		</head>
 		<body>
 			<div class="systemException">
-				<h1>Error: <?php $this->getMessage(); ?></h1>
+				<h1>Error: <?php echo $this->getMessage(); ?></h1>
 
 				<div>
 					<p><?php echo $this->getDescription(); ?></p>

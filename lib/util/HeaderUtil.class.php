@@ -25,7 +25,7 @@ class HeaderUtil {
 		@header('Content-Type: text/html; charset='.CHARSET);
 
 		// send no cache headers
-		if (HTTP_ENABLE_NO_CACHE_HEADERS || $nocache) {
+		if (defined('HTTP_ENABLE_NO_CACHE_HEADERS') || $nocache) {
 			self::sendNoCacheHeaders();
 		}
 
