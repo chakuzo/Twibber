@@ -16,6 +16,7 @@ if (!empty($_POST['nickname']) && !empty($_POST['password'])) {
 		setcookie('twibber_pw', sha1($_POST['password']), time() + (365 * 24 * 60 * 60), TWIBBER_DIR);
 		setcookie('twibber_salt', WCF::getSalt($_POST['nickname']), time() + (365 * 24 * 60 * 60), TWIBBER_DIR);
 		header('Location: ../index.php');
+		exit;
 	} else {
 		echo $lang['false_pw_nick'];
 	}
