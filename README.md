@@ -1,8 +1,7 @@
-#  Twibber is a Microblogging System.
+# Twibber is a Microblogging System.
 
 #### Read the Wiki Pages for more Info.
 #### Howto install? <https://github.com/chakuzo/Twibber/wiki/Howto-install-Twibber-(DE&EN)>
-
 # Twibber ist ein Micrblogging System mit Features von Twitter und Facebook.
 
 #### Mehr zur installation in notes/install.txt und in den Wiki Seiten.
