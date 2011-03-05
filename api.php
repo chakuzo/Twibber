@@ -22,17 +22,17 @@ if (isset($_GET['new_entry']) && $_GET['new_entry'] == 1 && $return && !empty($n
 			exit($lang['success']);
 		}
 		$Twibber->createTwibber(htmlspecialchars($text), htmlspecialchars($nick));
-		echo $lang['success'];
+		echo Lang::getLangString('success');
 	} elseif (trim($text) == '') {
-		echo $lang['no_message'];
+		echo Lang::getLangString('no_message');
 	} elseif (strlen($text) > 250) {
-		echo $message_too_long;
+		echo Lang::getLangString('message_too_long');
 	}
 	exit();
 }
 
 if (isset($_GET['new_entry']) && $_GET['new_entry'] == 1 && (empty($nick) xor !$return)) {
-	exit($lang['no_nick']);
+	exit(Lang::getLangString('no_nick'));
 }
 
 @header("Access-Control-Allow-Origin: *");
@@ -50,7 +50,7 @@ if (isset($_GET['nick']) && trim($_GET['nick']) != '') {
 if (isset($_GET['search']) && trim($_GET['search']) != '') {
 	$Twibber->searchTwibber($_GET['search']);
 }
-if (isset($_GET['image']) && trim($_GET['image']) != '') {
+if (isset($_GET['image']) && trim($_GET['image']) != '') { // will be replaced with DPS from _MaX_
 	$nick = ucwords(strip_tags($_GET['image']));
 	$return_array = $Twibber->fetchTwibber(true, false, $nick, 0, 30, true);
 	$img = ImageCreateTrueColor(468, 60)

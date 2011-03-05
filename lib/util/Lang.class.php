@@ -4,6 +4,8 @@
 if (!isset($lang))
 	require_once(TWIBBER_DIR . '/lang/' . TWIBBER_LANG . '.lang.php');
 
+new Lang($lang);
+
 /**
  * Returns language specified strings.
  *
