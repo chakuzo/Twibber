@@ -23,9 +23,7 @@ class WCF {
 		$sql = "SELECT username, password, salt FROM " . wcf_name_prefix . "user WHERE username = '" . $nickname . "'";
 		$query = self::$mysqli2->query($sql);
 		$result = $query->fetch_object();
-		if (!$result)
-			return false;
-		if ($result->password != StringUtil::getDoubleSaltedHash($password, $result->salt))
+		if (!$result || $result->password != StringUtil::getDoubleSaltedHash($password, $result->salt))
 			return false;
 		return true;
 	}
