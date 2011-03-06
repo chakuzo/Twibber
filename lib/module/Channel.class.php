@@ -7,7 +7,7 @@ require_once('Twibber.class.php');
  *
  * @author Kurt
  */
-class Channel extends Twibber {
+class Channel extends Module {
 
 	public $channel;
 

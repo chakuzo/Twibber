@@ -5,7 +5,7 @@
  *
  * @author Kurt
  */
-class Update {
+class Update extends Module {
 
 	/**
 	 * Updates to nightly version.
