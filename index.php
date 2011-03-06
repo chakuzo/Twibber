@@ -10,8 +10,8 @@ $twibber_salt = (isset($_COOKIE['twibber_salt'])) ? $_COOKIE['twibber_salt'] : '
 $page = (isset($_GET['page'])) ? $_GET['page'] : '';
 $action = (isset($_GET['action'])) ? $_GET['action'] : '';
 $id = (isset($_GET['id'])) ? $_GET['id'] : '';
-$nickname = (isset($_GET['nickname'])) ? $_GET['nickname'] : '';
-$password = (isset($_GET['password'])) ? $_GET['password'] : '';
+$nickname = (isset($_POST['nickname'])) ? $_POST['nickname'] : '';
+$password = (isset($_POST['password'])) ? $_POST['password'] : '';
 
 $return = WCF::getLoginOK($twibber_nick, $twibber_pw, $twibber_salt);
 
@@ -27,8 +27,11 @@ if (!empty($action)) {
 			break;
 
 		case 'login':
-			if (!empty($nickname) && !empty($password))
-				Login::userLogin();
+			if (!empty($nickname) && !empty($password)){
+				Login::userLogin($nickname, $password);
+			}else{
+				echo 'Bitte nur das Login formular nutzen!';
+			}
 			break;
 
 		case 'logout':

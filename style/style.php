@@ -1,10 +1,7 @@
 <?php
 
+include_once('../global.php');
 header('Content-type: text/css');
-
-include_once('../lib/util/HeaderUtil.class.php');
-
-HeaderUtil::sendHeaders();
 
 ?>
 body {
@@ -217,7 +214,7 @@ button[type=button]{
 	left: 38.1%;
 }
 
-.close{
+#close{
 	display: none;
 }
 

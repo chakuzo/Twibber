@@ -33,7 +33,7 @@ $lang = array(
 	'comment' => 'Kommentieren',
 
 	/* login.php */
-	'false_pw_nick' => "Falsches Passwort / Falscher Benutzername. Versuchen Sie es <a href='../index.php'>erneut</a>!",
+	'false_pw_nick' => "Falsches Passwort / Falscher Benutzername. Versuchen Sie es <a href='index.php'>erneut</a>!",
 
 	/* api.php */
 	'success' => 'Erfolgreich!',

@@ -17,10 +17,10 @@ class Login {
 		$return = WCF::getData($nickname, $password);
 		if ($return) {
 			CookieUtil::setCookie(array('twibber_nick' => $nickname, 'twibber_pw' => $password, 'twibber_salt' => WCF::getSalt($_POST['nickname'])));
-			header('Location: ../index.php');
+			header('Location: index.php');
 			exit;
 		} else {
-			Lang::getLangString('false_pw_nick');
+			echo Lang::getLangString('false_pw_nick');
 		}
 	}
 
@@ -29,7 +29,7 @@ class Login {
 	 */
 	public static function userLogout() {
 		CookieUtil::destroyCookie(array('twibber_nick', 'twibber_pw', 'twibber_salt'));
-		header('Location: ../index.php');
+		header('Location: index.php');
 	}
 
 }

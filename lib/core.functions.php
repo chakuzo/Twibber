@@ -41,6 +41,11 @@ function __autoload($className) {
 		require_once(TWIBBER_DIR . '/lib/system/exception/' . $className . '.class.php');
 		return;
 	}
+
+	if (file_exists(TWIBBER_DIR . '/lib/user/' . $className . '.class.php')) {
+		require_once(TWIBBER_DIR . '/lib/user/' . $className . '.class.php');
+		return;
+	}
 }
 
 // init
