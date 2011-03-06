@@ -5,8 +5,8 @@
 	</a>Twibber is developed by <a href="http://wbblite2.de">WBBLite2.de</a>
 </footer>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-<script src="<?php echo TWIBBER_DIR ?>/js/jquery.NobleCount.min.js"></script>
-<script src="<?php echo TWIBBER_DIR ?>/js/jquery.freeow.min.js"></script>
-<script src="<?php echo TWIBBER_DIR ?>/js/script.min.js"></script>
+<script src="js/jquery.NobleCount.min.js"></script>
+<script src="js/jquery.freeow.min.js"></script>
+<script src="js/script.min.js"></script>
 </body>
 </html>

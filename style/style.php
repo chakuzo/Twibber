@@ -9,7 +9,7 @@ HeaderUtil::sendHeaders();
 ?>
 body {
     background-color: #404040;
-    background-image: url("../../images/backgrounds/top.png");
+    background-image: url("../images/backgrounds/top.png");
     background-repeat: repeat-x;
     margin: 0px;
 }
@@ -134,26 +134,26 @@ time{
 #wbblite2{
     width: 110px;
     height: 20px;
-    background: url("../../images/img/buttons/wbblite2.png");
+    background: url("../images/img/buttons/wbblite2.png");
 }
 #logout{
     width: 60px;
     height: 20px;
-    background: url("../../images/img/buttons/logout.png");
+    background: url("../images/img/buttons/logout.png");
 }
 #login{
     width: 50px;
     height: 20px;
-    background: url("../../images/img/buttons/login.png");
+    background: url("../images/img/buttons/login.png");
 }
 #wbblite2:hover{
-    background: url("../../images/img/buttons/wbblite2H.png");
+    background: url("../images/img/buttons/wbblite2H.png");
 }
 #logout:hover{
-    background: url("../../images/img/buttons/logoutH.png");
+    background: url("../images/img/buttons/logoutH.png");
 }
 #login:hover{
-    background: url("../../images/img/buttons/loginH.png");
+    background: url("../images/img/buttons/loginH.png");
 }
 
 #useravatar{
