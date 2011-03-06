@@ -1,10 +1,10 @@
 <?php
 
 // if lang array isnt here, load it.
-if (!isset($lang))
+if (!isset($lang)) {
 	require_once(TWIBBER_DIR . '/lang/' . TWIBBER_LANG . '.lang.php');
-
-new Lang($lang);
+	new Lang($lang);
+}
 
 /**
  * Returns language specified strings.
@@ -30,11 +30,13 @@ class Lang {
 	/**
 	 * Returns the String for the Identifier.
 	 *
-	 * @param string $ident
+	 * @param  string $ident
 	 * @return string
 	 */
 	public static function getLangString($ident) {
-		return self::$lang[$ident];
+		if (array_key_exists($ident, $this->lang))
+			return self::$lang[$ident];
+		return $ident;
 	}
 
 }

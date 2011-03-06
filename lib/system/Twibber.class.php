@@ -4,7 +4,7 @@
 define('TWIBBER_VERSION', '0.6.6');
 
 // Sets default timezone
-date_default_timezone_set($lang['timezone']);
+date_default_timezone_set(Lang::getLangString('timezone'));
 
 require_once(TWIBBER_DIR . '/lib/core.functions.php');
 
@@ -120,7 +120,7 @@ class Twibber {
 	}
 
 	public function deleteTwibb($id){
-		
+
 	}
 
 	/**
