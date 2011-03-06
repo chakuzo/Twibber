@@ -15,7 +15,14 @@ class WCF {
 		self::$mysqli2 = $mysqli2;
 	}
 
-	public static function getData($nickname, $password) {
+	/**
+	 * Checks if the login data is ok.
+	 *
+	 * @param  string  $nickname
+	 * @param  string  $password
+	 * @return boolean
+	 */
+	public static function getDataOK($nickname, $password) {
 		$nickname = strip_tags($nickname);
 		$password = strip_tags($password);
 		$nickname = self::$mysqli2->real_escape_string($nickname);
@@ -23,9 +30,7 @@ class WCF {
 		$sql = "SELECT username, password, salt FROM " . wcf_name_prefix . "user WHERE username = '" . $nickname . "'";
 		$query = self::$mysqli2->query($sql);
 		$result = $query->fetch_object();
-		if (!$result)
-			return false;
-		if ($result->password != StringUtil::getDoubleSaltedHash($password, $result->salt))
+		if (!$result xor $result->password != StringUtil::getDoubleSaltedHash($password, $result->salt))
 			return false;
 		return true;
 	}
@@ -88,6 +93,15 @@ class WCF {
 		return true;
 	}
 
+	/**
+	 * Checks if user is admin.
+	 *
+	 * @param  string   $nickname
+	 * @param  string   $pw
+	 * @param  string   $salt
+	 * @param  boolean  $update
+	 * @return boolean
+	 */
 	public static function getAdminOK($nickname, $pw, $salt, $update = false) {
 		$nickname = strip_tags($nickname);
 		$nickname = self::$mysqli2->real_escape_string($nickname);
