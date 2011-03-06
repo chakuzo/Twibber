@@ -3,10 +3,10 @@
 // define current twibber version
 define('TWIBBER_VERSION', '0.6.6');
 
+require_once(TWIBBER_DIR . '/lib/core.functions.php');
+
 // Sets default timezone
 date_default_timezone_set(Lang::getLangString('timezone'));
-
-require_once(TWIBBER_DIR . '/lib/core.functions.php');
 
 /**
  * This is the main class for Twibber.

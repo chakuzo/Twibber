@@ -3,10 +3,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>TWiBBer - WBB MicroBlogging Social Network</title>
-		<link rel="stylesheet" href="<?php echo TWIBBER_DIR; echo (PHP_OS=='WINNT')?'\style\\':'/style/'; ?>style.min.css" type="text/css">
-		<link rel="stylesheet" href="<?php echo TWIBBER_DIR; echo (PHP_OS=='WINNT')?'\style\\':'/style/'; ?>freeow.min.css" type="text/css">
-		<link rel="stylesheet" href="<?php echo TWIBBER_DIR; echo (PHP_OS=='WINNT')?'\style\\':'/style/'; ?>slide.min.css" type="text/css">
-		<link rel="shortcut icon" type="image/x-icon" href="<?php echo TWIBBER_DIR ?>/images/img/favicon.ico">
+		<link rel="stylesheet" href="style/style.min.css" type="text/css">
+		<link rel="stylesheet" href="style/freeow.min.css" type="text/css">
+		<link rel="stylesheet" href="style/slide.min.css" type="text/css">
+		<link rel="shortcut icon" type="image/x-icon" href="/images/img/favicon.ico">
 		<link href='//fonts.googleapis.com/css?family=Yanone+Kaffeesatz' rel='stylesheet' type='text/css'>
 		<link href='//fonts.googleapis.com/css?family=Neucha' rel='stylesheet' type='text/css'>
 		<link href='//fonts.googleapis.com/css?family=Reenie+Beanie' rel='stylesheet' type='text/css'>
