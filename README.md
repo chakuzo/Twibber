@@ -54,12 +54,14 @@ _Italic_ = In progress.<br>
 <li>rewrite install.php | OK
 <li>_all_ pages in twibber design ! | OK
 <li>real exception handling | OK
-<li>Localisation (english etc) | OK (Lang.class.php and array)
+<li>Translate (english etc) | OK (Lang.class.php and array)
 </ul>
 
 _Milestone 0.8:_
 <ul>
 <li>ACP
+<li>Channels | BEGIN
+<li>JSON (not html return ...)
 </ul>
 
 Milestone 0.9:
@@ -69,7 +71,8 @@ Milestone 0.9:
 
 Milestone1.0:
 <ul>
-<li>Inviduall Homepage | HALF
+<li>Translate complete
+<li>Inviduall Homepage
 <li>Follow (don't we need to implement before invidual userpage?!)
 <li>Lists
 <li>Retwibb
@@ -78,9 +81,8 @@ Milestone1.0:
 <li>(to be continued...)
 </ul>
 
-Milestone1.0 ME:
+Milestone1.1 (ME):
 <ul>
-<li>JSON API (for the next point important, too)
 <li>befehle like (/google Nickname how to install twibber, or /gtfo Nickname get the fuck out!!11)
 <li>Smileys (a good idea or not?!)
 <li>Use Twibber as Guestbook (LOL)

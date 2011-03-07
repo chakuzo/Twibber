@@ -34,10 +34,11 @@
 					<li class="sep">|</li>
 					<li id="toggle">
 						<a id="open" class="open" href="#">
-							<?php if (!$return) { ?><img src="images/img/cleardot.gif" alt="Login" id="login"><?php } else { ?>
-							    Panel öffnen
-							<?php } ?>
-						</a><a id="close" class="close" href="#">Panel schließen</a>
+							<?php if (!$return) { ?><img src="images/img/cleardot.gif" alt="Login" id="login"><?php } else { ?>Panel &ouml;ffnen<?php } ?>
+						</a>
+						<a id="close" class="close" href="#">
+							Panel schlie&szlig;en
+						</a>
 					</li>
 					<li class="right">&nbsp;</li>
 				</ul>

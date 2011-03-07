@@ -11,7 +11,7 @@ $page = (isset($_GET['page'])) ? $_GET['page'] : '';
 $action = (isset($_GET['action'])) ? $_GET['action'] : '';
 $id = (isset($_GET['id'])) ? $_GET['id'] : '';
 $nickname = (isset($_POST['nickname'])) ? $_POST['nickname'] : '';
-$password = (isset($_POST['password'])) ? $_POST['password'] : '';
+$password = (isset($_POST['password'])) ? trim($_POST['password']) : '';
 
 $return = WCF::getLoginOK($twibber_nick, $twibber_pw, $twibber_salt);
 

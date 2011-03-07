@@ -23,14 +23,14 @@ class WCF {
 	 * @return boolean
 	 */
 	public static function getDataOK($nickname, $password) {
-		$nickname = strip_tags($nickname);
-		$password = strip_tags($password);
 		$nickname = self::$mysqli2->real_escape_string($nickname);
 		$password = self::$mysqli2->real_escape_string($password);
+
 		$sql = "SELECT username, password, salt FROM " . wcf_name_prefix . "user WHERE username = '" . $nickname . "'";
 		$query = self::$mysqli2->query($sql);
+
 		$result = $query->fetch_object();
-		if (!$result xor $result->password != StringUtil::getDoubleSaltedHash($password, $result->salt))
+		if (!$result XOR $result->password != StringUtil::getDoubleSaltedHash($password, $result->salt))
 			return false;
 		return true;
 	}
