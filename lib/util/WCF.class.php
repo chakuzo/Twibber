@@ -5,7 +5,6 @@
  *
  * @author kurtextrem
  * @license	GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
- *
  */
 class WCF {
 
@@ -30,7 +29,7 @@ class WCF {
 		$query = self::$mysqli2->query($sql);
 
 		$result = $query->fetch_object();
-		if (!$result XOR $result->password != StringUtil::getDoubleSaltedHash($password, $result->salt))
+		if (!$result || $result->password != StringUtil::getDoubleSaltedHash($password, $result->salt))
 			return false;
 		return true;
 	}
@@ -44,8 +43,10 @@ class WCF {
 	public static function getAvatar($nickname) {
 		$nickname = strip_tags($nickname);
 		$nickname = self::$mysqli2->real_escape_string($nickname);
+
 		$query = self::$mysqli2->query("SELECT avatarID FROM " . wcf_name_prefix . "user WHERE username = '" . $nickname . "'");
 		$result = $query->fetch_object();
+
 		return WCF_DIR . '/images/avatars/avatar-' . $result->avatarID . '.png';
 	}
 
@@ -58,6 +59,7 @@ class WCF {
 	public static function getSalt($nickname) {
 		$nickname = strip_tags($nickname);
 		$nickname = self::$mysqli2->real_escape_string($nickname);
+
 		$query = self::$mysqli2->query("SELECT salt FROM " . wcf_name_prefix . "user WHERE username = '" . $nickname . "'");
 		$result = $query->fetch_object();
 
@@ -103,17 +105,20 @@ class WCF {
 	 * @return boolean
 	 */
 	public static function getAdminOK($nickname, $pw, $salt, $update = false) {
+		if (!defined('ENCRYPTION_ENCRYPT_BEFORE_SALTING'))
+			define('ENCRYPTION_ENCRYPT_BEFORE_SALTING', false);
+
 		$nickname = strip_tags($nickname);
 		$nickname = self::$mysqli2->real_escape_string($nickname);
 		$pw = strip_tags($pw);
 		$pw = self::$mysqli2->real_escape_string($pw);
 		$salt = strip_tags($salt);
 		$salt = self::$mysqli2->real_escape_string($salt);
-		if (!defined('ENCRYPTION_ENCRYPT_BEFORE_SALTING'))
-			define('ENCRYPTION_ENCRYPT_BEFORE_SALTING', false);
+
 		$query = self::$mysqli2->query("SELECT userID FROM " . wcf_name_prefix . "user WHERE username = '" . $nickname . "' AND salt = '" . $salt . "' AND password = '" . StringUtil::getDoubleSaltedHash($pw, $salt) . "'");
 		$result = $query->fetch_object();
 		$query = self::$mysqli2->query("SELECT groupID FROM " . wcf_name_prefix . "user_to_groups WHERE userID = " . $result->userID);
+		
 		while ($result = $query->fetch_object()) {
 			if ($update) {
 				if ($result->groupID == wcf_admin_groupid || $result->groupID == wcf_update_groupid)
