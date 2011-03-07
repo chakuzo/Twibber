@@ -87,7 +87,7 @@ if (isset($_GET['image']) && trim($_GET['image']) != '') { // will be replaced w
 	header('Content-type: image/png');
 	ImagePNG($img);
 	ImageDestroy($img);
-	ImageDestory($avatar_nick);
+	ImageDestroy($avatar_nick);
 	exit();
 }
 

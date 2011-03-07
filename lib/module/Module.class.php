@@ -6,8 +6,11 @@
  * @author Kurt
  */
 class Module extends Twibber {
+	/**
+	 * Constructor.
+	 */
 	public function __construct(){
-		
+
 	}
 
 }

@@ -50,7 +50,7 @@ function __autoload($className) {
 
 // init
 new WCF($mysqli2);
-$Twibber = new Twibber($mysqli);
 new Lang($lang);
+$Twibber = new Twibber($mysqli);
 
 ?>

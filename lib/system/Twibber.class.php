@@ -119,6 +119,11 @@ class Twibber {
 		echo '</div>';
 	}
 
+	/**
+	 * Deletes a twibb.
+	 *
+	 * @param integer $id
+	 */
 	public function deleteTwibb($id){
 
 	}

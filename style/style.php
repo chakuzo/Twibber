@@ -20,6 +20,7 @@ header {
 }
 textarea {
     -webkit-transition: -webkit-box-shadow 450ms linear 100ms;
+	-o-transition: box-shadow 450ms linear 100ms;
     border: 1px solid grey;
     margin-left: 12%;
     height: 100px;
@@ -32,6 +33,8 @@ textarea {
 }
 input {
     -webkit-transition: -webkit-box-shadow 450ms linear 100ms;
+	-o-transition: box-shadow 450ms linear 100ms;
+	transition: box-shadow 450ms linear 100ms;
     border: 1px solid grey;
 }
 textarea:hover, textarea:active, input:hover, input:active, textarea:focus, input:focus {
@@ -258,5 +261,8 @@ button[type=button]{
     #logo img{
 		-webkit-transform: translate(-11em);
 		-moz-transform: translate(-11em);
+		-o-transform: translate(-11em);
+		-ms-transform: translate(-11em);
+		transform: translate(-11em);
     }
 }
