@@ -25,6 +25,7 @@ class StringUtil {
 	public static function getSaltedHash($value, $salt) {
 		if (!defined('ENCRYPTION_ENABLE_SALTING') || ENCRYPTION_ENABLE_SALTING) {
 			$hash = '';
+			
 			// salt
 			if (!defined('ENCRYPTION_SALT_POSITION') || ENCRYPTION_SALT_POSITION == 'before') {
 				$hash .= $salt;
@@ -42,14 +43,12 @@ class StringUtil {
 			if (defined('ENCRYPTION_SALT_POSITION') && ENCRYPTION_SALT_POSITION == 'after') {
 				$hash .= $salt;
 			}
-			
 			return self::encrypt($hash);
 		}
 		else {
 			return self::encrypt($value);
 		}
 	}
-	
 	/**
 	 * Returns a double salted hash of the given value.
 	 *
