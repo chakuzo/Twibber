@@ -1,8 +1,8 @@
-<h3><?php echo (!empty($_COOKIE['twibber_nick'])) ? $_COOKIE['twibber_nick'] : $lang['guest']; ?>, was machst du grade?</h3>
+<h3><?php echo (!empty($_COOKIE['twibber_nick'])) ? $_COOKIE['twibber_nick'] : $lang['guest']; ?>, was tust du gerade?</h3>
 <h3 id='in_comment_to'></h3>
 <form id='twibb_form'>
 	<input type="hidden" value="" id="to_id">
-	<?php if ($return) { ?> <textarea id="input_text" maxlength="250" autofocus placeholder="Schreib deinen Freunden hier, was du gerade tust."></textarea>
+	<?php if ($return) { ?> <textarea id="input_text" maxlength="250" autofocus placeholder="Schreibe deinen Freunden hier, was du gerade tust."></textarea>
 		<br><div class="right"><label for="input_text" id="counter">0 Zeichen</label><button id="twibber_it">Twibbern</button></div><?php } ?>
 </form>
 <div id="twibber">
@@ -17,4 +17,4 @@
 
 	?>
 </div>
-<button type='button' id='more_twibbs'>Mehr Twibbs laden</button>
+<button type='button' id='more_twibbs'>Weitere Twibbs laden</button>
