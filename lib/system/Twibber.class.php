@@ -115,7 +115,7 @@ class Twibber {
 			echo "<div class='twibb_content'><a href='#nick=" . $nickname . "'><strong>" . $nickname . ":</strong></a> " . $text . "</div>";
 		}
 
-		echo "<time title='" . $date . "'>" . Date_Difference::getStringResolved($date) . "</time>";
+		echo "<time title='" . $date . "'>" . PrettyDate::getStringResolved($date) . "</time>";
 		echo '</div>';
 	}
 

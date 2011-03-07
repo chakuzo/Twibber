@@ -6,9 +6,8 @@
  * @author Kurt
  */
 class Module extends Twibber {
-
-	public function __construct() {
-		parrent::construct__();
+	public function __construct(){
+		
 	}
 
 }

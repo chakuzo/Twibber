@@ -15,7 +15,7 @@ $update_ok = WCF::getAdminOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $
 	<h1>Willkommen <?php echo $_COOKIE['twibber_nick'] ?>!</h1>
 	<p>Du hast bereits <?php echo $Twibber->getStats($_COOKIE['twibber_nick']) ?> mal getwibbert.</p>
 	<p class="grey">Hier findest du bald noch mehr Daten &uuml;ber dich und dein Twibber Profil.</p>
-	<p><a href="user/login.php?mode=logout">Ausloggen</a></p>
+	<p><a href="index.php?action=logout">Ausloggen</a></p>
 </div>
 <div class="left right">
 	<h1>Avatar</h1>

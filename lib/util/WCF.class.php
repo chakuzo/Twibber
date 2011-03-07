@@ -38,7 +38,7 @@ class WCF {
 	/**
 	 * Returns the avatar url.
 	 *
-	 * @param string $nickname
+	 * @param  string $nickname
 	 * @return string
 	 */
 	public static function getAvatar($nickname) {
@@ -52,7 +52,7 @@ class WCF {
 	/**
 	 * Returns the salt from Database.
 	 *
-	 * @param string $nickname
+	 * @param  string $nickname
 	 * @return string
 	 */
 	public static function getSalt($nickname) {
@@ -114,20 +114,16 @@ class WCF {
 		$query = self::$mysqli2->query("SELECT userID FROM " . wcf_name_prefix . "user WHERE username = '" . $nickname . "' AND salt = '" . $salt . "' AND password = '" . StringUtil::getDoubleSaltedHash($pw, $salt) . "'");
 		$result = $query->fetch_object();
 		$query = self::$mysqli2->query("SELECT groupID FROM " . wcf_name_prefix . "user_to_groups WHERE userID = " . $result->userID);
-		if ($update) {
-			while ($result = $query->fetch_assoc()) {
-				if ($result['groupID'] == wcf_admin_groupid || $result['groupID'] == wcf_update_groupid) {
+		while ($result = $query->fetch_object()) {
+			if ($update) {
+				if ($result->groupID == wcf_admin_groupid || $result->groupID == wcf_update_groupid)
 					return true;
-				}
-			}
-		} else {
-			while ($result = $query->fetch_assoc()) {
-				if ($result['groupID'] == wcf_admin_groupid) {
+			} else {
+				if ($result->groupID == wcf_admin_groupid)
 					return true;
-				}
 			}
+			return false;
 		}
-		return false;
 	}
 
 }

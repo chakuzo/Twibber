@@ -27,9 +27,9 @@ if (!empty($action)) {
 			break;
 
 		case 'login':
-			if (!empty($nickname) && !empty($password)){
+			if (!empty($nickname) && !empty($password)) {
 				Login::userLogin($nickname, $password);
-			}else{
+			} else {
 				echo 'Bitte nur das Login formular nutzen!';
 			}
 			break;
