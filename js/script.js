@@ -127,11 +127,9 @@ function dyn_submit(){
 				autoHideDelay: 2500
 			});
 		});
-		$('#input_text').val('');
-		$('#counter').text('250 Zeichen');
-		$('#in_reply_to').html('');
+		reset();
 	}else{
-		alert('Error! Nachricht zu lang oder keine Nachricht vorhanden.');
+		alert('Fehler: Nachricht zu lang oder keine Nachricht vorhanden.');
 	}
 }
 function insert_nick(nick){
@@ -223,4 +221,11 @@ function sortComments(){
 			}
 		}
 		);
+}
+
+function reset(){
+	$('#input_text').val('');
+	$('#counter').text('250 Zeichen');
+	$('#in_comment_to').html('');
+	$('#to_id').val('');
 }

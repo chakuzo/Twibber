@@ -13,15 +13,14 @@ $text = (isset($_POST['text'])) ? $_POST['text'] : '';
 $return = WCF::getLoginOK($nick, $pw, $salt);
 
 if (isset($_GET['new_entry']) && $_GET['new_entry'] == 1 && $return && !empty($nick)) {
-
 	if (trim($text) != "" && strlen($text) <= 250) {
 		if (isset($_GET['retwibb']) && $_GET['retwibb'])
 			exit();
 		if (isset($_GET['comment']) && $_GET['comment'] == 1) {
-			$Twibber->createTwibbComment(htmlspecialchars($text), htmlspecialchars($nick), htmlspecialchars($_POST['to_id']));
+			$Twibber->createTwibbComment(htmlentities($text, ENT_COMPAT, 'UTF-8'), htmlentities($nick, ENT_COMPAT, 'UTF-8'), intval($_POST['to_id']));
 			exit($lang['success']);
 		}
-		$Twibber->createTwibber(htmlspecialchars($text), htmlspecialchars($nick));
+		$Twibber->createTwibber(htmlentities($text, ENT_COMPAT, 'UTF-8'), htmlentities($nick, ENT_COMPAT, 'UTF-8'));
 		echo Lang::getLangString('success');
 	} elseif (trim($text) == '') {
 		echo Lang::getLangString('no_message');
@@ -31,7 +30,7 @@ if (isset($_GET['new_entry']) && $_GET['new_entry'] == 1 && $return && !empty($n
 	exit();
 }
 
-if (isset($_GET['new_entry']) && $_GET['new_entry'] == 1 && (empty($nick) xor !$return)) {
+if (isset($_GET['new_entry']) && $_GET['new_entry'] == 1 && (empty($nick) || !$return)) {
 	exit(Lang::getLangString('no_nick'));
 }
 
@@ -50,7 +49,7 @@ if (isset($_GET['nick']) && trim($_GET['nick']) != '') {
 if (isset($_GET['search']) && trim($_GET['search']) != '') {
 	$Twibber->searchTwibber($_GET['search']);
 }
-if (isset($_GET['image']) && trim($_GET['image']) != '') { // will be replaced with DPS from _MaX_
+if (isset($_GET['image']) && trim($_GET['image']) != '') { // will be replaced with DPS from _MaX_ @see github.com/max-m/Dynamic-PHP-signature
 	$nick = ucwords(strip_tags($_GET['image']));
 	$return_array = $Twibber->fetchTwibber(true, false, $nick, 0, 30, true);
 	$img = ImageCreateTrueColor(468, 60)
@@ -63,12 +62,7 @@ if (isset($_GET['image']) && trim($_GET['image']) != '') { // will be replaced w
 	ImageString($img, 5, 82, 0, $nick . $lang['gd_last_twib'], $text_color);
 	$font_file = './lib/font/Comfortaa-Bold.ttf';
 	ImageFTText($img, 10, 0, 90, 30, $text_color, $font_file, '" ' .
-			wordwrap(
-					//utf8_encode(
-					html_entity_decode(
-							$return_array[0]
-					) //)
-					, 39, "\n", true) . ' "'
+			wordwrap(html_entity_decode($return_array[0], ENT_COMPAT, 'UTF-8'), 39, "\n", true) . ' "'
 	);
 	$avatar_nick = WCF::getAvatar(strip_tags($_GET['image']));
 	//$avatar_nick = "http://www.wbblite2.de/wcf/images/avatars/avatar-328.png";
