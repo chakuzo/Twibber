@@ -46,6 +46,7 @@ function __autoload($className) {
 		require_once(TWIBBER_DIR . '/lib/user/' . $className . '.class.php');
 		return;
 	}
+
 }
 
 // init

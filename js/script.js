@@ -147,6 +147,7 @@ function open(){
 	});
 	$('#toggle a').click(function () {
 		$('#toggle a').toggle();
+		$('#toggle a').toggleClass('slider_active');
 	});
 }
 

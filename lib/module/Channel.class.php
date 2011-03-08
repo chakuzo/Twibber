@@ -1,13 +1,11 @@
 <?php
 
-require_once('Twibber.class.php');
-
 /**
  * Adds Channel
  *
  * @author Kurt
  */
-class Channel extends Module {
+class Channel {
 
 	public $channel;
 

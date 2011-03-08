@@ -100,11 +100,12 @@ class SystemException extends Exception implements PrintableException {
 
 				<div>
 					<p><?php echo $this->getDescription(); ?></p>
-					<p>Send this report to our Email <a href='mailto:support@twibber.de'>support@twibber.de</a> (Of course, we speak english x))</p>
+					<p>Send this report to our Email <a href='mailto:support@twibber.de'>support@twibber.de</a> (Of course, we speak english x)).</p>
+					<p>You could also look at the <a href='https://github.com/chakuzo/Twibber/wiki/FAQ'>FAQ</a>
 
 					<h2>Information:</h2>
 					<p>
-						<b>error message:</b> <?php echo StringUtil::encodeHTML($this->getMessage()); ?><br />
+						<b>error message:</b> <?php echo $this->getMessage(); ?><br />
 						<b>error code:</b> <?php echo intval($this->getCode()); ?><br />
 		<?php echo $this->information; ?>
 						<b>file:</b> <?php echo StringUtil::encodeHTML($this->getFile()); ?> (#<?php echo $this->getLine(); ?>)<br />

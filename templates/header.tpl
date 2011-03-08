@@ -33,12 +33,10 @@
 					<li><?php if (!$return) { ?>Hallo Gast!<?php } else { ?>Hallo, <?php echo $_COOKIE['twibber_nick'] ?>.<?php } ?></li>
 					<li class="sep">|</li>
 					<li id="toggle">
-						<a id="open" class="open" href="#">
+						<a id="open" class="open slider_active" href="#">
 							<?php if (!$return) { ?><img src="images/img/cleardot.gif" alt="Login" id="login"><?php } else { ?>Panel &ouml;ffnen<?php } ?>
 						</a>
-						<a id="close" class="close" href="#">
-							Panel schlie&szlig;en
-						</a>
+						<a id="close" class="close" href="#">Panel schlie&szlig;en</a>
 					</li>
 					<li class="right">&nbsp;</li>
 				</ul>

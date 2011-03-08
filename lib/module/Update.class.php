@@ -5,7 +5,7 @@
  *
  * @author Kurt
  */
-class Update extends Module {
+class Update {
 
 	/**
 	 * Updates to nightly version.
@@ -17,33 +17,28 @@ class Update extends Module {
 		file_put_contents('nightly.zip', $contents);
 		$zip_ar = $zip->open($filename);
 		if ($zip_ar === TRUE) {
-			rename('../config.inc.php', '../config.inc.back.php');
-			$extract = $zip->extractTo('../');
+			rename('./config.inc.php', './config.inc.back.php');
+			$extract = $zip->extractTo('./');
 			if ($extract) {
 				$zip->close();
 				$unlink = array(
-					'../.gitignore',
-					'../README.txt',
-					'sql.sql',
-					'install.php',
-					'update.xml',
-					'../notes/install.txt',
-					'../config.inc.php'
+					'./.gitignore',
+					'./README.md',
+					'./config.inc.php',
+					'./install/Install.class.php',
+					'./install/install.php',
+					'./install/sql.sql',
+					'./install/update.xml'
 				);
-				array_map(
-						array(
-					$this,
-					'unlink'
-						), $unlink
-				);
-				$this->unlink('../notes', true);
-				echo $this->lang['nightly_ok'] . '<br>';
+				array_map(array('Update', 'unlink'), $unlink);
+				$this->unlink('./install', true);
+				echo Lang::getLangString('nightly_ok') . '<br>';
 			} else {
-				echo $this->lang['update_fail'] . '<br>';
+				echo Lang::getLangString('update_fail') . '<br>';
 			}
-			rename('../config.inc.back.php', '../config.inc.php');
+			rename('./config.inc.back.php', './config.inc.php');
 		} else {
-			echo $this->lang['update_fail'] . '<br>Error Code #';
+			echo Lang::getLangString('update_fail') . '<br>Error Code #';
 			echo $zip_ar;
 		}
 		unlink('nightly.zip');
@@ -52,10 +47,10 @@ class Update extends Module {
 	/**
 	 * Updates to a main version.
 	 * @param object $xml
-	 * @param mixed $version
+	 * @param mixed  $version
 	 */
 	public static function updateMain($xml, $version = null) {
-		$content = file_get_contents('http://github.com/downloads/chakuzo/Twibber/ ' . str_replace(' ', '', $xml->version . '.zip'));
+		$content = file_get_contents('http://github.com/downloads/chakuzo/Twibber/' . str_replace(' ', '', $xml->version . '.zip'));
 		file_put_contents('update.zip', $content);
 		$zip = new ZipArchive;
 		$zip_ar = $zip->open('update.zip');
@@ -64,7 +59,7 @@ class Update extends Module {
 			$zip->close();
 			if (!empty($xml->sqlstate))
 				mysql_query($xml->sqlstate);
-			echo '<br>' . $this->lang['updated_from'] . ' ' . TWIBBER_VERSION . ' ' . $this->lang['updated_to'] . ' ' . $xml->version . '!<br>';
+			echo '<br>' . Lang::getLangString('updated_from') . ' ' . TWIBBER_VERSION . ' ' . Lang::getLangString('updated_to') . ' ' . $xml->version . '!<br>';
 		} else {
 			echo '<br>Failed to update! Try Manuell to update? <a href="http://github.com/downloads/chakuzo/Twibber/ ' . str_replace(' ', '', $xml->version . '.zip') . '">Click</a><br>Error Code #';
 			echo $zip_ar;
@@ -74,32 +69,32 @@ class Update extends Module {
 
 	/**
 	 * Checks for any Updates (and handles it)
-	 * @param boolean $handle
-	 * @param boolean $only_return
+	 * @param  boolean $handle
+	 * @param  boolean $only_return
 	 * @return mixed
 	 */
 	public static function checkUpdate($handle = false, $only_return = false) {
-		$xml = simplexml_load_file('https://github.com/chakuzo/Twibber/raw/master/install/update.xml');
+		$xml = simplexml_load_file('http://github.com/chakuzo/Twibber/raw/master/install/update.xml');
 		if ($xml->version != TWIBBER_VERSION) {
 			if ($only_return)
 				return $xml;
 			if ($handle)
 				$this->updateMain();
 			echo '<h3>';
-			echo $this->lang['update'] . " <a href='update.php?update=main'>" . $this->lang['update_install'] . "</a><br>";
-			echo $this->lang['update_notes'] . ' ' . $xml->note;
+			echo Lang::getLangString('update') . " <a href='index.php?page=Update&update=main'>" . Lang::getLangString('update_install') . "</a><br>";
+			echo Lang::getLangString('update_notes') . ' ' . $xml->note;
 			echo '</h3>';
 			return;
 		}
-		echo $this->lang['no_update'] . '<br>';
-		echo "Du magst Updates? Versuch doch mal <a href='update.php?update=nightly'>Nightly Builds</a> <b>Achtung! Es könnte unstabil sein, und nicht alles funktionieren.</b>";
+		echo Lang::getLangString('no_update') . '<br>';
+		echo "Du magst Updates? Versuch doch mal <a href='index.php?page=Update&update=nightly'>Nightly Builds</a> <b>Achtung! Es könnte unstabil sein, und nicht alles funktionieren.</b>";
 		return;
 	}
 
 	/**
 	 * Avoids error, if file is deleted or something else.
-	 * @param array $unlink
-	 * @param boolean $dir
+	 * @param  array   $unlink
+	 * @param  boolean $dir
 	 * @return boolean
 	 */
 	public static function unlink(array $unlink, $dir = false) {
@@ -121,22 +116,18 @@ class Update extends Module {
 
 $update = (isset($_GET['update'])) ? $_GET['update'] : '';
 
-include_once(TWIBBER_DIR . '/templates/header.tpl');
-
 switch ($update) {
 	case 'nightly':
-		$Update->updateNightly();
+		Update::updateNightly();
 		break;
 
 	case 'main':
-		$Update->updateMain($Update->checkUpdate(false, true));
+		Update::updateMain(Update::checkUpdate(false, true));
 		break;
 
 	default:
-		$Update->checkUpdate();
+		Update::checkUpdate();
 		break;
 }
-
-include_once(TWIBBER_DIR . '/templates/footer.tpl');
 
 ?>

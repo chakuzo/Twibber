@@ -116,8 +116,8 @@ class WCF {
 				if ($result->groupID == wcf_admin_groupid)
 					return true;
 			}
-			return false;
 		}
+		return false;
 	}
 
 }

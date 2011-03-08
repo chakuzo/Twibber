@@ -45,8 +45,12 @@ $return = WCF::getLoginOK($twibber_nick, $twibber_pw, $twibber_salt);
 include_once(TWIBBER_DIR . '/templates/header.tpl');
 
 switch ($page) {
-	case 'update':
-		include_once(TWIBBER_DIR . '/install/update.php');
+	case 'Update':
+		$admin_ok = WCF::getAdminOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt']);
+		$update_ok = WCF::getAdminOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt'], true);
+		if(!$admin_ok || !$update_ok)
+			header('Location: index.php');
+		include_once(TWIBBER_DIR . '/lib/module/Update.class.php');
 		break;
 
 	default:

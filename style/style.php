@@ -221,6 +221,10 @@ button[type=button]{
 	display: none;
 }
 
+.slider_active{
+	display: block !important;
+}
+
 @media screen and (max-width: 1170px) {
     #post_it {
 		background-color: #7BBDD7;
