@@ -16,7 +16,7 @@ class Login {
 	public static function userLogin($nickname, $password) {
 		$return = WCF::getDataOK($nickname, $password);
 		if ($return) {
-			CookieUtil::setCookie(array('twibber_nick' => $nickname, 'twibber_pw' => $password, 'twibber_salt' => WCF::getSalt($_POST['nickname'])));
+			CookieUtil::setCookie(array('twibber_nick' => $nickname, 'twibber_pw' => $password, 'twibber_salt' => WCF::getSalt($nickname)));
 			header('Location: index.php');
 			exit;
 		} else {

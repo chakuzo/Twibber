@@ -13,8 +13,6 @@ $id = (isset($_GET['id'])) ? $_GET['id'] : '';
 $nickname = (isset($_POST['nickname'])) ? $_POST['nickname'] : '';
 $password = (isset($_POST['password'])) ? trim($_POST['password']) : '';
 
-$return = WCF::getLoginOK($twibber_nick, $twibber_pw, $twibber_salt);
-
 if (!empty($action)) {
 	switch ($action) {
 		case 'deleTwibb':
@@ -44,6 +42,7 @@ if (!empty($action)) {
 	exit;
 }
 
+$return = WCF::getLoginOK($twibber_nick, $twibber_pw, $twibber_salt);
 include_once(TWIBBER_DIR . '/templates/header.tpl');
 
 switch ($page) {
