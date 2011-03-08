@@ -47,12 +47,12 @@ class Twibber {
 		if ($global && !$signature) {
 			$query = $this->mysqli->query("SELECT * FROM twibber_entry ORDER BY id DESC LIMIT " . $start . " , " . $end);
 			$false_array = array();
-			while ($result = $query->fetch_assoc()) {
-				$text = $this->twibberfy_text($result['text']);
-				if ($result['to_id'] == 0) {
-					$this->twibberfy_output($text, $result['nickname'], $result['date'], false, $result['id']);
+			while ($result = $query->fetch_object()) {
+				$text = $this->twibberfy_text($result->text);
+				if ($result->to_id == 0) {
+					$this->twibberfy_output($text, $result->nickname, $result->date, false, $result->id);
 				} else {
-					$this->twibberfy_output($text, $result['nickname'], $result['date'], true, $result['id'], $result['to_id']);
+					$this->twibberfy_output($text, $result->nickname, $result->date, true, $result->id, $result->to_id);
 				}
 			}
 		}
