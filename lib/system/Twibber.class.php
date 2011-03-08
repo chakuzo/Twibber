@@ -1,7 +1,7 @@
 <?php
 
 // define current twibber version
-define('TWIBBER_VERSION', '0.6.6');
+define('TWIBBER_VERSION', '0.7');
 
 require_once(TWIBBER_DIR . '/lib/core.functions.php');
 

@@ -64,9 +64,11 @@ class Update {
 		}
 		$zip2 = new ZipArchive;
 		$zip_ar2 = $zip2->open('Twibber.zip');
+		rename('./config.inc.php', './config.inc.back.php');
 		if ($zip_ar2 === true) {
 			$zip2->extractTo('./');
 			$zip2->close();
+			FileUtil::unlink('./config.inc.php');
 			if (!empty($xml->sqlstate))
 				mysql_query($xml->sqlstate);
 			echo '<br>' . Lang::getLangString('updated_from') . ' ' . TWIBBER_VERSION . ' ' . Lang::getLangString('updated_to') . ' ' . $xml->version . '!<br>';
@@ -75,6 +77,7 @@ class Update {
 			echo $zip_ar;
 			$zip2->close();
 		}
+		rename('./config.inc.back.php', './config.inc.php');
 		FileUtil::unlink(array('./update.zip', './Twibber.zip'));
 	}
 
