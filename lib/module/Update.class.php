@@ -14,7 +14,7 @@ class Update {
 		$zip = new ZipArchive();
 		$filename = 'nightly.zip';
 		$contents = file_get_contents('http://github.com/chakuzo/Twibber/zipball/master');
-		file_put_contents('nightly.zip', $contents);
+		file_put_contents('./nightly.zip', $contents);
 		$zip_ar = $zip->open($filename);
 		if ($zip_ar === TRUE) {
 			rename('./config.inc.php', './config.inc.back.php');
@@ -41,7 +41,7 @@ class Update {
 			echo Lang::getLangString('update_fail') . '<br>Error Code #';
 			echo $zip_ar;
 		}
-		FileUtil::unlink('nightly.zip');
+		FileUtil::unlink('./nightly.zip');
 	}
 
 	/**
@@ -51,14 +51,14 @@ class Update {
 	 */
 	public static function updateMain($xml, $version = null) {
 		$content = file_get_contents('http://github.com/downloads/chakuzo/Twibber/' . str_replace(' ', '', $xml->version . '.zip'));
-		file_put_contents('update.zip', $content);
+		file_put_contents('./update.zip', $content);
 		$zip = new ZipArchive;
-		$zip_ar = $zip->open('update.zip');
+		$zip_ar = $zip->open('./update.zip');
 		if ($zip_ar === true) {
 			$zip->extractTo('./', 'Twibber.zip');
 			$zip->close();
 		} else {
-			echo '<br>Failed to update! Try Manuell to update? <a href="http://github.com/downloads/chakuzo/Twibber/ ' . str_replace(' ', '', $xml->version . '.zip') . '">Click</a><br>Error Code #';
+			echo '<br>Failed to update! Try Manuell to update? <a href="http://github.com/downloads/chakuzo/Twibber/' . str_replace(' ', '', $xml->version . '.zip') . '">Click</a><br>Error Code #';
 			echo $zip_ar;
 			$zip->close();
 		}
@@ -75,7 +75,7 @@ class Update {
 			echo $zip_ar;
 			$zip2->close();
 		}
-		FileUtil::unlink(array('update.zip', 'twibber.zip'));
+		FileUtil::unlink(array('./update.zip', './Twibber.zip'));
 	}
 
 	/**
