@@ -213,28 +213,48 @@ class Install {
 			$archive->extractTo(__DIR__);
 			echo 'Successfully extracted Twibber.zip.';
 			$this->enableButton();
-			unlink('Twibber.zip');
+			$this->unlink('Twibber.zip');
 			return;
 		}
 		die("Can't extract Twibber.zip. Please try again!<br>Error Code #" . $open);
 	}
 
 	/**
-	 * @see lib/module/Update.class.php
+	 * @see FileUtil::unlink
 	 */
-	public function unlink(array $unlink, $dir = false) {
-		foreach ($unlink as $index => $file) {
+	public static function unlink($unlink, $message = true) {
+		if (is_array($unlink)) {
+			foreach ($unlink as $index => $file) {
+				if (file_exists($file)) {
+					if (is_dir($file)) {
+						if (!rmdir($file) && $message)
+							self::unlinkMSG($file);
+						continue;
+					}
+
+					if (!unlink($file) && $message)
+						self::unlinkMSG($file);
+				}
+			}
+		} else {
 			if (file_exists($file)) {
-				if ($dir) {
-					rmdir($file);
-					continue;
+				if (is_dir($file)) {
+					if (!rmdir($file) && $message)
+						self::unlinkMSG($file);
 				}
 
-				if (!unlink($file))
-					return false;
+				if (!unlink($file) && $message)
+					self::unlinkMSG($file);
 			}
+			return true;
 		}
-		return true;
+	}
+
+	/**
+	 * @see FileUtil::unlinkMSG
+	 */
+	public static function unlinkMSG($file) {
+		echo "Can't delete '" . $file . "'. Please do this!";
 	}
 
 	/**

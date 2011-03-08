@@ -9,9 +9,9 @@
 -->
 
 <update>
-	<version>0.6.5</version>
+	<version>0.7</version>
 	<update_files>all</update_files>
-	<note>Muuuch Bugs fixed</note>
+	<note>See README.md</note>
 	<delete></delete>
 	<sqlstate></sqlstate>
 	<nightly>

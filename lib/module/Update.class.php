@@ -30,8 +30,8 @@ class Update {
 					'./install/sql.sql',
 					'./install/update.xml'
 				);
-				array_map(array('Update', 'unlink'), $unlink);
-				$this->unlink('./install', true);
+				array_map(array('FileUtil', 'unlink'), $unlink);
+				FileUtil::unlink('./install');
 				echo Lang::getLangString('nightly_ok') . '<br>';
 			} else {
 				echo Lang::getLangString('update_fail') . '<br>';
@@ -41,7 +41,7 @@ class Update {
 			echo Lang::getLangString('update_fail') . '<br>Error Code #';
 			echo $zip_ar;
 		}
-		unlink('nightly.zip');
+		FileUtil::unlink('nightly.zip');
 	}
 
 	/**
@@ -54,17 +54,28 @@ class Update {
 		file_put_contents('update.zip', $content);
 		$zip = new ZipArchive;
 		$zip_ar = $zip->open('update.zip');
-		if ($zip_ar === TRUE) {
-			$zip->extractTo('./');
+		if ($zip_ar === true) {
+			$zip->extractTo('./', 'Twibber.zip');
 			$zip->close();
+		} else {
+			echo '<br>Failed to update! Try Manuell to update? <a href="http://github.com/downloads/chakuzo/Twibber/ ' . str_replace(' ', '', $xml->version . '.zip') . '">Click</a><br>Error Code #';
+			echo $zip_ar;
+			$zip->close();
+		}
+		$zip2 = new ZipArchive;
+		$zip_ar2 = $zip2->open('Twibber.zip');
+		if ($zip_ar2 === true) {
+			$zip2->extractTo('./');
+			$zip2->close();
 			if (!empty($xml->sqlstate))
 				mysql_query($xml->sqlstate);
 			echo '<br>' . Lang::getLangString('updated_from') . ' ' . TWIBBER_VERSION . ' ' . Lang::getLangString('updated_to') . ' ' . $xml->version . '!<br>';
 		} else {
 			echo '<br>Failed to update! Try Manuell to update? <a href="http://github.com/downloads/chakuzo/Twibber/ ' . str_replace(' ', '', $xml->version . '.zip') . '">Click</a><br>Error Code #';
 			echo $zip_ar;
+			$zip2->close();
 		}
-		unlink('update.zip');
+		FileUtil::unlink(array('update.zip', 'twibber.zip'));
 	}
 
 	/**
@@ -88,27 +99,6 @@ class Update {
 		}
 		echo Lang::getLangString('no_update') . '<br>';
 		echo "Du magst Updates? Versuch doch mal <a href='index.php?page=Update&update=nightly'>Nightly Builds</a> <b>Achtung! Es könnte unstabil sein, und nicht alles funktionieren.</b>";
-		return;
-	}
-
-	/**
-	 * Avoids error, if file is deleted or something else.
-	 * @param  array   $unlink
-	 * @param  boolean $dir
-	 * @return boolean
-	 */
-	public static function unlink(array $unlink, $dir = false) {
-		foreach ($unlink as $index => $file) {
-			if (file_exists($file)) {
-				if ($dir) {
-					rmdir($file);
-					continue;
-				}
-
-				if (!unlink($file))
-					return false;
-			}
-		}
 		return;
 	}
 
