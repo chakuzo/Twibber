@@ -55,7 +55,7 @@ class Update {
 		$zip = new ZipArchive;
 		$zip_ar = $zip->open('update.zip');
 		if ($zip_ar === TRUE) {
-			$zip->extractTo('../');
+			$zip->extractTo('./');
 			$zip->close();
 			if (!empty($xml->sqlstate))
 				mysql_query($xml->sqlstate);
