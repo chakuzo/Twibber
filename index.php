@@ -42,7 +42,7 @@ if (!empty($action)) {
 }
 
 $return = WCF::getLoginOK($twibber_nick, $twibber_pw, $twibber_salt);
-include_once(TWIBBER_DIR . '/templates/header.tpl');
+include_once('templates/header.tpl');
 
 switch ($page) {
 	case 'Update':
@@ -50,14 +50,14 @@ switch ($page) {
 		$update_ok = WCF::getAdminOK($_COOKIE['twibber_nick'], $_COOKIE['twibber_pw'], $_COOKIE['twibber_salt'], true);
 		if(!$admin_ok || !$update_ok)
 			header('Location: index.php');
-		include_once(TWIBBER_DIR . '/lib/module/Update.class.php');
+		include_once('lib/module/Update.class.php');
 		break;
 
 	default:
-		include_once(TWIBBER_DIR . '/templates/index_body.tpl');
+		include_once('templates/index_body.tpl');
 		break;
 }
 
-include_once(TWIBBER_DIR . '/templates/footer.tpl');
+include_once('templates/footer.tpl');
 
 ?>

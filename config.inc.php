@@ -22,10 +22,10 @@ define('wcf_name_prefix', 'wcf1_'); // The prefix which is used for the wcf !!!
  */
 define('HTTP_GZIP_ENABLED', true); // Enabled GZip Compression
 
-define('TWIBBER_DIR', __DIR__); // don't change this.
+define('TWIBBER_DIR', __DIR__ . '/'); // don't change this.
 define('VISITOR_LANG', $_SERVER['HTTP_ACCEPT_LANGUAGE']); // don't change this.
 
-define('WCF_DIR', 'http://example.com/wcf'); // The complete URL of the WCF dir.
+define('WCF_DIR', 'http://example.com/wcf'); // The complete URL of the WCF dir. (no trailing slash)
 
 define('TWIBBER_LANG', 'de'); // If youre from UK / USA change 'de' to 'en'.
 

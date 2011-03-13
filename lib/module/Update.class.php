@@ -88,7 +88,7 @@ class Update {
 	 * @return mixed
 	 */
 	public static function checkUpdate($handle = false, $only_return = false) {
-		$xml = simplexml_load_file('http://github.com/chakuzo/Twibber/raw/master/install/update.xml');
+		$xml = simplexml_load_file('http://dl.dropbox.com/u/23259483/update.xml');
 		if ($xml->version != TWIBBER_VERSION) {
 			if ($only_return)
 				return $xml;

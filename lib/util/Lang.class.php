@@ -1,8 +1,7 @@
 <?php
 
-// if lang array isnt here, load it.
-if (!isset($lang))
-	require_once(TWIBBER_DIR . '/lang/' . TWIBBER_LANG . '.lang.php');
+// load language file.
+require_once(TWIBBER_DIR . '/lang/' . TWIBBER_LANG . '.lang.php');
 
 /**
  * Returns language specified strings.
