@@ -39,6 +39,7 @@ $lang = array(
 	'success' => 'Erfolgreich!',
 	'no_message' => "Bitte geben Sie eine Nachricht ein, bevor Sie 'Twibbern' klicken!",
 	'message_too_long' => 'Nachricht zu lang!',
+	'failure' => 'Fehler, irgendwas ging wohl schief!',
 	'no_nick' => 'Kein Nickname angegeben. Bitte loggen Sie sich ein!',
 	'gd_error' => 'Kann keinen neuen GD-Bild-Stream erzeugen.',
 	'gd_last_twib' => "'s neuster Twibb:",

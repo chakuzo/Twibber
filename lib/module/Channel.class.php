@@ -5,7 +5,7 @@
  *
  * @author Kurt
  */
-class Channel {
+class Channel extends Twibber {
 
 	public $channel = array();
 
@@ -19,14 +19,20 @@ class Channel {
 		$this->channel[$name] = $keyword;
 	}
 
-	public function listChannel() {
-		/*foreach ($this->channel as $name => $keyword) {
+	public function listChannel($echo = true) {
+		if (!$echo){
+			echo json_encode($this->channel);
+			exit();
+		}
+		foreach ($this->channel as $name => $keyword) {
 			$keyword = '#'.$keyword;
 			echo '<div class="channel" id="'.$name.'">'.$name.' ('.$Twibber->twibberfy_text($keyword).')</div>';
-		}*/
-		echo json_encode($this->channel);
+		}
 	}
 
+	/* public function createTwibb(){
+
+	  } */
 }
 
 ?>

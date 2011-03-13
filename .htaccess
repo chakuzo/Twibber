@@ -1,2 +1,2 @@
 RewriteEngine on
-RewriteRule sig/(.+)$ api.php?image=$1
+RewriteRule sig/(.+)$ index.php?action=image&nick=$1

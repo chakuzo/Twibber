@@ -38,4 +38,7 @@ class Lang {
 
 }
 
+// init
+new Lang($lang);
+
 ?>

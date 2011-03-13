@@ -47,11 +47,17 @@ function __autoload($className) {
 		return;
 	}
 
+	if (file_exists(TWIBBER_DIR . '/lib/module/' . $className . '.class.php')) {
+		require_once(TWIBBER_DIR . '/lib/module/' . $className . '.class.php');
+		return;
+	}
+
 }
 
 // init
 new WCF($mysqli2);
-new Lang($lang);
+$channel = array('test' => 'test');
+$Channel = new Channel($channel);
 $Twibber = new Twibber($mysqli);
 
 ?>

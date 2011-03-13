@@ -80,7 +80,7 @@ class Twibber {
 	 * @param string $message
 	 * @param string $usernick
 	 */
-	public function createTwibber($message, $usernick) {
+	public function createTwibb($message, $usernick) {
 		$message = $this->mysqli->real_escape_string($message);
 		$usernick = $this->mysqli->real_escape_string($usernick);
 		$this->mysqli->query("INSERT INTO twibber_entry(nickname,text,date) VALUES('" . $usernick . "','" . $message . "','" . date("d.m.Y H:i:s") . "')");
