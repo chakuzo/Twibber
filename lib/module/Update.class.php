@@ -101,7 +101,7 @@ class Update {
 			return;
 		}
 		echo Lang::getLangString('no_update') . '<br>';
-		echo "Du magst Updates? Versuch doch mal <a href='index.php?page=Update&update=nightly'>Nightly Builds</a> <b>Achtung! Es könnte unstabil sein, und nicht alles funktionieren.</b>";
+		echo "Du magst Updates? Versuch doch mal <a href='index.php?page=UpdateNightly'>Nightly Builds</a> <b>Achtung! Es könnte unstabil sein, und nicht alles funktionieren.</b>";
 		return;
 	}
 

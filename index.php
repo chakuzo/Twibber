@@ -24,22 +24,6 @@ if (!empty($action)) {
 			$Twibber->deleteTwibb($id);
 			break;
 
-		case 'updateNightly':
-			Update::updateNightly();
-			break;
-
-		case 'login':
-			if (!empty($nickname) && !empty($password)) {
-				Login::userLogin($nickname, $password);
-			} else {
-				echo 'Bitte nur das Login formular nutzen!';
-			}
-			break;
-
-		case 'logout':
-			Login::userLogout();
-			break;
-
 		case 'image':
 			Signature::createImage($nick);
 			break;
@@ -49,16 +33,8 @@ if (!empty($action)) {
 			$Twibber->fetchTwibber(true, true, '', 0, $mult * 20);
 			exit;
 
-		case 'userpage':
-			$Twibber->fetchTwibber(true, false, $nick);
-			break;
-
-		case 'search':
-			$Twibber->searchTwibber($search);
-			break;
-
 		case 'new_entry':
-			if(trim($text) == '' || strlen($text) > 250 || !$return){
+			if (trim($text) == '' || strlen($text) > 250 || !$return) {
 				echo Lang::getLangString('failure');
 				break;
 			}
@@ -70,6 +46,7 @@ if (!empty($action)) {
 			$Twibber->createTwibb(htmlentities($text, ENT_COMPAT, 'UTF-8'), htmlentities($nick, ENT_COMPAT, 'UTF-8'));
 			echo Lang::getLangString('success');
 			break;
+
 
 		default:
 			exit(Lang::getLangString('no_action'));
@@ -87,6 +64,26 @@ switch ($page) {
 		if (!$admin_ok || !$update_ok)
 			header('Location: index.php');
 		include_once('lib/module/Update.class.php');
+		break;
+
+	case 'login':
+		if (!empty($nickname) && !empty($password)) {
+			Login::userLogin($nickname, $password);
+		} else {
+			echo 'Bitte nur das Login formular nutzen!';
+		}
+		break;
+
+	case 'logout':
+		Login::userLogout();
+		break;
+
+	case 'userpage':
+		$Twibber->fetchTwibber(true, false, $nick);
+		break;
+
+	case 'search':
+		$Twibber->searchTwibber($search);
 		break;
 
 	default:
