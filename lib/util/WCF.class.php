@@ -25,7 +25,7 @@ class WCF {
 		$nickname = self::$mysqli2->real_escape_string($nickname);
 		$password = self::$mysqli2->real_escape_string($password);
 
-		$sql = "SELECT username, password, salt FROM " . wcf_name_prefix . "user WHERE username = '" . $nickname . "'";
+		$sql = "SELECT username, password, salt FROM " . WCF_NAME_PREFIX . "user WHERE username = '" . $nickname . "'";
 		$query = self::$mysqli2->query($sql);
 
 		$result = $query->fetch_object();
@@ -41,7 +41,7 @@ class WCF {
 	public static function getAvatar($nickname) {
 		$nickname = self::$mysqli2->real_escape_string($nickname);
 
-		$query = self::$mysqli2->query("SELECT avatarID FROM " . wcf_name_prefix . "user WHERE username = '" . $nickname . "'");
+		$query = self::$mysqli2->query("SELECT avatarID FROM " . WCF_NAME_PREFIX . "user WHERE username = '" . $nickname . "'");
 		$result = $query->fetch_object();
 
 		return WCF_DIR . '/images/avatars/avatar-' . $result->avatarID . '.png';
@@ -56,7 +56,7 @@ class WCF {
 	public static function getSalt($nickname) {
 		$nickname = self::$mysqli2->real_escape_string($nickname);
 
-		$query = self::$mysqli2->query("SELECT salt FROM " . wcf_name_prefix . "user WHERE username = '" . $nickname . "'");
+		$query = self::$mysqli2->query("SELECT salt FROM " . WCF_NAME_PREFIX . "user WHERE username = '" . $nickname . "'");
 		$result = $query->fetch_object();
 
 		return $result->salt;
@@ -78,7 +78,7 @@ class WCF {
 		$pw = self::$mysqli2->real_escape_string($pw);
 		$salt = self::$mysqli2->real_escape_string($salt);
 
-		$query = self::$mysqli2->query("SELECT password FROM " . wcf_name_prefix . "user WHERE username = '" . $nickname . "' AND salt = '" . $salt . "' AND password = '" . StringUtil::getDoubleSaltedHash($pw, $salt) . "'");
+		$query = self::$mysqli2->query("SELECT password FROM " . WCF_NAME_PREFIX . "user WHERE username = '" . $nickname . "' AND salt = '" . $salt . "' AND password = '" . StringUtil::getDoubleSaltedHash($pw, $salt) . "'");
 
 		$result = $query->fetch_object();
 
@@ -104,16 +104,16 @@ class WCF {
 		$pw = self::$mysqli2->real_escape_string($pw);
 		$salt = self::$mysqli2->real_escape_string($salt);
 
-		$query = self::$mysqli2->query("SELECT userID FROM " . wcf_name_prefix . "user WHERE username = '" . $nickname . "' AND salt = '" . $salt . "' AND password = '" . StringUtil::getDoubleSaltedHash($pw, $salt) . "'");
+		$query = self::$mysqli2->query("SELECT userID FROM " . WCF_NAME_PREFIX . "user WHERE username = '" . $nickname . "' AND salt = '" . $salt . "' AND password = '" . StringUtil::getDoubleSaltedHash($pw, $salt) . "'");
 		$result = $query->fetch_object();
-		$query = self::$mysqli2->query("SELECT groupID FROM " . wcf_name_prefix . "user_to_groups WHERE userID = " . $result->userID);
+		$query = self::$mysqli2->query("SELECT groupID FROM " . WCF_NAME_PREFIX . "user_to_groups WHERE userID = " . $result->userID);
 
 		while ($result = $query->fetch_object()) {
 			if ($update) {
-				if ($result->groupID == wcf_admin_groupid || $result->groupID == wcf_update_groupid)
+				if ($result->groupID == WCF_ADMIN_GROUPID || $result->groupID == WCF_UPDATE_GROUPID)
 					return true;
 			} else {
-				if ($result->groupID == wcf_admin_groupid)
+				if ($result->groupID == WCF_ADMIN_GROUPID)
 					return true;
 			}
 		}

@@ -48,7 +48,7 @@ class Twibber {
 			$query = $this->mysqli->query("SELECT * FROM twibber_entry ORDER BY id DESC LIMIT " . $start . " , " . $end);
 			$false_array = array();
 			while ($result = $query->fetch_object()) {
-				$text = $this->twibberfy_text($result->text);
+				$text = static::twibberfy_text($result->text);
 				if ($result->to_id == 0) {
 					$this->twibberfy_output($text, $result->nickname, $result->date, false, $result->id);
 				} else {
@@ -61,7 +61,7 @@ class Twibber {
 			$nick = strip_tags($nick);
 			$query = $this->mysqli->query("SELECT * FROM twibber_entry WHERE nickname = '" . $nick . "' ORDER BY id DESC LIMIT " . $start . " , " . $end);
 			while ($result = $query->fetch_assoc()) {
-				$text = $this->twibberfy_text($result['text']);
+				$text = static::twibberfy_text($result['text']);
 				$this->twibberfy_output($text, $result['nickname'], $result['date'], $result['id']);
 			}
 		}
@@ -112,7 +112,7 @@ class Twibber {
 		$needle = strip_tags($needle);
 		$query = $this->mysqli->query("SELECT * FROM twibber_entry WHERE text LIKE '%" . $needle . "%' ORDER BY date DESC LIMIT " . $start . " , " . $end);
 		while ($result = $query->fetch_assoc()) {
-			$text = $this->twibberfy_text($result['text']);
+			$text = static::twibberfy_text($result['text']);
 			$this->twibberfy_output($text, $result['nickname'], $result['date']);
 		}
 	}
@@ -137,7 +137,7 @@ class Twibber {
 	 * @param  string $text
 	 * @return string
 	 */
-	public function twibberfy_text($text) {
+	public static function twibberfy_text($text) {
 		$text = str_replace("\\", "", $text);
 		$text = preg_replace('/@([A-Za-z0-9_-]+)/', '@<a href="#nick=$1">$1</a>', $text);
 		$text = preg_replace('/((?:https?|ftp):\/\/[^\s\'"\'<>()]+|www\.[^\s\'"\'<>()]+|[\-\w.+]+@(?:[\-\w]+\.)+[\w]{2,6})/i', '<a href="$1">$1</a>', $text);

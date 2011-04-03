@@ -7,14 +7,14 @@ $twibber_nick = (isset($_COOKIE['twibber_nick'])) ? $_COOKIE['twibber_nick'] : '
 $twibber_pw = (isset($_COOKIE['twibber_pw'])) ? $_COOKIE['twibber_pw'] : '';
 $twibber_salt = (isset($_COOKIE['twibber_salt'])) ? $_COOKIE['twibber_salt'] : '';
 
-$page = (isset($_GET['page'])) ? $_GET['page'] : '';
-$action = (isset($_GET['action'])) ? $_GET['action'] : '';
-$id = (isset($_GET['id'])) ? $_GET['id'] : '';
-$nickname = (isset($_POST['nickname'])) ? $_POST['nickname'] : '';
-$nick = (isset($_GET['nick'])) ? $_GET['nick'] : '';
-$password = (isset($_POST['password'])) ? trim($_POST['password']) : '';
-$search = (isset($_GET['search'])) ? $_GET['search'] : '';
-$text = (isset($_POST['text'])) ? $_POST['text'] : '';
+$page = (isset($_REQUEST['page'])) ? $_REQUEST['page'] : '';
+$action = (isset($_REQUEST['action'])) ? $_REQUEST['action'] : '';
+$id = (isset($_REQUEST['id'])) ? $_REQUEST['id'] : '';
+$nickname = (isset($_REQUEST['nickname'])) ? $_REQUEST['nickname'] : '';
+$nick = (isset($_REQUEST['nick'])) ? $_REQUEST['nick'] : '';
+$password = (isset($_REQUEST['password'])) ? $_REQUEST['password'] : '';
+$search = (isset($_REQUEST['search'])) ? $_REQUEST['search'] : '';
+$text = (isset($_REQUEST['text'])) ? $_REQUEST['text'] : '';
 
 $return = WCF::getLoginOK($twibber_nick, $twibber_pw, $twibber_salt);
 

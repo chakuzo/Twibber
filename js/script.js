@@ -1,9 +1,6 @@
-var page = 1;
-var nick_g = '', search_g = '', global_g = false, interval;
-window.onhashchange = checkHash(true);
+window.onhashchange = checkHash(true); // check for hash changes
 $(document).ready(function(){
-	open();
-	handleHash();
+	panel_register(); // register panel events
 	sortComments();
 	$('#more_twibbs').click(function(){
 		checkHash();
@@ -107,7 +104,7 @@ function dyn_get(latest, global, nick, search){
 }
 function dyn_submit(){
 	var text = $('#input_text').val();
-	var url = 'api.php?new_entry=1';
+	var url = 'index.php?action=new_entry';
 	var to_id = $('#to_id').val();
 	var options = {
 		text: text
@@ -137,10 +134,9 @@ function insert_nick(nick){
 	$('#input_text').val('@'+nick+' '+$('#input_text').val());
 }
 
-function open(){
+function panel_register(){
 	$('#open').click(function(){
-		// For basically all browsers, which not using webkit
-		$('#panel').slideDown('slow').delay(1).css('display', 'block');
+		$('#panel').slideDown('slow').delay(1).css('display', 'block'); // .delay is for non webkit engine browsers
 	});
 	$('#close').click(function(){
 		$('#panel').slideUp('slow');
@@ -151,6 +147,7 @@ function open(){
 	});
 }
 
+var page = 1;
 function load_dips(global, nick, search){
 	page++;
 	$('#status').freeow('Loading', 'Mehr Twibbs werden geladen!', {
@@ -160,6 +157,7 @@ function load_dips(global, nick, search){
 	dyn_get(false, global, nick, search);
 }
 
+var interval;
 function handleHash(){
 	if(interval != undefined)
 		window.clearInterval(interval);

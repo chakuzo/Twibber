@@ -26,7 +26,7 @@ class Channel extends Twibber {
 		}
 		foreach ($this->channel as $name => $keyword) {
 			$keyword = '#'.$keyword;
-			echo '<div class="channel" id="'.$name.'">'.$name.' ('.$Twibber->twibberfy_text($keyword).')</div>';
+			echo '<div class="channel" id="'.$name.'">'.$name.' ('.Twibber::twibberfy_text($keyword).')</div>';
 		}
 	}
 

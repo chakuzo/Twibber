@@ -23,7 +23,7 @@ class HeaderUtil {
 	public static function sendHeaders($nocache = false, $gzip = true) {
 		// send content type
 		@header('Content-Type: text/html; charset='.CHARSET);
-		@header("Access-Control-Allow-Origin: *");
+		//@header("Access-Control-Allow-Origin: *");
 
 		// send no cache headers
 		if (defined('HTTP_ENABLE_NO_CACHE_HEADERS') || $nocache) {

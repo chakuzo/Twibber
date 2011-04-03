@@ -99,7 +99,7 @@ Version: 1.0
 
 /* sliding panel */
 #toppanel {
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
     z-index: 999;
