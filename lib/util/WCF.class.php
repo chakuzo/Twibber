@@ -42,7 +42,6 @@ class WCF {
 		$nickname = self::$mysqli2->real_escape_string($nickname);
 
 		$query = self::$mysqli2->query("SELECT avatarID FROM " . WCF_NAME_PREFIX . "user WHERE username = '" . $nickname . "'");
-		print_r($query);
 		$result = $query->fetch_object();
 
 		return WCF_DIR . '/images/avatars/avatar-' . $result->avatarID . '.png';
