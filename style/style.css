@@ -174,10 +174,10 @@ button[type=button]{
     background: -moz-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
     margin-left: 2.5%;
     color: #333;
-    padding: 10px 20em 10px 20em;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
+	padding: 10px 20em;
 }
 
 .comment{

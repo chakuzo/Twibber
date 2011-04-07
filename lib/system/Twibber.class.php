@@ -49,7 +49,7 @@ class Twibber {
 			$false_array = array();
 			while ($result = $query->fetch_object()) {
 				$text = static::twibberfy_text($result->text);
-				if ($result->to_id == 0) {
+				if ($result->to_id === null) {
 					$this->twibberfy_output($text, $result->nickname, $result->date, false, $result->id);
 				} else {
 					$this->twibberfy_output($text, $result->nickname, $result->date, true, $result->id, $result->to_id);
@@ -60,9 +60,9 @@ class Twibber {
 			$nick = $this->mysqli->real_escape_string($nick);
 			$nick = strip_tags($nick);
 			$query = $this->mysqli->query("SELECT * FROM twibber_entry WHERE nickname = '".$nick."' ORDER BY id DESC LIMIT ".$start." , ".$end);
-			while ($result = $query->fetch_assoc()) {
-				$text = static::twibberfy_text($result['text']);
-				$this->twibberfy_output($text, $result['nickname'], $result['date'], $result['id']);
+			while ($result = $query->fetch_object()) {
+				$text = static::twibberfy_text($result->text);
+				$this->twibberfy_output($text, $result->nickname, $result->date, $result->id);
 			}
 		}
 		if ($signature && $nick != '') {
@@ -149,12 +149,12 @@ class Twibber {
 	/**
 	 * Creates the Output for Twibber.
 	 *
-	 * @param type $text
-	 * @param type $nickname
-	 * @param type $date
-	 * @param type $comment
-	 * @param type $id
-	 * @param type $to_id
+	 * @param string  $text
+	 * @param string  $nickname
+	 * @param string  $date
+	 * @param string  $comment
+	 * @param integer $id
+	 * @param integer $to_id
 	 */
 	public function twibberfy_output($text, $nickname, $date, $comment = false, $id, $to_id = 0) {
 		if (!$comment) {
@@ -190,7 +190,7 @@ class Twibber {
 	 * Calls the show method on the given exception.
 	 *
 	 * @param	Exception	$e
-	 * @author Marcel Werk (A class from beautiful WCF)
+	 * @author  Marcel Werk (A class from beautiful WCF)
 	 */
 	public static final function handleException(Exception $e) {
 		if ($e instanceof PrintableException) {
@@ -204,7 +204,7 @@ class Twibber {
 	/**
 	 * Catches php errors and throws instead a system exception.
 	 *
-	 * @author Marcel Werk (A class from beautiful WCF)
+	 * @author  Marcel Werk (A class from beautiful WCF)
 	 * @param	integer		$errorNo
 	 * @param	string		$message
 	 * @param	string		$filename
