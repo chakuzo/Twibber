@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Important functions for twibber
+ * WCF "Bridge" for Twibber.
  *
- * @author kurtextrem
+ * @author  kurtextrem
  * @license	GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  */
 class WCF {
@@ -42,6 +42,7 @@ class WCF {
 		$nickname = self::$mysqli2->real_escape_string($nickname);
 
 		$query = self::$mysqli2->query("SELECT avatarID FROM " . WCF_NAME_PREFIX . "user WHERE username = '" . $nickname . "'");
+		print_r($query);
 		$result = $query->fetch_object();
 
 		return WCF_DIR . '/images/avatars/avatar-' . $result->avatarID . '.png';

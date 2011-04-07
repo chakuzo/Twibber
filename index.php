@@ -1,5 +1,4 @@
 <?php
-
 require_once('global.php');
 
 // to prevent notices

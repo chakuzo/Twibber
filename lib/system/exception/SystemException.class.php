@@ -3,7 +3,7 @@
 /**
  * A SystemException is thrown when an unexpected error occurs.
  *
- * @author	Marcel Werk (mofidied from Kurtextrem for Twibber).
+ * @author	Marcel Werk (modifications by kurtextrem).
  * @copyright	2001-2009 WoltLab GmbH
  * @license	GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  * @package	com.woltlab.wcf
@@ -55,8 +55,8 @@ class SystemException extends Exception implements PrintableException {
 		// send status code
 		@header('HTTP/1.1 503 Service Unavailable');
 
+		// modification starts here
 		?>
-
 		<!DOCTYPE html>
 		<head>
 			<title>Error: <?php echo StringUtil::encodeHTML($this->getMessage()); ?></title>
@@ -66,7 +66,7 @@ class SystemException extends Exception implements PrintableException {
 					padding: 3px;
 					background-color: lightgrey;
 					text-align: left;
-					overflow: auto;
+					overflow: hidden;
 					font-family: Verdana, Helvetica, sans-serif;
 					font-size: .8em;
 				}
@@ -80,6 +80,7 @@ class SystemException extends Exception implements PrintableException {
 					color: #fff;
 					margin: 0 0 3px 0;
 					font-size: 1.15em;
+					word-wrap: break-word;
 				}
 				.systemException h2 {
 					font-size: 1.1em;
@@ -91,6 +92,13 @@ class SystemException extends Exception implements PrintableException {
 				.systemException pre {
 					font-size: .85em;
 					font-family: "Courier New";
+					text-overflow: ellipsis;
+					overflow: hidden;
+					background-color: yellow;
+				}
+				.systemException pre:hover{
+					overflow: auto !important;
+					text-overflow: clip !important;
 				}
 			</style>
 		</head>
@@ -100,25 +108,29 @@ class SystemException extends Exception implements PrintableException {
 
 				<div>
 					<p><?php echo $this->getDescription(); ?></p>
-					<p>Send this report to our Email <a href='mailto:support@twibber.de'>support@twibber.de</a> (Of course, we speak english x)).</p>
-					<p>You could also look at the <a href='https://github.com/chakuzo/Twibber/wiki/FAQ'>FAQ</a>
-
 					<h2>Information:</h2>
+					<br>
 					<p>
-						<b>error message:</b> <?php echo $this->getMessage(); ?><br />
-						<b>error code:</b> <?php echo intval($this->getCode()); ?><br />
+						<b>Error message:</b> <?php echo $this->getMessage(); ?><br>
 		<?php echo $this->information; ?>
-						<b>file:</b> <?php echo StringUtil::encodeHTML($this->getFile()); ?> (#<?php echo $this->getLine(); ?>)<br />
-						<b>php version:</b> <?php echo StringUtil::encodeHTML(phpversion()); ?><br />
-						<b>Twibber version:</b> <?php echo TWIBBER_VERSION; ?><br />
-						<b>date:</b> <?php echo gmdate('r'); ?><br />
-						<b>request:</b> <?php if (isset($_SERVER['REQUEST_URI']))
-			echo StringUtil::encodeHTML($_SERVER['REQUEST_URI']); ?><br />
-						<b>referer:</b> <?php echo (isset($_SERVER['HTTP_REFERER'])) ? StringUtil::encodeHTML($_SERVER['HTTP_REFERER']) : 'No referer.' ?><br />
+						<b>File:</b> <?php echo StringUtil::encodeHTML($this->getFile()); ?> (#<?php echo $this->getLine(); ?>)<br>
+						<b>PHP version:</b> <?php echo StringUtil::encodeHTML(phpversion()); ?><br>
+						<b>Twibber version:</b> <?php echo TWIBBER_VERSION; ?><br>
+						<b>Date:</b> <?php echo gmdate('r'); ?><br>
+						<b>Request:</b> <?php if (isset($_SERVER['REQUEST_URI']))
+			echo StringUtil::encodeHTML($_SERVER['REQUEST_URI']); ?><br>
+						<b>Referer:</b> <?php echo (isset($_SERVER['HTTP_REFERER'])) ? StringUtil::encodeHTML($_SERVER['HTTP_REFERER']) : 'No referer.' ?><br>
 					</p>
 
 					<h2>Stacktrace:</h2>
 					<pre><?php echo StringUtil::encodeHTML($this->__getTraceAsString()); ?></pre>
+					<br>
+					<p>Now you can do 2. things:</p>
+					<ol>
+						<li>Send this report to our Email <a href='mailto:support@twibber.de'>support@twibber.de</a>.</li>
+						<li>Take a look at the <a href='https://github.com/chakuzo/Twibber/wiki/FAQ'>FAQs</a>.</li>
+					</ol>
+
 				</div>
 
 		<?php echo $this->functions; ?>

@@ -1,6 +1,6 @@
 window.onhashchange = checkHash(true); // check for hash changes
 $(document).ready(function(){
-	panel_register(); // register panel events
+	register_panel(); // register panel events
 	sortComments();
 	$('#more_twibbs').click(function(){
 		checkHash();
@@ -134,7 +134,7 @@ function insert_nick(nick){
 	$('#input_text').val('@'+nick+' '+$('#input_text').val());
 }
 
-function panel_register(){
+function register_panel(){
 	$('#open').click(function(){
 		$('#panel').slideDown('slow').delay(1).css('display', 'block'); // .delay is for non webkit engine browsers
 	});

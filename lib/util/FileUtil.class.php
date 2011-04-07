@@ -8,6 +8,34 @@
 class FileUtil {
 
 	/**
+	 * Minifys a Content (File)
+	 *
+	 * @param string $content
+	 */
+	public static function minifyFile($content) {
+		if (is_file($content)) {
+			$content = file_get_contents($content);
+		}
+		$content = preg_replace('/(\n|\f|\r|\t|\v)/', '', $content);
+
+		return $content;
+	}
+
+	/**
+	 * Merge Files
+	 *
+	 * @param array $files
+	 */
+	public static function mergeFiles($files){
+		$content = '';
+		foreach($files as $file){
+			$content .= static::minifyFile($file);
+		}
+
+		return $content;
+	}
+
+	/**
 	 * Avoids error, if file is deleted or something else (and displays a message).
 	 * @param  mixed   $unlink
 	 * @param  boolean $message
@@ -47,7 +75,7 @@ class FileUtil {
 	 * @param string $file
 	 */
 	public static function unlinkMSG($file) {
-		echo "Can't delete '" . $file . "'. Please do this!";
+		echo "Can't delete '".$file."'. Please do this!";
 	}
 
 }

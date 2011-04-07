@@ -1,4 +1,4 @@
-<h3><?php echo (!empty($_COOKIE['twibber_nick'])) ? $_COOKIE['twibber_nick'] : $lang['guest']; ?>, was machst du gerade?</h3>
+<h3><?php echo (!empty($_COOKIE['twibber_nick'])) ? $_COOKIE['twibber_nick'] : Lang::getLangString('guest'); ?>, was machst du gerade?</h3>
 <h3 id='in_comment_to'></h3>
 <form id='twibb_form'>
 	<input type="hidden" value="" id="to_id">

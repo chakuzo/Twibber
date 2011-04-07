@@ -47,6 +47,7 @@ $lang = array(
 
 	/* index.php */
 	'guest' => 'Gast',
+	'copyright' => 'Twibber wird von WBBLite2.de entwickelt.',
 
 	/* install/update.php */
 	'nightly_ok' => 'Nightly Version installiert!',

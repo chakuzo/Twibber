@@ -3,9 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>TWiBBer - WBB MicroBlogging Social Network</title>
-		<link rel="stylesheet" href="style/style.min.css" type="text/css">
-		<link rel="stylesheet" href="style/freeow.min.css" type="text/css">
-		<link rel="stylesheet" href="style/slide.min.css" type="text/css">
+		<link rel="stylesheet" href="style/style.min.php" type="text/css">
 		<link rel="shortcut icon" type="image/x-icon" href="/images/img/favicon.ico">
 		<link href='//fonts.googleapis.com/css?family=Yanone+Kaffeesatz' rel='stylesheet' type='text/css'>
 		<link href='//fonts.googleapis.com/css?family=Neucha' rel='stylesheet' type='text/css'>
@@ -46,3 +44,4 @@
 		<div id="status"></div>
 		<div id="logo"><a href="#page=index"><img src="images/img/logo.png"></a></div>
 		<section id="post_it">
+			<section id='inner_post_it'>
