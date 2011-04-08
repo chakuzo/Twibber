@@ -160,7 +160,7 @@ class Twibber {
 		if (!$comment) {
 			echo "<div class='twibb' id='".$id."'>";
 		} else {
-			echo "<div class='comment' to_id='".$to_id."'>";
+			echo "<div class='comment' data-to-id='".$to_id."'>";
 		}
 
 		echo "<div class='avatar'><a href='#nick=".$nickname."'><img src='".WCF::getAvatar($nickname)."'></a></div>";

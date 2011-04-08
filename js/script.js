@@ -53,17 +53,15 @@ $(document).ready(function(){
 });
 
 $('#input_text').NobleCount('#counter',{
-	on_negative: function(t_obj, char_area, c_settings, char_rem){
-		char_area.css('color', 'red');
-	},
 	on_positive: function(t_obj, char_area, c_settings, char_rem){
-		char_area.css('color', 'green');
+		char_area.css('color', 'green').text(char_rem+' Zeichen');
 	},
 	max_chars: 250,
 	on_update: function(t_obj, char_area, c_settings, char_rem){
 		if (char_rem <= 10) {
 			char_area.css('color', 'red');
 		}
+		char_area.text(char_rem+' Zeichen');
 	}
 });
 function dyn_get(latest, global, nick, search){
@@ -214,7 +212,7 @@ function sortComments(){
 	$.each(
 		$('#twibber').children(),
 		function(index, value){
-			var to_id = $(value).attr('to_id');
+			var to_id = $(value).attr('data-to-id');
 			if(to_id != ''){
 				$('#'+to_id).append(value);
 			}

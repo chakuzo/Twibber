@@ -96,6 +96,9 @@ time{
     text-overflow: ellipsis;
     overflow: hidden;
 }
+.comment > .twibb_content{
+	border-radius: 5px;
+}
 .nickname{
     border: 1px solid black;
     border-bottom: 0px;
@@ -181,7 +184,10 @@ button[type=button]{
 }
 
 .comment{
-	margin-left: 40px;
+	margin-left: 60px;
+}
+.comment > .avatar{
+	left: -30px;
 }
 
 .comment_banner{
@@ -208,7 +214,7 @@ button[type=button]{
 	text-shadow: black 1px 1px 1px;
 }
 
-.comment.avatar > img{
+.comment > .avatar img{
 	height: 30px;
 }
 
