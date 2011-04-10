@@ -1,6 +1,6 @@
 <!doctype html>
 <html>
-	{header}
+	{head}
 	<body>
 		{body}
 		{footer}

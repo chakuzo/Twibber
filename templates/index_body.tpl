@@ -1,6 +1,3 @@
-<section id='channel'><?php $Channel->listChannel(); ?></section>
-<div id="status"></div>
-<div id="logo"><a href="#page=index"><img src="images/img/logo.png"></a></div>
 <section id="post_it">
 	<section id='inner_post_it'>
 		<h3><?php echo (!empty($_COOKIE['twibber_nick'])) ? $_COOKIE['twibber_nick'] : Lang::getLangString('guest'); ?>, was machst du gerade?</h3>

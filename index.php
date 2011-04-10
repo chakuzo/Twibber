@@ -54,7 +54,7 @@ if (!empty($action)) {
 }
 
 $return = WCF::getLoginOK($twibber_nick, $twibber_pw, $twibber_salt);
-include_once('templates/header.tpl');
+include_once('templates/head.tpl');
 
 switch ($page) {
 	case 'Update':
